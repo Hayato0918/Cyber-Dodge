@@ -83,9 +83,6 @@ void UpdatePlayer(void)
 	//-----キャッチ処理
 	_Catch();
 
-
-
-
 	//-----スキル処理
 	_Skill();
 }
