@@ -68,7 +68,7 @@ void _Catch(void)
 	BALL* ball = GetBall();
 
 	//-----Jキーでキャッチ
-	if (GetKeyboardTrigger(DIK_J) && Catch.intervalflag == false)
+	if (GetKeyboardTrigger(DIK_J) && Catch.intervalflag == false && ball->playerhaveflag == false)	//
 	{
 		Catch.flag = true;
 		Catch.intervalflag = true;
@@ -89,7 +89,7 @@ void _Catch(void)
 		Catch.flag = false;
 		Catch.coltime = 0.0f;
 	}
-
+	//-----キャッチモーション中にボールがキャッチ判定内に入ったら
 	if (Catch.flag == true)
 	{
 		if (Catch.pos.x + Catch.size.x > ball->pos.x && Catch.pos.x < ball->pos.x + ball->size.x)
@@ -97,6 +97,7 @@ void _Catch(void)
 			if (Catch.pos.y + Catch.size.y > ball->pos.y && Catch.pos.y < ball->pos.y + ball->size.y)
 			{
 				ball->throwflag = false;
+				ball->playerhaveflag = true;
 				ball->move = D3DXVECTOR2(15.0f, -3.5f);
 			}
 		}

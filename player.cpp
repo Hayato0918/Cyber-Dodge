@@ -78,7 +78,7 @@ void UpdatePlayer(void)
 	_Escape();
 
 	//-----“Š‚°‚éˆ—
-	_Throw();
+	P_Throw();
 
 	//-----ƒLƒƒƒbƒ`ˆ—
 	_Catch();
