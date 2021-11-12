@@ -5,6 +5,7 @@
 #include "sprite.h"
 
 #include "player.h"
+#include "bug.h"
 
 //-----マクロ定義
 #define builduptime 180		//3s間
@@ -20,6 +21,7 @@ HRESULT InitBuildUp(void)
 	buildup.use = false;
 	buildup.timeflag = false;
 	buildup.time = 0.0f;
+	buildup.usegauge = 10;
 
 	return S_OK;
 }
@@ -28,12 +30,14 @@ HRESULT InitBuildUp(void)
 void _BuildUp(void)
 {
 	PLAYER* player = GetPlayer();
+	BUG* bug = GetBug();
 
 	//1キーを押したら、3s間キャラのサイズが2倍になる
 	if (GetKeyboardTrigger(DIK_1) && buildup.use == false)
 	{
 		player->size = D3DXVECTOR2(player->size.x * 2, player->size.y * 2);
 		buildup.timeflag = true;
+		bug->gaugesize.x = bug->gaugesize.x + buildup.usegauge * bug->gaugeonce;
 		buildup.use = true;
 	}
 	//スキル使用3s後にもとの大きさに戻る

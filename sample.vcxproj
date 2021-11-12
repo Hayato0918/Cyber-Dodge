@@ -126,6 +126,7 @@
   <ItemGroup>
     <ClCompile Include="ball.cpp" />
     <ClCompile Include="bg.cpp" />
+    <ClCompile Include="bug.cpp" />
     <ClCompile Include="buildup.cpp" />
     <ClCompile Include="catch.cpp" />
     <ClCompile Include="enemy.cpp" />
@@ -148,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="ball.h" />
     <ClInclude Include="bg.h" />
+    <ClInclude Include="bug.h" />
     <ClInclude Include="buildup.h" />
     <ClInclude Include="catch.h" />
     <ClInclude Include="enemy.h" />

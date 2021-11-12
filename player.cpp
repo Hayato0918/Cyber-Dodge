@@ -27,6 +27,7 @@ HRESULT InitPlayer(void)
 	player.Atexture = LoadTexture("data/TEXTURE/player_a.png");
 	player.Dtexture = LoadTexture("data/TEXTURE/player_d.png");
 	player.rotate = 3;
+	player.drawflag = true;
 
 	InitSkill();
 
@@ -42,6 +43,8 @@ void UninitPlayer(void)
 //-----更新処理
 void UpdatePlayer(void)
 {
+	BALL* ball = GetBall();
+
 	//-----移動処理(コートの左右端を3sで移動)
 	if (GetKeyboardPress(DIK_W))	//上
 	{
@@ -74,14 +77,26 @@ void UpdatePlayer(void)
 	if (player.pos.x >= SCREEN_WIDTH * 0.5 - player.size.x - 5)
 		player.pos.x = SCREEN_WIDTH * 0.5 - player.size.x - 5;
 
+	//-----エネミーが投げたボールが、地面,壁に当たらずプレイヤーに当たったらプレイヤーの描画をやめる(アウト判定)
+	if (ball->playerhitflag == true)
+	{
+		if (player.pos.x < ball->pos.x + ball->size.x && player.pos.x + player.size.x > ball->pos.x)
+		{
+			if (player.pos.y < ball->pos.y + ball->size.y && player.pos.y + player.size.y > ball->pos.y)
+				player.drawflag = false;
+		}
+	}
+
+
+
 	//-----回避処理
 	_Escape();
 
 	//-----投げる処理
-	P_Throw();
+	_Throw();
 
 	//-----キャッチ処理
-	_Catch();
+	P_Catch();
 
 	//-----スキル処理
 	_Skill();
@@ -90,14 +105,17 @@ void UpdatePlayer(void)
 //-----描画処理
 void DrawPlayer(void)
 {
-	if(player.rotate == 0)
-	DrawSpriteLeftTop(player.Wtexture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
-	if(player.rotate == 1)
-	DrawSpriteLeftTop(player.Stexture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
-	if (player.rotate == 2)
-		DrawSpriteLeftTop(player.Atexture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
-	if (player.rotate == 3)
-		DrawSpriteLeftTop(player.Dtexture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+	if (player.drawflag == true)
+	{
+		if (player.rotate == 0)
+			DrawSpriteLeftTop(player.Wtexture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+		if (player.rotate == 1)
+			DrawSpriteLeftTop(player.Stexture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+		if (player.rotate == 2)
+			DrawSpriteLeftTop(player.Atexture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+		if (player.rotate == 3)
+			DrawSpriteLeftTop(player.Dtexture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+	}
 }
 
 //-----構造体ポインタ取得処理

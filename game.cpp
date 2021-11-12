@@ -7,6 +7,7 @@
 #include "sound.h"
 
 #include "bg.h"
+#include "bug.h"
 #include "player.h"
 #include "enemy.h"
 #include "ball.h"
@@ -26,11 +27,13 @@
 void InitGame(void)
 {
 	InitBG();
+	InitBug();
 	InitPlayer();
 	InitEnemy();
 	InitBall();
 	InitCatch();
 	InitEscape();
+
 
 
 }
@@ -40,10 +43,12 @@ void UninitGame()
 {
 
 
+
 	InitCatch();
 	UninitBall();
 	UninitEnemy();
 	UninitPlayer();
+	UninitBug();
 	UninitBG();
 }
 
@@ -51,28 +56,25 @@ void UninitGame()
 void UpdateGame(void)
 {
 	UpdatePlayer();
+	UpdateBug();
 	UpdateEnemy();
 	UpdateBall();
 	UpdateCatch();
 
 
 
-	//スペースキーが押されていて、フェード処理中ではないとき
-	if (GetKeyboardTrigger(DIK_RETURN) && GetFadeState() == FADE_NONE) {
-
-		//RESULTへ移行する
-		//SceneTransition(SCENE_RESULT);
-	}
 }
 
 //-----描画処理関数
 void DrawGame(void)
 {
 	DrawBG();
+	DrawBug();
 	DrawPlayer();
 	DrawEnemy();
 	DrawBall();
 	DrawCatch();
+
 
 
 }

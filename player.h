@@ -17,6 +17,8 @@ typedef struct
 	int Dtexture;	//¨
 	int rotate;		//Œü‚¢‚Ä‚é•ûŒü‚ğæ“¾‚·‚é•Ï”
 
+	bool drawflag;	//•`‰æ‚·‚é‚©‚ğŠÇ—‚·‚éƒtƒ‰ƒO
+
 	int hp;			//‘Ì—Í
 	int atk;		//UŒ‚—Í
 	int def;		//–hŒä—Í

@@ -36,7 +36,6 @@ HRESULT InitMap(void)
 			map[j][i].v = 0.0f;
 			map[j][i].uw = 0.25f;
 			map[j][i].vh = 0.5f;
-
 		}
 	}
 

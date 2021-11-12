@@ -5,6 +5,7 @@
 #include "sprite.h"
 
 #include "ball.h"
+#include "catch.h"
 
 //-----マクロ定義
 
@@ -23,7 +24,7 @@ HRESULT InitEnemy(void)
 	enemy.Stexture = LoadTexture("data/TEXTURE/player_s.png");
 	enemy.Atexture = LoadTexture("data/TEXTURE/player_a.png");
 	enemy.Dtexture = LoadTexture("data/TEXTURE/player_d.png");
-	enemy.rotate = 3;
+	enemy.rotate = 2;
 
 	enemy.drawflag = true;
 
@@ -74,7 +75,7 @@ void UpdateEnemy(void)
 		enemy.pos.x = SCREEN_WIDTH - enemy.size.x - 5;
 
 
-	//プレイヤーが投げたボールが、地面,壁に当たらず敵に当たったら敵の描画をやめる(アウト判定)
+	//-----プレイヤーが投げたボールが、地面,壁に当たらず敵に当たったら敵の描画をやめる(アウト判定)
 	if (ball->enemyhitflag == true)
 	{
 		if (enemy.pos.x < ball->pos.x + ball->size.x && enemy.pos.x + enemy.size.x > ball->pos.x)
@@ -84,8 +85,11 @@ void UpdateEnemy(void)
 		}
 	}
 
-	M_Throw();
+	//-----投げる処理
+	_Throw();
 
+	//-----キャッチ処理
+	M_Catch();
 
 
 

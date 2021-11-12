@@ -16,7 +16,7 @@ typedef struct
 	float fallpos;		//落下時にプレイヤーの座標を参照する変数
 
 	bool playerhaveflag;		//プレイヤーがボールを持っているかを判定するフラグ
-	bool enemyhaveflahg;		//エネミーがボールを持っているかを判定するフラグ
+	bool enemyhaveflag;		//エネミーがボールを持っているかを判定するフラグ
 	bool playerhitflag;		//プレイヤーのアウト判定を管理するフラグ
 	bool enemyhitflag;		//エネミーのアウト判定を管理するフラグ
 }BALL;
@@ -26,7 +26,6 @@ HRESULT InitBall(void);
 void UninitBall(void);
 void UpdateBall(void);
 void DrawBall(void);
-void P_Throw(void);
-void M_Throw(void);
+void _Throw(void);
 
 BALL* GetBall();

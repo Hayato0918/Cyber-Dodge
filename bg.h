@@ -1,4 +1,4 @@
-//-----”wŒiˆ— [bg.h]
+//”wŒiˆ— [bg.h]
 
 #pragma once
 #include "main.h"

@@ -7,7 +7,7 @@
 #include "player.h"
 
 //-----マクロ定義
-#define escapetime 300	//回避のインターバル時間
+#define escapetime 300	//回避のインターバル時間(5s)
 
 //-----プロトタイプ宣言
 ESCAPE escape;
