@@ -20,7 +20,7 @@ HRESULT InitBug(void)
 	bug.framesize = D3DXVECTOR2(150 * bug.gaugeonce, 60.0f);
 	bug.frametexture = LoadTexture("data/TEXTURE/bugframe.png");
 
-	bug.gaugesize = D3DXVECTOR2(0.0f, 60.0f);
+	bug.gaugesize = D3DXVECTOR2(0.0f, bug.framesize.y);
 	bug.gaugetexture = LoadTexture("data/TEXTURE/obstacle.png");
 
 	return S_OK;
