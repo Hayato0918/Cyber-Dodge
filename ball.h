@@ -10,6 +10,8 @@ typedef struct
 	D3DXVECTOR2 pos;
 	D3DXVECTOR2 size;
 	D3DXVECTOR2 move;
+	D3DXVECTOR2 startmove;	//初期化時のmoveを保存しておく変数
+	int throwway;	//プレイヤーの向きに応じてボールのベクトルを変える
 	float gravity;		//重力を設定してる変数
 	int texture;
 	bool throwflag;		//投げられたかを管理するフラグ

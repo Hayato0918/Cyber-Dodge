@@ -20,10 +20,10 @@ HRESULT InitEnemy(void)
 	enemy.pos = D3DXVECTOR2(800.0f, 320.0f);
 	enemy.size = D3DXVECTOR2(60.0f, 120.0f);
 	enemy.move = D3DXVECTOR2(2.0f, 2.0f);
-	enemy.Wtexture = LoadTexture("data/TEXTURE/player_w.png");
-	enemy.Stexture = LoadTexture("data/TEXTURE/player_s.png");
-	enemy.Atexture = LoadTexture("data/TEXTURE/player_a.png");
-	enemy.Dtexture = LoadTexture("data/TEXTURE/player_d.png");
+	//enemy.Wtexture = LoadTexture("data/TEXTURE/enemy.png");
+	//enemy.Stexture = LoadTexture("data/TEXTURE/enemy.png");
+	//enemy.Atexture = LoadTexture("data/TEXTURE/enemy.png");
+	//enemy.Dtexture = LoadTexture("data/TEXTURE/enemy.png");
 	enemy.rotate = 2;
 
 	enemy.drawflag = true;
@@ -76,14 +76,14 @@ void UpdateEnemy(void)
 
 
 	//-----プレイヤーが投げたボールが、地面,壁に当たらず敵に当たったら敵の描画をやめる(アウト判定)
-	if (ball->enemyhitflag == true)
-	{
-		if (enemy.pos.x < ball->pos.x + ball->size.x && enemy.pos.x + enemy.size.x > ball->pos.x)
-		{
-			if (enemy.pos.y < ball->pos.y + ball->size.y && enemy.pos.y + enemy.size.y > ball->pos.y)
-				enemy.drawflag = false;	
-		}
-	}
+	//if (ball->enemyhitflag == true)
+	//{
+	//	if (enemy.pos.x < ball->pos.x + ball->size.x && enemy.pos.x + enemy.size.x > ball->pos.x)
+	//	{
+	//		if (enemy.pos.y < ball->pos.y + ball->size.y && enemy.pos.y + enemy.size.y > ball->pos.y)
+	//			enemy.drawflag = false;	
+	//	}
+	//}
 
 	//-----投げる処理
 	_Throw();

@@ -126,12 +126,11 @@ void P_Catch(void)
 			{
 				ball->throwflag = false;
 				ball->playerhaveflag = true;
-				ball->move = D3DXVECTOR2(15.0f, -3.5f);
+				ball->move = D3DXVECTOR2(ball->startmove.x, ball->startmove.y);
 			}
 		}
 	}
 }
-
 
 //-----エネミーのキャッチ処理
 void M_Catch(void)
@@ -169,7 +168,7 @@ void M_Catch(void)
 			{
 				ball->throwflag = false;
 				ball->enemyhaveflag = true;
-				ball->move = D3DXVECTOR2(15.0f, -3.5f);
+				ball->move = D3DXVECTOR2(ball->startmove.x, ball->startmove.y);
 			}
 		}
 	}

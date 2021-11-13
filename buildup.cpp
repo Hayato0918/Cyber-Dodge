@@ -1,4 +1,4 @@
-//スキル_ビルドアップ処理 [uildup.cpp]
+//スキル_ビルドアップ処理 [buildup.cpp]
 #include "buildup.h"
 #include "input.h"
 #include "texture.h"
@@ -21,7 +21,7 @@ HRESULT InitBuildUp(void)
 	buildup.use = false;
 	buildup.timeflag = false;
 	buildup.time = 0.0f;
-	buildup.usegauge = 10;
+	buildup.usegauge = 100;
 
 	return S_OK;
 }

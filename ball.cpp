@@ -20,7 +20,9 @@ HRESULT InitBall(void)
 {
 	ball.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f, 360.0f);
 	ball.size = D3DXVECTOR2(60.0f, 60.0f);
-	ball.move = D3DXVECTOR2(15.0f, -3.5f);
+	ball.move = D3DXVECTOR2(5.0f, -2.5f);
+	ball.startmove = D3DXVECTOR2(5.0f, -2.5f);
+	ball.throwway = 1;
 	ball.gravity = 0.03f;
 	ball.texture = LoadTexture("data/TEXTURE/ball.png");
 	ball.throwflag = false;
@@ -51,12 +53,12 @@ void UpdateBall(void)
 		if (player->rotate == 2)
 		{
 			ball.pos = D3DXVECTOR2(player->pos.x - ball.size.x * 0.5, player->pos.y + player->size.y * 0.5 - ball.size.y * 0.5);
-			ball.move.x = -15.0f;
+			ball.throwway = -1;
 		}
 		if (player->rotate == 3 || player->rotate == 0 || player->rotate == 1)
 		{
 			ball.pos = D3DXVECTOR2(player->pos.x + ball.size.x * 0.5, player->pos.y + player->size.y * 0.5 - ball.size.y * 0.5);
-			ball.move.x = 15.0f;
+			ball.throwway = 1;
 		}
 	}
 
@@ -66,12 +68,12 @@ void UpdateBall(void)
 		if (enemy->rotate == 2)
 		{
 			ball.pos = D3DXVECTOR2(enemy->pos.x - ball.size.x * 0.5, enemy->pos.y + enemy->size.y * 0.5 - ball.size.y * 0.5);
-			ball.move.x = -15.0f;
+			ball.throwway = -1;
 		}
 		if (enemy->rotate == 3 || enemy->rotate == 0 || enemy->rotate == 1)
 		{
 			ball.pos = D3DXVECTOR2(enemy->pos.x + ball.size.x * 0.5, enemy->pos.y + enemy->size.y * 0.5 - ball.size.y * 0.5);
-			ball.move.x = 15.0f;
+			ball.throwway = 1;
 		}
 	}
 }
@@ -110,7 +112,8 @@ void _Throw(void)
 	//-----ãOìπåvéZ
 	if (ball.throwflag == true)
 	{
-		ball.pos += ball.move;
+		ball.pos.x += ball.move.x * ball.throwway;
+		ball.pos.y += ball.move.y;
 		ball.move.y += ball.gravity;
 
 		//-----äµê´åvéZ
@@ -146,6 +149,7 @@ void _Throw(void)
 		{
 			ball.move.y *= -1;
 			ball.enemyhitflag = false;
+			ball.playerhitflag = false;
 		}
 		if (ball.pos.x < 0.0f)							//ç∂
 		{
@@ -153,8 +157,8 @@ void _Throw(void)
 				ball.move.x += 5.0f;
 			if (ball.move.x > 0)
 				ball.move.x -= 5.0f;
-			ball.move.x *= -1;
 			ball.enemyhitflag = false;
+			ball.playerhitflag = false;
 		}
 		if (ball.pos.x + ball.size.x > SCREEN_WIDTH)	//âE
 		{
@@ -164,6 +168,7 @@ void _Throw(void)
 				ball.move.x += 5.0f;
 			ball.move.x *= -1;
 			ball.enemyhitflag = false;
+			ball.playerhitflag = false;
 		}
 	}
 }

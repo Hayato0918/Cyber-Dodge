@@ -7,3 +7,4 @@
 //-----プロトタイプ宣言
 HRESULT InitSkill(void);
 void _Skill(void);
+void DrawSkill(void);

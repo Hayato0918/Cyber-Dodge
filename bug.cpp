@@ -36,7 +36,7 @@ void UninitBug(void)
 void UpdateBug(void)
 {
 	//-----ŠÔŒo‰ß‚É‚æ‚éƒQ[ƒW‚ÌŒ¸­
-	if (bug.gaugesize >= 0)
+	if (bug.gaugesize.x >= 0)
 		bug.gaugesize.x = bug.gaugesize.x - gaugedecrease;
 }
 

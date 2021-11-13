@@ -8,6 +8,7 @@
 #include "ball.h"
 #include "catch.h"
 #include "skill.h"
+#include "barrier.h"
 
 //-----マクロ定義
 
@@ -44,6 +45,7 @@ void UninitPlayer(void)
 void UpdatePlayer(void)
 {
 	BALL* ball = GetBall();
+	BARRIER* barrier = GetBarrier();
 
 	//-----移動処理(コートの左右端を3sで移動)
 	if (GetKeyboardPress(DIK_W))	//上
@@ -78,14 +80,17 @@ void UpdatePlayer(void)
 		player.pos.x = SCREEN_WIDTH * 0.5 - player.size.x - 5;
 
 	//-----エネミーが投げたボールが、地面,壁に当たらずプレイヤーに当たったらプレイヤーの描画をやめる(アウト判定)
-	if (ball->playerhitflag == true)
-	{
-		if (player.pos.x < ball->pos.x + ball->size.x && player.pos.x + player.size.x > ball->pos.x)
-		{
-			if (player.pos.y < ball->pos.y + ball->size.y && player.pos.y + player.size.y > ball->pos.y)
-				player.drawflag = false;
-		}
-	}
+	//if (barrier->drawflag == false)
+	//{
+	//	if (ball->playerhitflag == true)
+	//	{
+	//		if (player.pos.x < ball->pos.x + ball->size.x && player.pos.x + player.size.x > ball->pos.x)
+	//		{
+	//			if (player.pos.y < ball->pos.y + ball->size.y && player.pos.y + player.size.y > ball->pos.y)
+	//				player.drawflag = false;
+	//		}
+	//	}
+	//}
 
 
 
@@ -116,6 +121,9 @@ void DrawPlayer(void)
 		if (player.rotate == 3)
 			DrawSpriteLeftTop(player.Dtexture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
 	}
+
+	//-----スキル描画
+	DrawSkill();
 }
 
 //-----構造体ポインタ取得処理
