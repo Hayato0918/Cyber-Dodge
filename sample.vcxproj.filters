@@ -102,6 +102,9 @@
     <ClCompile Include="barrier.cpp">
       <Filter>ソース ファイル\skill</Filter>
     </ClCompile>
+    <ClCompile Include="smallplayer.cpp">
+      <Filter>ソース ファイル\skill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="title.h">

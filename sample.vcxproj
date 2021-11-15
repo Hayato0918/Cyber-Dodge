@@ -142,6 +142,7 @@
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="scene.cpp" />
     <ClCompile Include="skill.cpp" />
+    <ClCompile Include="smallplayer.cpp" />
     <ClCompile Include="sound.cpp" />
     <ClCompile Include="ballspeedup.cpp" />
     <ClCompile Include="sprite.cpp" />
