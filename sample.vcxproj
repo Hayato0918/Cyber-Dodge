@@ -143,6 +143,7 @@
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="scene.cpp" />
     <ClCompile Include="skill.cpp" />
+    <ClCompile Include="slowarea.cpp" />
     <ClCompile Include="smallplayer.cpp" />
     <ClCompile Include="sound.cpp" />
     <ClCompile Include="ballspeedup.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="renderer.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="skill.h" />
+    <ClInclude Include="slowarea.h" />
     <ClInclude Include="smallplayer.h" />
     <ClInclude Include="sound.h" />
     <ClInclude Include="ballspeedup.h" />

@@ -8,6 +8,7 @@
 #include "barrier.h"
 #include "smallplayer.h"
 #include "bigball.h"
+#include "slowarea.h"
 
 //-----マクロ定義
 
@@ -33,6 +34,9 @@ HRESULT InitSkill(void)
 	//-----ボール巨大化
 	InitBigBall();
 
+	//-----スロウエリア生成
+	InitSlowArea();
+
 
 
 
@@ -56,6 +60,9 @@ void _Skill(void)
 	//-----ボール巨大化
 	_BigBall();
 
+	//-----スロウエリア生成
+	_SlowArea();
+
 
 }
 
@@ -63,4 +70,7 @@ void DrawSkill(void)
 {
 	//-----バリア描画
 	DrawBarrier();
+
+	//-----スロウエリア描画
+	DrawSlowArea();
 }
