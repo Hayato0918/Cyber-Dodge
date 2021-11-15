@@ -173,6 +173,14 @@ void _Throw(void)
 	}
 }
 
+void AddBallMove(float move, float rotato, float set_pos_y, float set_size_y)
+//渡された角度に渡された速度で加算する。角度はラジアン。反時計回り。
+{
+	ball.move.x = cosf(rotato) * move; // 玉の撃ちだすスピードを計算
+	ball.move.y = sinf(rotato) * -move;
+	ball.fallpos = set_pos_y + set_size_y;
+}
+
 //-----構造体ポインタ取得処理
 BALL* GetBall()
 {

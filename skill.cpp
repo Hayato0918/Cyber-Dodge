@@ -11,6 +11,7 @@
 #include "slowarea.h"
 #include "invade.h"
 #include "step.h"
+#include "Billiards.h"
 
 //-----マクロ定義
 
@@ -45,6 +46,9 @@ HRESULT InitSkill(void)
 	//-----ステップ
 	InitStep();
 
+	//-----ビリヤード
+	InitBilliards();
+
 
 
 	return S_OK;
@@ -76,6 +80,9 @@ void _Skill(void)
 	//-----ステップ
 	_Step();
 
+	//-----ビリヤード
+	_Billiards();
+
 
 }
 
@@ -86,4 +93,9 @@ void DrawSkill(void)
 
 	//-----スロウエリア描画
 	DrawSlowArea();
+
+	//-----ビリヤード描画
+	DrawBilliards();
+
+
 }
