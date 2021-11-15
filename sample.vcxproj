@@ -149,6 +149,7 @@
     <ClCompile Include="sound.cpp" />
     <ClCompile Include="ballspeedup.cpp" />
     <ClCompile Include="sprite.cpp" />
+    <ClCompile Include="step.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="title.cpp" />
   </ItemGroup>
@@ -178,6 +179,7 @@
     <ClInclude Include="sound.h" />
     <ClInclude Include="ballspeedup.h" />
     <ClInclude Include="sprite.h" />
+    <ClInclude Include="step.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="title.h" />
   </ItemGroup>

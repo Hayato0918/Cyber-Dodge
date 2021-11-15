@@ -114,6 +114,9 @@
     <ClCompile Include="invade.cpp">
       <Filter>ソース ファイル\skill</Filter>
     </ClCompile>
+    <ClCompile Include="step.cpp">
+      <Filter>ソース ファイル\skill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="title.h">
@@ -195,6 +198,9 @@
       <Filter>ヘッダー ファイル\skill</Filter>
     </ClInclude>
     <ClInclude Include="invade.h">
+      <Filter>ヘッダー ファイル\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="step.h">
       <Filter>ヘッダー ファイル\skill</Filter>
     </ClInclude>
   </ItemGroup>

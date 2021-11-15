@@ -10,6 +10,7 @@
 #include "bigball.h"
 #include "slowarea.h"
 #include "invade.h"
+#include "step.h"
 
 //-----マクロ定義
 
@@ -41,6 +42,8 @@ HRESULT InitSkill(void)
 	//-----不法侵入処理
 	InitInvade();
 
+	//-----ステップ
+	InitStep();
 
 
 
@@ -69,6 +72,9 @@ void _Skill(void)
 
 	//-----不法侵入
 	_Invade();
+
+	//-----ステップ
+	_Step();
 
 
 }

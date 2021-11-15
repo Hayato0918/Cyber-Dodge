@@ -49,3 +49,8 @@ void _Escape(void)
 		escape.intervaltime = 0.0f;
 	}
 }
+
+ESCAPE* GetEscape()
+{
+	return &escape;
+}

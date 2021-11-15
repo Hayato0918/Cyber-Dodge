@@ -14,3 +14,5 @@ typedef struct
 //-----プロトタイプ宣言
 HRESULT InitEscape(void);
 void _Escape(void);
+
+ESCAPE* GetEscape();
