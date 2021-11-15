@@ -127,6 +127,7 @@
     <ClCompile Include="ball.cpp" />
     <ClCompile Include="barrier.cpp" />
     <ClCompile Include="bg.cpp" />
+    <ClCompile Include="bigball.cpp" />
     <ClCompile Include="bug.cpp" />
     <ClCompile Include="buildup.cpp" />
     <ClCompile Include="catch.cpp" />
@@ -153,6 +154,7 @@
     <ClInclude Include="ball.h" />
     <ClInclude Include="barrier.h" />
     <ClInclude Include="bg.h" />
+    <ClInclude Include="bigball.h" />
     <ClInclude Include="bug.h" />
     <ClInclude Include="buildup.h" />
     <ClInclude Include="catch.h" />

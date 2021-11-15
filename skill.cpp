@@ -7,6 +7,7 @@
 #include "ballspeedup.h"
 #include "barrier.h"
 #include "smallplayer.h"
+#include "bigball.h"
 
 //-----マクロ定義
 
@@ -17,7 +18,7 @@
 //-----初期化処理
 HRESULT InitSkill(void)
 {
-	//-----巨大化
+	//-----プレイヤー巨大化
 	InitBuildUp();
 
 	//-----ボールスピードアップ
@@ -29,13 +30,18 @@ HRESULT InitSkill(void)
 	//-----プレイヤー縮小
 	InitSmallPlayer();
 
+	//-----ボール巨大化
+	InitBigBall();
+
+
+
 
 	return S_OK;
 }
 
 void _Skill(void)
 {
-	//-----巨大化
+	//-----プレイヤー巨大化
 	_BuildUp();
 
 	//-----ボールスピードアップ
@@ -46,6 +52,9 @@ void _Skill(void)
 
 	//-----プレイヤー縮小
 	_SmallPlayer();
+
+	//-----ボール巨大化
+	_BigBall();
 
 
 }
