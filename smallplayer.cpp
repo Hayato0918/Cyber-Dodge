@@ -1,5 +1,5 @@
 //スキル_プレイヤーが小さくなる処理 [SmallPlayer.cpp] 
-#include "SmallPlayer.h"
+#include "smallplayer.h"
 #include "input.h"
 #include "texture.h"
 #include "sprite.h"
@@ -10,7 +10,7 @@
 #define smallplayertime 180		//3s間
 
 //-----プロトタイプ宣言
-SMALL smallplayer;
+SMALLPLAYER smallplayer;
 
 //-----グローバル変数
 
