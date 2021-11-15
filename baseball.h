@@ -1,4 +1,4 @@
-//スキル_ビリヤード処理 [billiards.h]
+//スキル_ベースボール処理 [baseball.h]
 
 #pragma once
 #include "main.h"
@@ -12,9 +12,9 @@ typedef struct
 	float time;			//スキルの適用時間を管理する変数
 	bool timeflag;		//スキルの適用時間を管理するフラグ
 	int texture;		//テクスチャ
-}BILLIARDS;
+}BASEBALL;
 
 //-----プロトタイプ宣言
-HRESULT InitBilliards(void);
-void DrawBilliards(void);
-void _Billiards(void);
+HRESULT InitBaseball(void);
+void DrawBaseball(void);
+void _Baseball(void);

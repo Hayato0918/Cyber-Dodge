@@ -79,8 +79,6 @@ void _Billiards(void)
 	{
 		billiards.timeflag = false;
 		billiards.time = 0.0f;
-
-		billiards.use = false;					////////////////スキル使用フラグをオンにしています。 
 	}
 }
 

@@ -12,6 +12,7 @@
 #include "invade.h"
 #include "step.h"
 #include "Billiards.h"
+#include "baseball.h"
 
 //-----マクロ定義
 
@@ -49,6 +50,9 @@ HRESULT InitSkill(void)
 	//-----ビリヤード
 	InitBilliards();
 
+	//-----野球
+	InitBaseball();
+
 
 
 	return S_OK;
@@ -83,6 +87,9 @@ void _Skill(void)
 	//-----ビリヤード
 	_Billiards();
 
+	//-----野球
+	_Baseball();
+
 
 }
 
@@ -96,6 +103,9 @@ void DrawSkill(void)
 
 	//-----ビリヤード描画
 	DrawBilliards();
+
+	//-----バット描画
+	DrawBaseball();
 
 
 }
