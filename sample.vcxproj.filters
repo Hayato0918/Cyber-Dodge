@@ -111,6 +111,9 @@
     <ClCompile Include="slowarea.cpp">
       <Filter>ソース ファイル\skill</Filter>
     </ClCompile>
+    <ClCompile Include="invade.cpp">
+      <Filter>ソース ファイル\skill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="title.h">
@@ -189,6 +192,9 @@
       <Filter>ヘッダー ファイル\skill</Filter>
     </ClInclude>
     <ClInclude Include="slowarea.h">
+      <Filter>ヘッダー ファイル\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="invade.h">
       <Filter>ヘッダー ファイル\skill</Filter>
     </ClInclude>
   </ItemGroup>

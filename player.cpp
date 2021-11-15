@@ -8,7 +8,7 @@
 #include "ball.h"
 #include "catch.h"
 #include "skill.h"
-#include "barrier.h"
+#include "invade.h"
 
 //-----マクロ定義
 
@@ -45,7 +45,7 @@ void UninitPlayer(void)
 void UpdatePlayer(void)
 {
 	BALL* ball = GetBall();
-	BARRIER* barrier = GetBarrier();
+	INVADE* invade = GetInvade();
 
 	//-----移動処理(コートの左右端を3sで移動)
 	if (GetKeyboardPress(DIK_W))	//上
@@ -75,9 +75,17 @@ void UpdatePlayer(void)
 	if (player.pos.y >= SCREEN_HEIGHT - player.size.y - 15)	//下
 		player.pos.y = SCREEN_HEIGHT - player.size.y - 15;
 	if (player.pos.x <= 0 + 15)								//左
-		player.pos.x = 0 + 15;								//右
-	if (player.pos.x >= SCREEN_WIDTH * 0.5 - player.size.x - 5)
-		player.pos.x = SCREEN_WIDTH * 0.5 - player.size.x - 5;
+		player.pos.x = 0 + 15;
+	if (invade->timeflag == false)
+	{
+		if (player.pos.x >= SCREEN_WIDTH * 0.5 - player.size.x - 5)		//右
+			player.pos.x = SCREEN_WIDTH * 0.5 - player.size.x - 5;
+	}
+	if (invade->timeflag == true)
+	{
+		if (player.pos.x >= SCREEN_WIDTH - player.size.x - 5)		//右
+			player.pos.x = SCREEN_WIDTH - player.size.x - 5;
+	}
 
 	//-----エネミーが投げたボールが、地面,壁に当たらずプレイヤーに当たったらプレイヤーの描画をやめる(アウト判定)
 	//if (barrier->drawflag == false)

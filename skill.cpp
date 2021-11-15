@@ -9,6 +9,7 @@
 #include "smallplayer.h"
 #include "bigball.h"
 #include "slowarea.h"
+#include "invade.h"
 
 //-----マクロ定義
 
@@ -37,6 +38,9 @@ HRESULT InitSkill(void)
 	//-----スロウエリア生成
 	InitSlowArea();
 
+	//-----不法侵入処理
+	InitInvade();
+
 
 
 
@@ -62,6 +66,9 @@ void _Skill(void)
 
 	//-----スロウエリア生成
 	_SlowArea();
+
+	//-----不法侵入
+	_Invade();
 
 
 }
