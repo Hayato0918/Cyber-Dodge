@@ -28,8 +28,8 @@ HRESULT InitBall(void)
 	ball.throwflag = false;
 	ball.fallpos = 0.0f;
 	ball.playerhaveflag = false;
-	ball.enemyhaveflag = false;
 	ball.playerhitflag = false;
+	ball.enemyhaveflag = false;
 	ball.enemyhitflag = false;
 
 	return S_OK;
