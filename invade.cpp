@@ -30,7 +30,7 @@ void _Invade(void)
 	PLAYER* player = GetPlayer();
 
 	//1キーで使用/3秒間敵の陣地に入れる
-	if (GetKeyboardTrigger(DIK_1) && invade.use == false)
+	if (GetKeyboardTrigger(DIK_0) && invade.use == false)
 	{
 		//-----プレイヤーの位置を敵陣までワープさせる
 		player->pos.x = (SCREEN_WIDTH / 2) + 5;

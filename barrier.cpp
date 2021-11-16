@@ -41,7 +41,7 @@ void _Barrier(void)
 	barrier.pos = D3DXVECTOR2(player->pos.x - player->size.x * 0.5, player->pos.y);
 
 	//-----9キーを押したら、3s間バリアを張る
-	if (GetKeyboardTrigger(DIK_9) && barrier.use == false)
+	if (GetKeyboardTrigger(DIK_0) && barrier.use == false)
 	{
 		barrier.drawflag = true;
 		barrier.timeflag = true;

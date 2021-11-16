@@ -30,7 +30,7 @@ void _Step(void)
 	ESCAPE* escape = GetEscape();
 
 	//2キーを押すと回避のクールダウンが短縮されます
-	if (GetKeyboardTrigger(DIK_2) && step.use == false && escape->intervalflag == true)
+	if (GetKeyboardTrigger(DIK_0) && step.use == false && escape->intervalflag == true)
 	{
 		escape->intervaltime = 300.0f;
 

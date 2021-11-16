@@ -27,8 +27,6 @@ HRESULT InitMap(void)
 	}
 	map_texture = LoadTexture("data/TEXTURE/map_point.png");
 
-
-
 	//スタートマス/水色
 	map[0].pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5 - map[0].size.x, 100);
 	map[0].u = 0.5f;
@@ -126,7 +124,7 @@ void DrawMap(void)
 }
 
 //-----構造体ポインタ取得処理
-//MAP_POINT* GetMapPoint()
-//{
-//	return &map_point;
-//}
+MAP* GetMap()
+{
+	return &map[0];
+}

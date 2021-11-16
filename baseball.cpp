@@ -35,7 +35,7 @@ void _Baseball(void)
 	BALL* ball = GetBall();
 
 	//ƒXƒLƒ‹‚ªg‚¦‚é‚©‚Ì”»’f
-	if (GetKeyboardTrigger(DIK_5) && baseball.use == false && ball->playerhaveflag == false)
+	if (GetKeyboardTrigger(DIK_0) && baseball.use == false && ball->playerhaveflag == false)
 	{
 		baseball.timeflag = true;
 		baseball.use = true;

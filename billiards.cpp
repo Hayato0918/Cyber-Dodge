@@ -35,7 +35,7 @@ void _Billiards(void)
 	BALL* ball = GetBall();
 
 	//ƒXƒLƒ‹‚ªg‚¦‚é‚©‚Ì”»’f
-	if (GetKeyboardTrigger(DIK_6) && billiards.use == false && ball->playerhaveflag == false)
+	if (GetKeyboardTrigger(DIK_0) && billiards.use == false && ball->playerhaveflag == false)
 	{
 		billiards.timeflag = true;
 		billiards.use = true;

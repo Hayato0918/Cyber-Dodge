@@ -39,7 +39,7 @@ void _SlowArea(void)
 	PLAYER* player = GetPlayer();
 
 	//-----4キーを押したら、3s間足がおそくなるエリアができる
-	if (GetKeyboardTrigger(DIK_4) && slowarea.use == false)
+	if (GetKeyboardTrigger(DIK_0) && slowarea.use == false)
 	{
 		slowarea.timeflag = true;
 		slowarea.use = true;

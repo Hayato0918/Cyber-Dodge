@@ -30,7 +30,7 @@ void _BigBall(void)
 	BALL* ball = GetBall();
 
 	//8キーを押したら、3s間ボールのサイズが大きくなる
-	if (GetKeyboardTrigger(DIK_8) && bigball.use == false)
+	if (GetKeyboardTrigger(DIK_0) && bigball.use == false)
 	{
 		ball->size = D3DXVECTOR2(ball->size.x * 2, ball->size.y * 2);
 		bigball.timeflag = true;

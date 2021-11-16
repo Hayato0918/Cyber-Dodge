@@ -30,7 +30,7 @@ void _SmallPlayer(void)
 	PLAYER* player = GetPlayer();
 
 	//7キーを押したら、3s間キャラのサイズが0.5倍小さくなるになる
-	if (GetKeyboardTrigger(DIK_7) && smallplayer.use == false)
+	if (GetKeyboardTrigger(DIK_0) && smallplayer.use == false)
 	{
 		player->size = D3DXVECTOR2(player->size.x * 0.5, player->size.y * 0.5);
 		smallplayer.timeflag = true;
