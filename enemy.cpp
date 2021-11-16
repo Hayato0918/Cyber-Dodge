@@ -6,6 +6,7 @@
 
 #include "ball.h"
 #include "catch.h"
+#include "enemyAI.h"
 
 //-----マクロ定義
 
@@ -20,10 +21,10 @@ HRESULT InitEnemy(void)
 	enemy.pos = D3DXVECTOR2(800.0f, 320.0f);
 	enemy.size = D3DXVECTOR2(60.0f, 120.0f);
 	enemy.move = D3DXVECTOR2(2.0f, 2.0f);
-	//enemy.Wtexture = LoadTexture("data/TEXTURE/enemy.png");
-	//enemy.Stexture = LoadTexture("data/TEXTURE/enemy.png");
-	//enemy.Atexture = LoadTexture("data/TEXTURE/enemy.png");
-	//enemy.Dtexture = LoadTexture("data/TEXTURE/enemy.png");
+	enemy.Wtexture = LoadTexture("data/TEXTURE/player_w.png");
+	enemy.Stexture = LoadTexture("data/TEXTURE/player_s.png");
+	enemy.Atexture = LoadTexture("data/TEXTURE/player_a.png");
+	enemy.Dtexture = LoadTexture("data/TEXTURE/player_d.png");
 	enemy.rotate = 2;
 
 	enemy.drawflag = true;
@@ -85,14 +86,7 @@ void UpdateEnemy(void)
 	//	}
 	//}
 
-	//-----投げる処理
-	_Throw();
-
-	//-----キャッチ処理
-	M_Catch();
-
-
-
+	enemyAI();
 }
 
 //-----描画処理

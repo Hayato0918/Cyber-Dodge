@@ -100,3 +100,4 @@ void SetWorldViewProjection2D( void );
 void SetWorldMatrix( D3DXMATRIX *WorldMatrix );
 void SetViewMatrix( D3DXMATRIX *ViewMatrix );
 void SetProjectionMatrix( D3DXMATRIX *ProjectionMatrix );
+void SetMaterial(MATERIAL Material);

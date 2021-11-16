@@ -80,12 +80,6 @@ HRESULT InitMap(void)
 
 
 
-
-
-
-
-
-
 	return S_OK;
 }
 
@@ -126,9 +120,9 @@ void UpdateMap(void)
 //-----描画処理
 void DrawMap(void)
 {
-		for (int i = 0; i < map_num; i++)
-			DrawSpriteLeftTop(map_texture, map[i].pos.x, map[i].pos.y, map[i].size.x, map[i].size.y,
-				map[i].u, map[i].v, map[i].uw, map[i].vh);
+	for (int i = 0; i < map_num; i++)
+		DrawSpriteLeftTop(map_texture, map[i].pos.x, map[i].pos.y, map[i].size.x, map[i].size.y,
+			map[i].u, map[i].v, map[i].uw, map[i].vh);
 }
 
 //-----構造体ポインタ取得処理

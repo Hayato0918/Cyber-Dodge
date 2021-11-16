@@ -134,6 +134,7 @@
     <ClCompile Include="buildup.cpp" />
     <ClCompile Include="catch.cpp" />
     <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="enemyAI.cpp" />
     <ClCompile Include="escape.cpp" />
     <ClCompile Include="fade.cpp" />
     <ClCompile Include="game.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="buildup.h" />
     <ClInclude Include="catch.h" />
     <ClInclude Include="enemy.h" />
+    <ClInclude Include="enemyAI.h" />
     <ClInclude Include="escape.h" />
     <ClInclude Include="fade.h" />
     <ClInclude Include="game.h" />

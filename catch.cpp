@@ -137,8 +137,8 @@ void M_Catch(void)
 {
 	BALL* ball = GetBall();
 
-	//-----Bキーでプレイヤーがキャッチ
-	if (GetKeyboardTrigger(DIK_B) && Catch.enemyintervalflag == false && ball->enemyhaveflag == false)
+	//-----キャッチ
+	if (Catch.enemyintervalflag == false && ball->enemyhaveflag == false)
 	{
 		Catch.enemyflag = true;
 		Catch.enemyintervalflag = true;
@@ -166,10 +166,16 @@ void M_Catch(void)
 		{
 			if (Catch.enemypos.y + Catch.size.y > ball->pos.y && Catch.enemypos.y < ball->pos.y + ball->size.y)
 			{
+				Catch.enemyintervaltime = 0.0f;
 				ball->throwflag = false;
 				ball->enemyhaveflag = true;
 				ball->move = D3DXVECTOR2(ball->startmove.x, ball->startmove.y);
 			}
 		}
 	}
+}
+
+CATCH* GetCatch()
+{
+	return &Catch;
 }

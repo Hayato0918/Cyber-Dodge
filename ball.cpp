@@ -76,38 +76,6 @@ void UpdateBall(void)
 			ball.throwway = 1;
 		}
 	}
-}
-
-//-----描画処理
-void DrawBall(void)
-{
-	DrawSpriteLeftTop(ball.texture, ball.pos.x, ball.pos.y, ball.size.x, ball.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
-}
-
-//プレイヤーが投げる処理
-void _Throw(void)
-{
-	PLAYER* player = GetPlayer();
-
-	//-----lキーでプレイヤーが投げる
-	if (GetKeyboardTrigger(DIK_L) && ball.throwflag == false && ball.playerhaveflag == true)
-	{
-		ball.fallpos = player->pos.y + player->size.y;
-		ball.playerhaveflag = false;
-		ball.enemyhitflag = true;
-		ball.throwflag = true;
-	}
-
-	ENEMY* enemy = GetEnemy();
-
-	//-----mキーでエネミーが投げる
-	if (GetKeyboardTrigger(DIK_M) && ball.throwflag == false && ball.enemyhaveflag == true)
-	{
-		ball.fallpos = enemy->pos.y + enemy->size.y;
-		ball.enemyhaveflag = false;
-		ball.playerhitflag = true;
-		ball.throwflag = true;
-	}
 
 	//-----軌道計算
 	if (ball.throwflag == true)
@@ -170,6 +138,40 @@ void _Throw(void)
 			ball.enemyhitflag = false;
 			ball.playerhitflag = false;
 		}
+	}
+}
+
+//-----描画処理
+void DrawBall(void)
+{
+	DrawSpriteLeftTop(ball.texture, ball.pos.x, ball.pos.y, ball.size.x, ball.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+}
+
+//-----エネミーが投げる処理
+void E_Throw(void)
+{
+	ENEMY* enemy = GetEnemy();
+	if (ball.throwflag == false && ball.enemyhaveflag == true)
+	{
+		ball.fallpos = enemy->pos.y + enemy->size.y;
+		ball.enemyhaveflag = false;
+		ball.playerhitflag = true;
+		ball.throwflag = true;
+	}
+}
+
+//プレイヤーが投げる処理
+void P_Throw(void)
+{
+	PLAYER* player = GetPlayer();
+
+	//-----lキーでプレイヤーが投げる
+	if (GetKeyboardTrigger(DIK_L) && ball.throwflag == false && ball.playerhaveflag == true)
+	{
+		ball.fallpos = player->pos.y + player->size.y;
+		ball.playerhaveflag = false;
+		ball.enemyhitflag = true;
+		ball.throwflag = true;
 	}
 }
 

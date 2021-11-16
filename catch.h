@@ -23,6 +23,7 @@ typedef struct
 	float enemyintervaltime;	//エネミーのキャッチのインターバル秒を管理する変数
 	float enemycoltime;	//エネミーのキャッチの当たり判定時間を管理する変数
 	bool enemycolflag;	//エネミーがボールをキャッチしているかを管理するフラグ
+	bool enemyAIcatch;	//エネミーがキャッチ動作をしたときに使うフラグ
 }CATCH;
 
 //-----プロトタイプ宣言

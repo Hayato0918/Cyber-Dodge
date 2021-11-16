@@ -28,6 +28,8 @@ HRESULT InitBall(void);
 void UninitBall(void);
 void UpdateBall(void);
 void DrawBall(void);
+void E_Throw(void);
+void P_Throw(void);
 void _Throw(void);
 void AddBallMove(float move, float rotato, float set_pos_y, float set_size_y);
 
