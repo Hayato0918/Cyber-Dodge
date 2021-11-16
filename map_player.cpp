@@ -39,29 +39,29 @@ void UninitMapPlayer(void)
 void UpdateMapPlayer(void)
 {
 
-	//if (GetKeyboardRelease(DIK_D) && map_player.LRcount < map_player.num.x - 1)
-	//{
-	//	map_player.LRcount = map_player.LRcount + 1;
-	//	map_player.pos.x = map_player.pos.x + map_player.distance.x;
-	//}
+	if (GetKeyboardRelease(DIK_D) && map_player.LRcount < map_player.num.x - 1)
+	{
+		map_player.LRcount = map_player.LRcount + 1;
+		map_player.pos.x = map_player.pos.x + map_player.distance.x;
+	}
 
-	//if (GetKeyboardRelease(DIK_A) && map_player.LRcount > 0)
-	//{
-	//	map_player.LRcount = map_player.LRcount - 1;
-	//	map_player.pos.x = map_player.pos.x - map_player.distance.x;
-	//}
+	if (GetKeyboardRelease(DIK_A) && map_player.LRcount > 0)
+	{
+		map_player.LRcount = map_player.LRcount - 1;
+		map_player.pos.x = map_player.pos.x - map_player.distance.x;
+	}
 
-	//if (GetKeyboardTrigger(DIK_S) && map_player.UDcount < map_player.num.y - 1)
-	//{
-	//	map_player.UDcount = map_player.UDcount + 1;
-	//	map_player.pos.y = map_player.pos.y + map_player.distance.y;
-	//}
+	if (GetKeyboardTrigger(DIK_S) && map_player.UDcount < map_player.num.y - 1)
+	{
+		map_player.UDcount = map_player.UDcount + 1;
+		map_player.pos.y = map_player.pos.y + map_player.distance.y;
+	}
 
-	//if (GetKeyboardTrigger(DIK_W) && map_player.UDcount > 0)
-	//{
-	//	map_player.UDcount = map_player.UDcount - 1;
-	//	map_player.pos.y = map_player.pos.y - map_player.distance.y;
-	//}
+	if (GetKeyboardTrigger(DIK_W) && map_player.UDcount > 0)
+	{
+		map_player.UDcount = map_player.UDcount - 1;
+		map_player.pos.y = map_player.pos.y - map_player.distance.y;
+	}
 }
 
 //-----•`‰æˆ—
