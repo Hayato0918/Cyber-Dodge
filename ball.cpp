@@ -7,6 +7,7 @@
 
 #include "player.h"
 #include "enemy.h"
+#include "invincible.h"
 
 //-----マクロ定義
 
@@ -151,11 +152,15 @@ void DrawBall(void)
 void E_Throw(void)
 {
 	ENEMY* enemy = GetEnemy();
+	INVINCIBLE* invincible = GetInvincible();
 	if (ball.throwflag == false && ball.enemyhaveflag == true)
 	{
 		ball.fallpos = enemy->pos.y + enemy->size.y;
 		ball.enemyhaveflag = false;
-		ball.playerhitflag = true;
+		if (invincible->use == true) //-----無敵スキルを使ってるか？どうかの判定
+			ball.playerhitflag = false;
+		if (invincible->use == false)
+			ball.playerhitflag = true;
 		ball.throwflag = true;
 	}
 }

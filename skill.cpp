@@ -13,6 +13,7 @@
 #include "step.h"
 #include "Billiards.h"
 #include "baseball.h"
+#include "invincible.h"
 
 //-----ƒ}ƒNƒ’è‹`
 
@@ -55,6 +56,9 @@ HRESULT InitSkill(void)
 	//-----–ì‹…
 	InitBaseball();
 
+	//-----–³“G
+	InitInvincible();
+
 
 
 	return S_OK;
@@ -82,6 +86,8 @@ void _Skill(void)
 	_Billiards();
 	//-----–ì‹…
 	_Baseball();
+	//-----–³“G
+	_Invincible();
 
 	//skill_num‚É—”‚ğİ’è
 
@@ -135,5 +141,6 @@ void DrawSkill(void)
 	//-----ƒoƒbƒg•`‰æ
 	DrawBaseball();
 
-
+	//-----–³“G•`‰æ
+	DrawInvincible();
 }
