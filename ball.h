@@ -16,6 +16,7 @@ typedef struct
 	int texture;
 	bool throwflag;		//投げられたかを管理するフラグ
 	float fallpos;		//落下時にプレイヤーの座標を参照する変数
+	float playerhavetime;  //プレイヤーがボールを持ってる時間を計測する変数
 
 	bool playerhaveflag;		//プレイヤーがボールを持っているかを判定するフラグ
 	bool playerhitflag;		//プレイヤーのアウト判定を管理するフラグ

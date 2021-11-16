@@ -28,6 +28,7 @@ HRESULT InitBall(void)
 	ball.texture = LoadTexture("data/TEXTURE/ball.png");
 	ball.throwflag = false;
 	ball.fallpos = 0.0f;
+	ball.playerhavetime = 0.0f;
 	ball.playerhaveflag = false;
 	ball.playerhitflag = false;
 	ball.enemyhaveflag = false;
@@ -173,6 +174,7 @@ void P_Throw(void)
 	//-----lキーでプレイヤーが投げる
 	if (GetKeyboardTrigger(DIK_L) && ball.throwflag == false && ball.playerhaveflag == true)
 	{
+		ball.playerhavetime = 0.0f;
 		ball.fallpos = player->pos.y + player->size.y;
 		ball.playerhaveflag = false;
 		ball.enemyhitflag = true;
