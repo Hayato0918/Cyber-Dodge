@@ -33,6 +33,8 @@ HRESULT InitBall(void)
 	ball.playerhitflag = false;
 	ball.enemyhaveflag = false;
 	ball.enemyhitflag = false;
+	ball.rad = 0.0f;
+	ball.plyer_oldposY = 0.0f;
 
 	return S_OK;
 }

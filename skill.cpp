@@ -14,6 +14,7 @@
 #include "Billiards.h"
 #include "baseball.h"
 #include "invincible.h"
+#include "ballturnaround.h"
 
 //-----ƒ}ƒNƒ’è‹`
 
@@ -88,6 +89,8 @@ void _Skill(void)
 	_Baseball();
 	//-----–³“G
 	_Invincible();
+	//-----•ûŒü“]Š·
+	_BallTurnAround();
 
 	//skill_num‚É—”‚ğİ’è
 

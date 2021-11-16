@@ -125,6 +125,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ball.cpp" />
+    <ClCompile Include="ballturnaround.cpp" />
     <ClCompile Include="barrier.cpp" />
     <ClCompile Include="baseball.cpp" />
     <ClCompile Include="bg.cpp" />
@@ -159,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ball.h" />
+    <ClInclude Include="ballturnaround.h" />
     <ClInclude Include="barrier.h" />
     <ClInclude Include="baseball.h" />
     <ClInclude Include="bg.h" />

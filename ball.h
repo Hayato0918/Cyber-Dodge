@@ -22,6 +22,9 @@ typedef struct
 	bool playerhitflag;		//プレイヤーのアウト判定を管理するフラグ
 	bool enemyhaveflag;		//エネミーがボールを持っているかを判定するフラグ
 	bool enemyhitflag;		//エネミーのアウト判定を管理するフラグ
+
+	float rad;
+	float plyer_oldposY;
 }BALL;
 
 //-----プロトタイプ宣言

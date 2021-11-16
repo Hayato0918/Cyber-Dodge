@@ -129,6 +129,9 @@
     <ClCompile Include="invincible.cpp">
       <Filter>ソース ファイル\skill</Filter>
     </ClCompile>
+    <ClCompile Include="ballturnaround.cpp">
+      <Filter>ソース ファイル\skill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="title.h">
@@ -225,6 +228,9 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="invincible.h">
+      <Filter>ヘッダー ファイル\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="ballturnaround.h">
       <Filter>ヘッダー ファイル\skill</Filter>
     </ClInclude>
   </ItemGroup>
