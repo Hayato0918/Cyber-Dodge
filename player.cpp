@@ -9,6 +9,7 @@
 #include "catch.h"
 #include "skill.h"
 #include "invade.h"
+#include "player_hp.h"
 
 //-----マクロ定義
 
@@ -27,9 +28,12 @@ HRESULT InitPlayer(void)
 	//player.Stexture = LoadTexture("data/TEXTURE/player_s.png");
 	//player.Atexture = LoadTexture("data/TEXTURE/player_a.png");
 	//player.Dtexture = LoadTexture("data/TEXTURE/player_d.png");
-	player.walk_1texture = LoadTexture("data/TEXTURE/player_walk_1.png");
-	player.walk_2texture = LoadTexture("data/TEXTURE/player_walk_2.png");
-	player.textureflag = true;
+	player.walk_1texture = LoadTexture("data/TEXTURE/player_walk_A.png");
+	player.walk_2texture = LoadTexture("data/TEXTURE/player_walk_D.png");
+	player.walktextureflag = true;
+	player.walk_ball_1texture = LoadTexture("data/TEXTURE/player_ball_A.png");
+	player.walk_ball_2texture = LoadTexture("data/TEXTURE/player_ball_D.png");
+	player.walk_balltextureflag = true;
 	player.rotate = 3;
 	player.drawflag = true;
 
@@ -49,6 +53,7 @@ void UpdatePlayer(void)
 {
 	BALL* ball = GetBall();
 	INVADE* invade = GetInvade();
+	PLAYERHP* hp = GetPlayerHp();
 
 	//-----移動処理(コートの左右端を3sで移動)
 	if (GetKeyboardPress(DIK_W))	//上
@@ -64,13 +69,19 @@ void UpdatePlayer(void)
 	if (GetKeyboardPress(DIK_A))	//左
 	{
 		player.pos.x -= player.move.x;
-		player.textureflag = true;
+		if (ball->playerhaveflag == true)
+			player.walk_balltextureflag = true;
+		if (ball->playerhaveflag == false);
+			player.walktextureflag = true;
 		player.rotate = 2;
 	}
 	if (GetKeyboardPress(DIK_D))	//右
 	{
 		player.pos.x += player.move.x;
-		player.textureflag = false;
+		if (ball->playerhaveflag == true)
+			player.walk_balltextureflag = false;
+		if(ball->playerhaveflag == false)
+			player.walktextureflag = false;
 		player.rotate = 3;
 	}
 
@@ -95,14 +106,17 @@ void UpdatePlayer(void)
 	//-----エネミーが投げたボールが、地面,壁に当たらずプレイヤーに当たったらプレイヤーの描画をやめる(アウト判定)
 	//if (barrier->drawflag == false)
 	//{
-	//	if (ball->playerhitflag == true)
-	//	{
-	//		if (player.pos.x < ball->pos.x + ball->size.x && player.pos.x + player.size.x > ball->pos.x)
-	//		{
-	//			if (player.pos.y < ball->pos.y + ball->size.y && player.pos.y + player.size.y > ball->pos.y)
-	//				player.drawflag = false;
-	//		}
-	//	}
+		if (ball->playerhitflag == true)
+		{
+			if (player.pos.x < ball->pos.x + ball->size.x && player.pos.x + player.size.x > ball->pos.x)
+			{
+				if (player.pos.y < ball->pos.y + ball->size.y && player.pos.y + player.size.y > ball->pos.y)
+				{
+					hp->gaugesize.x = hp->gaugesize.x - 60.0f;
+					ball->playerhitflag = false;
+				}
+			}
+		}
 	//}
 
 
@@ -123,12 +137,25 @@ void UpdatePlayer(void)
 //-----描画処理
 void DrawPlayer(void)
 {
+	BALL* ball = GetBall();
+
 	if (player.drawflag == true)
 	{
-		if(player.textureflag == true)
-		DrawSpriteLeftTop(player.walk_1texture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
-		if(player.textureflag == false)
-			DrawSpriteLeftTop(player.walk_2texture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+		if (ball->playerhaveflag == false)
+		{
+			if (player.walktextureflag == true)
+				DrawSpriteLeftTop(player.walk_1texture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+			if (player.walktextureflag == false)
+				DrawSpriteLeftTop(player.walk_2texture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+		}
+
+		if (ball->playerhaveflag == true)
+		{
+			if (player.walk_balltextureflag == true)
+				DrawSpriteLeftTop(player.walk_ball_1texture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+			if (player.walk_balltextureflag == false)
+				DrawSpriteLeftTop(player.walk_ball_2texture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+		}
 		//if (player.rotate == 0)
 		//	DrawSpriteLeftTop(player.Wtexture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
 		//if (player.rotate == 1)

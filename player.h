@@ -15,9 +15,6 @@ typedef struct
 	int Stexture;	//↓
 	int Atexture;	//←
 	int Dtexture;	//→
-	int walk_1texture;
-	int walk_2texture;
-	bool textureflag;
 	int rotate;		//向いてる方向を取得する変数
 
 	bool drawflag;	//描画するかを管理するフラグ
@@ -25,6 +22,17 @@ typedef struct
 	int hp;			//体力
 	int atk;		//攻撃力
 	int def;		//防御力
+
+	//-----テクスチャ
+	//-----歩き
+	int walk_1texture;
+	int walk_2texture;
+	bool walktextureflag;
+	//-----ボール保持時歩き
+	int walk_ball_1texture;
+	int walk_ball_2texture;
+	bool walk_balltextureflag;
+
 }PLAYER;
 
 //-----プロトタイプ宣言

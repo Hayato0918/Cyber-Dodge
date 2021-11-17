@@ -43,16 +43,16 @@ void enemyAI()
 	if (ball->enemyhaveflag== false && ball->pos.x < SCREEN_WIDTH * 0.5)
 	{
 		if (player->pos.x > SCREEN_WIDTH * 0.25)
-			enemy->pos.x += 1;
+			enemy->pos.x += 3;
 		if (player->pos.x < SCREEN_WIDTH * 0.25)
-			enemy->pos.x -= 1;
-		if (player->pos.y + player->size.y > SCREEN_HEIGHT * 0.7)
-			enemy->pos.y += 1;
-		if (player->pos.y + player->size.y < SCREEN_HEIGHT * 0.7)
-			enemy->pos.y -= 1;
+			enemy->pos.x -= 3;
+		if (player->pos.y + player->size.y > SCREEN_HEIGHT * 0.6)
+			enemy->pos.y += 3;
+		if (player->pos.y + player->size.y < SCREEN_HEIGHT * 0.6)
+			enemy->pos.y -= 3;
 	}
 
-
+	//-----ボールとエネミーの位置を計算し、エネミーがボールを追うようにする
 	x = (ball->pos.x - enemy->pos.x + enemy->size.x * 0.5) * 0.01;
 	y = (ball->pos.y - enemy->pos.y - enemy->size.y * 0.5) * 0.01;
 
@@ -75,9 +75,6 @@ void enemyAI()
 		}
 	}
 
-
-
-
 	//-----ボールを持っているとき
 		//-----プレイヤーの方向を向く
 	if (ball->enemyhaveflag == true)
@@ -91,10 +88,13 @@ void enemyAI()
 		//-----投げるまでの間、プレイヤーのy座標を目指して移動する
 	if (ball->enemyhaveflag == true && throwtime < 60)
 	{
-		enemy->pos.y += y * 3;
+		//-----yをプレイヤーとエネミーのy座標の差に変更
+		y = (player->pos.y - enemy->pos.y) * 0.01;
+
+		enemy->pos.y += y;
 	}
 
-		//-----ボールを2秒持ったら投げる
+		//-----ボールを1秒持ったら投げる
 	if (ball->enemyhaveflag == true)
 		throwtime = throwtime + 1.0f;
 	if (throwtime > 60)

@@ -9,6 +9,7 @@
 #include "bg.h"
 #include "bug.h"
 #include "player.h"
+#include "player_hp.h"
 #include "enemy.h"
 #include "ball.h"
 #include "catch.h"
@@ -28,6 +29,7 @@ void InitGame(void)
 {
 	InitBG();
 	InitBug();
+	InitPlayerHp();
 	InitPlayer();
 	InitEnemy();
 	InitBall();
@@ -48,6 +50,7 @@ void UninitGame()
 	UninitBall();
 	UninitEnemy();
 	UninitPlayer();
+	UninitPlayerHp();
 	UninitBug();
 	UninitBG();
 }
@@ -56,6 +59,7 @@ void UninitGame()
 void UpdateGame(void)
 {
 	UpdatePlayer();
+	UpdatePlayerHp();
 	UpdateBug();
 	UpdateEnemy();
 	UpdateBall();
@@ -70,6 +74,7 @@ void DrawGame(void)
 {
 	DrawBG();
 	DrawBug();
+	DrawPlayerHp();
 	DrawPlayer();
 	DrawEnemy();
 	DrawBall();
