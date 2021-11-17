@@ -21,7 +21,7 @@ HRESULT InitBall(void)
 {
 	ball.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f, 360.0f);
 	ball.size = D3DXVECTOR2(60.0f, 60.0f);
-	ball.move = D3DXVECTOR2(10.0f, -2.5f);
+	ball.move = D3DXVECTOR2(12.0f, -2.5f);
 	ball.startmove = D3DXVECTOR2(10.0f, -2.5f);
 	ball.throwway = 1;
 	ball.gravity = 0.03f;

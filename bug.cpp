@@ -21,7 +21,7 @@ HRESULT InitBug(void)
 {
 	bug.gaugeonce = 8;
 
-	bug.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.1, 20.0f);
+	bug.pos = D3DXVECTOR2(105.0f, 20.0f);
 	bug.framesize = D3DXVECTOR2(150 * bug.gaugeonce, 60.0f);
 	bug.frametexture = LoadTexture("data/TEXTURE/bugframe.png");
 
