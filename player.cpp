@@ -22,7 +22,7 @@ HRESULT InitPlayer(void)
 {
 	player.pos = D3DXVECTOR2(240.0f, 320.0f);
 	player.size = D3DXVECTOR2(90.0f, 180.0f);
-	player.move = D3DXVECTOR2(2.0f, 2.0f);
+	player.move = D3DXVECTOR2(4.0f, 4.0f);
 	//player.Wtexture = LoadTexture("data/TEXTURE/player_w.png");
 	//player.Stexture = LoadTexture("data/TEXTURE/player_s.png");
 	//player.Atexture = LoadTexture("data/TEXTURE/player_a.png");
@@ -77,8 +77,8 @@ void UpdatePlayer(void)
 	//-----コート外に出ない処理
 	if (player.pos.y <= 180 - player.size.y * 0.5)			//上
 		player.pos.y = 180 - player.size.y * 0.5;
-	if (player.pos.y >= SCREEN_HEIGHT - player.size.y - 15)	//下
-		player.pos.y = SCREEN_HEIGHT - player.size.y - 15;
+	if (player.pos.y >= SCREEN_HEIGHT - player.size.y - 15 -120)	//下
+		player.pos.y = SCREEN_HEIGHT - player.size.y - 15 -120;
 	if (player.pos.x <= 0 + 15)								//左
 		player.pos.x = 0 + 15;
 	if (invade->timeflag == false)

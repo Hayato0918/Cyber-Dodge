@@ -68,8 +68,8 @@ void UpdateEnemy(void)
 	//-----コート外に出ない処理
 	if (enemy.pos.y <= 180 - enemy.size.y * 0.5)			//上
 		enemy.pos.y = 180 - enemy.size.y * 0.5;
-	if (enemy.pos.y >= SCREEN_HEIGHT - enemy.size.y - 15)	//下
-		enemy.pos.y = SCREEN_HEIGHT - enemy.size.y - 15;
+	if (enemy.pos.y >= SCREEN_HEIGHT - enemy.size.y - 15 -120)	//下
+		enemy.pos.y = SCREEN_HEIGHT - enemy.size.y - 15 -120;
 	if (enemy.pos.x <= SCREEN_WIDTH * 0.5)								//左
 		enemy.pos.x = SCREEN_WIDTH * 0.5;
 	if (enemy.pos.x >= SCREEN_WIDTH - enemy.size.x - 5)								//右
