@@ -21,12 +21,15 @@ PLAYER player;
 HRESULT InitPlayer(void)
 {
 	player.pos = D3DXVECTOR2(240.0f, 320.0f);
-	player.size = D3DXVECTOR2(60.0f, 120.0f);
+	player.size = D3DXVECTOR2(90.0f, 180.0f);
 	player.move = D3DXVECTOR2(2.0f, 2.0f);
-	player.Wtexture = LoadTexture("data/TEXTURE/player_w.png");
-	player.Stexture = LoadTexture("data/TEXTURE/player_s.png");
-	player.Atexture = LoadTexture("data/TEXTURE/player_a.png");
-	player.Dtexture = LoadTexture("data/TEXTURE/player_d.png");
+	//player.Wtexture = LoadTexture("data/TEXTURE/player_w.png");
+	//player.Stexture = LoadTexture("data/TEXTURE/player_s.png");
+	//player.Atexture = LoadTexture("data/TEXTURE/player_a.png");
+	//player.Dtexture = LoadTexture("data/TEXTURE/player_d.png");
+	player.walk_1texture = LoadTexture("data/TEXTURE/player_walk_1.png");
+	player.walk_2texture = LoadTexture("data/TEXTURE/player_walk_2.png");
+	player.textureflag = true;
 	player.rotate = 3;
 	player.drawflag = true;
 
@@ -61,11 +64,13 @@ void UpdatePlayer(void)
 	if (GetKeyboardPress(DIK_A))	//ç∂
 	{
 		player.pos.x -= player.move.x;
+		player.textureflag = true;
 		player.rotate = 2;
 	}
 	if (GetKeyboardPress(DIK_D))	//âE
 	{
 		player.pos.x += player.move.x;
+		player.textureflag = false;
 		player.rotate = 3;
 	}
 
@@ -120,14 +125,18 @@ void DrawPlayer(void)
 {
 	if (player.drawflag == true)
 	{
-		if (player.rotate == 0)
-			DrawSpriteLeftTop(player.Wtexture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
-		if (player.rotate == 1)
-			DrawSpriteLeftTop(player.Stexture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
-		if (player.rotate == 2)
-			DrawSpriteLeftTop(player.Atexture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
-		if (player.rotate == 3)
-			DrawSpriteLeftTop(player.Dtexture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+		if(player.textureflag == true)
+		DrawSpriteLeftTop(player.walk_1texture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+		if(player.textureflag == false)
+			DrawSpriteLeftTop(player.walk_2texture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+		//if (player.rotate == 0)
+		//	DrawSpriteLeftTop(player.Wtexture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+		//if (player.rotate == 1)
+		//	DrawSpriteLeftTop(player.Stexture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+		//if (player.rotate == 2)
+		//	DrawSpriteLeftTop(player.Atexture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+		//if (player.rotate == 3)
+			//DrawSpriteLeftTop(player.Dtexture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
 	}
 
 	//-----ÉXÉLÉãï`âÊ

@@ -15,6 +15,9 @@ typedef struct
 	int Stexture;	//«
 	int Atexture;	//©
 	int Dtexture;	//¨
+	int walk_1texture;
+	int walk_2texture;
+	bool textureflag;
 	int rotate;		//Œü‚¢‚Ä‚é•ûŒü‚ğæ“¾‚·‚é•Ï”
 
 	bool drawflag;	//•`‰æ‚·‚é‚©‚ğŠÇ—‚·‚éƒtƒ‰ƒO
