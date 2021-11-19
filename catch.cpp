@@ -84,6 +84,7 @@ void UpdateCatch(void)
 //-----•`‰æˆ—
 void DrawCatch(void)
 {
+
 	if(Catch.playerflag == true)
 	DrawSpriteColor(Catch.texture, Catch.playerpos.x, Catch.playerpos.y, Catch.size.x, Catch.size.y, 0.0f, 0.0f, 1.0f, 1.0f, Catch.color);
 	if(Catch.enemyflag == true)

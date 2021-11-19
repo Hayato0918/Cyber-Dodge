@@ -19,7 +19,7 @@ ENEMY enemy;
 HRESULT InitEnemy(void)
 {
 	enemy.pos = D3DXVECTOR2(800.0f, 320.0f);
-	enemy.size = D3DXVECTOR2(60.0f, 120.0f);
+	enemy.size = D3DXVECTOR2(120.0f, 120.0f);
 	enemy.move = D3DXVECTOR2(2.0f, 2.0f);
 	enemy.Wtexture = LoadTexture("data/TEXTURE/player_w.png");
 	enemy.Stexture = LoadTexture("data/TEXTURE/player_s.png");

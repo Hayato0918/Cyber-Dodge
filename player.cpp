@@ -22,7 +22,7 @@ PLAYER player;
 HRESULT InitPlayer(void)
 {
 	player.pos = D3DXVECTOR2(240.0f, 320.0f);
-	player.size = D3DXVECTOR2(90.0f, 180.0f);
+	player.size = D3DXVECTOR2(200.0f, 240.0f);
 	player.move = D3DXVECTOR2(4.0f, 4.0f);
 	//player.Wtexture = LoadTexture("data/TEXTURE/player_w.png");
 	//player.Stexture = LoadTexture("data/TEXTURE/player_s.png");
@@ -31,7 +31,7 @@ HRESULT InitPlayer(void)
 	player.walk_1texture = LoadTexture("data/TEXTURE/player_walk_A.png");
 	player.walk_2texture = LoadTexture("data/TEXTURE/player_walk_D.png");
 	player.walktextureflag = true;
-	player.walk_ball_1texture = LoadTexture("data/TEXTURE/player_ball_A.png");
+	player.walk_ball_1texture = LoadTexture("data/TEXTURE/walk_ball_A.png");
 	player.walk_ball_2texture = LoadTexture("data/TEXTURE/player_ball_D.png");
 	player.walk_balltextureflag = true;
 	player.rotate = 3;

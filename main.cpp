@@ -218,7 +218,7 @@ HRESULT Init(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 
 	//シーンの初期化（タイトルからスタート）
 	SetFadeColor(0.0f, 0.0f, 0.0f);
-	SceneFadeIn(SCENE_MAP);
+	SceneFadeIn(SCENE_GAME);
 
 	return S_OK;
 }
