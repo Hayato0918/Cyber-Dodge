@@ -31,6 +31,12 @@
     <Filter Include="ヘッダー ファイル\map">
       <UniqueIdentifier>{c36e0200-d8fe-4c20-bebe-206cb2d1f917}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\bug">
+      <UniqueIdentifier>{6bcfc3f8-8c08-453e-8644-28454707e04c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\bug">
+      <UniqueIdentifier>{9595e978-01ca-492d-9c87-f4c57d8b0990}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="title.cpp">
@@ -135,6 +141,9 @@
     <ClCompile Include="player_hp.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="bunshin.cpp">
+      <Filter>ソース ファイル\bug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="title.h">
@@ -238,6 +247,9 @@
     </ClInclude>
     <ClInclude Include="player_hp.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="bunshin.h">
+      <Filter>ヘッダー ファイル\bug</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

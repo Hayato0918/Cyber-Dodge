@@ -133,6 +133,7 @@
     <ClCompile Include="billiards.cpp" />
     <ClCompile Include="bug.cpp" />
     <ClCompile Include="buildup.cpp" />
+    <ClCompile Include="bunshin.cpp" />
     <ClCompile Include="catch.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="enemyAI.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="Billiards.h" />
     <ClInclude Include="bug.h" />
     <ClInclude Include="buildup.h" />
+    <ClInclude Include="bunshin.h" />
     <ClInclude Include="catch.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="enemyAI.h" />
