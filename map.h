@@ -12,10 +12,16 @@ typedef struct
 	float u, v, uw, vh;
 }MAP;
 
+typedef struct
+{
+	D3DXVECTOR2 pos;
+	D3DXVECTOR2 size;
+	float u, v, uw, vh;
+}MAPSEN;
+
 //-----プロトタイプ宣言
 HRESULT InitMap(void);
 void UninitMap(void);
 void UpdateMap(void);
 void DrawMap(void);
-
-MAP* GetMap();
+MAP* GetMap(void);
