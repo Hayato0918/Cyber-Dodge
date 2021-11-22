@@ -144,6 +144,9 @@
     <ClCompile Include="bunshin.cpp">
       <Filter>ソース ファイル\bug</Filter>
     </ClCompile>
+    <ClCompile Include="reverse.cpp">
+      <Filter>ソース ファイル\bug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="title.h">
@@ -249,6 +252,9 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="bunshin.h">
+      <Filter>ヘッダー ファイル\bug</Filter>
+    </ClInclude>
+    <ClInclude Include="reverse.h">
       <Filter>ヘッダー ファイル\bug</Filter>
     </ClInclude>
   </ItemGroup>

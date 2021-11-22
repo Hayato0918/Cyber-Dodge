@@ -11,6 +11,8 @@
 #include "invade.h"
 #include "player_hp.h"
 
+#include "reverse.h"
+
 //-----マクロ定義
 
 //-----プロトタイプ宣言
@@ -24,16 +26,17 @@ HRESULT InitPlayer(void)
 	player.pos = D3DXVECTOR2(240.0f, 320.0f);
 	player.size = D3DXVECTOR2(200.0f, 240.0f);
 	player.move = D3DXVECTOR2(4.0f, 4.0f);
-	player.walk_1texture = LoadTexture("data/TEXTURE/player_walk_A.png");
-	player.walk_2texture = LoadTexture("data/TEXTURE/player_walk_D.png");
+	//player.walk_1texture = LoadTexture("data/TEXTURE/player_walk_A.png");
+	//player.walk_2texture = LoadTexture("data/TEXTURE/player_walk_D.png");
 	player.walktextureflag = true;
-	player.walk_ball_1texture = LoadTexture("data/TEXTURE/walk_ball_A.png");
-	player.walk_ball_2texture = LoadTexture("data/TEXTURE/player_ball_D.png");
+	//player.walk_ball_1texture = LoadTexture("data/TEXTURE/walk_ball_A.png");
+	//player.walk_ball_2texture = LoadTexture("data/TEXTURE/player_ball_D.png");
 	player.walk_balltextureflag = true;
 	player.rotate = 3;
 	player.drawflag = true;
 
 	InitSkill();
+	InitReverse();
 
 	return S_OK;
 }
@@ -51,20 +54,35 @@ void UpdatePlayer(void)
 	INVADE* invade = GetInvade();
 	PLAYERHP* hp = GetPlayerHp();
 
+	REVERSE* reverse = GetReverse();
+
+	_Reverse();
+
 	//-----移動処理(コートの左右端を3sで移動)
 	if (GetKeyboardPress(DIK_W))	//上
 	{
+		if(reverse->use == false)
 		player.pos.y -= player.move.y;
+		if(reverse->use == true)
+			player.pos.y += player.move.y;
 		player.rotate = 0;
 	}
 	if (GetKeyboardPress(DIK_S))	//下
 	{
+		if (reverse->use == false)
 		player.pos.y += player.move.y;
+		if (reverse->use == true)
+			player.pos.y -= player.move.y;
 		player.rotate = 1;
 	}
 	if (GetKeyboardPress(DIK_A))	//左
 	{
+		if (reverse->use == false)
 		player.pos.x -= player.move.x;
+		if (reverse->use == true)
+			player.pos.x += player.move.x;
+
+		//テクスチャの切り替え
 		if (ball->playerhaveflag == true)
 			player.walk_balltextureflag = true;
 		if (ball->playerhaveflag == false);
@@ -73,7 +91,10 @@ void UpdatePlayer(void)
 	}
 	if (GetKeyboardPress(DIK_D))	//右
 	{
+		if (reverse->use == false)
 		player.pos.x += player.move.x;
+		if (reverse->use == true)
+			player.pos.x -= player.move.x;
 		if (ball->playerhaveflag == true)
 			player.walk_balltextureflag = false;
 		if(ball->playerhaveflag == false)
