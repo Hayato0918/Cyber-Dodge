@@ -27,7 +27,6 @@ HRESULT InitMapPlayer(void)
 	map_player.moveflag = false;
 	map_player.movespeedflag = false;
 
-
 	map_player.circlepos = D3DXVECTOR2(map[1].pos.x, map[1].pos.y);
 	map_player.circlesize = D3DXVECTOR2(40.0f, 40.0f);
 	map_player.circletexture = LoadTexture("data/TEXTURE/circle.png");

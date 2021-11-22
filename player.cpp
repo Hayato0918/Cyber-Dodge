@@ -24,10 +24,6 @@ HRESULT InitPlayer(void)
 	player.pos = D3DXVECTOR2(240.0f, 320.0f);
 	player.size = D3DXVECTOR2(200.0f, 240.0f);
 	player.move = D3DXVECTOR2(4.0f, 4.0f);
-	//player.Wtexture = LoadTexture("data/TEXTURE/player_w.png");
-	//player.Stexture = LoadTexture("data/TEXTURE/player_s.png");
-	//player.Atexture = LoadTexture("data/TEXTURE/player_a.png");
-	//player.Dtexture = LoadTexture("data/TEXTURE/player_d.png");
 	player.walk_1texture = LoadTexture("data/TEXTURE/player_walk_A.png");
 	player.walk_2texture = LoadTexture("data/TEXTURE/player_walk_D.png");
 	player.walktextureflag = true;
@@ -156,14 +152,6 @@ void DrawPlayer(void)
 			if (player.walk_balltextureflag == false)
 				DrawSpriteLeftTop(player.walk_ball_2texture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
 		}
-		//if (player.rotate == 0)
-		//	DrawSpriteLeftTop(player.Wtexture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
-		//if (player.rotate == 1)
-		//	DrawSpriteLeftTop(player.Stexture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
-		//if (player.rotate == 2)
-		//	DrawSpriteLeftTop(player.Atexture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
-		//if (player.rotate == 3)
-			//DrawSpriteLeftTop(player.Dtexture, player.pos.x, player.pos.y, player.size.x, player.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
 	}
 
 	//-----ƒXƒLƒ‹•`‰æ
