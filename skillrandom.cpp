@@ -50,7 +50,7 @@ void UpdateRandom(void)
 	{
 		//ƒ‰ƒ“ƒ_ƒ€
 		srand(time(0));
-		random.code = (rand() % 6) + 1;
+		random.code = (rand() % 8) + 1;
 
 		random.use = true;
 		random.active = false;
