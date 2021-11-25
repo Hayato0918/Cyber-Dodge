@@ -31,6 +31,7 @@ HRESULT InitBall(void)
 	ball.playerhavetime = 0.0f;
 	ball.playerhaveflag = false;
 	ball.playerhitflag = false;
+	ball.playerthrowflag = false;
 	ball.enemyhaveflag = false;
 	ball.enemyhitflag = false;
 	ball.fallflag = false;
@@ -185,6 +186,7 @@ void P_Throw(void)
 		ball.fallpos = player->pos.y + player->size.y;
 		ball.fallflag = false;
 		ball.playerhaveflag = false;
+		ball.playerthrowflag = true;
 		ball.enemyhitflag = true;
 		ball.throwflag = true;
 	}

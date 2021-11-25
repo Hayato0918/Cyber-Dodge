@@ -42,6 +42,12 @@ typedef struct
 	bool pickLRflag;		//どっち向いているかを管理するフラグ
 	float picktexturetime;	//アニメーションの時間を管理する変数
 
+	int throw_Ltexture;	//投げ右向き
+	int throw_Rtexture;	//投げ左向き
+	bool throwtextureflag;	//描画するかを管理するフラグ
+	bool throwLRflag;		//どっち向いているかを管理するフラグ
+	float throwtexturetime;//アニメーションの時間を管理する変数
+
 	int damage_Ltexture;	//ダメージ右向き
 	int damage_Rtexture;	//ダメージ左向き
 	bool damagetextureflag;	//描画するかを管理するフラグ

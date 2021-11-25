@@ -56,6 +56,12 @@ HRESULT InitPlayer(void)
 	player.pickLRflag = false;
 	player.picktexturetime = 0.0f;
 
+	player.throw_Ltexture = LoadTexture("data/TEXTURE/player/throw/throw_L.png");
+	player.throw_Rtexture = LoadTexture("data/TEXTURE/player/throw/throw_R.png");
+	player.throwtextureflag = false;
+	player.throwLRflag = false;
+	player.throwtexturetime = 0.0f;
+
 	player.damage_Ltexture = LoadTexture("data/TEXTURE/player/damage/damage_L.png");
 	player.damage_Rtexture = LoadTexture("data/TEXTURE/player/damage/damage_R.png");
 	player.damagetextureflag = false;
@@ -168,7 +174,7 @@ void UpdatePlayer(void)
 			if (player.pos.y < ball->pos.y + ball->size.y && player.pos.y + player.size.y > ball->pos.y)
 			{
 				player.damagetextureflag = true;
-				hp->gaugesize.x = hp->gaugesize.x - 6000.0f;
+				hp->gaugesize.x = hp->gaugesize.x - 60.0f;
 				ball->playerhitflag = false;
 			}
 		}
@@ -386,6 +392,88 @@ void UpdatePlayer(void)
 		player.picktextureflag = false;
 	}
 
+	//投げたとき
+	if (ball->playerthrowflag == true)
+	{
+		player.throwtexturetime = player.throwtexturetime + 1.0f;
+		if (player.rotate == 3)		//右を向いていたら
+		{
+			player.throwtextureflag = true;
+			player.throwLRflag = false;
+			if (player.throwtexturetime < 5)	//
+			{
+				player.u = 0.0f;
+				player.uw = 0.2f;
+			}
+			if (player.throwtexturetime >= 5 && player.throwtexturetime < 10)
+			{
+				player.u = 0.2f;
+				player.uw = 0.2f;
+			}
+			if (player.throwtexturetime >= 10 && player.throwtexturetime < 15)
+			{
+				player.u = 0.4f;
+				player.uw = 0.26f;
+			}
+			if (player.throwtexturetime >= 15 && player.throwtexturetime < 20)
+			{
+				player.u = 0.66f;
+				player.uw = 0.18f;
+			}
+			if (player.throwtexturetime >= 20 && player.throwtexturetime < 25)
+			{
+				player.u = 0.84f;
+				player.uw = 0.16f;
+			}
+			if (player.throwtexturetime >= 25)
+			{
+				player.throwtextureflag = false;
+				player.throwtexturetime = 0.0f;
+				ball->playerthrowflag = false;
+			}
+		}
+		if (player.rotate == 2)
+		{
+			player.throwtextureflag = true;
+			player.throwLRflag = true;
+			if (player.throwtexturetime < 5)	//
+			{
+				player.u = 0.8f;
+				player.uw = 0.2f;
+			}
+			if (player.throwtexturetime >= 5 && player.throwtexturetime < 10)
+			{
+				player.u = 0.6f;
+				player.uw = 0.2f;
+			}
+			if (player.throwtexturetime >= 10 && player.throwtexturetime < 15)
+			{
+				player.u = 0.34f;
+				player.uw = 0.26f;
+			}
+			if (player.throwtexturetime >= 15 && player.throwtexturetime < 20)
+			{
+				player.u = 0.16f;
+				player.uw = 0.18f;
+			}
+			if (player.throwtexturetime >= 20 && player.throwtexturetime < 25)
+			{
+				player.u = 0.0f;
+				player.uw = 0.16f;
+			}
+			if (player.throwtexturetime >= 25)
+			{
+				player.throwtextureflag = false;
+				player.throwtexturetime = 0.0f;
+				ball->playerthrowflag = false;
+			}
+		}
+	}
+
+
+
+
+
 	//ダメージを受けたとき
 	if (player.damagetextureflag == true)
 	{
@@ -448,17 +536,20 @@ void DrawPlayer(void)
 			{
 				if (player.picktextureflag == false)	//ピックモーションを優先
 				{
-					//止まってるとき && (右向いてるとき || 左向いてるとき)
-					if (player.walktextureflag == false && player.standLRflag == false)
-						DrawSpriteLeftTop(player.stand_Ltexture, player.pos.x, player.pos.y, player.size.x, player.size.y, player.u, player.v, player.uw, player.vh);
-					if (player.walktextureflag == false && player.standLRflag == true)
-						DrawSpriteLeftTop(player.stand_Rtexture, player.pos.x, player.pos.y, player.size.x, player.size.y, player.u, player.v, player.uw, player.vh);
+					if (player.throwtextureflag == false)	//投げモーションを優先
+					{
+						//止まってるとき && (右向いてるとき || 左向いてるとき)
+						if (player.walktextureflag == false && player.standLRflag == false)
+							DrawSpriteLeftTop(player.stand_Ltexture, player.pos.x, player.pos.y, player.size.x, player.size.y, player.u, player.v, player.uw, player.vh);
+						if (player.walktextureflag == false && player.standLRflag == true)
+							DrawSpriteLeftTop(player.stand_Rtexture, player.pos.x, player.pos.y, player.size.x, player.size.y, player.u, player.v, player.uw, player.vh);
 
-					//動いているとき && (右向いてるとき || 左向いてるとき)
-					if (player.walktextureflag == true && player.walkLRflag == false)
-						DrawSpriteLeftTop(player.walk_Ltexture, player.pos.x, player.pos.y, player.size.x, player.size.y, player.u, player.v, player.uw, player.vh);
-					if (player.walktextureflag == true && player.walkLRflag == true)
-						DrawSpriteLeftTop(player.walk_Rtexture, player.pos.x, player.pos.y, player.size.x, player.size.y, player.u, player.v, player.uw, player.vh);
+						//動いているとき && (右向いてるとき || 左向いてるとき)
+						if (player.walktextureflag == true && player.walkLRflag == false)
+							DrawSpriteLeftTop(player.walk_Ltexture, player.pos.x, player.pos.y, player.size.x, player.size.y, player.u, player.v, player.uw, player.vh);
+						if (player.walktextureflag == true && player.walkLRflag == true)
+							DrawSpriteLeftTop(player.walk_Rtexture, player.pos.x, player.pos.y, player.size.x, player.size.y, player.u, player.v, player.uw, player.vh);
+					}
 				}
 			}
 		}
@@ -476,6 +567,14 @@ void DrawPlayer(void)
 				DrawSpriteLeftTop(player.pick_Ltexture, player.pos.x, player.pos.y, player.size.x, player.size.y, player.u, player.v, player.uw, player.vh);
 			if (player.picktextureflag == true && player.pickLRflag == true)
 				DrawSpriteLeftTop(player.pick_Rtexture, player.pos.x, player.pos.y, player.size.x, player.size.y, player.u, player.v, player.uw, player.vh);
+
+			//投げたとき && ((右向いてるとき || 左向いてるとき))
+			if (player.throwtextureflag == true && player.throwLRflag == false)
+				DrawSpriteLeftTop(player.throw_Ltexture, player.pos.x, player.pos.y, player.size.x, player.size.y, player.u, player.v, player.uw, player.vh);
+			if (player.throwtextureflag == true && player.throwLRflag == true)
+				DrawSpriteLeftTop(player.throw_Rtexture, player.pos.x, player.pos.y, player.size.x, player.size.y, player.u, player.v, player.uw, player.vh);
+
+
 		}
 
 		//ダメージを受けたとき && (右向いてるとき || 左向いてるとき)

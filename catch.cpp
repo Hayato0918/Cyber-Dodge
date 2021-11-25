@@ -126,6 +126,7 @@ void P_Catch(void)
 			if (Catch.playerpos.y + Catch.size.y > ball->pos.y && Catch.playerpos.y < ball->pos.y + ball->size.y)
 			{
 				ball->playerhitflag = false;
+				ball->playerthrowflag = false;
 				ball->throwflag = false;
 				ball->playerhaveflag = true;
 				ball->move = D3DXVECTOR2(ball->startmove.x, ball->startmove.y);
