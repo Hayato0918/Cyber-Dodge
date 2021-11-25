@@ -58,26 +58,26 @@ void UpdateCatch(void)
 	if (Catch.playerflag == true)
 	{
 		if (player->rotate == 0)		//上
-			Catch.playerpos = D3DXVECTOR2(player->pos.x + player->size.x * 0.5, player->pos.y - ball->size.y * 0.5);
+			Catch.playerpos = D3DXVECTOR2(player->pos.x + player->size.x * 0.5f, player->pos.y - ball->size.y * 0.5f);
 		if (player->rotate == 1)		//下
-			Catch.playerpos = D3DXVECTOR2(player->pos.x + player->size.x * 0.5, player->pos.y + player->size.y + ball->size.y * 0.5);
+			Catch.playerpos = D3DXVECTOR2(player->pos.x + player->size.x * 0.5f, player->pos.y + player->size.y + ball->size.y * 0.5f);
 		if (player->rotate == 2)	//左
-			Catch.playerpos = D3DXVECTOR2(player->pos.x - Catch.size.x * 0.5, player->pos.y + player->size.y * 0.5);
+			Catch.playerpos = D3DXVECTOR2(player->pos.x - Catch.size.x * 0.5f, player->pos.y + player->size.y * 0.5f);
 		if (player->rotate == 3)		//右
-			Catch.playerpos = D3DXVECTOR2(player->pos.x + player->size.x * 1.5, player->pos.y + player->size.y * 0.5);
+			Catch.playerpos = D3DXVECTOR2(player->pos.x + player->size.x * 1.5f, player->pos.y + player->size.y * 0.5f);
 	}
 
 	//-----エネミーの向きに応じてキャッチの方向を決める
 	if (Catch.enemyflag == true)
 	{
 		if (enemy->rotate == 0)		//上
-			Catch.enemypos = D3DXVECTOR2(enemy->pos.x + enemy->size.x * 0.5, enemy->pos.y - ball->size.y * 0.5);
+			Catch.enemypos = D3DXVECTOR2(enemy->pos.x + enemy->size.x * 0.5f, enemy->pos.y - ball->size.y * 0.5f);
 		if (enemy->rotate == 1)		//下
-			Catch.enemypos = D3DXVECTOR2(enemy->pos.x + enemy->size.x * 0.5, enemy->pos.y + enemy->size.y + ball->size.y * 0.5);
+			Catch.enemypos = D3DXVECTOR2(enemy->pos.x + enemy->size.x * 0.5f, enemy->pos.y + enemy->size.y + ball->size.y * 0.5f);
 		if (enemy->rotate == 2)	//左
-			Catch.enemypos = D3DXVECTOR2(enemy->pos.x - Catch.size.x * 0.5, enemy->pos.y + enemy->size.y * 0.5);
+			Catch.enemypos = D3DXVECTOR2(enemy->pos.x - Catch.size.x * 0.5f, enemy->pos.y + enemy->size.y * 0.5f);
 		if (enemy->rotate == 3)		//右
-			Catch.enemypos = D3DXVECTOR2(enemy->pos.x + enemy->size.x * 1.5, enemy->pos.y + enemy->size.y * 0.5);
+			Catch.enemypos = D3DXVECTOR2(enemy->pos.x + enemy->size.x * 1.5f, enemy->pos.y + enemy->size.y * 0.5f);
 	}
 }
 

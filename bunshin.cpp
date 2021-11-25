@@ -53,12 +53,12 @@ void UpdateEnemyClone(void)
 		}
 
 		//-----コート外に出ない処理
-		if (g_EnemyClone[i].pos.y <= 180 - g_EnemyClone[i].size.y * 0.5)			//上
-			g_EnemyClone[i].pos.y = 180 - g_EnemyClone[i].size.y * 0.5;
+		if (g_EnemyClone[i].pos.y <= 180 - g_EnemyClone[i].size.y * 0.5f)			//上
+			g_EnemyClone[i].pos.y = 180 - g_EnemyClone[i].size.y * 0.5f;
 		if (g_EnemyClone[i].pos.y >= SCREEN_HEIGHT - g_EnemyClone[i].size.y - 15)	//下
 			g_EnemyClone[i].pos.y = SCREEN_HEIGHT - g_EnemyClone[i].size.y - 15;
-		if (g_EnemyClone[i].pos.x <= SCREEN_WIDTH * 0.5)								//左
-			g_EnemyClone[i].pos.x = SCREEN_WIDTH * 0.5;
+		if (g_EnemyClone[i].pos.x <= SCREEN_WIDTH * 0.5f)								//左
+			g_EnemyClone[i].pos.x = SCREEN_WIDTH * 0.5f;
 		if (g_EnemyClone[i].pos.x >= SCREEN_WIDTH - g_EnemyClone[i].size.x - 5)								//右
 			g_EnemyClone[i].pos.x = SCREEN_WIDTH - g_EnemyClone[i].size.x - 5;
 

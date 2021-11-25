@@ -42,7 +42,7 @@ void _BallSpeedUp(void)
 		if(ball->move.x > 0)
 			ball->move.x = ball->move.x + 5;
 		if (ball->move.x < 0)
-			ball->move.x = ball->texture - 5;
+			ball->move.x = ball->move.x - 5;
 
 		//-----バグゲージの上昇
 		bug->gaugesize.x = bug->gaugesize.x + ballspeedup.usegauge * bug->gaugeonce;

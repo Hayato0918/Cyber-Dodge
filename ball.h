@@ -23,6 +23,8 @@ typedef struct
 	bool enemyhaveflag;		//エネミーがボールを持っているかを判定するフラグ
 	bool enemyhitflag;		//エネミーのアウト判定を管理するフラグ
 
+	bool fallflag;	//ボールが床,地面についたかを管理するフラグ
+
 	float rad;
 	float plyer_oldposY;
 }BALL;

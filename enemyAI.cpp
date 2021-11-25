@@ -53,11 +53,11 @@ void enemyAI()
 	}
 
 	//-----ボールとエネミーの位置を計算し、エネミーがボールを追うようにする
-	x = (ball->pos.x - enemy->pos.x + enemy->size.x * 0.5) * 0.01;
-	y = (ball->pos.y - enemy->pos.y - enemy->size.y * 0.5) * 0.01;
+	x = (ball->pos.x - enemy->pos.x + enemy->size.x * 0.5f) * 0.01f;
+	y = (ball->pos.y - enemy->pos.y - enemy->size.y * 0.5f) * 0.01f;
 
 		//-----ボールが敵陣の地面にある場合、ボールの場所まで行く
-	if (ball->enemyhaveflag == false && ball->pos.x > SCREEN_WIDTH * 0.5 && ball->enemyhitflag == false)
+	if (ball->enemyhaveflag == false && ball->pos.x > SCREEN_WIDTH * 0.5f && ball->enemyhitflag == false)
 	{
 		enemy->pos.x += x;
 		enemy->pos.y += y;
@@ -89,7 +89,7 @@ void enemyAI()
 	if (ball->enemyhaveflag == true && throwtime < 60)
 	{
 		//-----yをプレイヤーとエネミーのy座標の差に変更
-		y = (player->pos.y - enemy->pos.y) * 0.01;
+		y = (player->pos.y - enemy->pos.y) * 0.01f;
 
 		enemy->pos.y += y;
 	}

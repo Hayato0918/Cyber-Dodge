@@ -23,7 +23,7 @@ HRESULT InitSlowArea(void)
 	slowarea.xrand = rand() % 10 + 1;
 	srand((unsigned int)time(NULL) + 1);
 	slowarea.yrand = rand() % 10 + 1;
-	slowarea.pos = D3DXVECTOR2(slowarea.xrand * SCREEN_WIDTH * 0.05 - slowarea.size.x, 320.0f + slowarea.yrand * 22 - slowarea.size.y);
+	slowarea.pos = D3DXVECTOR2(slowarea.xrand * SCREEN_WIDTH * 0.05f - slowarea.size.x, 320.0f + slowarea.yrand * 22 - slowarea.size.y);
 	slowarea.use = false;
 	slowarea.timeflag = false;
 	slowarea.time = 0.0f;

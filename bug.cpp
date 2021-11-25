@@ -22,7 +22,7 @@ HRESULT InitBug(void)
 	bug.gaugeonce = 8;
 
 	bug.pos = D3DXVECTOR2(105.0f, 20.0f);
-	bug.framesize = D3DXVECTOR2(150 * bug.gaugeonce, 60.0f);
+	bug.framesize = D3DXVECTOR2(150.f * bug.gaugeonce, 60);
 	bug.frametexture = LoadTexture("data/TEXTURE/bugframe.png");
 
 	bug.gaugesize = D3DXVECTOR2(0.0f, bug.framesize.y);
@@ -47,11 +47,11 @@ void UpdateBug(void)
 	if (ball->playerhaveflag == true)
 	{
 		ball->playerhavetime = ball->playerhavetime + 1.0f;
-		if (ball->playerhavetime >= gaugeincreasetime && bug.gaugesize.x < 150 * bug.gaugeonce)
+		if (ball->playerhavetime >= gaugeincreasetime && bug.gaugesize.x < 150.f * bug.gaugeonce)
 			bug.gaugesize.x = bug.gaugesize.x + gaugeincrease;
-		else if (bug.gaugesize.x >= 150 * bug.gaugeonce)
+		else if (bug.gaugesize.x >= 150.f * bug.gaugeonce)
 		{
-			bug.gaugesize.x = 150 * bug.gaugeonce;
+			bug.gaugesize.x = 150.f * bug.gaugeonce;
 		}
 	}
 

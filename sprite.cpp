@@ -71,24 +71,24 @@ void DrawSprite(int texNo, float X, float Y, float Width, float Height, float U,
 	hh = Height * 0.5f;
 
 	// 頂点０番（左上の頂点）
-	vertex[0].Position = D3DXVECTOR3(X - hw, Y - hh, 0.0f);
-	vertex[0].Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
-	vertex[0].TexCoord = D3DXVECTOR2(U, V);
+	vertex[1].Position = D3DXVECTOR3(X - hw, Y - hh, 0.0f);
+	vertex[1].Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
+	vertex[1].TexCoord = D3DXVECTOR2(U, V);
 
 	// 頂点１番（右上の頂点）
-	vertex[1].Position = D3DXVECTOR3(X + hw, Y - hh, 0.0f);
-	vertex[1].Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
-	vertex[1].TexCoord = D3DXVECTOR2(U + UW, V);
+	vertex[0].Position = D3DXVECTOR3(X + hw, Y - hh, 0.0f);
+	vertex[0].Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
+	vertex[0].TexCoord = D3DXVECTOR2(U + UW, V);
 
 	// 頂点２番（左下の頂点）
-	vertex[2].Position = D3DXVECTOR3(X - hw, Y + hh, 0.0f);
-	vertex[2].Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
-	vertex[2].TexCoord = D3DXVECTOR2(U, V + VH);
+	vertex[3].Position = D3DXVECTOR3(X - hw, Y + hh, 0.0f);
+	vertex[3].Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
+	vertex[3].TexCoord = D3DXVECTOR2(U, V + VH);
 
 	// 頂点３番（右下の頂点）
-	vertex[3].Position = D3DXVECTOR3(X + hw, Y + hh, 0.0f);
-	vertex[3].Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
-	vertex[3].TexCoord = D3DXVECTOR2(U + UW, V + VH);
+	vertex[2].Position = D3DXVECTOR3(X + hw, Y + hh, 0.0f);
+	vertex[2].Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
+	vertex[2].TexCoord = D3DXVECTOR2(U + UW, V + VH);
 
 	GetDeviceContext()->Unmap(g_VertexBuffer, 0);
 

@@ -33,6 +33,7 @@ HRESULT InitBall(void)
 	ball.playerhitflag = false;
 	ball.enemyhaveflag = false;
 	ball.enemyhitflag = false;
+	ball.fallflag = false;
 	ball.rad = 0.0f;
 	ball.plyer_oldposY = 0.0f;
 
@@ -56,12 +57,12 @@ void UpdateBall(void)
 	{
 		if (player->rotate == 2)
 		{
-			ball.pos = D3DXVECTOR2(player->pos.x - ball.size.x * 0.5, player->pos.y + player->size.y * 0.5 - ball.size.y * 0.5);
+			ball.pos = D3DXVECTOR2(player->pos.x - ball.size.x * 0.5f, player->pos.y + player->size.y * 0.5f - ball.size.y * 0.5f);
 			ball.throwway = -1;
 		}
 		if (player->rotate == 3 || player->rotate == 0 || player->rotate == 1)
 		{
-			ball.pos = D3DXVECTOR2(player->pos.x + ball.size.x * 0.5, player->pos.y + player->size.y * 0.5 - ball.size.y * 0.5);
+			ball.pos = D3DXVECTOR2(player->pos.x + ball.size.x * 0.5f, player->pos.y + player->size.y * 0.5f - ball.size.y * 0.5f);
 			ball.throwway = 1;
 		}
 	}
@@ -71,12 +72,12 @@ void UpdateBall(void)
 	{
 		if (enemy->rotate == 2)
 		{
-			ball.pos = D3DXVECTOR2(enemy->pos.x - ball.size.x * 0.5, enemy->pos.y + enemy->size.y * 0.5 - ball.size.y * 0.5);
+			ball.pos = D3DXVECTOR2(enemy->pos.x - ball.size.x * 0.5f, enemy->pos.y + enemy->size.y * 0.5f - ball.size.y * 0.5f);
 			ball.throwway = -1;
 		}
 		if (enemy->rotate == 3 || enemy->rotate == 0 || enemy->rotate == 1)
 		{
-			ball.pos = D3DXVECTOR2(enemy->pos.x + ball.size.x * 0.5, enemy->pos.y + enemy->size.y * 0.5 - ball.size.y * 0.5);
+			ball.pos = D3DXVECTOR2(enemy->pos.x + ball.size.x * 0.5f, enemy->pos.y + enemy->size.y * 0.5f - ball.size.y * 0.5f);
 			ball.throwway = 1;
 		}
 	}
@@ -122,6 +123,7 @@ void UpdateBall(void)
 			ball.move.y *= -1;
 			ball.enemyhitflag = false;
 			ball.playerhitflag = false;
+			ball.fallflag = true;
 		}
 		if (ball.pos.x < 0.0f)							//左
 		{
@@ -131,6 +133,7 @@ void UpdateBall(void)
 				ball.move.x -= 5.0f;
 			ball.enemyhitflag = false;
 			ball.playerhitflag = false;
+			ball.fallflag = true;
 		}
 		if (ball.pos.x + ball.size.x > SCREEN_WIDTH)	//右
 		{
@@ -141,6 +144,7 @@ void UpdateBall(void)
 			ball.move.x *= -1;
 			ball.enemyhitflag = false;
 			ball.playerhitflag = false;
+			ball.fallflag = true;
 		}
 	}
 }
@@ -159,6 +163,7 @@ void E_Throw(void)
 	if (ball.throwflag == false && ball.enemyhaveflag == true)
 	{
 		ball.fallpos = enemy->pos.y + enemy->size.y;
+		ball.fallflag = false;
 		ball.enemyhaveflag = false;
 		if (invincible->use == true) //-----無敵スキルを使ってるか？どうかの判定
 			ball.playerhitflag = false;
@@ -178,6 +183,7 @@ void P_Throw(void)
 	{
 		ball.playerhavetime = 0.0f;
 		ball.fallpos = player->pos.y + player->size.y;
+		ball.fallflag = false;
 		ball.playerhaveflag = false;
 		ball.enemyhitflag = true;
 		ball.throwflag = true;

@@ -38,7 +38,7 @@ void _Barrier(void)
 	PLAYER* player = GetPlayer();
 	BUG* bug = GetBug();
 
-	barrier.pos = D3DXVECTOR2(player->pos.x - player->size.x * 0.5, player->pos.y);
+	barrier.pos = D3DXVECTOR2(player->pos.x - player->size.x * 0.5f, player->pos.y);
 
 	//-----9キーを押したら、3s間バリアを張る
 	if (GetKeyboardTrigger(DIK_0) && barrier.use == false)

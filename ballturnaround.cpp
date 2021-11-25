@@ -24,8 +24,6 @@ HRESULT InitBallTurnAround(void)
 	return S_OK;
 }
 
-
-
 //-----’ÇÕˆ—
 void _BallTurnAround(void)
 {

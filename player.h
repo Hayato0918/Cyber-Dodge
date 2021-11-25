@@ -10,28 +10,48 @@ typedef struct
 	D3DXVECTOR2 pos;
 	D3DXVECTOR2 size;
 	D3DXVECTOR2 move;
-
-	int Wtexture;	//↑向いている方向に対応したテクスチャ
-	int Stexture;	//↓
-	int Atexture;	//←
-	int Dtexture;	//→
 	int rotate;		//向いてる方向を取得する変数
 
+	float u, v, uw, vh;
 	bool drawflag;	//描画するかを管理するフラグ
 
 	int hp;			//体力
 	int atk;		//攻撃力
 	int def;		//防御力
 
-	//-----テクスチャ
-	//-----歩き
-	int walk_1texture;
-	int walk_2texture;
-	bool walktextureflag;
-	//-----ボール保持時歩き
-	int walk_ball_1texture;
-	int walk_ball_2texture;
-	bool walk_balltextureflag;
+	//テクスチャ
+	int stand_Ltexture;		//立ち右向き
+	int stand_Rtexture;		//立ち右向き
+	bool standtextureflag;	//描画するかを管理するフラグ
+	bool standLRflag;		//どっち向いているかを管理するフラグ
+
+	int walk_Ltexture;		//歩き右向き
+	int walk_Rtexture;		//歩き左向き
+	bool walktextureflag;	//描画するかを管理するフラグ
+	bool walkLRflag;		//どっち向いているかを管理するフラグ
+
+	int catch_Ltexture;		//キャッチ右向き
+	int catch_Rtexture;		//キャッチ左向き
+	bool catchtextureflag;	//描画するかを管理するフラグ
+	bool catchLRflag;		//どっち向いているかを管理するフラグ
+	float catchtexturetime;	//アニメーションの時間を管理する変数
+
+	int pick_Ltexture;		//ダメージ右向き
+	int pick_Rtexture;		//ダメージ左向き
+	bool picktextureflag;	//描画するかを管理するフラグ
+	bool pickLRflag;		//どっち向いているかを管理するフラグ
+	float picktexturetime;	//アニメーションの時間を管理する変数
+
+	int damage_Ltexture;	//ダメージ右向き
+	int damage_Rtexture;	//ダメージ左向き
+	bool damagetextureflag;	//描画するかを管理するフラグ
+	bool damageLRflag;		//どっち向いているかを管理するフラグ
+	float damagetexturetime;//アニメーションの時間を管理する変数
+
+	int deathtexture;		//死亡
+
+
+
 
 }PLAYER;
 

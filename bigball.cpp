@@ -42,7 +42,7 @@ void _BigBall(void)
 	if (bigball.time > bigballtime)
 	{
 		bigball.timeflag = false;
-		ball->size = D3DXVECTOR2(ball->size.x * 0.5, ball->size.y * 0.5);
+		ball->size = D3DXVECTOR2(ball->size.x * 0.5f, ball->size.y * 0.5f);
 		bigball.time = 0.0f;
 	}
 }

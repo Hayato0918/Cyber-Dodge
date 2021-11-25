@@ -9,7 +9,7 @@
 
 //-----マクロ定義
 #define swingtime	180						//キュースティックの判定時間
-#define PI 3.1415926535897932				//円周率
+#define PI 3.1415926535897932f				//円周率
 
 //-----グローバル変数
 BILLIARDS billiards;
@@ -48,11 +48,11 @@ void _Billiards(void)
 	{
 		if (player->rotate == 3) // 右向き
 		{
-			billiards.pos = D3DXVECTOR2(player->pos.x, player->pos.y + player->size.y * 0.5);// キュースティックの描画位置
+			billiards.pos = D3DXVECTOR2(player->pos.x, player->pos.y + player->size.y * 0.5f);// キュースティックの描画位置
 		}
 		if (player->rotate == 2) // 左向き
 		{
-			billiards.pos = D3DXVECTOR2(player->pos.x - billiards.size.x * 0.5, player->pos.y + player->size.y * 0.5);// キュースティックの描画位置
+			billiards.pos = D3DXVECTOR2(player->pos.x - billiards.size.x * 0.5f, player->pos.y + player->size.y * 0.5f);// キュースティックの描画位置
 		}
 
 		//当たり判定処理
@@ -62,11 +62,11 @@ void _Billiards(void)
 			{
 				if (player->rotate == 3) // 右向き
 				{
-					AddBallMove(-5.0f, PI * 0.05, player->pos.y, player->size.y);
+					AddBallMove(-5.f, PI * 0.05f, player->pos.y, player->size.y);
 				}
 				if (player->rotate == 2) // 左向き
 				{
-					AddBallMove(-5.0f, PI * 0.95, player->pos.y, player->size.y);
+					AddBallMove(-5.f, PI * 0.95f, player->pos.y, player->size.y);
 				}
 			}
 		}

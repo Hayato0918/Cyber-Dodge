@@ -46,7 +46,7 @@ void _BuildUp(void)
 	if (buildup.time > builduptime)
 	{
 		buildup.timeflag = false;
-		player->size = D3DXVECTOR2(player->size.x * 0.5, player->size.y * 0.5);
+		player->size = D3DXVECTOR2(player->size.x * 0.5f, player->size.y * 0.5f);
 		buildup.time = 0.0f;
 	}
 }

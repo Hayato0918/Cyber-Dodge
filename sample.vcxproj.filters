@@ -209,9 +209,6 @@
     <ClInclude Include="enemy.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="bug.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="ballspeedup.h">
       <Filter>ヘッダー ファイル\skill</Filter>
     </ClInclude>
@@ -256,6 +253,9 @@
     </ClInclude>
     <ClInclude Include="reverse.h">
       <Filter>ヘッダー ファイル\bug</Filter>
+    </ClInclude>
+    <ClInclude Include="bug.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

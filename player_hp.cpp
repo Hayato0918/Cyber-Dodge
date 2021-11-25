@@ -17,7 +17,7 @@ HRESULT InitPlayerHp(void)
 	hp.gaugeonce = 8;
 
 	hp.pos = D3DXVECTOR2(60.0f, SCREEN_HEIGHT - 100.0f);
-	hp.framesize = D3DXVECTOR2(80 * hp.gaugeonce, 60.0f); //HPバーフレームサイズ
+	hp.framesize = D3DXVECTOR2(80.f * hp.gaugeonce, 60.0f); //HPバーフレームサイズ
 	hp.frametexture = LoadTexture("data/TEXTURE/bugframe.png");
 
 	hp.gaugesize = D3DXVECTOR2(hp.framesize.x, hp.framesize.y); //残っているHPの量
