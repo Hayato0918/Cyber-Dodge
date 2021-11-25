@@ -8,6 +8,8 @@
 #include "catch.h"
 #include "bug.h"
 
+#include "skillrandom.h"
+
 //-----マクロ定義
 
 //-----プロトタイプ宣言
@@ -31,15 +33,16 @@ void _BallSpeedUp(void)
 {
 	BALL* ball = GetBall();
 	BUG* bug = GetBug();
+	RANDOM* random = GetRandom();
 
 	//------プレイヤーがボールを持っている間、0キーを押したら、ボールの速さが+5される
-	if (GetKeyboardTrigger(DIK_0) && ballspeedup.use == false && ball->playerhaveflag == true)
+	if (random->code == 1 && random->active == true && ballspeedup.use == false && ball->playerhaveflag == true)
 	{
 		//------速さをもとに戻すときに使う
 		ballspeedup.beforemove = ball->move.x;
 
 		//今向いてる方向に応じて加速するベクトルを変える
-		if(ball->move.x > 0)
+		if (ball->move.x > 0)
 			ball->move.x = ball->move.x + 5;
 		if (ball->move.x < 0)
 			ball->move.x = ball->move.x - 5;

@@ -6,6 +6,8 @@
 
 #include "ball.h"
 
+#include "skillrandom.h"
+
 //-----マクロ定義
 #define bigballtime 180		//3s間
 
@@ -28,9 +30,10 @@ HRESULT InitBigBall(void)
 void _BigBall(void)
 {
 	BALL* ball = GetBall();
+	RANDOM* random = GetRandom();
 
-	//8キーを押したら、3s間ボールのサイズが大きくなる
-	if (GetKeyboardTrigger(DIK_0) && bigball.use == false)
+	//ランダムで選ばれたら、3s間ボールのサイズが大きくなる
+	if (random->code == 3 && random->active == true && bigball.use == false)
 	{
 		ball->size = D3DXVECTOR2(ball->size.x * 2, ball->size.y * 2);
 		bigball.timeflag = true;

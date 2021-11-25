@@ -7,6 +7,8 @@
 #include "player.h"
 #include "bug.h"
 
+#include "skillrandom.h"
+
 //-----マクロ定義
 #define barriertime 180		//3s間
 
@@ -37,11 +39,12 @@ void _Barrier(void)
 {
 	PLAYER* player = GetPlayer();
 	BUG* bug = GetBug();
+	RANDOM* random = GetRandom();
 
 	barrier.pos = D3DXVECTOR2(player->pos.x - player->size.x * 0.5f, player->pos.y);
 
 	//-----9キーを押したら、3s間バリアを張る
-	if (GetKeyboardTrigger(DIK_0) && barrier.use == false)
+	if (random->code == 2 && random->active == true && barrier.use == false)
 	{
 		barrier.drawflag = true;
 		barrier.timeflag = true;

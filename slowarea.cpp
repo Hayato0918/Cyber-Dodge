@@ -7,6 +7,8 @@
 
 #include "player.h"
 
+#include "skillrandom.h"
+
 //-----マクロ定義
 #define slowareatime 180		//3s間
 
@@ -37,9 +39,10 @@ HRESULT InitSlowArea(void)
 void _SlowArea(void)
 {
 	PLAYER* player = GetPlayer();
+	RANDOM* random = GetRandom();
 
-	//-----4キーを押したら、3s間足がおそくなるエリアができる
-	if (GetKeyboardTrigger(DIK_0) && slowarea.use == false)
+	//-----ランダムで6が選ばれたら、3s間足がおそくなるエリアができる
+	if (random->code == 6 && random->active == true && slowarea.use == false)
 	{
 		slowarea.timeflag = true;
 		slowarea.use = true;

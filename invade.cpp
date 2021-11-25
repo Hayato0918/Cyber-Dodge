@@ -6,6 +6,8 @@
 
 #include "player.h"
 
+#include "skillrandom.h"
+
 //-----マクロ定義
 #define invadetime 180		//3s間
 
@@ -28,9 +30,10 @@ HRESULT InitInvade(void)
 void _Invade(void)
 {
 	PLAYER* player = GetPlayer();
+	RANDOM* random = GetRandom();
 
-	//1キーで使用/3秒間敵の陣地に入れる
-	if (GetKeyboardTrigger(DIK_0) && invade.use == false)
+	//ランダムで5が選ばれたら、3秒間敵の陣地に入れる
+	if (random->code == 5 && random->active == true && invade.use == false)
 	{
 		//-----プレイヤーの位置を敵陣までワープさせる
 		player->pos.x = (SCREEN_WIDTH / 2) + 5;

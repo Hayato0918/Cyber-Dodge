@@ -15,6 +15,8 @@
 #include "catch.h"
 #include "escape.h"
 
+#include "skillrandom.h"
+
 //-----’è”’è‹`
 
 //-----\‘¢‘ÌéŒ¾
@@ -35,7 +37,7 @@ void InitGame(void)
 	InitBall();
 	InitCatch();
 	InitEscape();
-
+	InitRandom();
 
 
 }
@@ -45,7 +47,7 @@ void UninitGame()
 {
 
 
-
+	UninitRandom();
 	InitCatch();
 	UninitBall();
 	UninitEnemy();
@@ -64,7 +66,7 @@ void UpdateGame(void)
 	UpdateEnemy();
 	UpdateBall();
 	UpdateCatch();
-
+	UpdateRandom();
 
 
 }
@@ -79,7 +81,7 @@ void DrawGame(void)
 	DrawEnemy();
 	DrawBall();
 	DrawCatch();
-
+	DrawRandom();
 
 
 }

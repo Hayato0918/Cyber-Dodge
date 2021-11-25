@@ -147,6 +147,9 @@
     <ClCompile Include="reverse.cpp">
       <Filter>ソース ファイル\bug</Filter>
     </ClCompile>
+    <ClCompile Include="skillrandom.cpp">
+      <Filter>ソース ファイル\skill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="title.h">
@@ -256,6 +259,9 @@
     </ClInclude>
     <ClInclude Include="bug.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="skillrandom.h">
+      <Filter>ヘッダー ファイル\skill</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

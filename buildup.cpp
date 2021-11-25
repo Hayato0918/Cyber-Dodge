@@ -7,6 +7,8 @@
 #include "player.h"
 #include "bug.h"
 
+#include "skillrandom.h"
+
 //-----マクロ定義
 #define builduptime 180		//3s間
 
@@ -31,9 +33,10 @@ void _BuildUp(void)
 {
 	PLAYER* player = GetPlayer();
 	BUG* bug = GetBug();
+	RANDOM* random = GetRandom();
 
-	//1キーを押したら、3s間キャラのサイズが2倍になる
-	if (GetKeyboardTrigger(DIK_1) && buildup.use == false)
+	//ランダムで4が出たら、3s間キャラのサイズが2倍になる
+	if (random->code == 4 && random->active == true && buildup.use == false)
 	{
 		player->size = D3DXVECTOR2(player->size.x * 2, player->size.y * 2);
 		buildup.timeflag = true;

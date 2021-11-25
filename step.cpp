@@ -7,6 +7,8 @@
 #include "player.h"
 #include "escape.h"
 
+#include "skillrandom.h"
+
 //-----マクロ定義
 
 
@@ -28,9 +30,10 @@ void _Step(void)
 {
 	PLAYER* player = GetPlayer();
 	ESCAPE* escape = GetEscape();
+	RANDOM* random = GetRandom();
 
 	//2キーを押すと回避のクールダウンが短縮されます
-	if (GetKeyboardTrigger(DIK_0) && step.use == false && escape->intervalflag == true)
+	if (random->code == 8 && random->active == true && step.use == false && escape->intervalflag == true)
 	{
 		escape->intervaltime = 300.0f;
 
