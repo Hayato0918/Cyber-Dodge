@@ -62,7 +62,7 @@ void UpdateRandom(void)
 				if (random.code == 1 && random.use == true)
 				{
 					random.size = D3DXVECTOR2(100.0f, 40.0f);
-					random.texture = LoadTexture("data/TEXTURE/speedup.png");
+					random.texture = LoadTexture("data/TEXTURE/skill/speedup.png");
 				}
 				break;
 			}
@@ -72,7 +72,7 @@ void UpdateRandom(void)
 				if (random.code == 2 && random.use == true)
 				{
 					random.size = D3DXVECTOR2(100.0f, 40.0f);
-					random.texture = LoadTexture("data/TEXTURE/barrierR.png");
+					random.texture = LoadTexture("data/TEXTURE/skill/barrierR.png");
 				}
 				break;
 			}
@@ -82,7 +82,7 @@ void UpdateRandom(void)
 				if (random.code == 3 && random.use == true)
 				{
 					random.size = D3DXVECTOR2(100.0f, 40.0f);
-					random.texture = LoadTexture("data/TEXTURE/bigball.png");
+					random.texture = LoadTexture("data/TEXTURE/skill/bigball.png");
 				}
 				break;
 			}
@@ -92,7 +92,7 @@ void UpdateRandom(void)
 				if (random.code == 4 && random.use == true)
 				{
 					random.size = D3DXVECTOR2(100.0f, 40.0f);
-					random.texture = LoadTexture("data/TEXTURE/buildup.png");
+					random.texture = LoadTexture("data/TEXTURE/skill/buildup.png");
 				}
 				break;
 			}
@@ -102,7 +102,7 @@ void UpdateRandom(void)
 				if (random.code == 5 && random.use == true)
 				{
 					random.size = D3DXVECTOR2(100.0f, 40.0f);
-					random.texture = LoadTexture("data/TEXTURE/invade.png");
+					random.texture = LoadTexture("data/TEXTURE/skill/invade.png");
 				}
 				break;
 			}
@@ -112,7 +112,7 @@ void UpdateRandom(void)
 				if (random.code == 6 && random.use == true)
 				{
 					random.size = D3DXVECTOR2(100.0f, 40.0f);
-					random.texture = LoadTexture("data/TEXTURE/slowarea.png");
+					random.texture = LoadTexture("data/TEXTURE/skill/slowarea.png");
 				}
 				break;
 			}
@@ -122,7 +122,7 @@ void UpdateRandom(void)
 				if (random.code == 7 && random.use == true)
 				{
 					random.size = D3DXVECTOR2(100.0f, 40.0f);
-					random.texture = LoadTexture("data/TEXTURE/smallplayer.png");
+					random.texture = LoadTexture("data/TEXTURE/skill/smallplayer.png");
 				}
 				break;
 			}
@@ -132,7 +132,7 @@ void UpdateRandom(void)
 				if (random.code == 8 && random.use == true)
 				{
 					random.size = D3DXVECTOR2(100.0f, 40.0f);
-					random.texture = LoadTexture("data/TEXTURE/step.png");
+					random.texture = LoadTexture("data/TEXTURE/skill/step.png");
 				}
 				break;
 			}
@@ -142,7 +142,7 @@ void UpdateRandom(void)
 	//2キーを押すと、乱数リセット
 	if (GetKeyboardTrigger(DIK_2) && random.active == false && random.use == true)
 	{
-		random.texture = LoadTexture("data/TEXTURE/blank.png");
+		random.texture = LoadTexture("data/TEXTURE/skill/blank.png");
 		random.active = true;
 		random.use = false;
 	}
