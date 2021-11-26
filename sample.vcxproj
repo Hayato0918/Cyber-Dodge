@@ -124,6 +124,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="anten.cpp" />
     <ClCompile Include="ball.cpp" />
     <ClCompile Include="ballturnaround.cpp" />
     <ClCompile Include="barrier.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="title.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="anten.h" />
     <ClInclude Include="ball.h" />
     <ClInclude Include="ballturnaround.h" />
     <ClInclude Include="barrier.h" />

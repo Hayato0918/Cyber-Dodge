@@ -150,6 +150,9 @@
     <ClCompile Include="skillrandom.cpp">
       <Filter>ソース ファイル\skill</Filter>
     </ClCompile>
+    <ClCompile Include="anten.cpp">
+      <Filter>ソース ファイル\bug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="title.h">
@@ -262,6 +265,9 @@
     </ClInclude>
     <ClInclude Include="skillrandom.h">
       <Filter>ヘッダー ファイル\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="anten.h">
+      <Filter>ヘッダー ファイル\bug</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

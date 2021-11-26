@@ -62,9 +62,9 @@ void UpdateCatch(void)
 		if (player->rotate == 1)		//下
 			Catch.playerpos = D3DXVECTOR2(player->pos.x + player->size.x * 0.5f, player->pos.y + player->size.y + ball->size.y * 0.5f);
 		if (player->rotate == 2)	//左
-			Catch.playerpos = D3DXVECTOR2(player->pos.x - Catch.size.x * 0.5f, player->pos.y + player->size.y * 0.5f);
+			Catch.playerpos = D3DXVECTOR2(player->pos.x, player->pos.y + player->size.y * 0.4f);
 		if (player->rotate == 3)		//右
-			Catch.playerpos = D3DXVECTOR2(player->pos.x + player->size.x * 1.5f, player->pos.y + player->size.y * 0.5f);
+			Catch.playerpos = D3DXVECTOR2(player->pos.x + player->size.x, player->pos.y + player->size.y * 0.4f);
 	}
 
 	//-----エネミーの向きに応じてキャッチの方向を決める
@@ -143,8 +143,11 @@ void M_Catch(void)
 	//-----キャッチ
 	if (Catch.enemyintervalflag == false && ball->enemyhaveflag == false)
 	{
-		Catch.enemyflag = true;
-		Catch.enemyintervalflag = true;
+		if (GetKeyboardTrigger(DIK_N))
+		{
+			Catch.enemyflag = true;
+			Catch.enemyintervalflag = true;
+		}
 	}
 	//-----インターバル(1s)
 	if (Catch.enemyintervalflag == true)

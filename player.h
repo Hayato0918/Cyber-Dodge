@@ -36,8 +36,8 @@ typedef struct
 	bool catchLRflag;		//どっち向いているかを管理するフラグ
 	float catchtexturetime;	//アニメーションの時間を管理する変数
 
-	int pick_Ltexture;		//ダメージ右向き
-	int pick_Rtexture;		//ダメージ左向き
+	int pick_Ltexture;		//拾い右向き
+	int pick_Rtexture;		//拾い左向き
 	bool picktextureflag;	//描画するかを管理するフラグ
 	bool pickLRflag;		//どっち向いているかを管理するフラグ
 	float picktexturetime;	//アニメーションの時間を管理する変数
@@ -47,6 +47,12 @@ typedef struct
 	bool throwtextureflag;	//描画するかを管理するフラグ
 	bool throwLRflag;		//どっち向いているかを管理するフラグ
 	float throwtexturetime;//アニメーションの時間を管理する変数
+
+	int skill_Ltexture;	//スキル右向き
+	int skill_Rtexture;	//スキル左向き
+	bool skilltextureflag;	//描画するかを管理するフラグ
+	bool skillLRflag;		//どっち向いているかを管理するフラグ
+	float skilltexturetime;//アニメーションの時間を管理する変数
 
 	int damage_Ltexture;	//ダメージ右向き
 	int damage_Rtexture;	//ダメージ左向き

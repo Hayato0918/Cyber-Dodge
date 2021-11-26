@@ -56,10 +56,10 @@ void _SlowArea(void)
 			if (player->pos.y + player->size.y > slowarea.pos.y && player->pos.y < slowarea.pos.y + slowarea.size.y)
 				player->move = D3DXVECTOR2(3.0f, 3.0f);
 			else
-				player->move = D3DXVECTOR2(10.0f, 10.0f);
+				player->move = D3DXVECTOR2(4.0f, 4.0f);
 		}
 		else
-			player->move = D3DXVECTOR2(10.0f, 10.0f);
+			player->move = D3DXVECTOR2(4.0f, 4.0f);
 	}
 
 	//-----スキル使用3s後にもとに戻る

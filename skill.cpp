@@ -69,65 +69,39 @@ void _Skill(void)
 {
 	//-----プレイヤー巨大化
 	_BuildUp();
+
 	//-----ボールスピードアップ
 	_BallSpeedUp();
+
 	//-----バリア
 	_Barrier();
+
 	//-----プレイヤー縮小
 	_SmallPlayer();
+
 	//-----ボール巨大化
 	_BigBall();
+
 	//-----スロウエリア生成
 	_SlowArea();
+
 	//-----不法侵入
 	_Invade();
+
 	//-----ステップ
 	_Step();
+
 	//-----ビリヤード
 	_Billiards();
+
 	//-----野球
 	_Baseball();
+
 	//-----無敵
 	_Invincible();
+
 	//-----方向転換
 	_BallTurnAround();
-
-	//skill_numに乱数を設定
-
-
-	//switch (skill_num)
-	//{
-	//case 1:
-	//	//-----プレイヤー巨大化
-	//	_BuildUp();
-	//case 2:
-	//	//-----ボールスピードアップ
-	//	_BallSpeedUp();
-	//case 3:
-	//	//-----バリア
-	//	_Barrier();
-	//case 4:
-	//	//-----プレイヤー縮小
-	//	_SmallPlayer();
-	//case 5:
-	//	//-----ボール巨大化
-	//	_BigBall();
-	//case 6:
-	//	//-----スロウエリア生成
-	//	_SlowArea();
-	//case 7:
-	//	//-----不法侵入
-	//	_Invade();
-	//case 8:
-	//	//-----ステップ
-	//	_Step();
-	//case 9:
-	//	//-----ビリヤード
-	//	_Billiards();
-	//case 10:
-	//	//-----野球
-	//	_Baseball();
-	//}
 }
 
 void DrawSkill(void)

@@ -19,6 +19,7 @@ typedef struct
 	D3DXVECTOR2 circlepos;
 	D3DXVECTOR2 circlesize;
 	int circletexture;
+	bool circletextureflag;
 
 	float x, y;
 

@@ -58,12 +58,12 @@ void UpdateBall(void)
 	{
 		if (player->rotate == 2)
 		{
-			ball.pos = D3DXVECTOR2(player->pos.x - ball.size.x * 0.5f, player->pos.y + player->size.y * 0.5f - ball.size.y * 0.5f);
+			ball.pos = D3DXVECTOR2(player->pos.x, player->pos.y + player->size.y * 0.3f - ball.size.y * 0.5f);
 			ball.throwway = -1;
 		}
 		if (player->rotate == 3 || player->rotate == 0 || player->rotate == 1)
 		{
-			ball.pos = D3DXVECTOR2(player->pos.x + ball.size.x * 0.5f, player->pos.y + player->size.y * 0.5f - ball.size.y * 0.5f);
+			ball.pos = D3DXVECTOR2(player->pos.x + ball.size.x * 2.f, player->pos.y + player->size.y * 0.3f - ball.size.y * 0.5f);
 			ball.throwway = 1;
 		}
 	}
@@ -153,6 +153,7 @@ void UpdateBall(void)
 //-----描画処理
 void DrawBall(void)
 {
+	if(ball.playerhaveflag == false)
 	DrawSpriteLeftTop(ball.texture, ball.pos.x, ball.pos.y, ball.size.x, ball.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
 }
 
@@ -161,16 +162,20 @@ void E_Throw(void)
 {
 	ENEMY* enemy = GetEnemy();
 	INVINCIBLE* invincible = GetInvincible();
+
 	if (ball.throwflag == false && ball.enemyhaveflag == true)
 	{
-		ball.fallpos = enemy->pos.y + enemy->size.y;
-		ball.fallflag = false;
-		ball.enemyhaveflag = false;
-		if (invincible->use == true) //-----無敵スキルを使ってるか？どうかの判定
-			ball.playerhitflag = false;
-		if (invincible->use == false)
-			ball.playerhitflag = true;
-		ball.throwflag = true;
+		if (GetKeyboardTrigger(DIK_V))
+		{
+			ball.fallpos = enemy->pos.y + enemy->size.y;
+			ball.fallflag = false;
+			ball.enemyhaveflag = false;
+			if (invincible->use == true) //-----無敵スキルを使ってるか？どうかの判定
+				ball.playerhitflag = false;
+			if (invincible->use == false)
+				ball.playerhitflag = true;
+			ball.throwflag = true;
+		}
 	}
 }
 
