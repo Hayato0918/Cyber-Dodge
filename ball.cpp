@@ -19,7 +19,7 @@ BALL ball;
 //-----‰Šú‰»ˆ—
 HRESULT InitBall(void)
 {
-	ball.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f, 360.0f);
+	ball.pos = D3DXVECTOR2(500.0f, 360.0f);
 	ball.size = D3DXVECTOR2(60.0f, 60.0f);
 	ball.move = D3DXVECTOR2(12.0f, -3.5f);
 	ball.startmove = D3DXVECTOR2(ball.move.x, ball.move.y);
@@ -165,8 +165,6 @@ void E_Throw(void)
 
 	if (ball.throwflag == false && ball.enemyhaveflag == true)
 	{
-		if (GetKeyboardTrigger(DIK_V))
-		{
 			ball.fallpos = enemy->pos.y + enemy->size.y;
 			ball.fallflag = false;
 			ball.enemyhaveflag = false;
@@ -175,7 +173,6 @@ void E_Throw(void)
 			if (invincible->use == false)
 				ball.playerhitflag = true;
 			ball.throwflag = true;
-		}
 	}
 }
 

@@ -16,8 +16,8 @@ HRESULT InitPlayerHp(void)
 {
 	hp.gaugeonce = 8;
 
-	hp.pos = D3DXVECTOR2(60.0f, SCREEN_HEIGHT - 100.0f);
 	hp.framesize = D3DXVECTOR2(80.f * hp.gaugeonce, 60.0f); //HPバーフレームサイズ
+	hp.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f - hp.framesize.x - 100.f , SCREEN_HEIGHT - 100.0f);
 	hp.frametexture = LoadTexture("data/TEXTURE/bugframe.png");
 
 	hp.gaugesize = D3DXVECTOR2(hp.framesize.x, hp.framesize.y); //残っているHPの量
@@ -35,12 +35,7 @@ void UninitPlayerHp(void)
 //-----更新処理
 void UpdatePlayerHp(void)
 {
-	//hpの減少が機能しているかどうかを確認するために使用します。
-	//ワンクリック -10 hp // 2.0f = 1hp
-	//if (GetKeyboardTrigger(DIK_2))
-	//{
-	//	hp.gaugesize.x = hp.gaugesize.x - 20.0f;
-	//}
+
 }
 
 //-----描画処理

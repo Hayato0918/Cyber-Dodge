@@ -3,9 +3,13 @@
 #include "input.h"
 #include "texture.h"
 #include "sprite.h"
+#include "scene.h"
+#include "fade.h"
 
+#include "player.h"
 #include "ball.h"
 #include "catch.h"
+#include "enemy_hp.h"
 #include "enemyAI.h"
 
 //-----マクロ定義
@@ -22,6 +26,9 @@ HRESULT InitEnemy(void)
 	enemy.size = D3DXVECTOR2(256.0f, 256.0f);
 	enemy.move = D3DXVECTOR2(2.0f, 2.0f);
 	enemy.rotate = 2;
+
+	enemy.atk = 150;
+	enemy.def = 50;
 
 	enemy.u = 0.0f;
 	enemy.v = 0.0f;
@@ -68,34 +75,41 @@ void UninitEnemy(void)
 void UpdateEnemy(void)
 {
 	BALL* ball = GetBall();
+	PLAYER* player = GetPlayer();
+	ENEMYHP* enemy_hp = GetEnemyHp();
 
-	//-----移動処理(コートの左右端を3sで移動)
-	if (GetKeyboardPress(DIK_UPARROW))	//上
+	if (enemy.drawflag == true)
 	{
-		enemy.pos.y -= enemy.move.y;
-		enemy.rotate = 0;
+		enemyAI();
+
+		////-----移動処理(コートの左右端を3sで移動)
+		//if (GetKeyboardPress(DIK_UPARROW))	//上
+		//{
+		//	enemy.pos.y -= enemy.move.y;
+		//	enemy.rotate = 0;
+		//}
+		//if (GetKeyboardPress(DIK_DOWNARROW))	//下
+		//{
+		//	enemy.pos.y += enemy.move.y;
+		//	enemy.rotate = 1;
+		//}
+		//if (GetKeyboardPress(DIK_LEFTARROW))	//左
+		//{
+		//	enemy.pos.x -= enemy.move.x;
+		//	enemy.rotate = 2;
+		//	enemy.walktextureflag = true;
+		//}
+		//if (GetKeyboardPress(DIK_RIGHTARROW))	//右
+		//{
+		//	enemy.pos.x += enemy.move.x;
+		//	enemy.rotate = 3;
+		//	enemy.walktextureflag = true;
+		//}
+		//if (GetKeyboardRelease(DIK_LEFTARROW))
+		//	enemy.walktextureflag = false;
+		//if (GetKeyboardRelease(DIK_RIGHTARROW))
+		//	enemy.walktextureflag = false;
 	}
-	if (GetKeyboardPress(DIK_DOWNARROW))	//下
-	{
-		enemy.pos.y += enemy.move.y;
-		enemy.rotate = 1;
-	}
-	if (GetKeyboardPress(DIK_LEFTARROW))	//左
-	{
-		enemy.pos.x -= enemy.move.x;
-		enemy.rotate = 2;
-		enemy.walktextureflag = true;
-	}
-	if (GetKeyboardPress(DIK_RIGHTARROW))	//右
-	{
-		enemy.pos.x += enemy.move.x;
-		enemy.rotate = 3;
-		enemy.walktextureflag = true;
-	}
-	if (GetKeyboardRelease(DIK_LEFTARROW))
-		enemy.walktextureflag = false;
-	if (GetKeyboardRelease(DIK_RIGHTARROW))
-		enemy.walktextureflag = false;
 
 	//-----コート外に出ない処理
 	if (enemy.pos.y <= 180 - enemy.size.y * 0.5f)			//上
@@ -114,11 +128,19 @@ void UpdateEnemy(void)
 		if (enemy.pos.x < ball->pos.x + ball->size.x && enemy.pos.x + enemy.size.x > ball->pos.x)
 		{
 			if (enemy.pos.y < ball->pos.y + ball->size.y && enemy.pos.y + enemy.size.y > ball->pos.y)
-				enemy.drawflag = false;	
+			{
+				enemy.damagetextureflag = true;
+				enemy_hp->gaugesize.x = enemy_hp->gaugesize.x - (player->atk - enemy.def) * 1.5;
+				ball->enemyhitflag = false;
+			}
 		}
 	}
 
-	enemyAI();
+	if (enemy_hp->gaugesize.x <= 0)
+	{
+		enemy.drawflag = false;
+		SceneTransition(SCENE_CLEAR);
+	}
 
 
 
@@ -233,7 +255,16 @@ void UpdateEnemy(void)
 		enemy.walktexturetime = 0.0f;
 
 
-	E_Throw();
+
+	//死んだとき
+	if (enemy.drawflag == false)
+	{
+		enemy.u = 0.0f;
+		enemy.uw = 1.0f;
+	}
+
+
+	//E_Throw();
 
 
 
@@ -263,11 +294,12 @@ void DrawEnemy(void)
 
 
 
-
-
-
-
 	}
+
+
+	//死んだとき
+	if (enemy.drawflag == false)
+		DrawSpriteLeftTop(enemy.deathtexture, enemy.pos.x, enemy.pos.y, enemy.size.x, enemy.size.y, enemy.u, enemy.v, enemy.uw, enemy.vh);
 }
 
 //-----構造体ポインタ取得処理

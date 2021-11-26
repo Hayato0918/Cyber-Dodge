@@ -6,6 +6,7 @@
 #include "scene.h"
 #include "fade.h"
 
+#include "enemy.h"
 #include "escape.h"
 #include "ball.h"
 #include "catch.h"
@@ -31,6 +32,9 @@ HRESULT InitPlayer(void)
 	player.move = D3DXVECTOR2(4.0f, 4.0f);
 	player.rotate = 3;
 	player.drawflag = true;
+
+	player.atk = 150;
+	player.def = 50;
 
 	player.u = 0.0f;
 	player.v = 0.0f;
@@ -99,6 +103,7 @@ void UpdatePlayer(void)
 	INVADE* invade = GetInvade();
 	PLAYERHP* hp = GetPlayerHp();
 	RANDOM* random = GetRandom();
+	ENEMY* enemy = GetEnemy();
 
 	REVERSE* reverse = GetReverse();
 
@@ -186,7 +191,7 @@ void UpdatePlayer(void)
 				if (player.pos.y + player.size.y * 0.2f < ball->pos.y + ball->size.y && player.pos.y + player.size.y * 0.8f > ball->pos.y)
 				{
 					player.damagetextureflag = true;
-					hp->gaugesize.x = hp->gaugesize.x - 6000.0f;
+					hp->gaugesize.x = hp->gaugesize.x - 150.0f;
 					ball->playerhitflag = false;
 				}
 			}
@@ -199,7 +204,7 @@ void UpdatePlayer(void)
 				if (player.pos.y + player.size.y * 0.2f < ball->pos.y + ball->size.y && player.pos.y + player.size.y * 0.8f > ball->pos.y)
 				{
 					player.damagetextureflag = true;
-					hp->gaugesize.x = hp->gaugesize.x - 60.0f;
+					hp->gaugesize.x = hp->gaugesize.x - (enemy->atk - player.def);
 					ball->playerhitflag = false;
 				}
 			}

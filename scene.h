@@ -8,6 +8,9 @@ enum SCENE
 	SCENE_MAP,		//ローグライク部分
 	SCENE_GAME,		//ドッジボール部分
 
+	SCENE_CLEAR,
+	SCENE_GAMEOVER,
+
 	SCENE_MAX		//最後だとわかる奴をいれる
 };
 

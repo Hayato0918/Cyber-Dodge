@@ -15,6 +15,10 @@ typedef struct
 	bool drawflag;	//描画するかを管理するフラグ
 	float u, v, uw, vh;
 
+	int hp;			//体力
+	int atk;		//攻撃力
+	int def;		//防御力
+
 	//テクスチャ
 	int stand_Ltexture;		//立ち右向き
 	int stand_Rtexture;		//立ち右向き

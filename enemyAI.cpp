@@ -33,28 +33,28 @@ void enemyAI()
 		//-----ボールの方を向く
 	if (ball->enemyhaveflag == false)
 	{
-		if (ball->pos.x > enemy->pos.x)
+		if (ball->pos.x > enemy->pos.x + 50.0f)
 			enemy->rotate = 3;
-		if (ball->pos.x < enemy->pos.x)
+		if (ball->pos.x < enemy->pos.x + 50.0f)
 			enemy->rotate = 2;
 	}
 
-		//-----ボールがプレイヤーの陣地にある場合、上下左右に動く
-	if (ball->enemyhaveflag== false && ball->pos.x < SCREEN_WIDTH * 0.5)
-	{
-		if (player->pos.x > SCREEN_WIDTH * 0.25)
-			enemy->pos.x += 3;
-		if (player->pos.x < SCREEN_WIDTH * 0.25)
-			enemy->pos.x -= 3;
-		if (player->pos.y + player->size.y > SCREEN_HEIGHT * 0.6)
-			enemy->pos.y += 3;
-		if (player->pos.y + player->size.y < SCREEN_HEIGHT * 0.6)
-			enemy->pos.y -= 3;
-	}
+	//-----ボールがプレイヤーの陣地にある場合、上下左右に動く
+	//if (ball->enemyhaveflag== false && ball->pos.x < SCREEN_WIDTH * 0.5)
+	//{
+	//	if (player->pos.x > SCREEN_WIDTH * 0.25)
+	//		enemy->pos.x += 3;
+	//	if (player->pos.x < SCREEN_WIDTH * 0.25)
+	//		enemy->pos.x -= 3;
+	//	if (player->pos.y + player->size.y > SCREEN_HEIGHT * 0.6)
+	//		enemy->pos.y += 3;
+	//	if (player->pos.y + player->size.y < SCREEN_HEIGHT * 0.6)
+	//		enemy->pos.y -= 3;
+	//}
 
 	//-----ボールとエネミーの位置を計算し、エネミーがボールを追うようにする
-	x = (ball->pos.x - enemy->pos.x + enemy->size.x * 0.5f) * 0.01f;
-	y = (ball->pos.y - enemy->pos.y - enemy->size.y * 0.5f) * 0.01f;
+	x = (ball->pos.x - enemy->pos.x - enemy->size.x * 0.5 - ball->size.x) * 0.01f;
+	y = (ball->pos.y - enemy->pos.y - enemy->size.y * 0.5f + ball->size.y) * 0.01f;
 
 		//-----ボールが敵陣の地面にある場合、ボールの場所まで行く
 	if (ball->enemyhaveflag == false && ball->pos.x > SCREEN_WIDTH * 0.5f && ball->enemyhitflag == false)

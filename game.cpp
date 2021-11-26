@@ -11,6 +11,7 @@
 #include "player.h"
 #include "player_hp.h"
 #include "enemy.h"
+#include "enemy_hp.h"
 #include "ball.h"
 #include "catch.h"
 #include "escape.h"
@@ -34,6 +35,7 @@ void InitGame(void)
 	InitPlayerHp();
 	InitPlayer();
 	InitEnemy();
+	InitEnemyHp();
 	InitBall();
 	InitCatch();
 	InitEscape();
@@ -51,6 +53,7 @@ void UninitGame()
 	InitCatch();
 	UninitBall();
 	UninitEnemy();
+	UninitEnemyHp();
 	UninitPlayer();
 	UninitPlayerHp();
 	UninitBug();
@@ -64,6 +67,7 @@ void UpdateGame(void)
 	UpdatePlayerHp();
 	UpdateBug();
 	UpdateEnemy();
+	UpdateEnemyHp();
 	UpdateBall();
 	UpdateCatch();
 	UpdateRandom();
@@ -79,6 +83,7 @@ void DrawGame(void)
 	DrawPlayerHp();
 	DrawPlayer();
 	DrawEnemy();
+	DrawEnemyHp();
 	DrawBall();
 	DrawCatch();
 	DrawRandom();

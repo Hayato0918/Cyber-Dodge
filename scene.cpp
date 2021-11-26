@@ -15,7 +15,8 @@
 #include "map.h"
 #include "map_player.h"
 #include "game.h"
-
+#include "clear.h"
+#include "gameover.h"
 
 /*------------------------------------------------------------------------------
    íËêîíËã`
@@ -60,6 +61,14 @@ void InitScene(SCENE index)
 	case SCENE_GAME:
 		InitGame();
 		break;
+
+	case SCENE_CLEAR:
+		InitClear();
+		break;
+
+	case SCENE_GAMEOVER:
+		InitGameOver();
+		break;
 	}
 }
 
@@ -85,6 +94,14 @@ void UninitScene(void)
 	case SCENE_GAME:
 		UninitGame();
 		break;
+
+	case SCENE_CLEAR:
+		UninitClear();
+		break;
+
+	case SCENE_GAMEOVER:
+		UninitGameOver();
+		break;
 	}
 }
 
@@ -109,6 +126,14 @@ void UpdateScene(void)
 
 	case SCENE_GAME:
 		UpdateGame();
+		break;
+
+	case SCENE_CLEAR:
+		UpdateClear();
+		break;
+
+	case SCENE_GAMEOVER:
+		UpdateGameOver();
 		break;
 	}
 
@@ -136,6 +161,14 @@ void DrawScene(void)
 
 	case SCENE_GAME:
 		DrawGame();
+		break;
+
+	case SCENE_CLEAR:
+		DrawClear();
+		break;
+
+	case SCENE_GAMEOVER:
+		DrawGameOver();
 		break;
 	}
 

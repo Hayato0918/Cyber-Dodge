@@ -75,9 +75,9 @@ void UpdateCatch(void)
 		if (enemy->rotate == 1)		//下
 			Catch.enemypos = D3DXVECTOR2(enemy->pos.x + enemy->size.x * 0.5f, enemy->pos.y + enemy->size.y + ball->size.y * 0.5f);
 		if (enemy->rotate == 2)	//左
-			Catch.enemypos = D3DXVECTOR2(enemy->pos.x - Catch.size.x * 0.5f, enemy->pos.y + enemy->size.y * 0.5f);
+			Catch.enemypos = D3DXVECTOR2(enemy->pos.x, enemy->pos.y + enemy->size.y * 0.5f);
 		if (enemy->rotate == 3)		//右
-			Catch.enemypos = D3DXVECTOR2(enemy->pos.x + enemy->size.x * 1.5f, enemy->pos.y + enemy->size.y * 0.5f);
+			Catch.enemypos = D3DXVECTOR2(enemy->pos.x + enemy->size.x, enemy->pos.y + enemy->size.y * 0.5f);
 	}
 }
 
@@ -143,11 +143,8 @@ void M_Catch(void)
 	//-----キャッチ
 	if (Catch.enemyintervalflag == false && ball->enemyhaveflag == false)
 	{
-		if (GetKeyboardTrigger(DIK_N))
-		{
 			Catch.enemyflag = true;
 			Catch.enemyintervalflag = true;
-		}
 	}
 	//-----インターバル(1s)
 	if (Catch.enemyintervalflag == true)
