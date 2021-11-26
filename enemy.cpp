@@ -130,7 +130,7 @@ void UpdateEnemy(void)
 			if (enemy.pos.y < ball->pos.y + ball->size.y && enemy.pos.y + enemy.size.y > ball->pos.y)
 			{
 				enemy.damagetextureflag = true;
-				enemy_hp->gaugesize.x = enemy_hp->gaugesize.x - (player->atk - enemy.def) * 1.5;
+				enemy_hp->gaugesize.x = enemy_hp->gaugesize.x - (player->atk - enemy.def) * 1.5f;
 				ball->enemyhitflag = false;
 			}
 		}
