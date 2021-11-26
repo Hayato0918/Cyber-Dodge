@@ -378,12 +378,12 @@ void UpdatePlayer(void)
 			{
 				player.picktextureflag = true;
 				player.pickLRflag = false;
-				if (player.picktexturetime < 15)	//
+				if (player.picktexturetime < 30)	//
 				{
 					player.u = 0.0f;
 					player.uw = 0.55f;
 				}
-				if (player.picktexturetime >= 15 && player.picktexturetime < 20)
+				if (player.picktexturetime >= 30 && player.picktexturetime < 20)
 				{
 					player.u = 0.55f;
 					player.uw = 0.45f;
