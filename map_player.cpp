@@ -19,8 +19,8 @@ HRESULT InitMapPlayer(void)
 {
 	MAP* map = GetMap();
 	map_player.size = D3DXVECTOR2(80.0f, 80.0f);
-	//map_player.pos = D3DXVECTOR2(map[0].pos.x - map[0].size.x * 0.5f, map[0].pos.y - map_player.size.y + map[0].size.y * 0.5f);
-	map_player.pos = D3DXVECTOR2(780, 160);
+	map_player.pos = D3DXVECTOR2(map[0].pos.x - map[0].size.x * 0.5f, map[0].pos.y - map_player.size.y + map[0].size.y * 0.5f);
+	//map_player.pos = D3DXVECTOR2(780, 160);
 	map_player.texture = LoadTexture("data/TEXTURE/map_player.png");
 
 	if (map_player.UDcount == 0)
@@ -59,20 +59,20 @@ void UpdateMapPlayer(void)
 {
 	MAP* map = GetMap();
 
-	if (map_player.UDcount == 0)
-	{
-		if (GetKeyboardTrigger(DIK_RETURN))
-			map_player.UDcount = map_player.UDcount + 1;
-	}
+	//if (map_player.UDcount == 0)
+	//{
+	//	if (GetKeyboardTrigger(DIK_RETURN))
+	//		map_player.UDcount = map_player.UDcount + 1;
+	//}
 
-	if (map_player.UDcount == 1)
-	{
-		if (GetKeyboardTrigger(DIK_A))
-		{
-			if(map_player.LRcount > 0)
-			map_player.LRcount = map_player.LRcount - 1;
-		}
-	}
+	//if (map_player.UDcount == 1)
+	//{
+	//	if (GetKeyboardTrigger(DIK_A))
+	//	{
+	//		if(map_player.LRcount > 0)
+	//		map_player.LRcount = map_player.LRcount - 1;
+	//	}
+	//}
 
 	////1’i–Ú‚Ì‘I‘ð
 	//if (GetKeyboardTrigger(DIK_D) && map_player.LRcount < 3 && map_player.UDcount == 0 && map_player.move == false)
