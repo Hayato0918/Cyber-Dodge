@@ -23,21 +23,14 @@ HRESULT InitMap(void)
 {
 	MAP_PLAYER* map_player = GetMapPlayer();
 
-	//if (map_player->UDcount == 0)
-	//{
-	//	mapsen.pos = D3DXVECTOR2(0.0, 0.0);
-	//	mapsen.size = D3DXVECTOR2(SCREEN_WIDTH, 1500);
-	//	mapsen.u = 0.0f;
-	//	mapsen.v = 0.0f;
-	//	mapsen.uw = 1.0f;
-	//	mapsen.vh = 1.0f;
-	//	mapsen_texture = LoadTexture("data/TEXTURE/map.png");
-	//	mapsen.scene = 0;
-	//}
+	mapsen.pos = D3DXVECTOR2(0.0f, 0.0f);
+	mapsen.size = D3DXVECTOR2(SCREEN_WIDTH, 2000.0f);
+	mapsen_texture = LoadTexture("data/TEXTURE/mapsen.png");
+
 
 	for (int i = 0; i < map_num; i++)
 	{
-		map[i].size = D3DXVECTOR2(40.0f, 40.0f);
+		map[i].size = D3DXVECTOR2(80.0f, 80.0f);
 		map[i].uw = 0.25f;
 		map[i].vh = 0.5f;
 	}
@@ -154,42 +147,25 @@ void UpdateMap(void)
 {
 	MAP_PLAYER* map_player = GetMapPlayer();
 
-	//if (map_player->UDcount == 1 && mapsen.pos.y > -325)
-	//{
-	//	mapsen.pos.y = mapsen.pos.y - 3;
-	//}
-
-	//if (mapsen.pos.y < -320 && mapsen.scene == 0)
-	//{
-	//	SceneTransition(SCENE_GAME);
-	//	mapsen.scene = mapsen.scene + 1;
-	//}
-
-
-
-
-
+	//マップスクロール
 	if (GetKeyboardPress(DIK_W))
 	{
 		for (int i = 0; i < map_num; i++)
 		map[i].pos.y += 3;
-
-		//mapsen.pos.y += 3;
+		mapsen.pos.y += 3;
 	}
 	if (GetKeyboardPress(DIK_S))
 	{
 		for (int i = 0; i < map_num; i++)
 		map[i].pos.y -= 3;
-
-		//mapsen.pos.y -= 3;
+		mapsen.pos.y -= 3;
 	}
 }
 
 //-----描画処理
 void DrawMap(void)
 {
-	//DrawSpriteLeftTop(mapsen_texture, mapsen.pos.x, mapsen.pos.y, mapsen.size.x, mapsen.size.y,
-	//	mapsen.u, mapsen.v, mapsen.uw, mapsen.vh);
+	DrawSpriteLeftTop(mapsen_texture, mapsen.pos.x, mapsen.pos.y, mapsen.size.x, mapsen.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
 
 	for (int i = 0; i < map_num; i++)
 		DrawSpriteLeftTop(map_texture, map[i].pos.x, map[i].pos.y, map[i].size.x, map[i].size.y,

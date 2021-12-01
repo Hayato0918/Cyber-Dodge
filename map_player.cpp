@@ -19,8 +19,7 @@ HRESULT InitMapPlayer(void)
 {
 	MAP* map = GetMap();
 	map_player.size = D3DXVECTOR2(80.0f, 80.0f);
-	map_player.pos = D3DXVECTOR2(map[0].pos.x - map[0].size.x * 0.5f, map[0].pos.y - map_player.size.y + map[0].size.y * 0.5f);
-	//map_player.pos = D3DXVECTOR2(780, 160);
+	map_player.pos = D3DXVECTOR2(map[0].pos.x, map[0].pos.y - map_player.size.y * 0.5f);
 	map_player.texture = LoadTexture("data/TEXTURE/map_player.png");
 
 	if (map_player.UDcount == 0)
@@ -33,12 +32,11 @@ HRESULT InitMapPlayer(void)
 	}
 
 	if(map_player.UDcount == 0)
-	map_player.circlepos = D3DXVECTOR2(785, 520);
-	if(map_player.UDcount == 1)
-	map_player.circlepos = D3DXVECTOR2(500, 520);
+	map_player.circlepos = D3DXVECTOR2(map[1].pos.x, map[1].pos.y);
 	map_player.circlesize = D3DXVECTOR2(80.0f, 80.0f);
 	map_player.circletexture = LoadTexture("data/TEXTURE/circle.png");
-	map_player.circletextureflag = true;
+
+
 
 	map_player.x = 0.0f;
 	map_player.y = 0.0f;
@@ -58,6 +56,50 @@ void UninitMapPlayer(void)
 void UpdateMapPlayer(void)
 {
 	MAP* map = GetMap();
+
+	//1’i–Ú
+	if (GetKeyboardTrigger(DIK_A) && map_player.UDcount == 0 && map_player.LRcount > 0)
+	{
+		map_player.LRcount = map_player.LRcount - 1;
+		map_player.circlepos.x = map_player.circlepos.x - SCREEN_WIDTH * 0.2f;
+	}
+	if (GetKeyboardTrigger(DIK_D) && map_player.UDcount == 0 && map_player.LRcount < 3)
+	{
+		map_player.LRcount = map_player.LRcount + 1;
+		map_player.circlepos.x = map_player.circlepos.x + SCREEN_WIDTH * 0.2f;
+	}
+	if (GetKeyboardTrigger(DIK_RETURN) && map_player.UDcount == 0)
+	{
+		if (map_player.LRcount == 0 || map_player.LRcount == 1)
+			map_player.circlepos = D3DXVECTOR2(map[5].pos.x, map[5].pos.y);
+		if (map_player.LRcount == 2)
+			map_player.circlepos = D3DXVECTOR2(map[6].pos.x, map[6].pos.y);
+		if (map_player.LRcount == 3)
+			map_player.circlepos = D3DXVECTOR2(map[7].pos.x, map[7].pos.y);
+		map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 1].pos.x, map[map_player.LRcount + 1].pos.y - map_player.size.y * 0.5f);
+		map_player.LRcount = 0;
+		map_player.UDcount = map_player.UDcount + 1;
+	}
+
+	//2’i–Ú
+	if (GetKeyboardTrigger(DIK_A) && map_player.UDcount == 1 && map_player.LRcount > 0)
+	{
+		if(map_player.LRcount )
+		map_player.LRcount = map_player.LRcount - 1;
+		map_player.circlepos.x = map_player.circlepos.x - SCREEN_WIDTH * 0.2f;
+	}
+	if (GetKeyboardTrigger(DIK_D) && map_player.UDcount == 1 && map_player.LRcount < 3)
+	{
+		map_player.LRcount = map_player.LRcount + 1;
+		map_player.circlepos.x = map_player.circlepos.x + SCREEN_WIDTH * 0.2f;
+	}
+	if (GetKeyboardTrigger(DIK_RETURN) && map_player.UDcount == 1)
+	{
+		map_player.UDcount = map_player.UDcount + 1;
+		map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 1].pos.x, map[map_player.LRcount + 1].pos.y - map_player.size.y * 0.5f);
+	}
+
+
 
 	//if (map_player.UDcount == 0)
 	//{
@@ -174,7 +216,6 @@ void UpdateMapPlayer(void)
 //-----•`‰æˆ—
 void DrawMapPlayer(void)
 {
-	if(map_player.UDcount == 0)
 	DrawSpriteLeftTop(map_player.circletexture, map_player.circlepos.x, map_player.circlepos.y, map_player.circlesize.x, map_player.circlesize.y,
 		0.0f, 0.0f, 1.0f, 1.0f);
 
