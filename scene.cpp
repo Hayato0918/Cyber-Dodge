@@ -13,6 +13,7 @@
 
 #include "title.h"
 #include "map.h"
+#include "map_line.h"
 #include "map_player.h"
 #include "game.h"
 #include "clear.h"
@@ -55,6 +56,7 @@ void InitScene(SCENE index)
 
 	case SCENE_MAP:
 		InitMap();
+		InitPolygon();
 		InitMapPlayer();
 		break;
 
@@ -88,6 +90,7 @@ void UninitScene(void)
 
 	case SCENE_MAP:
 		UninitMap();
+		UninitPolygon();
 		UninitMapPlayer();
 		break;
 
@@ -121,6 +124,7 @@ void UpdateScene(void)
 
 	case SCENE_MAP:
 		UpdateMap();
+		UpdatePolygon();
 		UpdateMapPlayer();
 		break;
 
@@ -155,6 +159,7 @@ void DrawScene(void)
 		break;
 
 	case SCENE_MAP:
+		DrawPolygon();
 		DrawMap();
 		DrawMapPlayer();
 		break;

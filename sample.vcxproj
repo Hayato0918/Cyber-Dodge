@@ -149,6 +149,7 @@
     <ClCompile Include="invincible.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map.cpp" />
+    <ClCompile Include="map_line.cpp" />
     <ClCompile Include="map_player.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="player_hp.cpp" />
@@ -192,6 +193,7 @@
     <ClInclude Include="invincible.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="map.h" />
+    <ClInclude Include="map_line.h" />
     <ClInclude Include="map_player.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="player_hp.h" />
