@@ -10,6 +10,8 @@ typedef struct
 	D3DXVECTOR2 pos;
 	D3DXVECTOR2 size;
 	float u, v, uw, vh;
+	int randomcode;
+	int scenecode;
 }MAP;
 
 typedef struct

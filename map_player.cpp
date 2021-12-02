@@ -71,7 +71,11 @@ void UpdateMapPlayer(void)
 	if (GetKeyboardTrigger(DIK_RETURN) && map_player.UDcount == 0)
 	{
 		if (map_player.LRcount == 0 || map_player.LRcount == 1)
+		{
 			map_player.circlepos = D3DXVECTOR2(map[5].pos.x, map[5].pos.y);
+			if (map[1].randomcode == 1)
+				SceneTransition(SCENE_GAME);
+		}
 		if (map_player.LRcount == 2)
 			map_player.circlepos = D3DXVECTOR2(map[6].pos.x, map[6].pos.y);
 		if (map_player.LRcount == 3)
