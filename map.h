@@ -14,15 +14,20 @@ typedef struct
 	int scenecode;
 }MAP;
 
+typedef struct
+{
+	D3DXVECTOR2 startpos;
+	D3DXVECTOR2 startsize;
+	D3DXVECTOR2 bosspos;
+	D3DXVECTOR2 bosssize;
+}MAP_SB;
+
 //-----構造体
 typedef struct
 {
 	D3DXVECTOR2 pos;
 	D3DXVECTOR2 size;
 	D3DXVECTOR2 num;
-	bool move;		//動いているかを管理するフラグ
-	bool moveflag;
-	bool movespeedflag;	//目的マスまでの移動距離計算を管理するフラグ
 	int texture;
 	int LRcount, UDcount;
 
@@ -30,8 +35,6 @@ typedef struct
 	D3DXVECTOR2 circlesize;
 	int circletexture;
 	bool circletextureflag;
-
-	float x, y;
 
 }MAP_PLAYER;
 
@@ -46,4 +49,3 @@ HRESULT InitMapPlayer(void);
 void UninitMapPlayer(void);
 void UpdateMapPlayer(void);
 void DrawMapPlayer(void);
-MAP_PLAYER* GetMapPlayer();

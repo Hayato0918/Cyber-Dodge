@@ -72,6 +72,9 @@ void UpdateGame(void)
 	UpdateCatch();
 	UpdateRandom();
 
+	if (GetKeyboardTrigger(DIK_M))
+		SceneTransition(SCENE_MAP);
+
 
 }
 

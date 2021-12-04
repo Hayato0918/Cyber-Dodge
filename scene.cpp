@@ -14,7 +14,6 @@
 #include "title.h"
 #include "map.h"
 #include "map_line.h"
-#include "map_player.h"
 #include "game.h"
 #include "clear.h"
 #include "gameover.h"
