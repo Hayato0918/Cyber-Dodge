@@ -9,14 +9,13 @@ typedef struct
 {
 	D3DXVECTOR2 pos;
 	D3DXVECTOR2 size;
-	int texture;			//メニューの枠
+	int texture;			//メニューのテクスチャ
 	D3DXVECTOR2 frame_pos;
 	D3DXVECTOR2 frame_size;
 	int frametexture;				//選択する際の枠
 
-	int UDcount;		//SetMapに入れる数字が入る変数
-	bool isUse;
-
+	int UDcount;		//今何を選んでいるかを管理する変数
+	bool isUse;			//メニューの開閉を管理する変数
 }MAP_HACK;
 
 //-----プロトタイプ宣言

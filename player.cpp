@@ -83,6 +83,7 @@ HRESULT InitPlayer(void)
 
 	player.deathtexture = LoadTexture("data/TEXTURE/player/death/orgnl_death.png");
 
+	player.drawdepth = false;
 
 	InitSkill();
 	InitReverse();
@@ -156,9 +157,10 @@ void UpdatePlayer(void)
 	if (GetKeyboardRelease(DIK_D))	//右移動をやめたら
 		player.walktextureflag = false;
 
-
-
-
+	if (player.pos.y + player.size.y - ball->size.y >= ball->pos.y)
+		player.drawdepth = false;
+	if (player.pos.y + player.size.y - ball->size.y < ball->pos.y)
+		player.drawdepth = true;
 
 	//-----コート外に出ない処理
 	if (player.pos.y <= 180.f - player.size.y * 0.5f)	//上

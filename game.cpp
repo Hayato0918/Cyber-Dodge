@@ -81,16 +81,32 @@ void UpdateGame(void)
 //-----•`‰æˆ—ŠÖ”
 void DrawGame(void)
 {
-	DrawBG();
-	DrawBug();
-	DrawPlayerHp();
-	DrawPlayer();
-	DrawEnemy();
-	DrawEnemyHp();
-	DrawBall();
-	DrawCatch();
-	DrawRandom();
+	PLAYER* player = GetPlayer();
 
+	if (player->drawdepth == true)
+	{
+		DrawBG();
+		DrawBug();
+		DrawPlayerHp();
+		DrawPlayer();
+		DrawEnemy();
+		DrawEnemyHp();
+		DrawBall();
+		DrawCatch();
+		DrawRandom();
+	}
+	if (player->drawdepth == false)
+	{
+		DrawBG();
+		DrawBug();
+		DrawPlayerHp();
+		DrawBall();
+		DrawEnemy();
+		DrawEnemyHp();
+		DrawPlayer();
+		DrawCatch();
+		DrawRandom();
+	}
 
 }
 

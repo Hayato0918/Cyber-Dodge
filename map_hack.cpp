@@ -25,7 +25,7 @@ HRESULT InitMapHack(void)
 	map_hack.frametexture = LoadTexture("data/TEXTURE/bugframe.png");
 
 	map_hack.UDcount = 0;
-	map_hack.isUse = true;
+	map_hack.isUse = false;
 
 	return S_OK;
 }

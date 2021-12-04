@@ -62,7 +62,7 @@ typedef struct
 
 	int deathtexture;		//死亡
 
-
+	bool drawdepth;			//ボールとプレイヤーの描画順フラグ
 
 
 }PLAYER;

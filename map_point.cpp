@@ -88,7 +88,6 @@ HRESULT InitMapPoint(void)
 						map_x = ((rand() % 2) + 2) * 0.1f;
 						mapcount = 0;
 					}
-
 				}
 				if (mapcount >= 4)
 				{
@@ -135,19 +134,31 @@ void UpdateMapPoint(void)
 		if (GetKeyboardTrigger(DIK_RETURN))
 		{
 			if (map_hack->UDcount == 0)		//通常敵マス
+			{
+				map[map_player.LRcount][map_player.UDcount].randomcode = 1;
 				map[map_player.LRcount][map_player.UDcount].u = 0.0f;
+			}
 			if (map_hack->UDcount == 1)		//強敵マス
+			{
+				map[map_player.LRcount][map_player.UDcount].randomcode = 2;
 				map[map_player.LRcount][map_player.UDcount].u = 0.166f;
+			}
 			if (map_hack->UDcount == 2)		//休憩マス
+			{
+				map[map_player.LRcount][map_player.UDcount].randomcode = 3;
 				map[map_player.LRcount][map_player.UDcount].u = 0.498f;
+			}
 			if (map_hack->UDcount == 3)		//イベントマス
+			{
+				map[map_player.LRcount][map_player.UDcount].randomcode = 4;
 				map[map_player.LRcount][map_player.UDcount].u = 0.664f;
+			}
 			if (map_hack->UDcount == 4)		//商人マス
+			{
+				map[map_player.LRcount][map_player.UDcount].randomcode = 5;
 				map[map_player.LRcount][map_player.UDcount].u = 0.83f;
-
+			}
 		}
-
-
 	}
 
 	//マップスクロール
@@ -271,10 +282,16 @@ void UpdateMapPlayer(void)
 				map_player.pos = D3DXVECTOR2(map_sb.bosspos.x + map_player.size.x * 0.25f, map_sb.bosspos.y);
 
 			//選択したマスに対応したシーンに飛ぶ
-			//if (map[map_player.LRcount][map_player.UDcount].randomcode == 1)
-			//	SceneTransition(SCENE_GAME);
-			//if (map[map_player.LRcount][map_player.UDcount].randomcode == 2)
-			//	SceneTransition(SCENE_GAME);
+			if (map[map_player.LRcount][map_player.UDcount].randomcode == 1)	//通常敵マス
+				SceneTransition(SCENE_GAME);	
+			if (map[map_player.LRcount][map_player.UDcount].randomcode == 2)	//強敵マス
+				SceneTransition(SCENE_GAME);
+			if (map[map_player.LRcount][map_player.UDcount].randomcode == 3)	//休憩マス
+				SceneTransition(SCENE_REST);
+			if (map[map_player.LRcount][map_player.UDcount].randomcode == 4)	//イベントマス
+				SceneTransition(SCENE_EVENT);
+			if (map[map_player.LRcount][map_player.UDcount].randomcode == 5)	//商人マス
+				SceneTransition(SCENE_SHOP);
 
 			map_player.LRcount = 0;
 			map_player.UDcount = map_player.UDcount + 1;
