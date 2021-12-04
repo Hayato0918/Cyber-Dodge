@@ -29,7 +29,7 @@ HRESULT InitBarrier(void)
 	barrier.use = false;
 	barrier.timeflag = false;
 	barrier.time = 0.0f;
-	barrier.usegauge = 100;
+	barrier.usegauge = 20;
 
 	return S_OK;
 }

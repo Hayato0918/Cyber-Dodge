@@ -23,7 +23,7 @@ HRESULT InitBuildUp(void)
 	buildup.use = false;
 	buildup.timeflag = false;
 	buildup.time = 0.0f;
-	buildup.usegauge = 100;
+	buildup.usegauge = 10;
 
 	return S_OK;
 }

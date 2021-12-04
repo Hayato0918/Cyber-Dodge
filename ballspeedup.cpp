@@ -23,7 +23,7 @@ HRESULT InitBallSpeedUp(void)
 	ballspeedup.move = 5.0f;
 	ballspeedup.beforemove = 0.0f;
 	ballspeedup.use = false;
-	ballspeedup.usegauge = 100;
+	ballspeedup.usegauge = 20;
 
 	return S_OK;
 }

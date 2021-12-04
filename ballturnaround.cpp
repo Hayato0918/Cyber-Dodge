@@ -6,6 +6,7 @@
 
 #include "enemy.h"
 #include "ball.h"
+#include "bug.h"
 
 //-----マクロ定義
 
@@ -29,6 +30,7 @@ void _BallTurnAround(void)
 {
 	ENEMY* enemy = GetEnemy();
 	BALL* ball = GetBall();
+	BUG* bug = GetBug();
 
 	//-----Cキーを押したら、ボールが敵へ向かっていく
 	if (GetKeyboardTrigger(DIK_C) && ballturnaround.use == false)
@@ -47,5 +49,9 @@ void _BallTurnAround(void)
 		}
 		if (ball->enemyhitflag == false)
 			ballturnaround.use = true;
+
+		//-----バグゲージの上昇
+		bug->gaugesize.x = bug->gaugesize.x + ballturnaround.usegauge * bug->gaugeonce;
+		ballturnaround.use = true;
 	}
 }

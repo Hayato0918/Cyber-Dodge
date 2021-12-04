@@ -5,6 +5,7 @@
 #include "sprite.h"
 
 #include "ball.h"
+#include "bug.h"
 
 #include "skillrandom.h"
 
@@ -22,6 +23,7 @@ HRESULT InitBigBall(void)
 	bigball.use = false;
 	bigball.timeflag = false;
 	bigball.time = 0.0f;
+	bigball.usegauge = 20;
 
 	return S_OK;
 }
@@ -31,10 +33,12 @@ void _BigBall(void)
 {
 	BALL* ball = GetBall();
 	RANDOM* random = GetRandom();
+	BUG* bug = GetBug();
 
 	//ランダムで選ばれたら、3s間ボールのサイズが大きくなる
 	if (random->code == 3 && random->active == true && bigball.use == false)
 	{
+		bug->gaugesize.x = bug->gaugesize.x + bigball.usegauge * bug->gaugeonce;
 		ball->size = D3DXVECTOR2(ball->size.x * 2, ball->size.y * 2);
 		bigball.timeflag = true;
 		bigball.use = true;

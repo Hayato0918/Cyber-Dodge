@@ -5,6 +5,7 @@
 #include "sprite.h"
 
 #include "player.h"
+#include "bug.h"
 
 #include "skillrandom.h"
 
@@ -22,6 +23,7 @@ HRESULT InitInvade(void)
 	invade.use = false;
 	invade.timeflag = false;
 	invade.time = 0.0f;
+	invade.usegauge = 10;
 
 	return S_OK;
 }
@@ -31,10 +33,13 @@ void _Invade(void)
 {
 	PLAYER* player = GetPlayer();
 	RANDOM* random = GetRandom();
+	BUG* bug = GetBug();
 
 	//ƒ‰ƒ“ƒ_ƒ€‚Å5‚ª‘I‚Î‚ê‚½‚çA3•bŠÔ“G‚Ìw’n‚É“ü‚ê‚é
 	if (random->code == 5 && random->active == true && invade.use == false)
 	{
+		bug->gaugesize.x = bug->gaugesize.x + invade.usegauge * bug->gaugeonce;
+
 		//-----ƒvƒŒƒCƒ„[‚ÌˆÊ’u‚ð“Gw‚Ü‚Åƒ[ƒv‚³‚¹‚é
 		player->pos.x = (SCREEN_WIDTH / 2) + 5;
 

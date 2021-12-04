@@ -5,6 +5,7 @@
 #include "sprite.h"
 
 #include "player.h"
+#include "bug.h"
 
 #include "skillrandom.h"
 
@@ -22,6 +23,7 @@ HRESULT InitSmallPlayer(void)
 	smallplayer.use = false;
 	smallplayer.timeflag = false;
 	smallplayer.time = 0.0f;
+	smallplayer.usegauge = 10;
 
 	return S_OK;
 }
@@ -31,10 +33,12 @@ void _SmallPlayer(void)
 {
 	PLAYER* player = GetPlayer();
 	RANDOM* random = GetRandom();
+	BUG* bug = GetBug();
 
 	//ランダムで7が選ばれたら、3s間キャラのサイズが0.5倍小さくなるになる
 	if (random->code == 7 && random->active == true && smallplayer.use == false)
 	{
+		bug->gaugesize.x = bug->gaugesize.x + smallplayer.usegauge * bug->gaugeonce;
 		player->size = D3DXVECTOR2(player->size.x * 0.5f, player->size.y * 0.5f);
 		smallplayer.timeflag = true;
 		smallplayer.use = true;

@@ -10,7 +10,6 @@
 #include "bigball.h"
 #include "slowarea.h"
 #include "invade.h"
-#include "step.h"
 #include "Billiards.h"
 #include "baseball.h"
 #include "invincible.h"
@@ -48,9 +47,6 @@ HRESULT InitSkill(void)
 	//-----不法侵入処理
 	InitInvade();
 
-	//-----ステップ
-	InitStep();
-
 	//-----ビリヤード
 	InitBilliards();
 
@@ -87,9 +83,6 @@ void _Skill(void)
 
 	//-----不法侵入
 	_Invade();
-
-	//-----ステップ
-	_Step();
 
 	//-----ビリヤード
 	_Billiards();

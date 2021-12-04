@@ -6,6 +6,7 @@
 
 #include "player.h"
 #include "ball.h"
+#include "bug.h"
 
 //-----マクロ定義
 #define swingtime	180						//キュースティックの判定時間
@@ -21,6 +22,7 @@ HRESULT InitBilliards(void)
 	billiards.use = false;
 	billiards.timeflag = false;
 	billiards.time = 0.0f;
+	billiards.usegauge = 20;
 
 	billiards.texture = LoadTexture("data/TEXTURE/cuestick.png");
 
@@ -33,10 +35,12 @@ void _Billiards(void)
 		//玉を持っていない間キュースティックを一定時間表示、その間玉を一定の速度で打ち出すような処理を行います。
 
 	BALL* ball = GetBall();
+	BUG* bug = GetBug();
 
 	//スキルが使えるかの判断
 	if (GetKeyboardTrigger(DIK_0) && billiards.use == false && ball->playerhaveflag == false)
 	{
+		bug->gaugesize.x = bug->gaugesize.x + billiards.usegauge * bug->gaugeonce;
 		billiards.timeflag = true;
 		billiards.use = true;
 	}

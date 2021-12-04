@@ -27,7 +27,7 @@ HRESULT InitInvincible(void)
 	invincible.use = false;
 	invincible.timeflag = false;
 	invincible.time = 0.0f;
-	invincible.usegauge = 10;
+	invincible.usegauge = 40;
 
 	invincible.texture = LoadTexture("data/TEXTURE/player_muteki.png");
 

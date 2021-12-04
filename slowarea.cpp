@@ -6,6 +6,7 @@
 #include "time.h"
 
 #include "player.h"
+#include "bug.h"
 
 #include "skillrandom.h"
 
@@ -29,6 +30,7 @@ HRESULT InitSlowArea(void)
 	slowarea.use = false;
 	slowarea.timeflag = false;
 	slowarea.time = 0.0f;
+	slowarea.usegauge = 30;
 
 	slowarea.texture = LoadTexture("data/TEXTURE/slow.png");
 
@@ -40,10 +42,12 @@ void _SlowArea(void)
 {
 	PLAYER* player = GetPlayer();
 	RANDOM* random = GetRandom();
+	BUG* bug = GetBug();
 
 	//-----ランダムで6が選ばれたら、3s間足がおそくなるエリアができる
 	if (random->code == 6 && random->active == true && slowarea.use == false)
 	{
+		bug->gaugesize.x = bug->gaugesize.x + slowarea.usegauge * bug->gaugeonce;
 		slowarea.timeflag = true;
 		slowarea.use = true;
 	}

@@ -13,7 +13,6 @@
 #include "invade.h"
 #include "slowarea.h"
 #include "smallplayer.h"
-#include "step.h"
 
 #include <stdlib.h>
 #include <time.h>
@@ -50,7 +49,7 @@ void UpdateRandom(void)
 	{
 		//ランダム
 		srand(time(0));
-		random.code = (rand() % 8) + 1;
+		random.code = (rand() % 7) + 1;
 
 		random.code = 3;
 
@@ -125,16 +124,6 @@ void UpdateRandom(void)
 				{
 					random.size = D3DXVECTOR2(100.0f, 40.0f);
 					random.texture = LoadTexture("data/TEXTURE/skill/smallplayer.png");
-				}
-				break;
-			}
-
-			case 8:	//回避クールタイム無効
-			{
-				if (random.code == 8 && random.use == true)
-				{
-					random.size = D3DXVECTOR2(100.0f, 40.0f);
-					random.texture = LoadTexture("data/TEXTURE/skill/step.png");
 				}
 				break;
 			}
