@@ -1,51 +1,6 @@
-//マップ処理 [map.h]
-
 #pragma once
-#include "main.h"
-#include "renderer.h"
 
-//-----構造体
-typedef struct
-{
-	D3DXVECTOR2 pos;
-	D3DXVECTOR2 size;
-	float u, v, uw, vh;
-	int randomcode;
-	int scenecode;
-}MAP;
-
-typedef struct
-{
-	D3DXVECTOR2 startpos;
-	D3DXVECTOR2 startsize;
-	D3DXVECTOR2 bosspos;
-	D3DXVECTOR2 bosssize;
-}MAP_SB;
-
-//-----構造体
-typedef struct
-{
-	D3DXVECTOR2 pos;
-	D3DXVECTOR2 size;
-	D3DXVECTOR2 num;
-	int texture;
-	int LRcount, UDcount;
-
-	D3DXVECTOR2 circlepos;
-	D3DXVECTOR2 circlesize;
-	int circletexture;
-	bool circletextureflag;
-
-}MAP_PLAYER;
-
-//-----プロトタイプ宣言
-HRESULT InitMap(void);
+void InitMap(void);
 void UninitMap(void);
 void UpdateMap(void);
 void DrawMap(void);
-
-//-----プロトタイプ宣言
-HRESULT InitMapPlayer(void);
-void UninitMapPlayer(void);
-void UpdateMapPlayer(void);
-void DrawMapPlayer(void);
