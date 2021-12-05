@@ -21,12 +21,13 @@ void InitRest(void)
 	restpoint.pos = D3DXVECTOR2(1180.0f, 36.0f);
 	restpoint.size = D3DXVECTOR2(390.0f, 83.0f);
 	restpoint.texture = LoadTexture("data/TEXTURE/rest_frame.png");
-
 }
+
 void UninitRest(void)
 {
 
 }
+
 void UpdateRest(void)
 {
 	PLAYERHP* player_hp = GetPlayerHp();
@@ -44,7 +45,6 @@ void UpdateRest(void)
 		restpoint.count += 1;
 	}
 
-
 	//‘I‘ð‚µ‚½Žž‚ÌŒø‰Ê
 	if (GetKeyboardTrigger(DIK_RETURN) && restpoint.count == 0)
 	{
@@ -58,6 +58,7 @@ void UpdateRest(void)
 		SceneTransition(SCENE_MAP);
 	}
 }
+
 void DrawRest(void)
 {
 	DrawSpriteLeftTop(rest.texture, rest.pos.x, rest.pos.y, rest.size.x, rest.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
