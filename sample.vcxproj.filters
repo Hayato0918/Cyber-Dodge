@@ -165,6 +165,9 @@
     <ClCompile Include="map.cpp">
       <Filter>ソース ファイル\map</Filter>
     </ClCompile>
+    <ClCompile Include="catchjamming.cpp">
+      <Filter>ソース ファイル\skill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="title.h">
@@ -292,6 +295,9 @@
     </ClInclude>
     <ClInclude Include="map.h">
       <Filter>ヘッダー ファイル\map</Filter>
+    </ClInclude>
+    <ClInclude Include="catchjamming.h">
+      <Filter>ヘッダー ファイル\skill</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

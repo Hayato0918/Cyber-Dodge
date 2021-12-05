@@ -16,12 +16,17 @@ HRESULT InitPlayerHp(void)
 {
 	hp.gaugeonce = 8;
 
+	hp.framepos = D3DXVECTOR2(100.0f, SCREEN_HEIGHT - 100.0f);
 	hp.framesize = D3DXVECTOR2(80.f * hp.gaugeonce, 60.0f); //HPバーフレームサイズ
-	hp.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f - hp.framesize.x - 100.f , SCREEN_HEIGHT - 100.0f);
 	hp.frametexture = LoadTexture("data/TEXTURE/bugframe.png");
 
+	hp.pos = D3DXVECTOR2(100.0f, SCREEN_HEIGHT - 100.0f);
 	hp.gaugesize = D3DXVECTOR2(hp.framesize.x, hp.framesize.y); //残っているHPの量
-	hp.gaugetexture = LoadTexture("data/TEXTURE/obstacle.png");
+	hp.gaugeredtexture = LoadTexture("data/TEXTURE/obstacle.png");
+	hp.gaugegreentexture = LoadTexture("data/TEXTURE/hp_green.png");
+
+	hp.hpsize = hp.gaugesize.x;
+	hp.colorcangeflag = false;
 
 	return S_OK;
 }
@@ -35,17 +40,24 @@ void UninitPlayerHp(void)
 //-----更新処理
 void UpdatePlayerHp(void)
 {
+	if (hp.gaugesize.x <= hp.hpsize * 0.2f)
+		hp.colorcangeflag = true;
+	if (hp.gaugesize.x > hp.hpsize * 0.2f)
+		hp.colorcangeflag = false;
 
 }
 
 //-----描画処理
 void DrawPlayerHp(void)
 {
-	//-----バグゲージの描画
-	DrawSpriteLeftTop(hp.gaugetexture, hp.pos.x, hp.pos.y, hp.gaugesize.x, hp.gaugesize.y, 0.0f, 0.0f, 1.0f, 1.0f);
+	//-----HPゲージの描画
+	if (hp.colorcangeflag == false)	//HPが2割以上だったら
+		DrawSpriteLeftTop(hp.gaugegreentexture, hp.pos.x, hp.pos.y, hp.gaugesize.x, hp.gaugesize.y, 0.0f, 0.0f, 1.0f, 1.0);
+	if(hp.colorcangeflag == true)	//HPが2割を切ったら
+	DrawSpriteLeftTop(hp.gaugeredtexture, hp.pos.x, hp.pos.y, hp.gaugesize.x, hp.gaugesize.y, 0.0f, 0.0f, 1.0f, 1.0);
 
-	//-----バグゲージの枠の描画
-	DrawSpriteLeftTop(hp.frametexture, hp.pos.x, hp.pos.y, hp.framesize.x, hp.framesize.y, 0.0f, 0.0f, 1.0f, 1.0f);
+	//-----HPゲージの枠の描画
+	DrawSpriteLeftTop(hp.frametexture, hp.framepos.x, hp.framepos.y, hp.framesize.x, hp.framesize.y, 0.0f, 0.0f, 1.0f, 1.0f);
 }
 
 //-----構造体ポインタ取得処理

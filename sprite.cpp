@@ -152,7 +152,6 @@ void DrawSpriteLeftTop(int texNo, float X, float Y, float Width, float Height, f
 	GetDeviceContext()->Draw(NUM_VERTEX, 0);
 }
 
-
 //=============================================================================
 // スプライトデータ設定
 // 座標・サイズ・UV指定・頂点色

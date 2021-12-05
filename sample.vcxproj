@@ -136,6 +136,7 @@
     <ClCompile Include="buildup.cpp" />
     <ClCompile Include="bunshin.cpp" />
     <ClCompile Include="catch.cpp" />
+    <ClCompile Include="catchjamming.cpp" />
     <ClCompile Include="clear.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="enemyAI.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="buildup.h" />
     <ClInclude Include="bunshin.h" />
     <ClInclude Include="catch.h" />
+    <ClInclude Include="catchjamming.h" />
     <ClInclude Include="clear.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="enemyAI.h" />

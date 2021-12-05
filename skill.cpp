@@ -14,6 +14,7 @@
 #include "baseball.h"
 #include "invincible.h"
 #include "ballturnaround.h"
+#include "catchjamming.h"
 
 //-----マクロ定義
 
@@ -56,6 +57,9 @@ HRESULT InitSkill(void)
 	//-----無敵
 	InitInvincible();
 
+	//-----キャッチ不可
+	InitCatchJamming();
+
 
 
 	return S_OK;
@@ -95,6 +99,10 @@ void _Skill(void)
 
 	//-----方向転換
 	_BallTurnAround();
+
+	//-----キャッチ不可
+	_CatchJamming();
+
 }
 
 void DrawSkill(void)

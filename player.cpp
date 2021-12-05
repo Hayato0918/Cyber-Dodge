@@ -193,7 +193,8 @@ void UpdatePlayer(void)
 				if (player.pos.y + player.size.y * 0.2f < ball->pos.y + ball->size.y && player.pos.y + player.size.y * 0.8f > ball->pos.y)
 				{
 					player.damagetextureflag = true;
-					hp->gaugesize.x = hp->gaugesize.x - 150.0f;
+					hp->gaugesize.x = hp->gaugesize.x - (enemy->atk - player.def);
+					hp->pos.x = hp->pos.x + (enemy->atk - player.def);
 					ball->playerhitflag = false;
 				}
 			}
@@ -207,6 +208,7 @@ void UpdatePlayer(void)
 				{
 					player.damagetextureflag = true;
 					hp->gaugesize.x = hp->gaugesize.x - (enemy->atk - player.def);
+					hp->pos.x = hp->pos.x + (enemy->atk - player.def);
 					ball->playerhitflag = false;
 				}
 			}
