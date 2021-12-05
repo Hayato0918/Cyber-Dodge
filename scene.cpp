@@ -13,6 +13,7 @@
 
 #include "title.h"
 #include "map.h"
+#include "rest.h"
 #include "game.h"
 #include "clear.h"
 #include "gameover.h"
@@ -56,6 +57,10 @@ void InitScene(SCENE index)
 		InitMap();
 		break;
 
+	case SCENE_REST:
+		InitRest();
+		break;
+
 	case SCENE_GAME:
 		InitGame();
 		break;
@@ -86,6 +91,10 @@ void UninitScene(void)
 
 	case SCENE_MAP:
 		UninitMap();
+		break;
+
+	case SCENE_REST:
+		UninitRest();
 		break;
 
 	case SCENE_GAME:
@@ -120,6 +129,10 @@ void UpdateScene(void)
 		UpdateMap();
 		break;
 
+	case SCENE_REST:
+		UpdateRest();
+		break;
+
 	case SCENE_GAME:
 		UpdateGame();
 		break;
@@ -152,6 +165,10 @@ void DrawScene(void)
 
 	case SCENE_MAP:
 		DrawMap();
+		break;
+
+	case SCENE_REST:
+		DrawRest();
 		break;
 
 	case SCENE_GAME:

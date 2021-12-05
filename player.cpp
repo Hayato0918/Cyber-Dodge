@@ -16,6 +16,7 @@
 #include "skillrandom.h"
 
 #include "reverse.h"
+#include "map_point.h"
 
 //-----ƒ}ƒNƒ’è‹`
 
@@ -27,66 +28,71 @@ PLAYER player;
 //-----‰Šú‰»ˆ—
 HRESULT InitPlayer(void)
 {
-	player.pos = D3DXVECTOR2(240.0f, 320.0f);
-	player.size = D3DXVECTOR2(200.0f, 240.0f);
-	player.move = D3DXVECTOR2(4.0f, 4.0f);
-	player.rotate = 3;
-	player.drawflag = true;
+	MAP_PLAYER* map_player = GetMapPlayer();
 
-	player.atk = 150;
-	player.def = 50;
+	if (map_player->gamecount == 1)
+	{
+		player.pos = D3DXVECTOR2(240.0f, 320.0f);
+		player.size = D3DXVECTOR2(200.0f, 240.0f);
+		player.move = D3DXVECTOR2(4.0f, 4.0f);
+		player.rotate = 3;
+		player.drawflag = true;
 
-	player.u = 0.0f;
-	player.v = 0.0f;
-	player.uw = 0.5f;
-	player.vh = 1.0f;
+		player.atk = 150;
+		player.def = 50;
 
-	player.stand_Ltexture = LoadTexture("data/TEXTURE/player/stand/orgnl_stand_L.png");
-	player.stand_Rtexture = LoadTexture("data/TEXTURE/player/stand/orgnl_stand_R.png");
-	player.standtextureflag = true;
-	player.standLRflag = false;
+		player.u = 0.0f;
+		player.v = 0.0f;
+		player.uw = 0.5f;
+		player.vh = 1.0f;
 
-	player.walk_Ltexture = LoadTexture("data/TEXTURE/player/walk/orgnl_walk_L.png");
-	player.walk_Rtexture = LoadTexture("data/TEXTURE/player/walk/orgnl_walk_R.png");
-	player.walktextureflag = false;
-	player.walkLRflag = false;
+		player.stand_Ltexture = LoadTexture("data/TEXTURE/player/stand/orgnl_stand_L.png");
+		player.stand_Rtexture = LoadTexture("data/TEXTURE/player/stand/orgnl_stand_R.png");
+		player.standtextureflag = true;
+		player.standLRflag = false;
 
-	player.catch_Ltexture = LoadTexture("data/TEXTURE/player/catch/orgnl_catch_L.png");
-	player.catch_Rtexture = LoadTexture("data/TEXTURE/player/catch/orgnl_catch_R.png");
-	player.catchtextureflag = false;
-	player.catchLRflag = false;
-	player.catchtexturetime = 0.0f;
+		player.walk_Ltexture = LoadTexture("data/TEXTURE/player/walk/orgnl_walk_L.png");
+		player.walk_Rtexture = LoadTexture("data/TEXTURE/player/walk/orgnl_walk_R.png");
+		player.walktextureflag = false;
+		player.walkLRflag = false;
 
-	player.pick_Ltexture = LoadTexture("data/TEXTURE/player/pick/orgnl_pick_L.png");
-	player.pick_Rtexture = LoadTexture("data/TEXTURE/player/pick/orgnl_pick_R.png");
-	player.picktextureflag = false;
-	player.pickLRflag = false;
-	player.picktexturetime = 0.0f;
+		player.catch_Ltexture = LoadTexture("data/TEXTURE/player/catch/orgnl_catch_L.png");
+		player.catch_Rtexture = LoadTexture("data/TEXTURE/player/catch/orgnl_catch_R.png");
+		player.catchtextureflag = false;
+		player.catchLRflag = false;
+		player.catchtexturetime = 0.0f;
 
-	player.throw_Ltexture = LoadTexture("data/TEXTURE/player/throw/orgnl_throw_L.png");
-	player.throw_Rtexture = LoadTexture("data/TEXTURE/player/throw/orgnl_throw_R.png");
-	player.throwtextureflag = false;
-	player.throwLRflag = false;
-	player.throwtexturetime = 0.0f;
+		player.pick_Ltexture = LoadTexture("data/TEXTURE/player/pick/orgnl_pick_L.png");
+		player.pick_Rtexture = LoadTexture("data/TEXTURE/player/pick/orgnl_pick_R.png");
+		player.picktextureflag = false;
+		player.pickLRflag = false;
+		player.picktexturetime = 0.0f;
 
-	player.skill_Ltexture = LoadTexture("data/TEXTURE/player/skill/orgnl_skill_L.png");
-	player.skill_Rtexture = LoadTexture("data/TEXTURE/player/skill/orgnl_skill_R.png");
-	player.skilltextureflag = false;
-	player.skillLRflag = false;
-	player.skilltexturetime = 0.0f;
+		player.throw_Ltexture = LoadTexture("data/TEXTURE/player/throw/orgnl_throw_L.png");
+		player.throw_Rtexture = LoadTexture("data/TEXTURE/player/throw/orgnl_throw_R.png");
+		player.throwtextureflag = false;
+		player.throwLRflag = false;
+		player.throwtexturetime = 0.0f;
 
-	player.damage_Ltexture = LoadTexture("data/TEXTURE/player/damage/orgnl_damage_L.png");
-	player.damage_Rtexture = LoadTexture("data/TEXTURE/player/damage/orgnl_damage_R.png");
-	player.damagetextureflag = false;
-	player.damageLRflag = false;
-	player.damagetexturetime = 0.0f;
+		player.skill_Ltexture = LoadTexture("data/TEXTURE/player/skill/orgnl_skill_L.png");
+		player.skill_Rtexture = LoadTexture("data/TEXTURE/player/skill/orgnl_skill_R.png");
+		player.skilltextureflag = false;
+		player.skillLRflag = false;
+		player.skilltexturetime = 0.0f;
 
-	player.deathtexture = LoadTexture("data/TEXTURE/player/death/orgnl_death.png");
+		player.damage_Ltexture = LoadTexture("data/TEXTURE/player/damage/orgnl_damage_L.png");
+		player.damage_Rtexture = LoadTexture("data/TEXTURE/player/damage/orgnl_damage_R.png");
+		player.damagetextureflag = false;
+		player.damageLRflag = false;
+		player.damagetexturetime = 0.0f;
 
-	player.drawdepth = false;
+		player.deathtexture = LoadTexture("data/TEXTURE/player/death/orgnl_death.png");
 
-	InitSkill();
-	InitReverse();
+		player.drawdepth = false;
+
+		InitSkill();
+		InitReverse();
+	}
 
 	return S_OK;
 }

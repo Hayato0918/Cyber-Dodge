@@ -4,6 +4,8 @@
 #include "sprite.h"
 #include "input.h"
 
+#include "map_point.h"
+
 //-----マクロ定義
 
 //-----プロトタイプ宣言
@@ -14,19 +16,24 @@ PLAYERHP hp;
 //-----初期化処理
 HRESULT InitPlayerHp(void)
 {
-	hp.gaugeonce = 8;
+	MAP_PLAYER* map_player = GetMapPlayer();
 
-	hp.framepos = D3DXVECTOR2(100.0f, SCREEN_HEIGHT - 100.0f);
-	hp.framesize = D3DXVECTOR2(80.f * hp.gaugeonce, 60.0f); //HPバーフレームサイズ
-	hp.frametexture = LoadTexture("data/TEXTURE/bugframe.png");
+	if (map_player->gamecount == 1)
+	{
+		hp.gaugeonce = 8;
 
-	hp.pos = D3DXVECTOR2(100.0f, SCREEN_HEIGHT - 100.0f);
-	hp.gaugesize = D3DXVECTOR2(hp.framesize.x, hp.framesize.y); //残っているHPの量
-	hp.gaugeredtexture = LoadTexture("data/TEXTURE/obstacle.png");
-	hp.gaugegreentexture = LoadTexture("data/TEXTURE/hp_green.png");
+		hp.framepos = D3DXVECTOR2(100.0f, SCREEN_HEIGHT - 100.0f);
+		hp.framesize = D3DXVECTOR2(80.f * hp.gaugeonce, 60.0f); //HPバーフレームサイズ
+		hp.frametexture = LoadTexture("data/TEXTURE/bugframe.png");
 
-	hp.hpsize = hp.gaugesize.x;
-	hp.colorcangeflag = false;
+		hp.pos = D3DXVECTOR2(100.0f, SCREEN_HEIGHT - 100.0f);
+		hp.gaugesize = D3DXVECTOR2(hp.framesize.x, hp.framesize.y); //残っているHPの量
+		hp.gaugeredtexture = LoadTexture("data/TEXTURE/obstacle.png");
+		hp.gaugegreentexture = LoadTexture("data/TEXTURE/hp_green.png");
+
+		hp.hpsize = hp.gaugesize.x;
+		hp.colorcangeflag = false;
+	}
 
 	return S_OK;
 }

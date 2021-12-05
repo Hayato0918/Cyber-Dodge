@@ -228,6 +228,8 @@ HRESULT InitMapPlayer(void)
 		map_player.circlepos = D3DXVECTOR2(map[0][0].pos.x, map[0][0].pos.y);
 		map_player.circlesize = D3DXVECTOR2(80.0f, 80.0f);
 		map_player.circletexture = LoadTexture("data/TEXTURE/circle.png");
+
+		map_player.gamecount = 0;
 	}
 	return S_OK;
 }
@@ -283,7 +285,10 @@ void UpdateMapPlayer(void)
 
 			//選択したマスに対応したシーンに飛ぶ
 			if (map[map_player.LRcount][map_player.UDcount].randomcode == 1)	//通常敵マス
-				SceneTransition(SCENE_GAME);	
+			{
+				map_player.gamecount = map_player.gamecount + 1;
+				SceneTransition(SCENE_GAME);
+			}
 			if (map[map_player.LRcount][map_player.UDcount].randomcode == 2)	//強敵マス
 				SceneTransition(SCENE_GAME);
 			if (map[map_player.LRcount][map_player.UDcount].randomcode == 3)	//休憩マス
@@ -320,4 +325,10 @@ void DrawMapPlayer(void)
 	//プレイヤーの描画
 	DrawSpriteLeftTop(map_player.texture, map_player.pos.x, map_player.pos.y, map_player.size.x, map_player.size.y,
 		0.0f, 0.0f, 1.0f, 1.0f);
+}
+
+//-----構造体ポインタ取得
+MAP_PLAYER* GetMapPlayer()
+{
+	return &map_player;
 }

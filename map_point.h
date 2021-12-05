@@ -35,6 +35,8 @@ typedef struct
 	int circletexture;
 	bool circletextureflag;
 
+	int gamecount;	//ゲームシーンに何回移動したかを管理する変数
+
 }MAP_PLAYER;
 
 //-----プロトタイプ宣言
@@ -48,3 +50,4 @@ HRESULT InitMapPlayer(void);
 void UninitMapPlayer(void);
 void UpdateMapPlayer(void);
 void DrawMapPlayer(void);
+MAP_PLAYER* GetMapPlayer();
