@@ -9,6 +9,8 @@
 #include "map_hack.h"
 #include "map_line.h"
 
+#include "banner.h"
+
 //-----定数定義
 
 //-----構造体宣言
@@ -25,7 +27,7 @@ void InitMap(void)
 	InitMapPlayer();
 	InitPolygon();
 	InitMapHack();
-
+	InitBanner();
 }
 
 //-----終了処理関数
@@ -35,7 +37,7 @@ void UninitMap()
 	UninitMapPlayer();
 	UninitMapHack();
 	UninitPolygon();
-
+	UninitBanner();
 }
 
 //-----更新処理をする関数
@@ -45,7 +47,7 @@ void UpdateMap(void)
 	UpdateMapPlayer();
 	UpdateMapHack();
 	UpdatePolygon();
-
+	UpdateBanner();
 }
 
 //-----描画処理関数
@@ -55,5 +57,5 @@ void DrawMap(void)
 	DrawMapPlayer();
 	DrawPolygon();
 	DrawMapHack();
-
+	DrawBanner();
 }

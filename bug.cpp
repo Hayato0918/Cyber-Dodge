@@ -5,6 +5,7 @@
 
 #include "player.h"
 #include "ball.h"
+#include "map_point.h"
 
 //-----マクロ定義
 #define gaugedecrease 0.2f	//ゲージの減少量
@@ -19,14 +20,18 @@ BUG bug;
 //-----初期化処理
 HRESULT InitBug(void)
 {
-	bug.gaugeonce = 8;
+	MAP_PLAYER* map_player = GetMapPlayer();
 
-	bug.pos = D3DXVECTOR2(105.0f, 20.0f);
-	bug.framesize = D3DXVECTOR2(150.f * bug.gaugeonce, 60);
-	bug.frametexture = LoadTexture("data/TEXTURE/bugframe.png");
+	if (map_player->gamecount == 1)
+	{
+		bug.gaugeonce = 8;
+		bug.pos = D3DXVECTOR2(105.0f, 20.0f);
+		bug.framesize = D3DXVECTOR2(150.f * bug.gaugeonce, 60);
+		bug.frametexture = LoadTexture("data/TEXTURE/bugframe.png");
 
-	bug.gaugesize = D3DXVECTOR2(0.0f, bug.framesize.y);
-	bug.gaugetexture = LoadTexture("data/TEXTURE/obstacle.png");
+		bug.gaugesize = D3DXVECTOR2(0.0f, bug.framesize.y);
+		bug.gaugetexture = LoadTexture("data/TEXTURE/obstacle.png");
+	}
 
 	return S_OK;
 }

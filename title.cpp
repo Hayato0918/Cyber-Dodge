@@ -5,6 +5,8 @@
 #include "sprite.h"
 #include "fade.h"
 
+#include "map_point.h"
+
 //-----マクロ定義
 
 //-----プロトタイプ宣言
@@ -18,6 +20,9 @@ HRESULT InitTitle(void)
 	title.pos = D3DXVECTOR2(0.0f, 0.0f);
 	title.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
 	title.texture = LoadTexture("data/TEXTURE/title.png");
+
+	MAP_PLAYER* map_player = GetMapPlayer();
+	map_player->UDcount = 0;
 
 	return S_OK;
 }

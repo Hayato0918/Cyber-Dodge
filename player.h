@@ -15,7 +15,6 @@ typedef struct
 	float u, v, uw, vh;
 	bool drawflag;	//•`‰æ‚·‚é‚©‚ğŠÇ—‚·‚éƒtƒ‰ƒO
 
-	int hp;			//‘Ì—Í
 	int atk;		//UŒ‚—Í
 	int def;		//–hŒä—Í
 

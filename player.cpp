@@ -123,8 +123,6 @@ void UpdatePlayer(void)
 		player.pos.y -= player.move.y;
 		if(reverse->use == true)
 		player.pos.y += player.move.y;
-
-		player.rotate = 0;
 	}
 	if (GetKeyboardPress(DIK_S))	//‰º
 	{
@@ -132,8 +130,6 @@ void UpdatePlayer(void)
 		player.pos.y += player.move.y;
 		if (reverse->use == true)
 		player.pos.y -= player.move.y;
-
-		player.rotate = 1;
 	}
 	if (GetKeyboardPress(DIK_A))	//¶
 	{
@@ -192,15 +188,15 @@ void UpdatePlayer(void)
 	//{
 	if (ball->playerhitflag == true)
 	{
-		if (player.rotate == 3 || player.rotate == 0 || player.rotate == 1)
+		if (player.rotate == 3)
 		{
 			if (player.pos.x < ball->pos.x + ball->size.x && player.pos.x + player.size.x * 0.8f > ball->pos.x)
 			{
 				if (player.pos.y + player.size.y * 0.2f < ball->pos.y + ball->size.y && player.pos.y + player.size.y * 0.8f > ball->pos.y)
 				{
 					player.damagetextureflag = true;
-					hp->gaugesize.x = hp->gaugesize.x - (enemy->atk - player.def);
-					hp->pos.x = hp->pos.x + (enemy->atk - player.def);
+					hp->gaugesize.x = hp->gaugesize.x -(enemy->atk - player.def) * 3.2f;
+					hp->pos.x = hp->pos.x + (enemy->atk - player.def) * 3.2f;
 					ball->playerhitflag = false;
 				}
 			}

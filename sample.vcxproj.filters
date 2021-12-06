@@ -177,6 +177,9 @@
     <ClCompile Include="rest.cpp">
       <Filter>ソース ファイル\map\rest</Filter>
     </ClCompile>
+    <ClCompile Include="banner .cpp">
+      <Filter>ソース ファイル\map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="title.h">
@@ -310,6 +313,9 @@
     </ClInclude>
     <ClInclude Include="rest.h">
       <Filter>ヘッダー ファイル\map\rest</Filter>
+    </ClInclude>
+    <ClInclude Include="banner.h">
+      <Filter>ヘッダー ファイル\map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

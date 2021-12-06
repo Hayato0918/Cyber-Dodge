@@ -127,6 +127,7 @@
     <ClCompile Include="anten.cpp" />
     <ClCompile Include="ball.cpp" />
     <ClCompile Include="ballturnaround.cpp" />
+    <ClCompile Include="banner .cpp" />
     <ClCompile Include="barrier.cpp" />
     <ClCompile Include="baseball.cpp" />
     <ClCompile Include="bg.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="anten.h" />
     <ClInclude Include="ball.h" />
     <ClInclude Include="ballturnaround.h" />
+    <ClInclude Include="banner.h" />
     <ClInclude Include="barrier.h" />
     <ClInclude Include="baseball.h" />
     <ClInclude Include="bg.h" />
