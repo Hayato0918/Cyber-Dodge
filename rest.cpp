@@ -32,30 +32,51 @@ void UpdateRest(void)
 {
 	PLAYERHP* player_hp = GetPlayerHp();
 
-	//‹xŒeƒ}ƒX‚Ì‘I‘ð
-	if (GetKeyboardTrigger(DIK_W) && restpoint.count > 0)
+	if (PADUSE == 0)
 	{
-		restpoint.pos.y -= 116;
-		restpoint.count -= 1;
+		//‹xŒeƒ}ƒX‚Ì‘I‘ð
+		if (IsButtonTriggered(0, BUTTON_UP) && restpoint.count > 0)
+		{
+			restpoint.pos.y -= 116;
+			restpoint.count -= 1;
+		}
+		if (IsButtonTriggered(0, BUTTON_DOWN) && restpoint.count < 2)
+		{
+			restpoint.pos.y += 116;
+			restpoint.count += 1;
+		}
+		//‘I‘ð‚µ‚½Žž‚ÌŒø‰Ê
+		if (IsButtonTriggered(0, BUTTON_X) && restpoint.count == 0)
+		{
+			player_hp->gaugesize.x = player_hp->gaugesize.x + 100;
+			player_hp->pos.x = player_hp->pos.x - 100;
+			SceneTransition(SCENE_MAP);
+		}
+		if (IsButtonTriggered(0, BUTTON_X) && 1 < restpoint.count < 2)
+			SceneTransition(SCENE_MAP);
 	}
-
-	if (GetKeyboardTrigger(DIK_S) && restpoint.count < 2)
+	if (PADUSE == 1)
 	{
-		restpoint.pos.y += 116;
-		restpoint.count += 1;
-	}
-
-	//‘I‘ð‚µ‚½Žž‚ÌŒø‰Ê
-	if (GetKeyboardTrigger(DIK_RETURN) && restpoint.count == 0)
-	{
-		player_hp->gaugesize.x = player_hp->gaugesize.x + 100;
-		player_hp->pos.x = player_hp->pos.x - 100;
-		SceneTransition(SCENE_MAP);
-	}
-
-	if (GetKeyboardTrigger(DIK_RETURN) && 1 < restpoint.count < 2)
-	{
-		SceneTransition(SCENE_MAP);
+		//‹xŒeƒ}ƒX‚Ì‘I‘ð
+		if (GetKeyboardTrigger(DIK_W) && restpoint.count > 0)
+		{
+			restpoint.pos.y -= 116;
+			restpoint.count -= 1;
+		}
+		if (GetKeyboardTrigger(DIK_S) && restpoint.count < 2)
+		{
+			restpoint.pos.y += 116;
+			restpoint.count += 1;
+		}
+		//‘I‘ð‚µ‚½Žž‚ÌŒø‰Ê
+		if (GetKeyboardTrigger(DIK_RETURN) && restpoint.count == 0)
+		{
+			player_hp->gaugesize.x = player_hp->gaugesize.x + 100;
+			player_hp->pos.x = player_hp->pos.x - 100;
+			SceneTransition(SCENE_MAP);
+		}
+		if (GetKeyboardTrigger(DIK_RETURN) && 1 < restpoint.count < 2)
+			SceneTransition(SCENE_MAP);
 	}
 }
 

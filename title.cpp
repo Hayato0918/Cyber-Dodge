@@ -36,9 +36,15 @@ void UninitTitle(void)
 //-----çXêVèàóù
 void UpdateTitle(void)
 {
-	if (GetKeyboardTrigger(DIK_RETURN) && GetFadeState() == FADE_NONE)
+	if (PADUSE == 0)
 	{
-		SceneTransition(SCENE_MAP);
+		if (IsButtonTriggered(0, BUTTON_X) && GetFadeState() == FADE_NONE)
+			SceneTransition(SCENE_MAP);
+	}
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_RETURN) && GetFadeState() == FADE_NONE)
+			SceneTransition(SCENE_MAP);
 	}
 }
 

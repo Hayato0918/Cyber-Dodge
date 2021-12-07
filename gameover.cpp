@@ -31,9 +31,15 @@ void UninitGameOver(void)
 //-----çXêVèàóù
 void UpdateGameOver(void)
 {
-	if (GetKeyboardTrigger(DIK_RETURN) && GetFadeState() == FADE_NONE)
+	if (PADUSE == 0)
 	{
-		SceneTransition(SCENE_TITLE);
+		if (IsButtonTriggered(0, BUTTON_X) && GetFadeState() == FADE_NONE)
+			SceneTransition(SCENE_TITLE);
+	}
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_RETURN) && GetFadeState() == FADE_NONE)
+			SceneTransition(SCENE_TITLE);
 	}
 }
 

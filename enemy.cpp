@@ -139,7 +139,7 @@ void UpdateEnemy(void)
 	if (enemy_hp->gaugesize.x <= 0)
 	{
 		enemy.drawflag = false;
-		SceneTransition(SCENE_CLEAR);
+		SceneTransition(SCENE_MAP);
 	}
 
 

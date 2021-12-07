@@ -181,16 +181,34 @@ void P_Throw(void)
 {
 	PLAYER* player = GetPlayer();
 
-	//-----lキーでプレイヤーが投げる
-	if (GetKeyboardTrigger(DIK_L) && ball.throwflag == false && ball.playerhaveflag == true)
+	if (PADUSE == 0)
 	{
-		ball.playerhavetime = 0.0f;
-		ball.fallpos = player->pos.y + player->size.y;
-		ball.fallflag = false;
-		ball.playerhaveflag = false;
-		ball.playerthrowflag = true;
-		ball.enemyhitflag = true;
-		ball.throwflag = true;
+		//-----プレイヤーの投げ動作
+		if (IsButtonTriggered(0, BUTTON_R2) && ball.throwflag == false && ball.playerhaveflag == true)
+		{
+			ball.playerhavetime = 0.0f;
+			ball.fallpos = player->pos.y + player->size.y;
+			ball.fallflag = false;
+			ball.playerhaveflag = false;
+			ball.playerthrowflag = true;
+			ball.enemyhitflag = true;
+			ball.throwflag = true;
+		}
+	}
+
+	if (PADUSE == 1)
+	{
+		//-----プレイヤーの投げ動作
+		if (GetKeyboardTrigger(DIK_L) && ball.throwflag == false && ball.playerhaveflag == true)
+		{
+			ball.playerhavetime = 0.0f;
+			ball.fallpos = player->pos.y + player->size.y;
+			ball.fallflag = false;
+			ball.playerhaveflag = false;
+			ball.playerthrowflag = true;
+			ball.enemyhitflag = true;
+			ball.throwflag = true;
+		}
 	}
 }
 

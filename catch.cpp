@@ -96,11 +96,23 @@ void P_Catch(void)
 {
 	BALL* ball = GetBall();
 
-	//-----Jキーでプレイヤーがキャッチ
-	if (GetKeyboardTrigger(DIK_J) && Catch.playerintervalflag == false && ball->playerhaveflag == false)
+	if (PADUSE == 0)
 	{
-		Catch.playerflag = true;
-		Catch.playerintervalflag = true;
+		//-----プレイヤーのキャッチ動作
+		if (IsButtonTriggered(0, BUTTON_R) && Catch.playerintervalflag == false && ball->playerhaveflag == false)
+		{
+			Catch.playerflag = true;
+			Catch.playerintervalflag = true;
+		}
+	}
+	if (PADUSE == 1)
+	{
+		//-----プレイヤーのキャッチ動作
+		if (GetKeyboardTrigger(DIK_J) && Catch.playerintervalflag == false && ball->playerhaveflag == false)
+		{
+			Catch.playerflag = true;
+			Catch.playerintervalflag = true;
+		}
 	}
 	//-----インターバル(1s)
 	if (Catch.playerintervalflag == true)

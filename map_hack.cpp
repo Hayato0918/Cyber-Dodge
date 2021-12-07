@@ -39,27 +39,57 @@ void UninitMapHack(void)
 //-----更新処理
 void UpdateMapHack(void)
 {
-	//TABキーで表示非表示切り替え
-	if (GetKeyboardTrigger(DIK_TAB))
+	if (PADUSE == 1)
 	{
+		//TABキーで表示非表示切り替え
+		if (GetKeyboardTrigger(DIK_TAB))
+		{
+			if (map_hack.isUse == true)
+				map_hack.isUse = false;
+			else
+				map_hack.isUse = true;
+		}
+
+		//どのシーンに変えるかを選択する
 		if (map_hack.isUse == true)
-			map_hack.isUse = false;
-		else
-			map_hack.isUse = true;
+		{
+			if (GetKeyboardTrigger(DIK_W) && map_hack.UDcount > 0)
+			{
+				map_hack.UDcount -= 1;
+				map_hack.frame_pos.y -= 115.0f;
+			}
+			if (GetKeyboardTrigger(DIK_S) && map_hack.UDcount < 4)
+			{
+				map_hack.UDcount += 1;
+				map_hack.frame_pos.y += 115.0f;
+			}
+		}
 	}
 
-	//どのシーンに変えるかを選択する
-	if (map_hack.isUse == true)
+	if (PADUSE == 0)
 	{
-		if (GetKeyboardTrigger(DIK_W) && map_hack.UDcount > 0)
+		//TABキーで表示非表示切り替え
+		if (IsButtonTriggered(0, BUTTON_L))
 		{
-			map_hack.UDcount -= 1;
-			map_hack.frame_pos.y -= 115.0f;
+			if (map_hack.isUse == true)
+				map_hack.isUse = false;
+			else
+				map_hack.isUse = true;
 		}
-		if (GetKeyboardTrigger(DIK_S) && map_hack.UDcount < 4)
+
+		//どのシーンに変えるかを選択する
+		if (map_hack.isUse == true)
 		{
-			map_hack.UDcount += 1;
-			map_hack.frame_pos.y += 115.0f;
+			if (IsButtonTriggered(0, BUTTON_UP) && map_hack.UDcount > 0)
+			{
+				map_hack.UDcount -= 1;
+				map_hack.frame_pos.y -= 115.0f;
+			}
+			if (IsButtonTriggered(0, BUTTON_DOWN) && map_hack.UDcount < 4)
+			{
+				map_hack.UDcount += 1;
+				map_hack.frame_pos.y += 115.0f;
+			}
 		}
 	}
 }
