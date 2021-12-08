@@ -4,33 +4,33 @@
 #include "texture.h"
 #include "sprite.h"
 
-#include "player.h"
-
-#include "ballspeedup.h"
-#include "barrier.h"
-#include "bigball.h"
-#include "buildup.h"
-#include "invade.h"
-#include "slowarea.h"
-#include "smallplayer.h"
-
 #include <stdlib.h>
 #include <time.h>
 
 //-----マクロ定義
-
+// 
 //-----プロトタイプ宣言
-RANDOM random;
+static RANDOM random[MAX_SLOT];
+SKILL skill;
 
 //-----グローバル変数
-PLAYER* player = GetPlayer();
+
 //-----初期化処理
 HRESULT InitRandom(void)
 {
-	random.code = 0;
-	random.use = false;
-	random.active = false;
-	random.move = D3DXVECTOR2(player->move.x, player->move.y);
+	skill.usecount = 0;
+	skill.num = 12;
+
+	for (int i = 0; i < MAX_SLOT; i++)
+	{
+		//skill card position
+		random[i].pos = D3DXVECTOR2(100.0f - i * 10, 120.0f - i * 10);
+		random[i].size = D3DXVECTOR2(90.0f, 130.0f);
+		random[i].drawflag = true;
+
+		random[i].code = (rand() % skill.num) + 1;
+		random[i].active = false;
+	}
 
 	return S_OK;
 }
@@ -42,109 +42,57 @@ void UninitRandom(void)
 
 void UpdateRandom(void)
 {
-	random.pos = D3DXVECTOR2(player->pos.x, player->pos.y - 60.0f);
-	random.move = D3DXVECTOR2(player->move.x, player->move.y);
+	srand((unsigned int)time(NULL));
 
-	if (GetKeyboardTrigger(DIK_1) && random.use == false)
+	for (int i = 0; i < MAX_SLOT; i++)
 	{
-		//ランダム
-		srand(time(0));
-		random.code = (rand() % 7) + 1;
+		if (random[i].code == 1)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/speedup.png");
+		if (random[i].code == 2)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/turnaround.png");
+		if (random[i].code == 3)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/barrier.png");
+		if (random[i].code == 4)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/baseball.png");
+		if (random[i].code == 5)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/bigball.png");
+		if (random[i].code == 6)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/billiards.png");
+		if (random[i].code == 7)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/buildup.png");
+		if (random[i].code == 8)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/catchjamming.png");
+		if (random[i].code == 9)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/invade.png");
+		if (random[i].code == 10)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/invincible.png");
+		if (random[i].code == 11)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/slowarea.png");
+		if (random[i].code == 12)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/smallplayer.png");
 
-		random.code = 3;
-
-		random.use = true;
-		random.active = false;
-
-		switch (random.code)
+		if (GetKeyboardTrigger(DIK_1) && random[skill.usecount].drawflag == true)
 		{
-			case 1:	//スピードアップ
-			{
-				if (random.code == 1 && random.use == true)
-				{
-					random.size = D3DXVECTOR2(100.0f, 40.0f);
-					random.texture = LoadTexture("data/TEXTURE/skill/speedup.png");
-				}
-				break;
-			}
-
-			case 2:	//バリア
-			{
-				if (random.code == 2 && random.use == true)
-				{
-					random.size = D3DXVECTOR2(100.0f, 40.0f);
-					random.texture = LoadTexture("data/TEXTURE/skill/barrierR.png");
-				}
-				break;
-			}
-
-			case 3:	//ボール巨大化
-			{
-				if (random.code == 3 && random.use == true)
-				{
-					random.size = D3DXVECTOR2(100.0f, 40.0f);
-					random.texture = LoadTexture("data/TEXTURE/skill/bigball.png");
-				}
-				break;
-			}
-
-			case 4:	//プレイヤー巨大化
-			{
-				if (random.code == 4 && random.use == true)
-				{
-					random.size = D3DXVECTOR2(100.0f, 40.0f);
-					random.texture = LoadTexture("data/TEXTURE/skill/buildup.png");
-				}
-				break;
-			}
-
-			case 5:	//不法侵入
-			{
-				if (random.code == 5 && random.use == true)
-				{
-					random.size = D3DXVECTOR2(100.0f, 40.0f);
-					random.texture = LoadTexture("data/TEXTURE/skill/invade.png");
-				}
-				break;
-			}
-
-			case 6:	//スロウエリア
-			{
-				if (random.code == 6 && random.use == true)
-				{
-					random.size = D3DXVECTOR2(100.0f, 40.0f);
-					random.texture = LoadTexture("data/TEXTURE/skill/slowarea.png");
-				}
-				break;
-			}
-
-			case 7:	//プレイヤー縮小
-			{
-				if (random.code == 7 && random.use == true)
-				{
-					random.size = D3DXVECTOR2(100.0f, 40.0f);
-					random.texture = LoadTexture("data/TEXTURE/skill/smallplayer.png");
-				}
-				break;
-			}
+			random[skill.usecount].active = true;
+			random[skill.usecount].drawflag = false;
 		}
-	}
-
-	//2キーを押すと、乱数リセット
-	if (GetKeyboardTrigger(DIK_2) && random.active == false && random.use == true)
-	{
-		random.texture = LoadTexture("data/TEXTURE/skill/blank.png");
-		random.active = true;
-		random.use = false;
+		if (random[skill.usecount].drawflag == false)
+			random[skill.usecount].usetime = random[skill.usecount].usetime + 1.f;
+		if (random[skill.usecount].usetime > 10.f)
+			skill.usecount = skill.usecount + 1;
 	}
 }
 
 void DrawRandom(void)
 {
-	DrawSpriteLeftTop(random.texture, random.pos.x, random.pos.y, random.size.x, random.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+	for (int i = MAX_SLOT - 1; i >= 0; i--)
+	{
+		if (random[i].drawflag == true)
+			DrawSpriteLeftTop(random[i].texture, random[i].pos.x, random[i].pos.y, random[i].size.x, random[i].size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+	}
 }
 
 RANDOM* GetRandom()
 {
-	return &random;
+	return &random[0];
 }

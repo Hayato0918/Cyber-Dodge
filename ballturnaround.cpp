@@ -8,6 +8,8 @@
 #include "ball.h"
 #include "bug.h"
 
+#include "skillrandom.h"
+
 //-----マクロ定義
 
 //-----プロトタイプ宣言
@@ -31,27 +33,31 @@ void _BallTurnAround(void)
 	ENEMY* enemy = GetEnemy();
 	BALL* ball = GetBall();
 	BUG* bug = GetBug();
+	RANDOM* random = GetRandom();
 
 	//-----Cキーを押したら、ボールが敵へ向かっていく
-	if (GetKeyboardTrigger(DIK_C) && ballturnaround.use == false)
+	for (int i = 0; i < 5; i++)
 	{
-		if (ball->enemyhitflag == true)
+		if (random[i].code == 2 && random[i].active == true && ballturnaround.use == false && ball->playerthrowflag == true)
 		{
-			float X = enemy->pos.x - ball->pos.x;
-			float Y = enemy->pos.y - ball->pos.y;
+			if (ball->enemyhitflag == true)
+			{
+				float X = enemy->pos.x - ball->pos.x;
+				float Y = enemy->pos.y - ball->pos.y;
 
-			ball->rad = atan2(Y, X);
+				ball->rad = atan2(Y, X);
 
-			ball->move.x += ball->pos.x * cos(ball->rad) * DeclBulletMove;
-			ball->move.y += ball->pos.y * sin(ball->rad) * DeclBulletMove;
+				ball->move.x += ball->pos.x * cos(ball->rad) * DeclBulletMove;
+				ball->move.y += ball->pos.y * sin(ball->rad) * DeclBulletMove;
 
-			ball->plyer_oldposY = SCREEN_HEIGHT;
-		}
-		if (ball->enemyhitflag == false)
+				ball->plyer_oldposY = SCREEN_HEIGHT;
+			}
+			if (ball->enemyhitflag == false)
+				ballturnaround.use = true;
+
+			//-----バグゲージの上昇
+			bug->gaugesize.x = bug->gaugesize.x + ballturnaround.usegauge * bug->gaugeonce;
 			ballturnaround.use = true;
-
-		//-----バグゲージの上昇
-		bug->gaugesize.x = bug->gaugesize.x + ballturnaround.usegauge * bug->gaugeonce;
-		ballturnaround.use = true;
+		}
 	}
 }

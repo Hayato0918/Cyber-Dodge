@@ -6,6 +6,8 @@
 
 #include "bug.h"
 
+#include "skillrandom.h"
+
 //-----マクロ定義
 #define catchjammingtime 180		//3s間
 
@@ -25,13 +27,17 @@ HRESULT InitCatchJamming(void)
 void _CatchJamming(void)
 {
 	BUG* bug = GetBug();
+	RANDOM* random = GetRandom();
 
 	//Iキーを押したら、3秒間キャッチが出来なくなる。
-	if (GetKeyboardTrigger(DIK_I) && catchjamming.use == false)
+	for (int i = 0; i < 5; i++)
 	{
-		catchjamming.timeflag = true;
-		bug->gaugesize.x = bug->gaugesize.x + catchjamming.usegauge * bug->gaugeonce;
-		catchjamming.use = true;
+		if (random[i].code == 8 && random[i].active == true && catchjamming.use == false)
+		{
+			catchjamming.timeflag = true;
+			bug->gaugesize.x = bug->gaugesize.x + catchjamming.usegauge * bug->gaugeonce;
+			catchjamming.use = true;
+		}
 	}
 	//スキル使用3秒後にもとに戻る
 	if (catchjamming.timeflag == true)

@@ -45,11 +45,14 @@ void _SlowArea(void)
 	BUG* bug = GetBug();
 
 	//-----ランダムで6が選ばれたら、3s間足がおそくなるエリアができる
-	if (random->code == 6 && random->active == true && slowarea.use == false)
+	for (int i = 0; i < 5; i++)
 	{
-		bug->gaugesize.x = bug->gaugesize.x + slowarea.usegauge * bug->gaugeonce;
-		slowarea.timeflag = true;
-		slowarea.use = true;
+		if (random[i].code == 11 && random[i].active == true && slowarea.use == false)
+		{
+			bug->gaugesize.x = bug->gaugesize.x + slowarea.usegauge * bug->gaugeonce;
+			slowarea.timeflag = true;
+			slowarea.use = true;
+		}
 	}
 
 	//-----エリアの上にいたら足が遅くなる

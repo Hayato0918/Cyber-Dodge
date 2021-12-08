@@ -43,13 +43,16 @@ void _Barrier(void)
 
 	barrier.pos = D3DXVECTOR2(player->pos.x - player->size.x * 0.5f, player->pos.y);
 
-	//-----9キーを押したら、3s間バリアを張る
-	if (random->code == 2 && random->active == true && barrier.use == false)
+	//-----3s間バリアを張る
+	for (int i = 0; i < 5; i++)
 	{
-		barrier.drawflag = true;
-		barrier.timeflag = true;
-		bug->gaugesize.x = bug->gaugesize.x + barrier.usegauge * bug->gaugeonce;
-		barrier.use = true;
+		if (random[i].code == 3 && random[i].active == true && barrier.use == false)
+		{
+			barrier.drawflag = true;
+			barrier.timeflag = true;
+			bug->gaugesize.x = bug->gaugesize.x + barrier.usegauge * bug->gaugeonce;
+			barrier.use = true;
+		}
 	}
 	//-----スキル使用3s後にもとの大きさに戻る
 	if (barrier.timeflag == true)

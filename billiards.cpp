@@ -8,6 +8,8 @@
 #include "ball.h"
 #include "bug.h"
 
+#include "skillrandom.h"
+
 //-----マクロ定義
 #define swingtime	180						//キュースティックの判定時間
 #define PI 3.1415926535897932f				//円周率
@@ -36,13 +38,17 @@ void _Billiards(void)
 
 	BALL* ball = GetBall();
 	BUG* bug = GetBug();
+	RANDOM* random = GetRandom();
 
 	//スキルが使えるかの判断
-	if (GetKeyboardTrigger(DIK_0) && billiards.use == false && ball->playerhaveflag == false)
+	for (int i = 0; i < 5; i++)
 	{
-		bug->gaugesize.x = bug->gaugesize.x + billiards.usegauge * bug->gaugeonce;
-		billiards.timeflag = true;
-		billiards.use = true;
+		if (random[i].code == 6 && random[i].active == true && billiards.use == false && ball->playerhaveflag == false)
+		{
+			bug->gaugesize.x = bug->gaugesize.x + billiards.usegauge * bug->gaugeonce;
+			billiards.timeflag = true;
+			billiards.use = true;
+		}
 	}
 
 	PLAYER* player = GetPlayer();

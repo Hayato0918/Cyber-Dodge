@@ -36,19 +36,22 @@ void _BallSpeedUp(void)
 	RANDOM* random = GetRandom();
 
 	//------プレイヤーがボールを持っている間、0キーを押したら、ボールの速さが+5される
-	if (random->code == 1 && random->active == true && ballspeedup.use == false && ball->playerhaveflag == true)
+	for (int i = 0; i < 5; i++)
 	{
-		//------速さをもとに戻すときに使う
-		ballspeedup.beforemove = ball->move.x;
+		if (random[i].code == 1 && random[i].active == true && ballspeedup.use == false && ball->playerhaveflag == true)
+		{
+			//------速さをもとに戻すときに使う
+			ballspeedup.beforemove = ball->move.x;
 
-		//今向いてる方向に応じて加速するベクトルを変える
-		if (ball->move.x > 0)
-			ball->move.x = ball->move.x + 5;
-		if (ball->move.x < 0)
-			ball->move.x = ball->move.x - 5;
+			//今向いてる方向に応じて加速するベクトルを変える
+			if (ball->move.x > 0)
+				ball->move.x = ball->move.x + 5;
+			if (ball->move.x < 0)
+				ball->move.x = ball->move.x - 5;
 
-		//-----バグゲージの上昇
-		bug->gaugesize.x = bug->gaugesize.x + ballspeedup.usegauge * bug->gaugeonce;
-		ballspeedup.use = true;
+			//-----バグゲージの上昇
+			bug->gaugesize.x = bug->gaugesize.x + ballspeedup.usegauge * bug->gaugeonce;
+			ballspeedup.use = true;
+		}
 	}
 }

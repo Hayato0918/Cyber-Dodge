@@ -41,7 +41,6 @@ void InitGame(void)
 	InitEscape();
 	InitRandom();
 
-
 }
 
 //-----I—¹ˆ—ŠÖ”

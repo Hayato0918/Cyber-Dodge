@@ -28,6 +28,7 @@ PLAYER player;
 //-----‰Šú‰»ˆ—
 HRESULT InitPlayer(void)
 {
+	InitSkill();
 	MAP_PLAYER* map_player = GetMapPlayer();
 
 	if (map_player->gamecount == 1)
@@ -90,7 +91,6 @@ HRESULT InitPlayer(void)
 
 		player.drawdepth = false;
 
-		InitSkill();
 		InitReverse();
 	}
 

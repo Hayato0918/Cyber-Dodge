@@ -10,6 +10,8 @@
 #include "ball.h"
 #include "bug.h"
 
+#include "skillrandom.h"
+
 //-----マクロ定義
 #define invincibletime 300		//5s間
 
@@ -40,16 +42,20 @@ void _Invincible(void)
 	PLAYER* player = GetPlayer();
 	BALL* ball = GetBall();
 	BUG* bug = GetBug();
+	RANDOM* random = GetRandom();
 
 	invincible.pos = D3DXVECTOR2(player->pos.x, player->pos.y);
 
 	//9キーを押したら、5s間キャラが無敵になる
-	if (GetKeyboardTrigger(DIK_P) && invincible.use == false)
+	for (int i = 0; i < 5; i++)
 	{
-		ball->playerhitflag = false;
-		invincible.timeflag = true;
-		bug->gaugesize.x = bug->gaugesize.x + invincible.usegauge * bug->gaugeonce;
-		invincible.use = true;
+		if (random[i].code == 10 && random[i].active == true && invincible.use == false)
+		{
+			ball->playerhitflag = false;
+			invincible.timeflag = true;
+			bug->gaugesize.x = bug->gaugesize.x + invincible.usegauge * bug->gaugeonce;
+			invincible.use = true;
+		}
 	}
 	//スキル使用5s後に無敵が解除される
 	if (invincible.timeflag == true)

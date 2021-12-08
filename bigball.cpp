@@ -36,12 +36,15 @@ void _BigBall(void)
 	BUG* bug = GetBug();
 
 	//ランダムで選ばれたら、3s間ボールのサイズが大きくなる
-	if (random->code == 3 && random->active == true && bigball.use == false)
+	for (int i = 0; i < 5; i++)
 	{
-		bug->gaugesize.x = bug->gaugesize.x + bigball.usegauge * bug->gaugeonce;
-		ball->size = D3DXVECTOR2(ball->size.x * 2, ball->size.y * 2);
-		bigball.timeflag = true;
-		bigball.use = true;
+		if (random[i].code == 5 && random[i].active == true && bigball.use == false)
+		{
+			bug->gaugesize.x = bug->gaugesize.x + bigball.usegauge * bug->gaugeonce;
+			ball->size = D3DXVECTOR2(ball->size.x * 2, ball->size.y * 2);
+			bigball.timeflag = true;
+			bigball.use = true;
+		}
 	}
 	//スキル使用3s後にもとの大きさに戻る
 	if (bigball.timeflag == true)

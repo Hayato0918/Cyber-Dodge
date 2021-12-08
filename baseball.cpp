@@ -7,6 +7,8 @@
 #include "ball.h"
 #include "bug.h"
 
+#include "skillrandom.h"
+
 //-----マクロ定義
 #define swingtime	180						//バットの判定時間
 #define PI 3.1415926535897932f				//円周率
@@ -36,13 +38,17 @@ void _Baseball(void)
 
 	BALL* ball = GetBall();
 	BUG* bug = GetBug();
+	RANDOM* random = GetRandom();
 
 	//スキルが使えるかの判断
-	if (GetKeyboardTrigger(DIK_0) && baseball.use == false && ball->playerhaveflag == false)
+	for (int i = 0; i < 5; i++)
 	{
-		bug->gaugesize.x = bug->gaugesize.x + baseball.usegauge * bug->gaugeonce;
-		baseball.timeflag = true;
-		baseball.use = true;
+		if (random[i].code == 4 && random[i].active == true && baseball.use == false && ball->playerhaveflag == false)
+		{
+			bug->gaugesize.x = bug->gaugesize.x + baseball.usegauge * bug->gaugeonce;
+			baseball.timeflag = true;
+			baseball.use = true;
+		}
 	}
 
 	PLAYER* player = GetPlayer();

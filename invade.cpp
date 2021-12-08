@@ -36,15 +36,18 @@ void _Invade(void)
 	BUG* bug = GetBug();
 
 	//ランダムで5が選ばれたら、3秒間敵の陣地に入れる
-	if (random->code == 5 && random->active == true && invade.use == false)
+	for (int i = 0; i < 5; i++)
 	{
-		bug->gaugesize.x = bug->gaugesize.x + invade.usegauge * bug->gaugeonce;
+		if (random[i].code == 9 && random[i].active == true && invade.use == false)
+		{
+			bug->gaugesize.x = bug->gaugesize.x + invade.usegauge * bug->gaugeonce;
 
-		//-----プレイヤーの位置を敵陣までワープさせる
-		player->pos.x = (SCREEN_WIDTH / 2) + 5;
+			//-----プレイヤーの位置を敵陣までワープさせる
+			player->pos.x = (SCREEN_WIDTH / 2) + 5;
 
-		invade.timeflag = true;
-		invade.use = true;
+			invade.timeflag = true;
+			invade.use = true;
+		}
 	}
 
 	//スキル終了時に敵陣にいた場合、x座標を自陣と敵陣の境界まで戻す

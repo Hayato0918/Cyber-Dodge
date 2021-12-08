@@ -36,12 +36,15 @@ void _BuildUp(void)
 	RANDOM* random = GetRandom();
 
 	//ランダムで4が出たら、3s間キャラのサイズが2倍になる
-	if (random->code == 4 && random->active == true && buildup.use == false)
+	for (int i = 0; i < 5; i++)
 	{
-		player->size = D3DXVECTOR2(player->size.x * 2, player->size.y * 2);
-		buildup.timeflag = true;
-		bug->gaugesize.x = bug->gaugesize.x + buildup.usegauge * bug->gaugeonce;
-		buildup.use = true;
+		if (random[i].code == 7 && random[i].active == true && buildup.use == false)
+		{
+			player->size = D3DXVECTOR2(player->size.x * 2, player->size.y * 2);
+			buildup.timeflag = true;
+			bug->gaugesize.x = bug->gaugesize.x + buildup.usegauge * bug->gaugeonce;
+			buildup.use = true;
+		}
 	}
 	//スキル使用3s後にもとの大きさに戻る
 	if (buildup.timeflag == true)
