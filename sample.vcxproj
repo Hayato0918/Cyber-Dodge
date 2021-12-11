@@ -159,6 +159,7 @@
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="rest.cpp" />
     <ClCompile Include="reverse.cpp" />
+    <ClCompile Include="save.cpp" />
     <ClCompile Include="scene.cpp" />
     <ClCompile Include="skill.cpp" />
     <ClCompile Include="skillrandom.cpp" />
@@ -206,6 +207,7 @@
     <ClInclude Include="renderer.h" />
     <ClInclude Include="rest.h" />
     <ClInclude Include="reverse.h" />
+    <ClInclude Include="save.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="skill.h" />
     <ClInclude Include="skillrandom.h" />

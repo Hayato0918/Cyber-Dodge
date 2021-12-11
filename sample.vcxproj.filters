@@ -180,6 +180,9 @@
     <ClCompile Include="banner .cpp">
       <Filter>ソース ファイル\map</Filter>
     </ClCompile>
+    <ClCompile Include="save.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="title.h">
@@ -316,6 +319,9 @@
     </ClInclude>
     <ClInclude Include="banner.h">
       <Filter>ヘッダー ファイル\map</Filter>
+    </ClInclude>
+    <ClInclude Include="save.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

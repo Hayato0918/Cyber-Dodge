@@ -54,6 +54,65 @@ HRESULT InitBanner(void)
 		banner_hp[i].hpsize = D3DXVECTOR2(33.0f, 60.0f);
 		banner_hp[i].hppos = D3DXVECTOR2(banner_hp[i-1].hppos.x + banner_hp[i-1].hpsize.x, 0.0f);
 	}
+
+	banner.hptexture = LoadTexture("data/TEXTURE/hpnum.png");
+
+	banner_gold[0].goldpos = D3DXVECTOR2(banner_hp[3].hppos.x + banner_hp[3].hpsize.x + 50.0f, 0.0f);
+	banner_gold[0].goldsize = D3DXVECTOR2(120.0f, 60.0f);
+	banner_gold[0].u = 0.0f;
+	banner_gold[0].uw = 0.34f;
+	for (int i = 0; i < 5; i++)
+	{
+		banner_gold[i].v = 0.0f;
+		banner_gold[i].vh = 1.0f;
+	}
+	for (int i = 1; i < 5; i++)
+	{
+		banner_gold[i].goldsize = D3DXVECTOR2(33.0f, 60.0f);
+		banner_gold[i].goldpos = D3DXVECTOR2(banner_gold[i-1].goldpos.x + banner_gold[i-1].goldsize.x, 0.0f);
+	}
+	banner_gold[1].u = 0.34f;	//0
+	banner_gold[1].uw = 0.07f;
+	banner_gold[2].u = 0.41f;	//1
+	banner_gold[2].uw = 0.07f;
+	banner_gold[3].u = 0.48f;	//2
+	banner_gold[3].uw = 0.07f;
+	banner_gold[4].u = 0.55f;	//3
+	banner_gold[4].uw = 0.058f;
+	//banner_gold[1].u = 0.6f;	//4
+	//banner_gold[1].uw = 0.07f;
+	//banner_gold[2].u = 0.67f;	//5
+	//banner_gold[2].uw = 0.07f;
+	//banner_gold[3].u = 0.74f;	//6
+	//banner_gold[3].uw = 0.07f;
+	//banner_gold[4].u = 0.81f;	//7
+	//banner_gold[4].uw = 0.068f;
+	//banner_gold[1].u = 0.87f;	//8
+	//banner_gold[1].uw = 0.07f;
+	//banner_gold[2].u = 0.932f;	//9
+	//banner_gold[2].uw = 0.068f;
+	banner.goldtexture = LoadTexture("data/TEXTURE/goldnum.png");
+
+	BUG* bug = GetBug();
+	banner_bug.bugframesize = D3DXVECTOR2(600.0f, 60.0f);
+	banner_bug.bugframepos = D3DXVECTOR2(banner_gold[4].goldpos.x + banner_gold[4].goldsize.x + 30.0f, 0.0f);
+	banner_bug.frametexture = LoadTexture("data/TEXTURE/bugframe.png");
+	banner_bug.buggaugesize = D3DXVECTOR2(bug->gaugesize.x * 0.5f, 60.0f);
+	banner_bug.buggaugepos = D3DXVECTOR2(banner_gold[4].goldpos.x + banner_gold[4].goldsize.x + 30.0f, 0.0f);
+	banner_bug.gaugetexture = LoadTexture("data/TEXTURE/obstacle.png");
+
+	return S_OK;
+}
+
+//-----終了処理
+void UninitBanner(void)
+{
+
+}
+
+//-----更新処理
+void UpdateBanner(void)
+{
 	banner.a = banner.hp * 0.01f;
 	banner.b = (banner.hp - banner.a * 100) * 0.1f;
 	banner.c = banner.hp - banner.a * 100 - banner.b * 10;
@@ -206,65 +265,6 @@ HRESULT InitBanner(void)
 		banner_hp[3].u = 0.915f;
 		banner_hp[3].uw = 0.08f;
 	}
-	banner.hptexture = LoadTexture("data/TEXTURE/hpnum.png");
-
-	banner_gold[0].goldpos = D3DXVECTOR2(banner_hp[3].hppos.x + banner_hp[3].hpsize.x + 50.0f, 0.0f);
-	banner_gold[0].goldsize = D3DXVECTOR2(120.0f, 60.0f);
-	banner_gold[0].u = 0.0f;
-	banner_gold[0].uw = 0.34f;
-	for (int i = 0; i < 5; i++)
-	{
-		banner_gold[i].v = 0.0f;
-		banner_gold[i].vh = 1.0f;
-	}
-	for (int i = 1; i < 5; i++)
-	{
-		banner_gold[i].goldsize = D3DXVECTOR2(33.0f, 60.0f);
-		banner_gold[i].goldpos = D3DXVECTOR2(banner_gold[i-1].goldpos.x + banner_gold[i-1].goldsize.x, 0.0f);
-	}
-	banner_gold[1].u = 0.34f;	//0
-	banner_gold[1].uw = 0.07f;
-	banner_gold[2].u = 0.41f;	//1
-	banner_gold[2].uw = 0.07f;
-	banner_gold[3].u = 0.48f;	//2
-	banner_gold[3].uw = 0.07f;
-	banner_gold[4].u = 0.55f;	//3
-	banner_gold[4].uw = 0.058f;
-	//banner_gold[1].u = 0.6f;	//4
-	//banner_gold[1].uw = 0.07f;
-	//banner_gold[2].u = 0.67f;	//5
-	//banner_gold[2].uw = 0.07f;
-	//banner_gold[3].u = 0.74f;	//6
-	//banner_gold[3].uw = 0.07f;
-	//banner_gold[4].u = 0.81f;	//7
-	//banner_gold[4].uw = 0.068f;
-	//banner_gold[1].u = 0.87f;	//8
-	//banner_gold[1].uw = 0.07f;
-	//banner_gold[2].u = 0.932f;	//9
-	//banner_gold[2].uw = 0.068f;
-	banner.goldtexture = LoadTexture("data/TEXTURE/goldnum.png");
-
-	BUG* bug = GetBug();
-	banner_bug.bugframesize = D3DXVECTOR2(600.0f, 60.0f);
-	banner_bug.bugframepos = D3DXVECTOR2(banner_gold[4].goldpos.x + banner_gold[4].goldsize.x + 30.0f, 0.0f);
-	banner_bug.frametexture = LoadTexture("data/TEXTURE/bugframe.png");
-	banner_bug.buggaugesize = D3DXVECTOR2(bug->gaugesize.x * 0.5f, 60.0f);
-	banner_bug.buggaugepos = D3DXVECTOR2(banner_gold[4].goldpos.x + banner_gold[4].goldsize.x + 30.0f, 0.0f);
-	banner_bug.gaugetexture = LoadTexture("data/TEXTURE/obstacle.png");
-
-	return S_OK;
-}
-
-//-----終了処理
-void UninitBanner(void)
-{
-
-}
-
-//-----更新処理
-void UpdateBanner(void)
-{
-
 }
 
 //-----描画処理

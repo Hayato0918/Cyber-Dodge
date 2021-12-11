@@ -10,6 +10,7 @@
 #include "scene.h"
 #include "game.h"
 #include "fade.h"
+#include "input.h"
 
 #include "title.h"
 #include "map.h"
@@ -17,6 +18,7 @@
 #include "game.h"
 #include "clear.h"
 #include "gameover.h"
+#include "save.h"
 
 /*------------------------------------------------------------------------------
    ’è”’è‹`

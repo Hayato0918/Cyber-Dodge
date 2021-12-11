@@ -15,7 +15,7 @@
 #define map_ynum 7
 
 //-----プロトタイプ宣言
-MAP map[map_xnum][map_ynum];
+MAP map[map_ynum][map_xnum];
 MAP_PLAYER map_player;
 MAP_SB map_sb;
 
@@ -42,29 +42,29 @@ HRESULT InitMapPoint(void)
 		{
 			for (int x = 0; x < map_xnum; x++)
 			{
-				map[x][y].size = D3DXVECTOR2(80.0f, 80.0f);
-				map[x][y].uw = 0.166f;
-				map[x][y].v = 0.0f;
-				map[x][y].vh = 1.0f;
+				map[y][x].size = D3DXVECTOR2(80.0f, 80.0f);
+				map[y][x].uw = 0.166f;
+				map[y][x].v = 0.0f;
+				map[y][x].vh = 1.0f;
 
 				//マスの色をランダムにする
-				map[x][y].randomcode = (rand() % 5) + 1;
-				switch (map[x][y].randomcode)
+				map[y][x].randomcode = (rand() % 5) + 1;
+				switch (map[y][x].randomcode)
 				{
 				case 1:		//オレンジ(通常敵マス)
-					map[x][y].u = 0.0f;
+					map[y][x].u = 0.0f;
 					break;
 				case 2:		//赤(強敵ます)
-					map[x][y].u = 0.166f;
+					map[y][x].u = 0.166f;
 					break;
 				case 3:		//緑(休憩マス)
-					map[x][y].u = 0.498f;
+					map[y][x].u = 0.498f;
 					break;
 				case 4:		//青(イベントマス)
-					map[x][y].u = 0.664f;
+					map[y][x].u = 0.664f;
 					break;
 				case 5:		//黄色(商人マス)
-					map[x][y].u = 0.83f;
+					map[y][x].u = 0.83f;
 					break;
 				}
 			}
@@ -74,14 +74,14 @@ HRESULT InitMapPoint(void)
 		{
 			for (int x = 0; x < map_xnum; x++)
 			{
-				map[x][y].pos = D3DXVECTOR2(SCREEN_WIDTH * map_x - map[x][y].size.x, map_y);
+				map[y][x].pos = D3DXVECTOR2(SCREEN_WIDTH * map_x - map[y][x].size.x, map_y);
 				map_x = map_x + ((rand() % 2) + 1) * 0.1f;
 				mapcount = mapcount + 1;
 				//「aの値が◯だったら、▽のイベントを多く出す」とかもできる
 				if (mapcount > 2 && mapcount < 4)
 				{
-					map[x][y].randomcode = (rand() % 2);
-					if (map[x][y].randomcode == 1)
+					map[y][x].randomcode = (rand() % 2);
+					if (map[y][x].randomcode == 1)
 					{
 						x = x + 1;
 						map_y = map_y + 200;
@@ -137,28 +137,28 @@ void UpdateMapPoint(void)
 			{
 				if (map_hack->UDcount == 0)		//通常敵マス
 				{
-					map[map_player.LRcount][map_player.UDcount].randomcode = 1;
-					map[map_player.LRcount][map_player.UDcount].u = 0.0f;
+					map[map_player.UDcount][map_player.LRcount].randomcode = 1;
+					map[map_player.UDcount][map_player.LRcount].u = 0.0f;
 				}
 				if (map_hack->UDcount == 1)		//強敵マス
 				{
-					map[map_player.LRcount][map_player.UDcount].randomcode = 2;
-					map[map_player.LRcount][map_player.UDcount].u = 0.166f;
+					map[map_player.UDcount][map_player.LRcount].randomcode = 2;
+					map[map_player.UDcount][map_player.LRcount].u = 0.166f;
 				}
 				if (map_hack->UDcount == 2)		//休憩マス
 				{
-					map[map_player.LRcount][map_player.UDcount].randomcode = 3;
-					map[map_player.LRcount][map_player.UDcount].u = 0.498f;
+					map[map_player.UDcount][map_player.LRcount].randomcode = 3;
+					map[map_player.UDcount][map_player.LRcount].u = 0.498f;
 				}
 				if (map_hack->UDcount == 3)		//イベントマス
 				{
-					map[map_player.LRcount][map_player.UDcount].randomcode = 4;
-					map[map_player.LRcount][map_player.UDcount].u = 0.664f;
+					map[map_player.UDcount][map_player.LRcount].randomcode = 4;
+					map[map_player.UDcount][map_player.LRcount].u = 0.664f;
 				}
 				if (map_hack->UDcount == 4)		//商人マス
 				{
-					map[map_player.LRcount][map_player.UDcount].randomcode = 5;
-					map[map_player.LRcount][map_player.UDcount].u = 0.83f;
+					map[map_player.UDcount][map_player.LRcount].randomcode = 5;
+					map[map_player.UDcount][map_player.LRcount].u = 0.83f;
 				}
 			}
 		}
@@ -168,28 +168,28 @@ void UpdateMapPoint(void)
 			{
 				if (map_hack->UDcount == 0)		//通常敵マス
 				{
-					map[map_player.LRcount][map_player.UDcount].randomcode = 1;
-					map[map_player.LRcount][map_player.UDcount].u = 0.0f;
+					map[map_player.UDcount][map_player.LRcount].randomcode = 1;
+					map[map_player.UDcount][map_player.LRcount].u = 0.0f;
 				}
 				if (map_hack->UDcount == 1)		//強敵マス
 				{
-					map[map_player.LRcount][map_player.UDcount].randomcode = 2;
-					map[map_player.LRcount][map_player.UDcount].u = 0.166f;
+					map[map_player.UDcount][map_player.LRcount].randomcode = 2;
+					map[map_player.UDcount][map_player.LRcount].u = 0.166f;
 				}
 				if (map_hack->UDcount == 2)		//休憩マス
 				{
-					map[map_player.LRcount][map_player.UDcount].randomcode = 3;
-					map[map_player.LRcount][map_player.UDcount].u = 0.498f;
+					map[map_player.UDcount][map_player.LRcount].randomcode = 3;
+					map[map_player.UDcount][map_player.LRcount].u = 0.498f;
 				}
 				if (map_hack->UDcount == 3)		//イベントマス
 				{
-					map[map_player.LRcount][map_player.UDcount].randomcode = 4;
-					map[map_player.LRcount][map_player.UDcount].u = 0.664f;
+					map[map_player.UDcount][map_player.LRcount].randomcode = 4;
+					map[map_player.UDcount][map_player.LRcount].u = 0.664f;
 				}
 				if (map_hack->UDcount == 4)		//商人マス
 				{
-					map[map_player.LRcount][map_player.UDcount].randomcode = 5;
-					map[map_player.LRcount][map_player.UDcount].u = 0.83f;
+					map[map_player.UDcount][map_player.LRcount].randomcode = 5;
+					map[map_player.UDcount][map_player.LRcount].u = 0.83f;
 				}
 			}
 		}
@@ -208,7 +208,7 @@ void UpdateMapPoint(void)
 				for (int y = 0; y < map_ynum; y++)
 				{
 					for (int x = 0; x < map_xnum; x++)
-						map[x][y].pos.y += 3;
+						map[y][x].pos.y += 3;
 				}
 			}
 			if (GetKeyboardPress(DIK_S))
@@ -219,7 +219,7 @@ void UpdateMapPoint(void)
 				for (int y = 0; y < map_ynum; y++)
 				{
 					for (int x = 0; x < map_xnum; x++)
-						map[x][y].pos.y -= 3;
+						map[y][x].pos.y -= 3;
 				}
 			}
 		}
@@ -233,7 +233,7 @@ void UpdateMapPoint(void)
 				for (int y = 0; y < map_ynum; y++)
 				{
 					for (int x = 0; x < map_xnum; x++)
-						map[x][y].pos.y += 3;
+						map[y][x].pos.y += 3;
 				}
 			}
 			if (IsButtonPressed(0, BUTTON_DOWN))
@@ -244,7 +244,7 @@ void UpdateMapPoint(void)
 				for (int y = 0; y < map_ynum; y++)
 				{
 					for (int x = 0; x < map_xnum; x++)
-						map[x][y].pos.y -= 3;
+						map[y][x].pos.y -= 3;
 				}
 			}
 		}
@@ -263,9 +263,9 @@ void DrawMapPoint(void)
 	{
 		for (int x = 0; x < map_xnum; x++)
 		{
-			if(map[x][y].pos.x > 0)
-			DrawSpriteLeftTop(map_texture, map[x][y].pos.x, map[x][y].pos.y, map[x][y].size.x, map[x][y].size.y,
-				map[x][y].u, map[x][y].v, map[x][y].uw, map[x][y].vh);
+			if(map[y][x].pos.x > 0)
+			DrawSpriteLeftTop(map_texture, map[y][x].pos.x, map[y][x].pos.y, map[y][x].size.x, map[y][x].size.y,
+				map[y][x].u, map[y][x].v, map[y][x].uw, map[y][x].vh);
 		}
 	}
 }
@@ -326,13 +326,13 @@ void UpdateMapPlayer(void)
 			if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0 && map_player.UDcount < 7)
 			{
 				map_player.LRcount = map_player.LRcount - 1;
-				map_player.circlepos.x = map[map_player.LRcount][map_player.UDcount].pos.x;
+				map_player.circlepos.x = map[map_player.UDcount][map_player.LRcount].pos.x;
 			}
 			//1つ右のマスにカーソルを合わせる
-			if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.circlepos.x < map[map_player.LRcount + 1][map_player.UDcount].pos.x && map_player.UDcount < 7)
+			if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.circlepos.x < map[map_player.UDcount][map_player.LRcount + 1].pos.x && map_player.UDcount < 7)
 			{
 				map_player.LRcount = map_player.LRcount + 1;
-				map_player.circlepos.x = map[map_player.LRcount][map_player.UDcount].pos.x;
+				map_player.circlepos.x = map[map_player.UDcount][map_player.LRcount].pos.x;
 			}
 			//カーソルを合わせたマスにプレイヤーを動かす
 			if (IsButtonTriggered(0, BUTTON_X) && map_player.UDcount < 8)
@@ -340,28 +340,28 @@ void UpdateMapPlayer(void)
 				//選択したマスまでプレイヤーを移動させる
 				if (map_player.UDcount < 7)		//ボス前まで
 				{
-					map_player.pos.x = map[map_player.LRcount][map_player.UDcount].pos.x;
+					map_player.pos.x = map[map_player.UDcount][map_player.LRcount].pos.x;
 					map_player.pos.y = map_player.pos.y + 200;
 				}
 				if (map_player.UDcount == 7)	//ボスマス
 					map_player.pos = D3DXVECTOR2(map_sb.bosspos.x + map_player.size.x * 0.25f, map_sb.bosspos.y);
 
 				//選択したマスに対応したシーンに飛ぶ
-				if (map[map_player.LRcount][map_player.UDcount].randomcode == 1)	//通常敵マス
+				if (map[map_player.UDcount][map_player.LRcount].randomcode == 1)	//通常敵マス
 				{
 					map_player.gamecount = map_player.gamecount + 1;
 					SceneTransition(SCENE_GAME);
 				}
-				if (map[map_player.LRcount][map_player.UDcount].randomcode == 2)	//強敵マス
+				if (map[map_player.UDcount][map_player.LRcount].randomcode == 2)	//強敵マス
 				{
 					map_player.gamecount = map_player.gamecount + 1;
 					SceneTransition(SCENE_GAME);
 				}
-				if (map[map_player.LRcount][map_player.UDcount].randomcode == 3)	//休憩マス
+				if (map[map_player.UDcount][map_player.LRcount].randomcode == 3)	//休憩マス
 					SceneTransition(SCENE_REST);
-				if (map[map_player.LRcount][map_player.UDcount].randomcode == 4)	//イベントマス
+				if (map[map_player.UDcount][map_player.LRcount].randomcode == 4)	//イベントマス
 					SceneTransition(SCENE_EVENT);
-				if (map[map_player.LRcount][map_player.UDcount].randomcode == 5)	//商人マス
+				if (map[map_player.UDcount][map_player.LRcount].randomcode == 5)	//商人マス
 					SceneTransition(SCENE_SHOP);
 
 				map_player.LRcount = 0;
@@ -370,8 +370,8 @@ void UpdateMapPlayer(void)
 				//次の選択肢までカーソルを移動させる
 				if (map_player.UDcount < 7)		//ボス前まで
 				{
-					map_player.circlepos.x = map[map_player.LRcount][map_player.UDcount].pos.x;
-					map_player.circlepos.y = map[map_player.LRcount][map_player.UDcount].pos.y;
+					map_player.circlepos.x = map[map_player.UDcount][map_player.LRcount].pos.x;
+					map_player.circlepos.y = map[map_player.UDcount][map_player.LRcount].pos.y;
 				}
 				if (map_player.UDcount == 7)	//ボスマス
 				{
@@ -396,13 +396,13 @@ void UpdateMapPlayer(void)
 			if (GetKeyboardTrigger(DIK_A) && map_player.LRcount > 0 && map_player.UDcount < 7)
 			{
 				map_player.LRcount = map_player.LRcount - 1;
-				map_player.circlepos.x = map[map_player.LRcount][map_player.UDcount].pos.x;
+				map_player.circlepos.x = map[map_player.UDcount][map_player.LRcount].pos.x;
 			}
 			//1つ右のマスにカーソルを合わせる
-			if (GetKeyboardTrigger(DIK_D) && map_player.circlepos.x < map[map_player.LRcount + 1][map_player.UDcount].pos.x && map_player.UDcount < 7)
+			if (GetKeyboardTrigger(DIK_D) && map_player.circlepos.x < map[map_player.UDcount + 1][map_player.LRcount].pos.x && map_player.UDcount < 7)
 			{
 				map_player.LRcount = map_player.LRcount + 1;
-				map_player.circlepos.x = map[map_player.LRcount][map_player.UDcount].pos.x;
+				map_player.circlepos.x = map[map_player.UDcount][map_player.LRcount].pos.x;
 			}
 			//カーソルを合わせたマスにプレイヤーを動かす
 			if (GetKeyboardTrigger(DIK_RETURN) && map_player.UDcount < 8)
@@ -410,25 +410,25 @@ void UpdateMapPlayer(void)
 				//選択したマスまでプレイヤーを移動させる
 				if (map_player.UDcount < 7)		//ボス前まで
 				{
-					map_player.pos.x = map[map_player.LRcount][map_player.UDcount].pos.x;
+					map_player.pos.x = map[map_player.UDcount][map_player.LRcount].pos.x;
 					map_player.pos.y = map_player.pos.y + 200;
 				}
 				if (map_player.UDcount == 7)	//ボスマス
 					map_player.pos = D3DXVECTOR2(map_sb.bosspos.x + map_player.size.x * 0.25f, map_sb.bosspos.y);
 
 				//選択したマスに対応したシーンに飛ぶ
-				if (map[map_player.LRcount][map_player.UDcount].randomcode == 1)	//通常敵マス
+				if (map[map_player.UDcount][map_player.LRcount].randomcode == 1)	//通常敵マス
 				{
 					map_player.gamecount = map_player.gamecount + 1;
 					SceneTransition(SCENE_GAME);
 				}
-				if (map[map_player.LRcount][map_player.UDcount].randomcode == 2)	//強敵マス
+				if (map[map_player.UDcount][map_player.LRcount].randomcode == 2)	//強敵マス
 					SceneTransition(SCENE_GAME);
-				if (map[map_player.LRcount][map_player.UDcount].randomcode == 3)	//休憩マス
+				if (map[map_player.UDcount][map_player.LRcount].randomcode == 3)	//休憩マス
 					SceneTransition(SCENE_REST);
-				if (map[map_player.LRcount][map_player.UDcount].randomcode == 4)	//イベントマス
+				if (map[map_player.UDcount][map_player.LRcount].randomcode == 4)	//イベントマス
 					SceneTransition(SCENE_EVENT);
-				if (map[map_player.LRcount][map_player.UDcount].randomcode == 5)	//商人マス
+				if (map[map_player.UDcount][map_player.LRcount].randomcode == 5)	//商人マス
 					SceneTransition(SCENE_SHOP);
 
 				map_player.LRcount = 0;
@@ -437,8 +437,8 @@ void UpdateMapPlayer(void)
 				//次の選択肢までカーソルを移動させる
 				if (map_player.UDcount < 7)		//ボス前まで
 				{
-					map_player.circlepos.x = map[map_player.LRcount][map_player.UDcount].pos.x;
-					map_player.circlepos.y = map[map_player.LRcount][map_player.UDcount].pos.y;
+					map_player.circlepos.x = map[map_player.UDcount][map_player.LRcount].pos.x;
+					map_player.circlepos.y = map[map_player.UDcount][map_player.LRcount].pos.y;
 				}
 				if (map_player.UDcount == 7)	//ボスマス
 				{

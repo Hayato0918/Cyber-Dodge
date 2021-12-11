@@ -10,6 +10,7 @@
 #include "map_line.h"
 
 #include "banner.h"
+#include "save.h"
 
 //-----’è”’è‹`
 
@@ -48,6 +49,11 @@ void UpdateMap(void)
 	UpdateMapHack();
 	UpdatePolygon();
 	UpdateBanner();
+
+	if (GetKeyboardTrigger(DIK_1))
+		Save();
+	if (GetKeyboardTrigger(DIK_2))
+		Load();
 }
 
 //-----•`‰æˆ—ŠÖ”
