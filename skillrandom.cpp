@@ -10,27 +10,40 @@
 //-----マクロ定義
 // 
 //-----プロトタイプ宣言
-static RANDOM random[MAX_SLOT];
 SKILL skill;
+RANDOM random[40];
 
 //-----グローバル変数
 
 //-----初期化処理
 HRESULT InitRandom(void)
 {
-	skill.usecount = 0;
-	skill.num = 12;
+	skill.usecount = 0;	//今選択されてるスキル
+	skill.num = 12;		//スキルの総数
+	skill.slot = 12;
+	int t;
 
-	for (int i = 0; i < MAX_SLOT; i++)
+	for (int i = 0; i < skill.slot; i++)
 	{
-		//skill card position
 		random[i].pos = D3DXVECTOR2(100.0f - i * 10, 120.0f - i * 10);
 		random[i].size = D3DXVECTOR2(90.0f, 130.0f);
 		random[i].drawflag = true;
 
-		random[i].code = (rand() % skill.num) + 1;
 		random[i].active = false;
+
+		do   //重複チェック
+		{
+			random[i].code = (rand() % skill.num) + 1;
+			for (t = 0; t < i; t++)
+			{
+				if (random[i].code == random[t].code)	//被りがあったらもう一度codeを割り振る
+					break;
+			}
+		} while (i != t);
 	}
+
+	//各スキルにランダムなcodeを割り当てる(重複なし)
+
 
 	return S_OK;
 }
@@ -44,8 +57,9 @@ void UpdateRandom(void)
 {
 	srand((unsigned int)time(NULL));
 
-	for (int i = 0; i < MAX_SLOT; i++)
+	for (int i = 0; i < skill.slot; i++)
 	{
+			//割り当てられたcodeに対応したテクスチャを表示
 		if (random[i].code == 1)
 			random[i].texture = LoadTexture("data/TEXTURE/skill/speedup.png");
 		if (random[i].code == 2)
@@ -70,22 +84,37 @@ void UpdateRandom(void)
 			random[i].texture = LoadTexture("data/TEXTURE/skill/slowarea.png");
 		if (random[i].code == 12)
 			random[i].texture = LoadTexture("data/TEXTURE/skill/smallplayer.png");
-
-		if (GetKeyboardTrigger(DIK_1) && random[skill.usecount].drawflag == true)
-		{
-			random[skill.usecount].active = true;
-			random[skill.usecount].drawflag = false;
-		}
-		if (random[skill.usecount].drawflag == false)
-			random[skill.usecount].usetime = random[skill.usecount].usetime + 1.f;
-		if (random[skill.usecount].usetime > 10.f)
-			skill.usecount = skill.usecount + 1;
 	}
+
+	//「1」をおしたらスキル発動
+	if (GetKeyboardTrigger(DIK_1) && random[skill.usecount].drawflag == true)
+	{
+		for (int i = 0; i < skill.slot; i++)
+		{
+			random[i].pos.x = random[i].pos.x + 10;
+			random[i].pos.y = random[i].pos.y + 10;
+		}
+		//random[skill.usecount].active = true;
+		random[skill.usecount].drawflag = false;
+		skill.usecount = skill.usecount + 1;
+	}
+	//「2」をおしたらスキル発動
+	if (GetKeyboardTrigger(DIK_2) && skill.usecount == skill.slot)
+	{
+		for (int i = 0; i < skill.slot; i++)
+		{
+			random[i].pos = D3DXVECTOR2(100.0f - i * 10, 120.0f - i * 10);
+			random[i].drawflag = true;
+			random[i].active = false;
+		}
+		skill.usecount = 0;
+	}
+
 }
 
 void DrawRandom(void)
 {
-	for (int i = MAX_SLOT - 1; i >= 0; i--)
+	for (int i = skill.slot - 1; i >= 0; i--)
 	{
 		if (random[i].drawflag == true)
 			DrawSpriteLeftTop(random[i].texture, random[i].pos.x, random[i].pos.y, random[i].size.x, random[i].size.y, 0.0f, 0.0f, 1.0f, 1.0f);

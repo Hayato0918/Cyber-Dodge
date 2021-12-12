@@ -7,7 +7,10 @@
 //-----構造体
 typedef struct
 {
-	int hp;
+	int hp = 100;
+	int atk = 100;
+	int def = 100;
+	int gold = 100;
 }SAVE;
 
 //-----プロトタイプ宣言

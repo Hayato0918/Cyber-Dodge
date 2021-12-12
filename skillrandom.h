@@ -4,8 +4,6 @@
 #include "main.h"
 #include "renderer.h"
 
-#define MAX_SLOT 5
-
 //-----構造体
 typedef struct
 {
@@ -20,6 +18,7 @@ typedef struct
 
 typedef struct
 {
+	int slot;		//スキルの所持数
 	int usecount;	//現在の1番前のスキル
 	int num;		//スキルの総数
 }SKILL;

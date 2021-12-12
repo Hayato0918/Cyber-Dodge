@@ -31,7 +31,7 @@ void Save(void)
     }
     else
     { 
-        fwrite(&save.hp, sizeof(save), 1, fp);
+        fwrite(&save, sizeof(save), 1, fp);
         fclose(fp);
     }
 }
