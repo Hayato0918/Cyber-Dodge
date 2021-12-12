@@ -19,8 +19,8 @@ RANDOM random[40];
 HRESULT InitRandom(void)
 {
 	skill.usecount = 0;	//今選択されてるスキル
-	skill.num = 12;		//スキルの総数
-	skill.slot = 12;
+	skill.num = 14;		//スキルの総数
+	skill.slot = 14;
 	int t;
 
 	for (int i = 0; i < skill.slot; i++)
@@ -81,8 +81,12 @@ void UpdateRandom(void)
 		if (random[i].code == 10)
 			random[i].texture = LoadTexture("data/TEXTURE/skill/invincible.png");
 		if (random[i].code == 11)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/slowarea.png");
+			random[i].texture = LoadTexture("data/TEXTURE/skill/penetration.png");
 		if (random[i].code == 12)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/rockcreate.png");
+		if (random[i].code == 13)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/slowarea.png");
+		if (random[i].code == 14)
 			random[i].texture = LoadTexture("data/TEXTURE/skill/smallplayer.png");
 	}
 
@@ -94,11 +98,11 @@ void UpdateRandom(void)
 			random[i].pos.x = random[i].pos.x + 10;
 			random[i].pos.y = random[i].pos.y + 10;
 		}
-		//random[skill.usecount].active = true;
+		random[skill.usecount].active = true;
 		random[skill.usecount].drawflag = false;
 		skill.usecount = skill.usecount + 1;
 	}
-	//「2」をおしたらスキル発動
+	//スキルを全部使い切ったら、「2」をおしてスキル再抽選
 	if (GetKeyboardTrigger(DIK_2) && skill.usecount == skill.slot)
 	{
 		for (int i = 0; i < skill.slot; i++)

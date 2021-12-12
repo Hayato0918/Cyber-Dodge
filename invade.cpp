@@ -36,7 +36,7 @@ void _Invade(void)
 	BUG* bug = GetBug();
 
 	//ランダムで5が選ばれたら、3秒間敵の陣地に入れる
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 36; i++)
 	{
 		if (random[i].code == 9 && random[i].active == true && invade.use == false)
 		{

@@ -12,7 +12,6 @@ typedef struct
 	int usegauge;	//バグゲージの上昇量
 }BALLTURNAROUND;
 
-
 //-----プロトタイプ宣言
 HRESULT InitBallTurnAround(void);
 void _BallTurnAround(void);

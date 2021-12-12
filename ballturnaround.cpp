@@ -36,7 +36,7 @@ void _BallTurnAround(void)
 	RANDOM* random = GetRandom();
 
 	//-----Cキーを押したら、ボールが敵へ向かっていく
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 36; i++)
 	{
 		if (random[i].code == 2 && random[i].active == true && ballturnaround.use == false && ball->playerthrowflag == true)
 		{

@@ -41,7 +41,7 @@ void _Baseball(void)
 	RANDOM* random = GetRandom();
 
 	//ƒXƒLƒ‹‚ªŽg‚¦‚é‚©‚Ì”»’f
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 36; i++)
 	{
 		if (random[i].code == 4 && random[i].active == true && baseball.use == false && ball->playerhaveflag == false)
 		{

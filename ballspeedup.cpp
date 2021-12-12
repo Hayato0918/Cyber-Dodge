@@ -36,7 +36,7 @@ void _BallSpeedUp(void)
 	RANDOM* random = GetRandom();
 
 	//------プレイヤーがボールを持っている間、0キーを押したら、ボールの速さが+5される
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 36; i++)
 	{
 		if (random[i].code == 1 && random[i].active == true && ballspeedup.use == false && ball->playerhaveflag == true)
 		{

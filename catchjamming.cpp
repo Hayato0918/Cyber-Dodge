@@ -30,7 +30,7 @@ void _CatchJamming(void)
 	RANDOM* random = GetRandom();
 
 	//Iキーを押したら、3秒間キャッチが出来なくなる。
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 36; i++)
 	{
 		if (random[i].code == 8 && random[i].active == true && catchjamming.use == false)
 		{

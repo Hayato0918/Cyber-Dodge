@@ -154,11 +154,13 @@
     <ClCompile Include="map_point.cpp" />
     <ClCompile Include="map_hack.cpp" />
     <ClCompile Include="map_line.cpp" />
+    <ClCompile Include="penetration.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="player_hp.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="rest.cpp" />
     <ClCompile Include="reverse.cpp" />
+    <ClCompile Include="rockcreate.cpp" />
     <ClCompile Include="save.cpp" />
     <ClCompile Include="scene.cpp" />
     <ClCompile Include="skill.cpp" />
@@ -202,11 +204,13 @@
     <ClInclude Include="map_point.h" />
     <ClInclude Include="map_hack.h" />
     <ClInclude Include="map_line.h" />
+    <ClInclude Include="penetration.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="player_hp.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="rest.h" />
     <ClInclude Include="reverse.h" />
+    <ClInclude Include="rockcreate.h" />
     <ClInclude Include="save.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="skill.h" />

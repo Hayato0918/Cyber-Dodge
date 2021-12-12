@@ -36,9 +36,9 @@ void _SmallPlayer(void)
 	BUG* bug = GetBug();
 
 	//ランダムで7が選ばれたら、3s間キャラのサイズが0.5倍小さくなるになる
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 36; i++)
 	{
-		if (random[i].code == 12 && random[i].active == true && smallplayer.use == false)
+		if (random[i].code == 14 && random[i].active == true && smallplayer.use == false)
 		{
 			bug->gaugesize.x = bug->gaugesize.x + smallplayer.usegauge * bug->gaugeonce;
 			player->size = D3DXVECTOR2(player->size.x * 0.5f, player->size.y * 0.5f);
