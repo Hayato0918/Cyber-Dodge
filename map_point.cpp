@@ -399,7 +399,7 @@ void UpdateMapPlayer(void)
 				map_player.circlepos.x = map[map_player.UDcount][map_player.LRcount].pos.x;
 			}
 			//1つ右のマスにカーソルを合わせる
-			if (GetKeyboardTrigger(DIK_D) && map_player.circlepos.x < map[map_player.UDcount + 1][map_player.LRcount].pos.x && map_player.UDcount < 7)
+			if (GetKeyboardTrigger(DIK_D) && map_player.circlepos.x < map[map_player.UDcount][map_player.LRcount + 1].pos.x && map_player.UDcount < 7)
 			{
 				map_player.LRcount = map_player.LRcount + 1;
 				map_player.circlepos.x = map[map_player.UDcount][map_player.LRcount].pos.x;

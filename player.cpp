@@ -91,7 +91,7 @@ HRESULT InitPlayer(void)
 
 		player.drawdepth = false;
 
-		InitReverse();
+		//InitReverse();
 	}
 
 	return S_OK;
@@ -114,7 +114,7 @@ void UpdatePlayer(void)
 
 	REVERSE* reverse = GetReverse();
 
-	_Reverse();
+	//_Reverse();
 
 	//pad‚Ì‚Æ‚«
 	if (PADUSE == 0)
