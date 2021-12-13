@@ -5,7 +5,7 @@
 #include "sprite.h"
 
 #include "player.h"
-#include "bug.h"
+#include "bugincrease.h"
 
 #include "skillrandom.h"
 
@@ -38,7 +38,7 @@ HRESULT InitBarrier(void)
 void _Barrier(void)
 {
 	PLAYER* player = GetPlayer();
-	BUG* bug = GetBug();
+	BUG* bug = GetBugIncrease();
 	RANDOM* random = GetRandom();
 
 	barrier.pos = D3DXVECTOR2(player->pos.x - player->size.x * 0.5f, player->pos.y);

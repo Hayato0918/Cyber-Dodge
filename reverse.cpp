@@ -5,7 +5,8 @@
 #include "sprite.h"
 
 #include "player.h"
-#include "bug.h"
+#include "bugrandom.h"
+#include "bugincrease.h"
 
 //-----プロトタイプ宣言
 REVERSE reverse;
@@ -21,10 +22,11 @@ HRESULT InitReverse(void)
 //-----プレイヤー反転処理
 void _Reverse(void)
 {
-	BUG* bug = GetBug();
+	BUG* bug = GetBugIncrease();
+	BUGRANDOM* bugrandom = GetBugRandom();
 
 	//バグゲージが100以上になったらプレイヤーの操作を反転させる
-	if (bug->gaugesize.x >= 100 && reverse.use == false)
+	if (bugrandom->code == 3 && bug->gaugesize.x >= 100 && reverse.use == false)
 	{
 		reverse.use = true;
 	}

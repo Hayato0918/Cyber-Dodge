@@ -5,7 +5,7 @@
 #include "sprite.h"
 
 #include "player.h"
-#include "bug.h"
+#include "bugincrease.h"
 
 #include "skillrandom.h"
 
@@ -33,7 +33,7 @@ void _SmallPlayer(void)
 {
 	PLAYER* player = GetPlayer();
 	RANDOM* random = GetRandom();
-	BUG* bug = GetBug();
+	BUG* bug = GetBugIncrease();;
 
 	//ランダムで7が選ばれたら、3s間キャラのサイズが0.5倍小さくなるになる
 	for (int i = 0; i < 36; i++)

@@ -7,7 +7,8 @@
 #include "ball.h"
 #include "catch.h"
 
-#include "bug.h"
+#include "bugincrease.h"
+#include "bugrandom.h"
 
 //-----マクロ定義
 
@@ -20,7 +21,6 @@ ENEMY* enemy = GetEnemy();
 //-----初期化処理
 HRESULT InitEnemyClone(void)
 {
-
 	for (int i = 0; i < ENEMYCLONE_MAX; i++)
 	{
 		g_EnemyClone[i].pos = D3DXVECTOR2(enemy->pos.x + 110.0f, enemy->pos.y + 240.0f);
@@ -33,51 +33,44 @@ HRESULT InitEnemyClone(void)
 	return S_OK;
 }
 
-//-----終了処理
-void UninitEnemyClone(void)
-{
-
-}
-
 //-----更新処理
-void UpdateEnemyClone(void)
+void _EnemyClone(void)
 {
 	BALL* ball = GetBall();
-	BUG* bug = GetBug();
-
-	for (int i = 0; i < ENEMYCLONE_MAX; i++)
+	BUG* bug = GetBugIncrease();
+	BUGRANDOM* bugrandom = GetBugRandom();
+	
+	if (bugrandom->code == 2 && bug->gaugesize.x >= 100)
 	{
-		if (bug->gaugesize.x >= 10)
+
+		for (int i = 0; i < ENEMYCLONE_MAX; i++)
 		{
-			g_EnemyClone[i].drawflag = enemy->drawflag;
+			if (bug->gaugesize.x >= 100)
+			{
+				g_EnemyClone[i].drawflag = enemy->drawflag;
+			}
+
+			//-----コート外に出ない処理
+			if (g_EnemyClone[i].pos.y <= 180 - g_EnemyClone[i].size.y * 0.5f)			//上
+				g_EnemyClone[i].pos.y = 180 - g_EnemyClone[i].size.y * 0.5f;
+			if (g_EnemyClone[i].pos.y >= SCREEN_HEIGHT - g_EnemyClone[i].size.y - 15)	//下
+				g_EnemyClone[i].pos.y = SCREEN_HEIGHT - g_EnemyClone[i].size.y - 15;
+			if (g_EnemyClone[i].pos.x <= SCREEN_WIDTH * 0.5f)								//左
+				g_EnemyClone[i].pos.x = SCREEN_WIDTH * 0.5f;
+			if (g_EnemyClone[i].pos.x >= SCREEN_WIDTH - g_EnemyClone[i].size.x - 5)								//右
+				g_EnemyClone[i].pos.x = SCREEN_WIDTH - g_EnemyClone[i].size.x - 5;
+
+
+			//-----プレイヤーが投げたボールが、地面,壁に当たらず敵に当たったら敵の描画をやめる(アウト判定)
+			//if (ball->enemyhitflag == true)
+			//{
+			//	if (enemy.pos.x < ball->pos.x + ball->size.x && enemy.pos.x + enemy.size.x > ball->pos.x)
+			//	{
+			//		if (enemy.pos.y < ball->pos.y + ball->size.y && enemy.pos.y + enemy.size.y > ball->pos.y)
+			//			enemy.drawflag = false;	
+			//	}
+			//}
 		}
-
-		//-----コート外に出ない処理
-		if (g_EnemyClone[i].pos.y <= 180 - g_EnemyClone[i].size.y * 0.5f)			//上
-			g_EnemyClone[i].pos.y = 180 - g_EnemyClone[i].size.y * 0.5f;
-		if (g_EnemyClone[i].pos.y >= SCREEN_HEIGHT - g_EnemyClone[i].size.y - 15)	//下
-			g_EnemyClone[i].pos.y = SCREEN_HEIGHT - g_EnemyClone[i].size.y - 15;
-		if (g_EnemyClone[i].pos.x <= SCREEN_WIDTH * 0.5f)								//左
-			g_EnemyClone[i].pos.x = SCREEN_WIDTH * 0.5f;
-		if (g_EnemyClone[i].pos.x >= SCREEN_WIDTH - g_EnemyClone[i].size.x - 5)								//右
-			g_EnemyClone[i].pos.x = SCREEN_WIDTH - g_EnemyClone[i].size.x - 5;
-
-
-		//-----プレイヤーが投げたボールが、地面,壁に当たらず敵に当たったら敵の描画をやめる(アウト判定)
-		//if (ball->enemyhitflag == true)
-		//{
-		//	if (enemy.pos.x < ball->pos.x + ball->size.x && enemy.pos.x + enemy.size.x > ball->pos.x)
-		//	{
-		//		if (enemy.pos.y < ball->pos.y + ball->size.y && enemy.pos.y + enemy.size.y > ball->pos.y)
-		//			enemy.drawflag = false;	
-		//	}
-		//}
-
-		////-----投げる処理
-		//_Throw();
-
-		////-----キャッチ処理
-		//M_Catch();
 	}
 }
 

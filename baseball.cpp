@@ -5,7 +5,7 @@
 #include "sprite.h"
 #include "player.h"
 #include "ball.h"
-#include "bug.h"
+#include "bugincrease.h"
 
 #include "skillrandom.h"
 
@@ -37,7 +37,7 @@ void _Baseball(void)
 	//玉を持っていない間バットを一定時間表示、その間玉を一定の速度で打ち出すような処理を行います。
 
 	BALL* ball = GetBall();
-	BUG* bug = GetBug();
+	BUG* bug = GetBugIncrease();
 	RANDOM* random = GetRandom();
 
 	//スキルが使えるかの判断

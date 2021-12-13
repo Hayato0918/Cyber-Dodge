@@ -6,7 +6,7 @@
 
 #include "enemy.h"
 #include "ball.h"
-#include "bug.h"
+#include "bugincrease.h"
 
 #include "skillrandom.h"
 
@@ -32,7 +32,7 @@ void _BallTurnAround(void)
 {
 	ENEMY* enemy = GetEnemy();
 	BALL* ball = GetBall();
-	BUG* bug = GetBug();
+	BUG* bug = GetBugIncrease();
 	RANDOM* random = GetRandom();
 
 	//-----Cキーを押したら、ボールが敵へ向かっていく

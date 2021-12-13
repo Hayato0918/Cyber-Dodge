@@ -6,7 +6,7 @@
 
 #include "ball.h"
 #include "catch.h"
-#include "bug.h"
+#include "bugincrease.h"
 
 #include "skillrandom.h"
 
@@ -32,7 +32,7 @@ HRESULT InitBallSpeedUp(void)
 void _BallSpeedUp(void)
 {
 	BALL* ball = GetBall();
-	BUG* bug = GetBug();
+	BUG* bug = GetBugIncrease();
 	RANDOM* random = GetRandom();
 
 	//------プレイヤーがボールを持っている間、0キーを押したら、ボールの速さが+5される

@@ -8,7 +8,7 @@
 
 #include "player.h"
 #include "ball.h"
-#include "bug.h"
+#include "bugincrease.h"
 
 #include "skillrandom.h"
 
@@ -41,7 +41,7 @@ void _Invincible(void)
 {
 	PLAYER* player = GetPlayer();
 	BALL* ball = GetBall();
-	BUG* bug = GetBug();
+	BUG* bug = GetBugIncrease();;
 	RANDOM* random = GetRandom();
 
 	invincible.pos = D3DXVECTOR2(player->pos.x, player->pos.y);

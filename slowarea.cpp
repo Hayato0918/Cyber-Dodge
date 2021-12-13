@@ -6,7 +6,7 @@
 #include "time.h"
 
 #include "player.h"
-#include "bug.h"
+#include "bugincrease.h"
 
 #include "skillrandom.h"
 
@@ -42,7 +42,7 @@ void _SlowArea(void)
 {
 	PLAYER* player = GetPlayer();
 	RANDOM* random = GetRandom();
-	BUG* bug = GetBug();
+	BUG* bug = GetBugIncrease();;
 
 	//-----ランダムで6が選ばれたら、3s間足がおそくなるエリアができる
 	for (int i = 0; i < 36; i++)

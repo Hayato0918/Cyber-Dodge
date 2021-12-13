@@ -7,7 +7,7 @@
 
 #include "player_hp.h"
 #include "map_point.h"
-#include "bug.h"
+#include "bugincrease.h"
 
 //-----É}ÉNÉçíËã`
 
@@ -93,7 +93,7 @@ HRESULT InitBanner(void)
 	//banner_gold[2].uw = 0.068f;
 	banner.goldtexture = LoadTexture("data/TEXTURE/goldnum.png");
 
-	BUG* bug = GetBug();
+	BUG* bug = GetBugIncrease();
 	banner_bug.bugframesize = D3DXVECTOR2(600.0f, 60.0f);
 	banner_bug.bugframepos = D3DXVECTOR2(banner_gold[4].goldpos.x + banner_gold[4].goldsize.x + 30.0f, 0.0f);
 	banner_bug.frametexture = LoadTexture("data/TEXTURE/bugframe.png");

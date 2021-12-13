@@ -134,6 +134,8 @@
     <ClCompile Include="bigball.cpp" />
     <ClCompile Include="billiards.cpp" />
     <ClCompile Include="bug.cpp" />
+    <ClCompile Include="bugincrease.cpp" />
+    <ClCompile Include="bugrandom.cpp" />
     <ClCompile Include="buildup.cpp" />
     <ClCompile Include="bunshin.cpp" />
     <ClCompile Include="catch.cpp" />
@@ -184,6 +186,8 @@
     <ClInclude Include="bigball.h" />
     <ClInclude Include="Billiards.h" />
     <ClInclude Include="bug.h" />
+    <ClInclude Include="bugincrease.h" />
+    <ClInclude Include="bugrandom.h" />
     <ClInclude Include="buildup.h" />
     <ClInclude Include="bunshin.h" />
     <ClInclude Include="catch.h" />

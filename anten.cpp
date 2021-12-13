@@ -6,7 +6,8 @@
 #include "Texture.h"
 #include "sprite.h"
 
-#include "bug.h"
+#include "bugincrease.h"
+#include "bugrandom.h"
 
 //-----プロトタイプ宣言
 ANTEN anten;
@@ -28,17 +29,18 @@ HRESULT InitAnten(void)
 //-----プレイヤー反転処理
 void _Anten(void)
 {
-	BUG* bug = GetBug();
+	BUG* bug = GetBugIncrease();
+	BUGRANDOM* bugrandom = GetBugRandom();
 
 	//バグゲージが100以上になったら画面を霧が覆う
-	if (bug->gaugesize.x >= 100 == true && anten.use == false)
+	if (bugrandom->code == 1 && bug->gaugesize.x >= 100 == true && anten.use == false)
 	{
 		anten.use = true;
 		anten.drawflag = true;
 	}
 
 	//バグゲージが100以下になったら霧が晴れる
-	if (bug->gaugesize.x <= 100 == true && anten.use == true)
+	if (bug->gaugesize.x <= 100  && anten.use == true)
 	{
 		anten.use = false;
 		anten.drawflag = false;

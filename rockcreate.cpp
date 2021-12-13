@@ -4,7 +4,7 @@
 #include "texture.h"
 #include "sprite.h"
 #include "player.h"
-#include "bug.h"
+#include "bugincrease.h"
 #include "ball.h"
 #include "skillrandom.h"
 #include "enemy.h"
@@ -37,7 +37,7 @@ void _Ganseki(void)
 {
 	PLAYER* player = GetPlayer();
 	RANDOM* random = GetRandom();
-	BUG* bug = GetBug();
+	BUG* bug = GetBugIncrease();;
 	BALL* ball = GetBall();
 	ENEMY* enemy = GetEnemy();
 	KANTSUU* kantsuu = GetKantsuu();

@@ -1,7 +1,7 @@
 //スキル_貫通 [kantsuu.cpp]
 #include "penetration.h"
 #include "input.h"
-#include "bug.h"
+#include "bugincrease.h"
 #include "skillrandom.h"
 #include "rockcreate.h"
 
@@ -28,7 +28,7 @@ HRESULT InitKantsuu(void)
 void _Kantsuu(void)
 {
 	RANDOM* random = GetRandom();
-	BUG* bug = GetBug();
+	BUG* bug = GetBugIncrease();;
 
 	//-----発動から3秒間、ボールが障害物の判定を貫通するようになる。
 	for (int i = 0; i < 36; i++)

@@ -5,7 +5,7 @@
 #include "sprite.h"
 
 #include "player.h"
-#include "bug.h"
+#include "bugincrease.h"
 
 #include "skillrandom.h"
 
@@ -33,7 +33,7 @@ void _Invade(void)
 {
 	PLAYER* player = GetPlayer();
 	RANDOM* random = GetRandom();
-	BUG* bug = GetBug();
+	BUG* bug = GetBugIncrease();;
 
 	//ƒ‰ƒ“ƒ_ƒ€‚Å5‚ª‘I‚Î‚ê‚½‚çA3•bŠÔ“G‚Ìw’n‚É“ü‚ê‚é
 	for (int i = 0; i < 36; i++)

@@ -4,7 +4,7 @@
 #include "texture.h"
 #include "sprite.h"
 
-#include "bug.h"
+#include "bugincrease.h"
 
 #include "skillrandom.h"
 
@@ -26,7 +26,7 @@ HRESULT InitCatchJamming(void)
 
 void _CatchJamming(void)
 {
-	BUG* bug = GetBug();
+	BUG* bug = GetBugIncrease();;
 	RANDOM* random = GetRandom();
 
 	//Iキーを押したら、3秒間キャッチが出来なくなる。

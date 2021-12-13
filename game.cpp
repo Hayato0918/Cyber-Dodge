@@ -8,6 +8,8 @@
 
 #include "bg.h"
 #include "bug.h"
+#include "bugrandom.h"
+#include "bugincrease.h"
 #include "player.h"
 #include "player_hp.h"
 #include "enemy.h"
@@ -32,6 +34,8 @@ void InitGame(void)
 {
 	InitBG();
 	InitBug();
+	InitBugRandom();
+	InitBugIncrease();
 	InitPlayerHp();
 	InitPlayer();
 	InitEnemy();
@@ -55,7 +59,7 @@ void UninitGame()
 	UninitEnemyHp();
 	UninitPlayer();
 	UninitPlayerHp();
-	UninitBug();
+	UninitBugIncrease();
 	UninitBG();
 }
 
@@ -64,12 +68,13 @@ void UpdateGame(void)
 {
 	UpdatePlayer();
 	UpdatePlayerHp();
-	UpdateBug();
+	UpdateBugIncrease();
 	UpdateEnemy();
 	UpdateEnemyHp();
 	UpdateBall();
 	UpdateCatch();
 	UpdateRandom();
+	_Bug();
 
 	if (GetKeyboardTrigger(DIK_M))
 		SceneTransition(SCENE_MAP);
@@ -85,6 +90,7 @@ void DrawGame(void)
 	if (player->drawdepth == true)
 	{
 		DrawBG();
+		DrawBugIncrease();
 		DrawBug();
 		DrawPlayerHp();
 		DrawPlayer();
@@ -97,6 +103,7 @@ void DrawGame(void)
 	if (player->drawdepth == false)
 	{
 		DrawBG();
+		DrawBugIncrease();
 		DrawBug();
 		DrawPlayerHp();
 		DrawBall();

@@ -21,8 +21,7 @@ typedef struct
 
 //-----プロトタイプ宣言
 HRESULT InitEnemyClone(void);
-void UninitEnemyClone(void);
-void UpdateEnemyClone(void);
+void _EnemyClone(void);
 void DrawEnemyClone(void);
 
 ENEMYCLONE* GetEnemyClone(void);

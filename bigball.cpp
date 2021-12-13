@@ -5,7 +5,7 @@
 #include "sprite.h"
 
 #include "ball.h"
-#include "bug.h"
+#include "bugincrease.h"
 
 #include "skillrandom.h"
 
@@ -33,7 +33,7 @@ void _BigBall(void)
 {
 	BALL* ball = GetBall();
 	RANDOM* random = GetRandom();
-	BUG* bug = GetBug();
+	BUG* bug = GetBugIncrease();;
 
 	//ランダムで選ばれたら、3s間ボールのサイズが大きくなる
 	for (int i = 0; i < 36; i++)

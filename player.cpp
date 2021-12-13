@@ -29,6 +29,7 @@ PLAYER player;
 HRESULT InitPlayer(void)
 {
 	InitSkill();
+
 	MAP_PLAYER* map_player = GetMapPlayer();
 
 	if (map_player->gamecount == 1)

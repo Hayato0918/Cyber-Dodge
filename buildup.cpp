@@ -5,7 +5,7 @@
 #include "sprite.h"
 
 #include "player.h"
-#include "bug.h"
+#include "bugincrease.h"
 
 #include "skillrandom.h"
 
@@ -32,7 +32,7 @@ HRESULT InitBuildUp(void)
 void _BuildUp(void)
 {
 	PLAYER* player = GetPlayer();
-	BUG* bug = GetBug();
+	BUG* bug = GetBugIncrease();;
 	RANDOM* random = GetRandom();
 
 	//ランダムで4が出たら、3s間キャラのサイズが2倍になる
