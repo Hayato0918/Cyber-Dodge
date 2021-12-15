@@ -28,7 +28,6 @@ void InitMap(void)
 	InitMapPlayer();
 	InitPolygon();
 	InitMapHack();
-	InitBanner();
 }
 
 //-----I—¹ˆ—ŠÖ”
@@ -38,7 +37,6 @@ void UninitMap()
 	UninitMapPlayer();
 	UninitMapHack();
 	UninitPolygon();
-	UninitBanner();
 }
 
 //-----XVˆ—‚ğ‚·‚éŠÖ”
@@ -48,12 +46,13 @@ void UpdateMap(void)
 	UpdateMapPlayer();
 	UpdateMapHack();
 	UpdatePolygon();
-	UpdateBanner();
 
 	if (GetKeyboardTrigger(DIK_1))
 		Save();
 	if (GetKeyboardTrigger(DIK_2))
 		Load();
+	if (GetKeyboardTrigger(DIK_3))
+		SceneTransition(SCENE_DECKMENU);
 }
 
 //-----•`‰æˆ—ŠÖ”
@@ -63,5 +62,4 @@ void DrawMap(void)
 	DrawMapPlayer();
 	DrawPolygon();
 	DrawMapHack();
-	DrawBanner();
 }

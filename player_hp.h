@@ -7,7 +7,7 @@
 //-----Н\СҐСћ
 typedef struct
 {
-	int gaugeonce;		//ГQБ[ГWВћКgСе(x5)
+	int gaugeonce;		//ГQБ[ГWВћКgСе(x8)
 
 	D3DXVECTOR2 framepos;
 	D3DXVECTOR2 framesize;

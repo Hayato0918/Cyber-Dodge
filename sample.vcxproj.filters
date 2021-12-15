@@ -195,6 +195,12 @@
     <ClCompile Include="bugrandom.cpp">
       <Filter>ソース ファイル\bug</Filter>
     </ClCompile>
+    <ClCompile Include="regen.cpp">
+      <Filter>ソース ファイル\bug</Filter>
+    </ClCompile>
+    <ClCompile Include="deckmenu.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="title.h">
@@ -346,6 +352,12 @@
     </ClInclude>
     <ClInclude Include="bugrandom.h">
       <Filter>ヘッダー ファイル\bug</Filter>
+    </ClInclude>
+    <ClInclude Include="regen.h">
+      <Filter>ヘッダー ファイル\bug</Filter>
+    </ClInclude>
+    <ClInclude Include="deckmenu.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

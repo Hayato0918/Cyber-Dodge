@@ -14,9 +14,11 @@
 
 #include "title.h"
 #include "map.h"
+#include "banner.h"
 #include "rest.h"
 #include "game.h"
 #include "clear.h"
+#include "deckmenu.h"
 #include "gameover.h"
 #include "save.h"
 
@@ -57,10 +59,17 @@ void InitScene(SCENE index)
 
 	case SCENE_MAP:
 		InitMap();
+		InitBanner();
+		break;
+
+	case SCENE_DECKMENU:
+		InitDeckMenu();
+		InitBanner();
 		break;
 
 	case SCENE_REST:
 		InitRest();
+		InitBanner();
 		break;
 
 	case SCENE_GAME:
@@ -93,10 +102,17 @@ void UninitScene(void)
 
 	case SCENE_MAP:
 		UninitMap();
+		UninitBanner();
+		break;
+
+	case SCENE_DECKMENU:
+		UninitDeckMenu();
+		UninitBanner();
 		break;
 
 	case SCENE_REST:
 		UninitRest();
+		UninitBanner();
 		break;
 
 	case SCENE_GAME:
@@ -129,10 +145,17 @@ void UpdateScene(void)
 
 	case SCENE_MAP:
 		UpdateMap();
+		UpdateBanner();
+		break;
+
+	case SCENE_DECKMENU:
+		UpdateDeckMenu();
+		UpdateBanner();
 		break;
 
 	case SCENE_REST:
 		UpdateRest();
+		UpdateBanner();
 		break;
 
 	case SCENE_GAME:
@@ -167,10 +190,17 @@ void DrawScene(void)
 
 	case SCENE_MAP:
 		DrawMap();
+		DrawBanner();
+		break;
+
+	case SCENE_DECKMENU:
+		DrawDeckMenu();
+		DrawBanner();
 		break;
 
 	case SCENE_REST:
 		DrawRest();
+		DrawBanner();
 		break;
 
 	case SCENE_GAME:

@@ -47,11 +47,20 @@ void UninitPlayerHp(void)
 //-----更新処理
 void UpdatePlayerHp(void)
 {
+	//-----HPが20%を切ったら
 	if (hp.gaugesize.x <= hp.hpsize * 0.2f)
 		hp.colorcangeflag = true;
 	if (hp.gaugesize.x > hp.hpsize * 0.2f)
 		hp.colorcangeflag = false;
 
+	//-----HPのゲージ上限
+	if (hp.gaugesize.x >= 640.0f)
+	{
+		hp.gaugesize.x = 640.0f;
+	}
+	//-----HPゲージの場所上限
+	if (hp.pos.x <= 100.0f)
+		hp.pos.x = 100.0f;
 }
 
 //-----描画処理

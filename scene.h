@@ -6,6 +6,7 @@ enum SCENE
 	SCENE_NONE,		//シーン処理なし
 	SCENE_TITLE,	//タイトル
 	SCENE_MAP,		//ローグライク部分
+	SCENE_DECKMENU,	//デッキメニュー
 	SCENE_REST,		//休憩マス
 	SCENE_EVENT,	//イベントマス
 	SCENE_SHOP,		//商人（ショップ）マス
