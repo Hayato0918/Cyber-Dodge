@@ -58,6 +58,7 @@ typedef struct
 	bool damagetextureflag;	//描画するかを管理するフラグ
 	bool damageLRflag;		//どっち向いているかを管理するフラグ
 	float damagetexturetime;//アニメーションの時間を管理する変数
+	bool skilluseflag;		//スキルを使ったかどうかを管理するフラグ
 
 	int deathtexture;		//死亡
 

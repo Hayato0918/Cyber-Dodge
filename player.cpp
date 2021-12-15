@@ -81,6 +81,7 @@ HRESULT InitPlayer(void)
 		player.skilltextureflag = false;
 		player.skillLRflag = false;
 		player.skilltexturetime = 0.0f;
+		player.skilluseflag = false;
 
 		player.damage_Ltexture = LoadTexture("data/TEXTURE/player/damage/orgnl_damage_L.png");
 		player.damage_Rtexture = LoadTexture("data/TEXTURE/player/damage/orgnl_damage_R.png");
@@ -289,14 +290,6 @@ void UpdatePlayer(void)
 
 	//-----スキル処理
 	_Skill();
-
-
-
-
-
-
-
-
 
 	//-----描画設定
 	//止まってるとき
@@ -561,14 +554,14 @@ void UpdatePlayer(void)
 	}
 
 	//スキルを使ったとき
-	if (random->active == true)
+	if (player.skilluseflag == true)
 	{
 		player.skilltexturetime = player.skilltexturetime + 1.0f;
 		if (player.rotate == 3)		//右を向いていたら
 		{
 			player.skilltextureflag = true;
 			player.skillLRflag = false;
-			if (player.skilltexturetime < 5)	//
+			if (player.skilltexturetime < 5)
 			{
 				player.u = 0.0f;
 				player.uw = 0.23f;
@@ -591,8 +584,8 @@ void UpdatePlayer(void)
 			if (player.skilltexturetime >= 20)
 			{
 				player.skilltextureflag = false;
+				player.skilluseflag = false;
 				player.skilltexturetime = 0.0f;
-				random->active = false;
 			}
 		}
 		if (player.rotate == 2)
@@ -603,7 +596,7 @@ void UpdatePlayer(void)
 			{
 				player.u = 0.78f;
 				player.uw = 0.22f;
-			}
+				}
 			if (player.skilltexturetime >= 5 && player.skilltexturetime < 10)
 			{
 				player.u = 0.54f;
@@ -622,8 +615,8 @@ void UpdatePlayer(void)
 			if (player.skilltexturetime >= 20)
 			{
 				player.skilltextureflag = false;
+				player.skilluseflag = false;
 				player.skilltexturetime = 0.0f;
-				random->active = false;
 			}
 		}
 	}
@@ -754,8 +747,6 @@ void DrawPlayer(void)
 	{
 		DrawSpriteLeftTop(player.deathtexture, player.pos.x, player.pos.y, player.size.x, player.size.y, player.u, player.v, player.uw, player.vh);
 	}
-
-
 
 	//-----スキル描画
 	DrawSkill();

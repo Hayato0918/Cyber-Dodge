@@ -1,4 +1,4 @@
-//スキル_スピードアップ処理 [ballspeedup.cpp]
+//スキル_ボールスピードアップ処理 [ballspeedup.cpp]	//修正済み
 #include "ballspeedup.h"
 #include "input.h"
 #include "texture.h"
@@ -24,34 +24,52 @@ HRESULT InitBallSpeedUp(void)
 	ballspeedup.beforemove = 0.0f;
 	ballspeedup.use = false;
 	ballspeedup.usegauge = 20;
+	ballspeedup.timeflag = false;
+	ballspeedup.useflag = false;
 
 	return S_OK;
 }
 
-//-----巨大化処理
+//-----ボールスピードアップ処理
 void _BallSpeedUp(void)
 {
 	BALL* ball = GetBall();
 	BUG* bug = GetBugIncrease();
 	RANDOM* random = GetRandom();
 
-	//------プレイヤーがボールを持っている間、0キーを押したら、ボールの速さが+5される
-	for (int i = 0; i < 36; i++)
+	//------ボールの速さを1.5倍する
+	for (int i = 0; i < SKILL_NUM; i++)
 	{
-		if (random[i].code == 1 && random[i].active == true && ballspeedup.use == false && ball->playerhaveflag == true)
+		if (random[i].code == 1 && random[i].active == true && ballspeedup.use == false)
 		{
 			//------速さをもとに戻すときに使う
 			ballspeedup.beforemove = ball->move.x;
 
-			//今向いてる方向に応じて加速するベクトルを変える
-			if (ball->move.x > 0)
-				ball->move.x = ball->move.x + 5;
-			if (ball->move.x < 0)
-				ball->move.x = ball->move.x - 5;
-
 			//-----バグゲージの上昇
 			bug->gaugesize.x = bug->gaugesize.x + ballspeedup.usegauge * bug->gaugeonce;
+
+			//-----効果の適用させるよ
+			ballspeedup.timeflag = true;
+
+			//-----スキルを使用したよ
 			ballspeedup.use = true;
+		}
+	}
+
+	if (ballspeedup.timeflag == true)
+	{
+		//ボールの加速処理
+		if (ballspeedup.useflag == false)
+		{
+			ball->move.x = ball->move.x * 1.5f;
+			ballspeedup.useflag = true;
+		}
+
+		//エネミーヒットフラグがfalseになったら適用を終了する
+		if (ball->enemyhitflag == false)
+		{
+			ball->move.x = ballspeedup.beforemove;
+			ballspeedup.timeflag = false;
 		}
 	}
 }

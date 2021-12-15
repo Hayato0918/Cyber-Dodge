@@ -11,6 +11,7 @@
 #include "catch.h"
 #include "enemy_hp.h"
 #include "enemyAI.h"
+#include "skillrandom.h"
 
 //-----ƒ}ƒNƒ’è‹`
 
@@ -29,6 +30,8 @@ HRESULT InitEnemy(void)
 
 	enemy.atk = 150;
 	enemy.def = 50;
+
+	enemy.getskill = false;
 
 	enemy.u = 0.0f;
 	enemy.v = 0.0f;
@@ -77,6 +80,7 @@ void UpdateEnemy(void)
 	BALL* ball = GetBall();
 	PLAYER* player = GetPlayer();
 	ENEMYHP* enemy_hp = GetEnemyHp();
+	SKILL* skill = GetSkill();
 
 	if (enemy.drawflag == true)
 	{
@@ -136,9 +140,15 @@ void UpdateEnemy(void)
 		}
 	}
 
+	//HP‚ª0‚É‚È‚Á‚½‚çmap‚ÖˆÚ“®‚·‚é
 	if (enemy_hp->gaugesize.x <= 0)
 	{
 		enemy.drawflag = false;
+		if (enemy.getskill == false)
+		{
+			skill->slot = skill->slot + 1;
+			enemy.getskill = true;
+		}
 		SceneTransition(SCENE_MAP);
 	}
 

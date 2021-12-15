@@ -3,6 +3,8 @@
 #include "input.h"
 #include "texture.h"
 #include "sprite.h"
+#include "player.h"
+#include "map_point.h"
 
 #include <stdlib.h>
 #include <time.h>
@@ -11,39 +13,47 @@
 // 
 //-----プロトタイプ宣言
 SKILL skill;
-RANDOM random[40];
+RANDOM random[SKILL_NUM];
 
 //-----グローバル変数
+int t;
 
 //-----初期化処理
 HRESULT InitRandom(void)
 {
+	MAP_PLAYER* map_player = GetMapPlayer();
+
 	skill.usecount = 0;	//今選択されてるスキル
-	skill.num = 14;		//スキルの総数
-	skill.slot = 14;
-	int t;
+	skill.num = 14;		//作成済みスキルの総数
+
+	if (map_player->gamecount == 1)
+	{
+		skill.slot = 3;
+	}
 
 	for (int i = 0; i < skill.slot; i++)
 	{
 		random[i].pos = D3DXVECTOR2(100.0f - i * 10, 120.0f - i * 10);
 		random[i].size = D3DXVECTOR2(90.0f, 130.0f);
 		random[i].drawflag = true;
-
 		random[i].active = false;
-
-		do   //重複チェック
-		{
-			random[i].code = (rand() % skill.num) + 1;
-			for (t = 0; t < i; t++)
-			{
-				if (random[i].code == random[t].code)	//被りがあったらもう一度codeを割り振る
-					break;
-			}
-		} while (i != t);
 	}
 
-	//各スキルにランダムなcodeを割り当てる(重複なし)
-
+	for (int i = 0; i < skill.num; i++)
+	{
+		if (map_player->gamecount == 1)
+		{
+			do   //重複チェック
+			{
+				random[i].code = (rand() % skill.num) + 1;
+				for (t = 0; t < i; t++)
+				{
+					if (random[i].code == random[t].code)	//被りがあったらもう一度codeを割り振る
+						break;
+				}
+			} while (i != t);
+		}
+	}
 
 	return S_OK;
 }
@@ -56,6 +66,8 @@ void UninitRandom(void)
 void UpdateRandom(void)
 {
 	srand((unsigned int)time(NULL));
+
+	PLAYER* player = GetPlayer();
 
 	for (int i = 0; i < skill.slot; i++)
 	{
@@ -91,7 +103,7 @@ void UpdateRandom(void)
 	}
 
 	//「1」をおしたらスキル発動
-	if (GetKeyboardTrigger(DIK_1) && random[skill.usecount].drawflag == true)
+	if (GetKeyboardTrigger(DIK_1) && random[skill.usecount].drawflag == true && player->skilltexturetime == 0.0f)
 	{
 		for (int i = 0; i < skill.slot; i++)
 		{
@@ -99,6 +111,7 @@ void UpdateRandom(void)
 			random[i].pos.y = random[i].pos.y + 10;
 		}
 		random[skill.usecount].active = true;
+		player->skilluseflag = true;
 		random[skill.usecount].drawflag = false;
 		skill.usecount = skill.usecount + 1;
 	}
@@ -107,6 +120,16 @@ void UpdateRandom(void)
 	{
 		for (int i = 0; i < skill.slot; i++)
 		{
+			do   //重複チェック
+			{
+				random[i].code = (rand() % skill.num) + 1;
+				for (t = 0; t < i; t++)
+				{
+					if (random[i].code == random[t].code)	//被りがあったらもう一度codeを割り振る
+						break;
+				}
+			} while (i != t);
+
 			random[i].pos = D3DXVECTOR2(100.0f - i * 10, 120.0f - i * 10);
 			random[i].drawflag = true;
 			random[i].active = false;
@@ -128,4 +151,8 @@ void DrawRandom(void)
 RANDOM* GetRandom()
 {
 	return &random[0];
+}
+SKILL* GetSkill()
+{
+	return &skill;
 }

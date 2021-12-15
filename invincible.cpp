@@ -46,7 +46,6 @@ void _Invincible(void)
 
 	invincible.pos = D3DXVECTOR2(player->pos.x, player->pos.y);
 
-	//9キーを押したら、5s間キャラが無敵になる
 	for (int i = 0; i <36; i++)
 	{
 		if (random[i].code == 10 && random[i].active == true && invincible.use == false)
@@ -63,10 +62,9 @@ void _Invincible(void)
 	if (invincible.time > invincibletime)
 	{
 		invincible.timeflag = false;
-		invincible.time = 0.0f;
 		invincible.use = false;
+		invincible.time = 0.0f;
 	}
-
 }
 
 //-----描画処理

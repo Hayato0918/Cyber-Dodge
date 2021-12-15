@@ -54,10 +54,12 @@ void UpdateBugIncrease(void)
 		ball->playerhavetime = ball->playerhavetime + 1.0f;
 		if (ball->playerhavetime >= gaugeincreasetime && bug.gaugesize.x < 150.f * bug.gaugeonce)
 			bug.gaugesize.x = bug.gaugesize.x + gaugeincrease;
-		else if (bug.gaugesize.x >= 150.f * bug.gaugeonce)
-		{
-			bug.gaugesize.x = 150.f * bug.gaugeonce;
-		}
+	}
+
+	//-----バグゲージの上限を設定
+	if (bug.gaugesize.x >= 150.f * bug.gaugeonce)
+	{
+		bug.gaugesize.x = 150.f * bug.gaugeonce;
 	}
 
 	//-----時間経過によるゲージの減少

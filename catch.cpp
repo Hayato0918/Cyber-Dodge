@@ -1,4 +1,5 @@
 //ƒLƒƒƒbƒ`ˆ— [catch.cpp]
+#include "main.h"
 #include "catch.h"
 #include "input.h"
 #include "texture.h"

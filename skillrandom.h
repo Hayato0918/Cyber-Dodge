@@ -4,6 +4,8 @@
 #include "main.h"
 #include "renderer.h"
 
+#define SKILL_NUM 36
+
 //-----ç\ë¢ëÃ
 typedef struct
 {
@@ -30,3 +32,4 @@ void UpdateRandom(void);
 void DrawRandom(void);
 
 RANDOM* GetRandom();
+SKILL* GetSkill();

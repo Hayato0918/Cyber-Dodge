@@ -35,8 +35,8 @@ void _BallTurnAround(void)
 	BUG* bug = GetBugIncrease();
 	RANDOM* random = GetRandom();
 
-	//-----Cキーを押したら、ボールが敵へ向かっていく
-	for (int i = 0; i < 36; i++)
+	//-----ボールが敵へ向かっていく
+	for (int i = 0; i < SKILL_NUM; i++)
 	{
 		if (random[i].code == 2 && random[i].active == true && ballturnaround.use == false && ball->playerthrowflag == true)
 		{

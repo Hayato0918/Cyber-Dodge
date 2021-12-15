@@ -13,9 +13,9 @@ BG bg;
 //-----èâä˙âªèàóù
 HRESULT InitBG(void)
 {
-	bg.pos = D3DXVECTOR2(0.0f, 240);
-	bg.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT - 360);
-	bg.texture = LoadTexture("data/TEXTURE/gym.png");
+	bg.pos = D3DXVECTOR2(0.0f, 0.0f);
+	bg.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
+	bg.texture = LoadTexture("data/TEXTURE/gym.jpg");
 
 	return S_OK;
 }
