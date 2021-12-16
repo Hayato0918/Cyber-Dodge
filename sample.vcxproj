@@ -145,6 +145,7 @@
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="enemyAI.cpp" />
     <ClCompile Include="enemy_hp.cpp" />
+    <ClCompile Include="enemy_powerdown.cpp" />
     <ClCompile Include="escape.cpp" />
     <ClCompile Include="fade.cpp" />
     <ClCompile Include="game.cpp" />
@@ -160,6 +161,9 @@
     <ClCompile Include="penetration.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="player_hp.cpp" />
+    <ClCompile Include="player_powerup.cpp" />
+    <ClCompile Include="player_regen.cpp" />
+    <ClCompile Include="player_speedup.cpp" />
     <ClCompile Include="regen.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="rest.cpp" />
@@ -199,6 +203,7 @@
     <ClInclude Include="enemy.h" />
     <ClInclude Include="enemyAI.h" />
     <ClInclude Include="enemy_hp.h" />
+    <ClInclude Include="enemy_powerdown.h" />
     <ClInclude Include="escape.h" />
     <ClInclude Include="fade.h" />
     <ClInclude Include="game.h" />
@@ -214,6 +219,9 @@
     <ClInclude Include="penetration.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="player_hp.h" />
+    <ClInclude Include="player_powerup.h" />
+    <ClInclude Include="player_regen.h" />
+    <ClInclude Include="player_speedup.h" />
     <ClInclude Include="regen.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="rest.h" />

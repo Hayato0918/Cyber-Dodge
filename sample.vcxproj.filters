@@ -201,6 +201,18 @@
     <ClCompile Include="deckmenu.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="enemy_powerdown.cpp">
+      <Filter>ソース ファイル\skill</Filter>
+    </ClCompile>
+    <ClCompile Include="player_powerup.cpp">
+      <Filter>ソース ファイル\skill</Filter>
+    </ClCompile>
+    <ClCompile Include="player_speedup.cpp">
+      <Filter>ソース ファイル\skill</Filter>
+    </ClCompile>
+    <ClCompile Include="player_regen.cpp">
+      <Filter>ソース ファイル\skill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="title.h">
@@ -358,6 +370,18 @@
     </ClInclude>
     <ClInclude Include="deckmenu.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy_powerdown.h">
+      <Filter>ヘッダー ファイル\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="player_powerup.h">
+      <Filter>ヘッダー ファイル\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="player_speedup.h">
+      <Filter>ヘッダー ファイル\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="player_regen.h">
+      <Filter>ヘッダー ファイル\skill</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

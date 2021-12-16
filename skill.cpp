@@ -11,9 +11,13 @@
 #include "Billiards.h"
 #include "buildup.h"
 #include "catchjamming.h"
+#include "enemy_powerdown.h"
 #include "invade.h"
 #include "invincible.h"
 #include "penetration.h"
+#include "player_powerup.h"
+#include "player_regen.h"
+#include "player_speedup.h"
 #include "rockcreate.h"
 #include "slowarea.h"
 #include "smallplayer.h"
@@ -51,6 +55,9 @@ HRESULT InitSkill(void)
 	//-----キャッチ不可
 	InitCatchJamming();
 
+	//-----エネミーパワーダウン
+	InitPowerDown();
+
 	//-----不法侵入
 	InitInvade();
 
@@ -59,6 +66,15 @@ HRESULT InitSkill(void)
 
 	//-----貫通
 	InitKantsuu();
+
+	//-----プレイヤーパワーアップ
+	InitPowerUp();
+
+	//-----プレイヤーリジェネ
+	InitPlayerRegen();
+
+	//-----プレイヤースピードアップ
+	InitSpeedUp();
 
 	//----岩石生成
 	InitGanseki();
@@ -98,6 +114,9 @@ void _Skill(void)
 	//-----キャッチ不可
 	_CatchJamming();
 
+	//-----エネミーパワーダウン
+	_PowerDown();
+
 	//-----不法侵入
 	_Invade();
 
@@ -106,6 +125,15 @@ void _Skill(void)
 
 	//-----貫通
 	_Kantsuu();
+
+	//-----プレイヤーパワーアップ
+	_PowerUp();
+
+	//-----プレイヤーリジェネ
+	_PlayerRegen();
+
+	//-----プレイヤースピードアップ
+	_SpeedUp();
 
 	//----岩石生成
 	_Ganseki();
