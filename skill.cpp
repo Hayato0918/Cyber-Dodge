@@ -14,6 +14,7 @@
 #include "enemy_powerdown.h"
 #include "invade.h"
 #include "invincible.h"
+#include "mindhack.h"
 #include "penetration.h"
 #include "player_powerup.h"
 #include "player_regen.h"
@@ -21,6 +22,7 @@
 #include "rockcreate.h"
 #include "slowarea.h"
 #include "smallplayer.h"
+#include "timestop.h"
 
 //-----マクロ定義
 
@@ -64,6 +66,9 @@ HRESULT InitSkill(void)
 	//-----無敵
 	InitInvincible();
 
+	//-----マインドハック
+	InitMindhack();
+
 	//-----貫通
 	InitKantsuu();
 
@@ -84,6 +89,9 @@ HRESULT InitSkill(void)
 
 	//-----プレイヤー縮小
 	InitSmallPlayer();
+
+	//-----タイムストップ
+	InitTimestop();
 
 	return S_OK;
 }
@@ -123,6 +131,9 @@ void _Skill(void)
 	//-----無敵
 	_Invincible();
 
+	//-----マインドハック
+	_Mindhack();
+
 	//-----貫通
 	_Kantsuu();
 
@@ -143,6 +154,9 @@ void _Skill(void)
 
 	//-----プレイヤー縮小
 	_SmallPlayer();
+
+	//-----タイムストップ
+	_Timestop();
 }
 
 void DrawSkill(void)

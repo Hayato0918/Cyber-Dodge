@@ -29,8 +29,8 @@ HRESULT InitCatch(void)
 	Catch.playercoltime = 0.0f;
 
 	Catch.enemypos = D3DXVECTOR2(0.0f, 0.0f);
-	Catch.enemyflag = false;
-	Catch.enemyintervalflag = false;
+	Catch.enemyflag = 0;
+	Catch.enemyintervalflag = 0;
 	Catch.enemyintervaltime = 0.0f;
 	Catch.enemycolflag = false;
 	Catch.enemycoltime = 0.0f;
@@ -69,7 +69,7 @@ void UpdateCatch(void)
 	}
 
 	//-----エネミーの向きに応じてキャッチの方向を決める
-	if (Catch.enemyflag == true)
+	if (Catch.enemyflag == 1)
 	{
 		if (enemy->rotate == 0)		//上
 			Catch.enemypos = D3DXVECTOR2(enemy->pos.x + enemy->size.x * 0.5f, enemy->pos.y - ball->size.y * 0.5f);
@@ -88,7 +88,7 @@ void DrawCatch(void)
 
 	if(Catch.playerflag == true)
 	DrawSpriteColor(Catch.texture, Catch.playerpos.x, Catch.playerpos.y, Catch.size.x, Catch.size.y, 0.0f, 0.0f, 1.0f, 1.0f, Catch.color);
-	if(Catch.enemyflag == true)
+	if(Catch.enemyflag == 1)
 		DrawSpriteColor(Catch.texture, Catch.enemypos.x, Catch.enemypos.y, Catch.size.x, Catch.size.y, 0.0f, 0.0f, 1.0f, 1.0f, Catch.color);
 }
 
@@ -154,29 +154,29 @@ void M_Catch(void)
 	BALL* ball = GetBall();
 
 	//-----キャッチ
-	if (Catch.enemyintervalflag == false && ball->enemyhaveflag == false)
+	if (Catch.enemyintervalflag == 0 && ball->enemyhaveflag == 0)
 	{
-			Catch.enemyflag = true;
-			Catch.enemyintervalflag = true;
+			Catch.enemyflag = 1;
+			Catch.enemyintervalflag = 1;
 	}
 	//-----インターバル(1s)
-	if (Catch.enemyintervalflag == true)
+	if (Catch.enemyintervalflag == 1)
 		Catch.enemyintervaltime = Catch.enemyintervaltime + 1.0f;
 	if (Catch.enemyintervaltime > catchinterval)
 	{
-		Catch.enemyintervalflag = false;
+		Catch.enemyintervalflag = 0;
 		Catch.enemyintervaltime = 0.0f;
 	}
 	//-----キャッチの判定時間(0.5s)
-	if (Catch.enemyflag == true)
+	if (Catch.enemyflag == 1)
 		Catch.enemycoltime = Catch.enemycoltime + 1.0f;
 	if (Catch.enemycoltime > catchtime)
 	{
-		Catch.enemyflag = false;
+		Catch.enemyflag = 0;
 		Catch.enemycoltime = 0.0f;
 	}
 	//-----キャッチモーション中にボールがキャッチ判定内に入ったら
-	if (Catch.enemyflag == true)
+	if (Catch.enemyflag == 1)
 	{
 		if (Catch.enemypos.x + Catch.size.x > ball->pos.x && Catch.enemypos.x < ball->pos.x + ball->size.x)
 		{

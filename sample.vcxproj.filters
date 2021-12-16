@@ -213,6 +213,12 @@
     <ClCompile Include="player_regen.cpp">
       <Filter>ソース ファイル\skill</Filter>
     </ClCompile>
+    <ClCompile Include="timestop.cpp">
+      <Filter>ソース ファイル\skill</Filter>
+    </ClCompile>
+    <ClCompile Include="mindhack.cpp">
+      <Filter>ソース ファイル\skill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="title.h">
@@ -381,6 +387,12 @@
       <Filter>ヘッダー ファイル\skill</Filter>
     </ClInclude>
     <ClInclude Include="player_regen.h">
+      <Filter>ヘッダー ファイル\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="timestop.h">
+      <Filter>ヘッダー ファイル\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="mindhack.h">
       <Filter>ヘッダー ファイル\skill</Filter>
     </ClInclude>
   </ItemGroup>

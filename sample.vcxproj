@@ -158,6 +158,7 @@
     <ClCompile Include="map_point.cpp" />
     <ClCompile Include="map_hack.cpp" />
     <ClCompile Include="map_line.cpp" />
+    <ClCompile Include="mindhack.cpp" />
     <ClCompile Include="penetration.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="player_hp.cpp" />
@@ -179,6 +180,7 @@
     <ClCompile Include="ballspeedup.cpp" />
     <ClCompile Include="sprite.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="timestop.cpp" />
     <ClCompile Include="title.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -216,6 +218,7 @@
     <ClInclude Include="map_point.h" />
     <ClInclude Include="map_hack.h" />
     <ClInclude Include="map_line.h" />
+    <ClInclude Include="mindhack.h" />
     <ClInclude Include="penetration.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="player_hp.h" />
@@ -237,6 +240,7 @@
     <ClInclude Include="ballspeedup.h" />
     <ClInclude Include="sprite.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="timestop.h" />
     <ClInclude Include="title.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

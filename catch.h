@@ -18,8 +18,8 @@ typedef struct
 	bool playercolflag;	//プレイヤーがボールをキャッチしているかを管理するフラグ
 
 	D3DXVECTOR2 enemypos;	//エネミー側のキャッチゾーンの位置
-	bool enemyflag;		//エネミーがキャッチ動作をしているかを管理するフラグ
-	bool enemyintervalflag;	//エネミーのキャッチのインターバルを管理するフラグ
+	int enemyflag;		//エネミーがキャッチ動作をしているかを管理するフラグ
+	int enemyintervalflag;	//エネミーのキャッチのインターバルを管理するフラグ
 	float enemyintervaltime;	//エネミーのキャッチのインターバル秒を管理する変数
 	float enemycoltime;	//エネミーのキャッチの当たり判定時間を管理する変数
 	bool enemycolflag;	//エネミーがボールをキャッチしているかを管理するフラグ
