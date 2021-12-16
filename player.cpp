@@ -41,7 +41,7 @@ HRESULT InitPlayer(void)
 		player.drawflag = true;
 
 		player.atk = 150;
-		player.def = 50;
+		player.def = 0;
 
 		player.u = 0.0f;
 		player.v = 0.0f;
@@ -92,8 +92,6 @@ HRESULT InitPlayer(void)
 		player.deathtexture = LoadTexture("data/TEXTURE/player/death/orgnl_death.png");
 
 		player.drawdepth = false;
-
-		//InitReverse();
 	}
 
 	return S_OK;
@@ -115,8 +113,6 @@ void UpdatePlayer(void)
 	ENEMY* enemy = GetEnemy();
 
 	REVERSE* reverse = GetReverse();
-
-	//_Reverse();
 
 	//padのとき
 	if (PADUSE == 0)
@@ -210,14 +206,15 @@ void UpdatePlayer(void)
 			player.walktextureflag = false;
 	}
 
+	//プレイヤーとボールの描画順を整える計算
 	if (player.pos.y + player.size.y - ball->size.y >= ball->pos.y)
 		player.drawdepth = false;
 	if (player.pos.y + player.size.y - ball->size.y < ball->pos.y)
 		player.drawdepth = true;
 
 	//-----コート外に出ない処理
-	if (player.pos.y <= 180.f - player.size.y * 0.5f)	//上
-		player.pos.y = 180.f - player.size.y * 0.5f;
+	if (player.pos.y <= 230.f - player.size.y * 0.5f)	//上
+		player.pos.y = 230.f - player.size.y * 0.5f;
 	if (player.pos.y >= SCREEN_HEIGHT - player.size.y - 15 -120)	//下
 		player.pos.y = SCREEN_HEIGHT - player.size.y - 15 -120;
 	if (player.pos.x <= 0 + 15)		//左

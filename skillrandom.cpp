@@ -28,7 +28,7 @@ HRESULT InitRandom(void)
 
 	if (map_player->gamecount == 1)
 	{
-		skill.slot = 14;
+		skill.slot = 3;
 	}
 
 	for (int i = 0; i < skill.slot; i++)

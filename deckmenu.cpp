@@ -20,11 +20,13 @@ SELECTION g_Selection;
 NUMBER g_number;
 
 //-----グローバル変数
+int a, b;
 
 //-----初期化処理
 HRESULT InitDeckMenu(void)
 {
 	RANDOM* random = GetRandom();
+	SKILL* skill = GetSkill();
 
 	for (int y = 0; y < ynum; y++)
 	{
@@ -32,20 +34,90 @@ HRESULT InitDeckMenu(void)
 		{
 			deckmenu_card[y][x].pos = D3DXVECTOR2(120.0f + CARD_SPACE_WIDTH * x, 120.0f + CARD_SPACE_HIGHT * y + CARD_SPACE_HIGHT * y * 0.3f);
 			deckmenu_card[y][x].size = D3DXVECTOR2(200.0f, 300.0f);
-			for (int i = 0; i < 14; i++)
-			{
-				//if (random[i].code == 1)
-				//	deckmenu_card[y][x].texture = LoadTexture("data/TEXTURE/skill/speedup.png");
-				//if (random[i].code == 2)
-				//	deckmenu_card[y][x].texture = LoadTexture("data/TEXTURE/skill/turnaround.png");
-				//if (random[i].code == 3)
-				//	deckmenu_card[y][x].texture = LoadTexture("data/TEXTURE/skill/barrier.png");
-				//if (random[i].code == 4)
-				//	deckmenu_card[y][x].texture = LoadTexture("data/TEXTURE/skill/baseball.png");
-				//if (random[i].code == 5)
-				//	deckmenu_card[y][x].texture = LoadTexture("data/TEXTURE/skill/bigball.png");
-			}
+			deckmenu_card[y][x].drawflag = false;
+			deckmenu_card[y][x].nottexture = LoadTexture("data/TEXTURE/deckmenu/notget.png");
 		}
+	}
+
+	for (int i = 0; i < skill->slot; i++)
+	{
+		if (b == xnum)
+		{
+			a = a + 1;
+			b = 0;
+		}
+
+		if (random[i].code == 1)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/speedup.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		if (random[i].code == 2)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/turnaround.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		if (random[i].code == 3)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/barrier.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		if (random[i].code == 4)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/baseball.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		if (random[i].code == 5)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/bigball.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		if (random[i].code == 6)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/billiards.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		if (random[i].code == 7)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/buildup.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		if (random[i].code == 8)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/catchjamming.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		if (random[i].code == 9)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/invade.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		if (random[i].code == 10)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/invincible.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		if (random[i].code == 11)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/penetration.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		if (random[i].code == 12)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/rockcreate.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		if (random[i].code == 13)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/slowarea.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		if (random[i].code == 14)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/smallplayer.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		b = b + 1;
 	}
 
 	deckmenu.pos = D3DXVECTOR2(0.0f, 0.0f);
@@ -166,8 +238,15 @@ void DrawDeckMenu(void)
 	for (int y = 0; y < ynum; y++)
 	{
 		for (int x = 0; x < xnum; x++)
+		{
+			if(deckmenu_card[y][x].drawflag == true)
 			DrawSpriteLeftTop(deckmenu_card[y][x].texture, deckmenu_card[y][x].pos.x, deckmenu_card[y][x].pos.y,
-								deckmenu_card[y][x].size.x, deckmenu_card[x][y].size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+				deckmenu_card[y][x].size.x, deckmenu_card[x][y].size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+
+			if (deckmenu_card[y][x].drawflag == false)
+				DrawSpriteLeftTop(deckmenu_card[y][x].nottexture, deckmenu_card[y][x].pos.x, deckmenu_card[y][x].pos.y,
+					deckmenu_card[y][x].size.x, deckmenu_card[x][y].size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+		}
 	}
 	//セレクトフレーム描画
 	DrawSpriteLeftTop(g_Selection.texture, g_Selection.pos.x, g_Selection.pos.y, g_Selection.size.x, g_Selection.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
