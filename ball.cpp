@@ -1,13 +1,18 @@
 //ボール処理 [ball.cpp]
 #include "ball.h"
+//システム.h
 #include "input.h"
 #include "texture.h"
 #include "sprite.h"
 #include "fade.h"
-
+//プレイヤー.h
 #include "player.h"
-#include "enemy.h"
 #include "invincible.h"
+//エネミー.h
+#include "firewall.h"
+#include "slime.h"
+//
+#include "map_point.h"
 
 //-----マクロ定義
 
@@ -15,6 +20,7 @@
 BALL ball;
 
 //-----グローバル変数
+PLAYER* player = GetPlayer();
 
 //-----初期化処理
 HRESULT InitBall(void)
@@ -51,7 +57,9 @@ void UninitBall(void)
 void UpdateBall(void)
 {
 	PLAYER* player = GetPlayer();
-	ENEMY* enemy = GetEnemy();
+	MAP_PLAYER* map_player = GetMapPlayer();
+	FIREWALL* firewall = GetFireWall();
+	SLIME* slime = GetSlime();
 
 	//-----ボールの座標を決める(Player)
 	if (ball.throwflag == false && ball.playerhaveflag == true)		//ボールが飛んでいないとき&&プレイヤーが持ってるとき
@@ -68,18 +76,38 @@ void UpdateBall(void)
 		}
 	}
 
-	//-----ボールの座標を決める(Enemy)
-	if (ball.throwflag == false && ball.enemyhaveflag == true)		//ボールが飛んでいないとき&&エネミーが持ってるとき
+	//-----ボールの座標を決める(slime)
+	if (map_player->encount == 1)
 	{
-		if (enemy->rotate == 2)
+		if (ball.throwflag == false && ball.enemyhaveflag == true)		//ボールが飛んでいないとき&&エネミーが持ってるとき
 		{
-			ball.pos = D3DXVECTOR2(enemy->pos.x - ball.size.x * 0.5f, enemy->pos.y + enemy->size.y * 0.5f - ball.size.y * 0.5f);
-			ball.throwway = -1;
+			if (slime->rotate == 2)
+			{
+				ball.pos = D3DXVECTOR2(slime->pos.x - ball.size.x * 0.5f, slime->pos.y + slime->size.y * 0.5f - ball.size.y * 0.5f);
+				ball.throwway = -1;
+			}
+			if (slime->rotate == 3)
+			{
+				ball.pos = D3DXVECTOR2(slime->pos.x + ball.size.x * 0.5f, slime->pos.y + slime->size.y * 0.5f - ball.size.y * 0.5f);
+				ball.throwway = 1;
+			}
 		}
-		if (enemy->rotate == 3 || enemy->rotate == 0 || enemy->rotate == 1)
+	}
+	//-----ボールの座標を決める(FireWall)
+	if (map_player->encount == 2)
+	{
+		if (ball.throwflag == false && ball.enemyhaveflag == true)		//ボールが飛んでいないとき&&エネミーが持ってるとき
 		{
-			ball.pos = D3DXVECTOR2(enemy->pos.x + ball.size.x * 0.5f, enemy->pos.y + enemy->size.y * 0.5f - ball.size.y * 0.5f);
-			ball.throwway = 1;
+			if (firewall->rotate == 2)
+			{
+				ball.pos = D3DXVECTOR2(firewall->pos.x - ball.size.x * 0.5f, firewall->pos.y + firewall->size.y * 0.5f - ball.size.y * 0.5f);
+				ball.throwway = -1;
+			}
+			if (firewall->rotate == 3 || firewall->rotate == 0 || firewall->rotate == 1)
+			{
+				ball.pos = D3DXVECTOR2(firewall->pos.x + ball.size.x * 0.5f, firewall->pos.y + firewall->size.y * 0.5f - ball.size.y * 0.5f);
+				ball.throwway = 1;
+			}
 		}
 	}
 
@@ -160,27 +188,24 @@ void DrawBall(void)
 //-----エネミーが投げる処理
 void E_Throw(void)
 {
-	ENEMY* enemy = GetEnemy();
 	INVINCIBLE* invincible = GetInvincible();
 
 	if (ball.throwflag == false && ball.enemyhaveflag == true)
 	{
-			ball.fallpos = enemy->pos.y + enemy->size.y;
-			ball.fallflag = false;
-			ball.enemyhaveflag = false;
-			if (invincible->use == true) //-----無敵スキルを使ってるか？どうかの判定
-				ball.playerhitflag = false;
-			if (invincible->use == false)
-				ball.playerhitflag = true;
-			ball.throwflag = true;
+		ball.fallpos = player->pos.y + player->size.y;
+		ball.fallflag = false;
+		ball.enemyhaveflag = false;
+		if (invincible->use == true) //-----無敵スキルを使ってるか？どうかの判定
+			ball.playerhitflag = false;
+		if (invincible->use == false)
+			ball.playerhitflag = true;
+		ball.throwflag = true;
 	}
 }
 
 //プレイヤーが投げる処理
 void P_Throw(void)
 {
-	PLAYER* player = GetPlayer();
-
 	if (PADUSE == 0)
 	{
 		//-----プレイヤーの投げ動作

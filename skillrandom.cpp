@@ -24,11 +24,17 @@ HRESULT InitRandom(void)
 	MAP_PLAYER* map_player = GetMapPlayer();
 
 	skill.usecount = 0;	//今選択されてるスキル
-	skill.num = 16;		//作成済みスキルの総数
+	skill.num = 14;		//作成済みスキルの総数
 
 	if (map_player->gamecount == 1)
 	{
 		skill.slot = 3;
+	}
+
+	for (int i = 0; i < skill.num; i++)
+	{
+		random[i].drawflag = false;
+		random[i].haveflag = false;
 	}
 
 	for (int i = 0; i < skill.slot; i++)
@@ -37,11 +43,12 @@ HRESULT InitRandom(void)
 		random[i].size = D3DXVECTOR2(90.0f, 130.0f);
 		random[i].drawflag = true;
 		random[i].active = false;
+		random[i].haveflag = true;
 	}
 
-	for (int i = 0; i < skill.num; i++)
+	if (map_player->gamecount == 1)
 	{
-		if (map_player->gamecount == 1)
+		for (int i = 0; i < skill.num; i++)
 		{
 			do   //重複チェック
 			{
@@ -55,23 +62,9 @@ HRESULT InitRandom(void)
 		}
 	}
 
-	return S_OK;
-}
-
-void UninitRandom(void)
-{
-
-}
-
-void UpdateRandom(void)
-{
-	srand((unsigned int)time(NULL));
-
-	PLAYER* player = GetPlayer();
-
 	for (int i = 0; i < skill.slot; i++)
 	{
-			//割り当てられたcodeに対応したテクスチャを表示
+		//割り当てられたcodeに対応したテクスチャを表示
 		if (random[i].code == 1)
 			random[i].texture = LoadTexture("data/TEXTURE/skill/speedup.png");
 		if (random[i].code == 2)
@@ -101,6 +94,20 @@ void UpdateRandom(void)
 		if (random[i].code == 14)
 			random[i].texture = LoadTexture("data/TEXTURE/skill/smallplayer.png");
 	}
+
+	return S_OK;
+}
+
+void UninitRandom(void)
+{
+
+}
+
+void UpdateRandom(void)
+{
+	srand((unsigned int)time(NULL));
+
+	PLAYER* player = GetPlayer();
 
 	//「1」をおしたらスキル発動
 	if (GetKeyboardTrigger(DIK_1) && random[skill.usecount].drawflag == true && player->skilltexturetime == 0.0f)

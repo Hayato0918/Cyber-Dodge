@@ -16,6 +16,7 @@ typedef struct
 	int code; //割り当てられた乱数を管理する変数
 	bool active;	//スキルを使うかどうかを管理するフラグ
 	float usetime;
+	bool haveflag;	//スキルを所持しているかを管理するフラグ
 }RANDOM;
 
 typedef struct

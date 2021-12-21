@@ -1,5 +1,4 @@
-//エネミーHP処理 [enemy_hp.h]
-
+//スライムHP処理 [enemy_hp.h]
 #pragma once
 #include "main.h"
 #include "renderer.h"
@@ -20,12 +19,12 @@ typedef struct
 
 	float hpsize;	//HPの初期量を保持する変数
 	bool colorcangeflag;	//HPの色を管理するフラグ
-}ENEMYHP;
+}SLIMEHP;
 
 //-----プロトタイプ宣言
-HRESULT InitEnemyHp(void);
-void UninitEnemyHp(void);
-void UpdateEnemyHp(void);
-void DrawEnemyHp(void);
+HRESULT InitSlimeHp(void);
+void UninitSlimeHp(void);
+void UpdateSlimeHp(void);
+void DrawSlimeHp(void);
 
-ENEMYHP* GetEnemyHp();
+SLIMEHP* GetSlimeHp();

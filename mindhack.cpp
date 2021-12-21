@@ -1,11 +1,11 @@
 //スキル_マインドハック処理 [mindhack.cpp]
 #include "mindhack.h"
+//システム.h
 #include "input.h"
-#include "texture.h"
-#include "sprite.h"
+//エネミー.h
+#include "firewall.h"
 
 #include "player.h"
-#include "enemy.h"
 #include "bugincrease.h"
 #include "catch.h"
 #include "reverse.h"
@@ -35,7 +35,7 @@ HRESULT InitMindhack(void)
 void _Mindhack(void)
 {
 	PLAYER* player = GetPlayer();
-	ENEMY* enemy = GetEnemy();
+	FIREWALL* firewall = GetFireWall();
 	BUG* bug = GetBugIncrease();
 	RANDOM* random = GetRandom();
 	REVERSE* reverse = GetReverse();
@@ -54,38 +54,38 @@ void _Mindhack(void)
 		if (GetKeyboardPress(DIK_W))	//上
 		{
 			if (reverse->use == false)
-				enemy->pos.y -= player->move.y;
+				firewall->pos.y -= player->move.y;
 			if (reverse->use == true)
-				enemy->pos.y += player->move.y;
+				firewall->pos.y += player->move.y;
 		}
 		if (GetKeyboardPress(DIK_S))	//下
 		{
 			if (reverse->use == false)
-				enemy->pos.y += player->move.y;
+				firewall->pos.y += player->move.y;
 			if (reverse->use == true)
-				enemy->pos.y -= player->move.y;
+				firewall->pos.y -= player->move.y;
 		}
 		if (GetKeyboardPress(DIK_A))	//左
 		{
 			if (reverse->use == false)
-				enemy->pos.x -= player->move.x;
+				firewall->pos.x -= player->move.x;
 			if (reverse->use == true)
-				enemy->pos.x += player->move.x;
+				firewall->pos.x += player->move.x;
 
-			enemy->rotate = 2;		//左向きに更新
+			firewall->rotate = 2;		//左向きに更新
 
-			enemy->walktextureflag = true;		//テクスチャの切り替え
+			firewall->walktextureflag = true;		//テクスチャの切り替え
 		}
 		if (GetKeyboardPress(DIK_D))	//右
 		{
 			if (reverse->use == false)
-				enemy->pos.x += player->move.x;
+				firewall->pos.x += player->move.x;
 			if (reverse->use == true)
-				enemy->pos.x -= player->move.x;
+				firewall->pos.x -= player->move.x;
 
-			enemy->rotate = 3;		//右向きに更新
+			firewall->rotate = 3;		//右向きに更新
 
-			enemy->walktextureflag = true;		//テクスチャの切り替え
+			firewall->walktextureflag = true;		//テクスチャの切り替え
 		}
 	}
 

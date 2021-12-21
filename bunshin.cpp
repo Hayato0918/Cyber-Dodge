@@ -1,8 +1,10 @@
+//スキル_分身処理[bunshin.cpp]
 #include "bunshin.h"
-#include "enemy.h"
-#include "input.h"
+//システム.h
 #include "texture.h"
 #include "sprite.h"
+//エネミー.h
+#include "firewall.h"
 
 #include "ball.h"
 #include "catch.h"
@@ -16,17 +18,17 @@
 
 //-----グローバル変数
 static ENEMYCLONE g_EnemyClone[ENEMYCLONE_MAX];
+FIREWALL* firewall = GetFireWall();
 
-ENEMY* enemy = GetEnemy();
 //-----初期化処理
 HRESULT InitEnemyClone(void)
 {
 	for (int i = 0; i < ENEMYCLONE_MAX; i++)
 	{
-		g_EnemyClone[i].pos = D3DXVECTOR2(enemy->pos.x + 110.0f, enemy->pos.y + 240.0f);
-		g_EnemyClone[i].size = D3DXVECTOR2(enemy->size.x, enemy->size.y);
-		g_EnemyClone[i].move = D3DXVECTOR2(enemy->move.x, enemy->move.y);
-		g_EnemyClone[i].rotate = enemy->rotate;
+		g_EnemyClone[i].pos = D3DXVECTOR2(firewall->pos.x + 110.0f, firewall->pos.y + 240.0f);
+		g_EnemyClone[i].size = D3DXVECTOR2(firewall->size.x, firewall->size.y);
+		g_EnemyClone[i].move = D3DXVECTOR2(firewall->move.x, firewall->move.y);
+		g_EnemyClone[i].rotate = firewall->rotate;
 
 		g_EnemyClone[i].drawflag = false;
 	}
@@ -42,12 +44,11 @@ void _EnemyClone(void)
 	
 	if (bugrandom->code == 2 && bug->gaugesize.x >= 100)
 	{
-
 		for (int i = 0; i < ENEMYCLONE_MAX; i++)
 		{
 			if (bug->gaugesize.x >= 100)
 			{
-				g_EnemyClone[i].drawflag = enemy->drawflag;
+				g_EnemyClone[i].drawflag = firewall->drawflag;
 			}
 
 			//-----コート外に出ない処理

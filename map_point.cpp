@@ -38,6 +38,8 @@ HRESULT InitMapPoint(void)
 
 		map_texture = LoadTexture("data/TEXTURE/map_point.png");
 
+		srand((unsigned int)time(NULL));
+
 		for (int y = 0; y < map_ynum; y++)
 		{
 			for (int x = 0; x < map_xnum; x++)
@@ -124,8 +126,6 @@ void UninitMapPoint(void)
 //-----更新処理
 void UpdateMapPoint(void)
 {
-	srand((unsigned int)time(NULL));
-
 	MAP_HACK* map_hack = GetMapHack();
 
 	//マスをハッキングして、任意のマスに変える
@@ -420,6 +420,8 @@ void UpdateMapPlayer(void)
 				if (map[map_player.UDcount][map_player.LRcount].randomcode == 1)	//通常敵マス
 				{
 					map_player.gamecount = map_player.gamecount + 1;
+					//map_player.encount = (rand() % 2) + 1;
+					map_player.encount = 1;
 					SceneTransition(SCENE_GAME);
 				}
 				if (map[map_player.UDcount][map_player.LRcount].randomcode == 2)	//強敵マス

@@ -1,13 +1,15 @@
 //スキル_岩石生成 [rockcreate.cpp]
 #include "rockcreate.h"
-#include "input.h"
-#include "texture.h"
+//システム.h
+#include "Texture.h"
 #include "sprite.h"
+//エネミー.h
+#include "firewall.h"
+
 #include "player.h"
 #include "bugincrease.h"
 #include "ball.h"
 #include "skillrandom.h"
-#include "enemy.h"
 #include "penetration.h"
 
 //-----マクロ定義
@@ -39,7 +41,7 @@ void _Ganseki(void)
 	RANDOM* random = GetRandom();
 	BUG* bug = GetBugIncrease();;
 	BALL* ball = GetBall();
-	ENEMY* enemy = GetEnemy();
+	FIREWALL* firewall = GetFireWall();
 	KANTSUU* kantsuu = GetKantsuu();
 
 	//-----発動から30秒間、フィールドに残る障害物として岩石を生成する
@@ -90,14 +92,14 @@ void _Ganseki(void)
 		}
 
 		//エネミーコリジョン
-		if (ganseki.pos.x < enemy->pos.x + enemy->size.x && ganseki.pos.x + ganseki.size.x * 0.8f > enemy->pos.x)
+		if (ganseki.pos.x < firewall->pos.x + firewall->size.x && ganseki.pos.x + ganseki.size.x * 0.8f > firewall->pos.x)
 		{
-			if (ganseki.pos.y + ganseki.size.y * 0.2f < enemy->pos.y + enemy->size.y && ganseki.pos.y + ganseki.size.y * 0.8f > enemy->pos.y)
+			if (ganseki.pos.y + ganseki.size.y * 0.2f < firewall->pos.y + firewall->size.y && ganseki.pos.y + ganseki.size.y * 0.8f > firewall->pos.y)
 			{
-				if (enemy->move.x < 0)
-					enemy->pos.x -= 2.0f;
-				if (enemy->move.x > 0)
-					enemy->pos.x += 2.0f;
+				if (firewall->move.x < 0)
+					firewall->pos.x -= 2.0f;
+				if (firewall->move.x > 0)
+					firewall->pos.x += 2.0f;
 			}
 		}
 	}

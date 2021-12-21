@@ -43,6 +43,48 @@
     <Filter Include="ヘッダー ファイル\map\rest">
       <UniqueIdentifier>{1bed6fc3-6a7b-4855-8059-b7c1b3570c54}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\enemy">
+      <UniqueIdentifier>{826c0d9e-5555-4203-80b0-8f44481ac5b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\enemy">
+      <UniqueIdentifier>{ca44611e-63bc-4827-bbd5-161df03fdd8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\enemy\slime">
+      <UniqueIdentifier>{e5ba0d12-df97-41ef-889d-e5f536a70fc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\enemy\slime">
+      <UniqueIdentifier>{5f430b7e-058f-43de-af62-05fc57af43fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\player">
+      <UniqueIdentifier>{75956a8b-83be-41a7-96bd-aa91a7c95223}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\player">
+      <UniqueIdentifier>{b1c4fad0-70f4-49cd-a328-64ba2d65f263}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\enemy\firewall">
+      <UniqueIdentifier>{9382b22f-c9be-44a5-8ed7-caaaf4b11d5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\enemy\firewall">
+      <UniqueIdentifier>{f01e17e5-8886-4e47-9b9a-4587e0e309a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\bug\system">
+      <UniqueIdentifier>{e01e908a-1b08-4bcb-8242-b43ab5cbf998}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\bug\system">
+      <UniqueIdentifier>{03f3cf86-74b9-425d-83ed-275ba4f7d858}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\skill\system">
+      <UniqueIdentifier>{b98dfd28-0120-49e9-964d-33a804713d26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\map\shop">
+      <UniqueIdentifier>{40b51418-aec3-429c-825f-7964ca823e26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\map\shop">
+      <UniqueIdentifier>{424c18c4-b5a0-42d2-a513-fcde0383be88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\skill\system">
+      <UniqueIdentifier>{07550639-b5d6-41a2-a984-146d2a862922}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="title.cpp">
@@ -78,9 +120,6 @@
     <ClCompile Include="bg.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="player.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="ball.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -95,9 +134,6 @@
     </ClCompile>
     <ClCompile Include="map_point.cpp">
       <Filter>ソース ファイル\map</Filter>
-    </ClCompile>
-    <ClCompile Include="enemy.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="ballspeedup.cpp">
       <Filter>ソース ファイル\skill</Filter>
@@ -123,17 +159,11 @@
     <ClCompile Include="baseball.cpp">
       <Filter>ソース ファイル\skill</Filter>
     </ClCompile>
-    <ClCompile Include="enemyAI.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="invincible.cpp">
       <Filter>ソース ファイル\skill</Filter>
     </ClCompile>
     <ClCompile Include="ballturnaround.cpp">
       <Filter>ソース ファイル\skill</Filter>
-    </ClCompile>
-    <ClCompile Include="player_hp.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="bunshin.cpp">
       <Filter>ソース ファイル\bug</Filter>
@@ -141,14 +171,8 @@
     <ClCompile Include="reverse.cpp">
       <Filter>ソース ファイル\bug</Filter>
     </ClCompile>
-    <ClCompile Include="skillrandom.cpp">
-      <Filter>ソース ファイル\skill</Filter>
-    </ClCompile>
     <ClCompile Include="anten.cpp">
       <Filter>ソース ファイル\bug</Filter>
-    </ClCompile>
-    <ClCompile Include="enemy_hp.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="clear.cpp">
       <Filter>ソース ファイル</Filter>
@@ -183,18 +207,6 @@
     <ClCompile Include="penetration.cpp">
       <Filter>ソース ファイル\skill</Filter>
     </ClCompile>
-    <ClCompile Include="skill.cpp">
-      <Filter>ソース ファイル\skill</Filter>
-    </ClCompile>
-    <ClCompile Include="bugincrease.cpp">
-      <Filter>ソース ファイル\bug</Filter>
-    </ClCompile>
-    <ClCompile Include="bug.cpp">
-      <Filter>ソース ファイル\bug</Filter>
-    </ClCompile>
-    <ClCompile Include="bugrandom.cpp">
-      <Filter>ソース ファイル\bug</Filter>
-    </ClCompile>
     <ClCompile Include="regen.cpp">
       <Filter>ソース ファイル\bug</Filter>
     </ClCompile>
@@ -218,6 +230,84 @@
     </ClCompile>
     <ClCompile Include="mindhack.cpp">
       <Filter>ソース ファイル\skill</Filter>
+    </ClCompile>
+    <ClCompile Include="slime.cpp">
+      <Filter>ソース ファイル\enemy\slime</Filter>
+    </ClCompile>
+    <ClCompile Include="slimeAI.cpp">
+      <Filter>ソース ファイル\enemy\slime</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>ソース ファイル\player</Filter>
+    </ClCompile>
+    <ClCompile Include="player_hp.cpp">
+      <Filter>ソース ファイル\player</Filter>
+    </ClCompile>
+    <ClCompile Include="player_damage.cpp">
+      <Filter>ソース ファイル\player</Filter>
+    </ClCompile>
+    <ClCompile Include="firewall.cpp">
+      <Filter>ソース ファイル\enemy\firewall</Filter>
+    </ClCompile>
+    <ClCompile Include="firewallAI.cpp">
+      <Filter>ソース ファイル\enemy\firewall</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy.cpp">
+      <Filter>ソース ファイル\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="firewall_hp.cpp">
+      <Filter>ソース ファイル\enemy\firewall</Filter>
+    </ClCompile>
+    <ClCompile Include="slime_hp.cpp">
+      <Filter>ソース ファイル\enemy\slime</Filter>
+    </ClCompile>
+    <ClCompile Include="bugincrease.cpp">
+      <Filter>ソース ファイル\bug\system</Filter>
+    </ClCompile>
+    <ClCompile Include="bugrandom.cpp">
+      <Filter>ソース ファイル\bug\system</Filter>
+    </ClCompile>
+    <ClCompile Include="bug.cpp">
+      <Filter>ソース ファイル\bug\system</Filter>
+    </ClCompile>
+    <ClCompile Include="player_operate.cpp">
+      <Filter>ソース ファイル\player</Filter>
+    </ClCompile>
+    <ClCompile Include="player_animation.cpp">
+      <Filter>ソース ファイル\player</Filter>
+    </ClCompile>
+    <ClCompile Include="firewall_animation.cpp">
+      <Filter>ソース ファイル\enemy\firewall</Filter>
+    </ClCompile>
+    <ClCompile Include="skill.cpp">
+      <Filter>ソース ファイル\skill\system</Filter>
+    </ClCompile>
+    <ClCompile Include="skillrandom.cpp">
+      <Filter>ソース ファイル\skill\system</Filter>
+    </ClCompile>
+    <ClCompile Include="shop.cpp">
+      <Filter>ソース ファイル\map\shop</Filter>
+    </ClCompile>
+    <ClCompile Include="shop_bg.cpp">
+      <Filter>ソース ファイル\map\shop</Filter>
+    </ClCompile>
+    <ClCompile Include="shop_card.cpp">
+      <Filter>ソース ファイル\map\shop</Filter>
+    </ClCompile>
+    <ClCompile Include="shop_gold.cpp">
+      <Filter>ソース ファイル\map\shop</Filter>
+    </ClCompile>
+    <ClCompile Include="shop_delete.cpp">
+      <Filter>ソース ファイル\map\shop</Filter>
+    </ClCompile>
+    <ClCompile Include="shop_reload.cpp">
+      <Filter>ソース ファイル\map\shop</Filter>
+    </ClCompile>
+    <ClCompile Include="shop_exit.cpp">
+      <Filter>ソース ファイル\map\shop</Filter>
+    </ClCompile>
+    <ClCompile Include="shop_select.cpp">
+      <Filter>ソース ファイル\map\shop</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -254,9 +344,6 @@
     <ClInclude Include="bg.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="player.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="ball.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -271,9 +358,6 @@
     </ClInclude>
     <ClInclude Include="map_point.h">
       <Filter>ヘッダー ファイル\map</Filter>
-    </ClInclude>
-    <ClInclude Include="enemy.h">
-      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="ballspeedup.h">
       <Filter>ヘッダー ファイル\skill</Filter>
@@ -299,17 +383,11 @@
     <ClInclude Include="baseball.h">
       <Filter>ヘッダー ファイル\skill</Filter>
     </ClInclude>
-    <ClInclude Include="enemyAI.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="invincible.h">
       <Filter>ヘッダー ファイル\skill</Filter>
     </ClInclude>
     <ClInclude Include="ballturnaround.h">
       <Filter>ヘッダー ファイル\skill</Filter>
-    </ClInclude>
-    <ClInclude Include="player_hp.h">
-      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="bunshin.h">
       <Filter>ヘッダー ファイル\bug</Filter>
@@ -317,14 +395,8 @@
     <ClInclude Include="reverse.h">
       <Filter>ヘッダー ファイル\bug</Filter>
     </ClInclude>
-    <ClInclude Include="skillrandom.h">
-      <Filter>ヘッダー ファイル\skill</Filter>
-    </ClInclude>
     <ClInclude Include="anten.h">
       <Filter>ヘッダー ファイル\bug</Filter>
-    </ClInclude>
-    <ClInclude Include="enemy_hp.h">
-      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="clear.h">
       <Filter>ヘッダー ファイル</Filter>
@@ -359,18 +431,6 @@
     <ClInclude Include="penetration.h">
       <Filter>ヘッダー ファイル\skill</Filter>
     </ClInclude>
-    <ClInclude Include="skill.h">
-      <Filter>ヘッダー ファイル\skill</Filter>
-    </ClInclude>
-    <ClInclude Include="bug.h">
-      <Filter>ヘッダー ファイル\bug</Filter>
-    </ClInclude>
-    <ClInclude Include="bugincrease.h">
-      <Filter>ヘッダー ファイル\bug</Filter>
-    </ClInclude>
-    <ClInclude Include="bugrandom.h">
-      <Filter>ヘッダー ファイル\bug</Filter>
-    </ClInclude>
     <ClInclude Include="regen.h">
       <Filter>ヘッダー ファイル\bug</Filter>
     </ClInclude>
@@ -394,6 +454,84 @@
     </ClInclude>
     <ClInclude Include="mindhack.h">
       <Filter>ヘッダー ファイル\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="slime.h">
+      <Filter>ヘッダー ファイル\enemy\slime</Filter>
+    </ClInclude>
+    <ClInclude Include="slimeAI.h">
+      <Filter>ヘッダー ファイル\enemy\slime</Filter>
+    </ClInclude>
+    <ClInclude Include="player_damage.h">
+      <Filter>ヘッダー ファイル\player</Filter>
+    </ClInclude>
+    <ClInclude Include="player_hp.h">
+      <Filter>ヘッダー ファイル\player</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>ヘッダー ファイル\player</Filter>
+    </ClInclude>
+    <ClInclude Include="firewall.h">
+      <Filter>ヘッダー ファイル\enemy\firewall</Filter>
+    </ClInclude>
+    <ClInclude Include="firewallAI.h">
+      <Filter>ヘッダー ファイル\enemy\firewall</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>ヘッダー ファイル\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="firewall_hp.h">
+      <Filter>ヘッダー ファイル\enemy\firewall</Filter>
+    </ClInclude>
+    <ClInclude Include="slime_hp.h">
+      <Filter>ヘッダー ファイル\enemy\slime</Filter>
+    </ClInclude>
+    <ClInclude Include="bug.h">
+      <Filter>ヘッダー ファイル\bug\system</Filter>
+    </ClInclude>
+    <ClInclude Include="bugincrease.h">
+      <Filter>ヘッダー ファイル\bug\system</Filter>
+    </ClInclude>
+    <ClInclude Include="bugrandom.h">
+      <Filter>ヘッダー ファイル\bug\system</Filter>
+    </ClInclude>
+    <ClInclude Include="player_operate.h">
+      <Filter>ヘッダー ファイル\player</Filter>
+    </ClInclude>
+    <ClInclude Include="player_animation.h">
+      <Filter>ヘッダー ファイル\player</Filter>
+    </ClInclude>
+    <ClInclude Include="firewall_animation.h">
+      <Filter>ヘッダー ファイル\enemy\firewall</Filter>
+    </ClInclude>
+    <ClInclude Include="shop.h">
+      <Filter>ヘッダー ファイル\map\shop</Filter>
+    </ClInclude>
+    <ClInclude Include="shop_bg.h">
+      <Filter>ヘッダー ファイル\map\shop</Filter>
+    </ClInclude>
+    <ClInclude Include="shop_card.h">
+      <Filter>ヘッダー ファイル\map\shop</Filter>
+    </ClInclude>
+    <ClInclude Include="shop_gold.h">
+      <Filter>ヘッダー ファイル\map\shop</Filter>
+    </ClInclude>
+    <ClInclude Include="shop_delete.h">
+      <Filter>ヘッダー ファイル\map\shop</Filter>
+    </ClInclude>
+    <ClInclude Include="shop_reload.h">
+      <Filter>ヘッダー ファイル\map\shop</Filter>
+    </ClInclude>
+    <ClInclude Include="shop_exit.h">
+      <Filter>ヘッダー ファイル\map\shop</Filter>
+    </ClInclude>
+    <ClInclude Include="shop_select.h">
+      <Filter>ヘッダー ファイル\map\shop</Filter>
+    </ClInclude>
+    <ClInclude Include="skill.h">
+      <Filter>ヘッダー ファイル\skill\system</Filter>
+    </ClInclude>
+    <ClInclude Include="skillrandom.h">
+      <Filter>ヘッダー ファイル\skill\system</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

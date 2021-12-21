@@ -1,6 +1,6 @@
 //ゲーム処理 [game.cpp]
-
 #include "game.h"
+//システム.h
 #include "main.h"
 #include "input.h"
 #include "fade.h"
@@ -10,10 +10,9 @@
 #include "bug.h"
 #include "bugrandom.h"
 #include "bugincrease.h"
+#include "enemy.h"
 #include "player.h"
 #include "player_hp.h"
-#include "enemy.h"
-#include "enemy_hp.h"
 #include "ball.h"
 #include "catch.h"
 #include "escape.h"
@@ -39,7 +38,6 @@ void InitGame(void)
 	InitPlayerHp();
 	InitPlayer();
 	InitEnemy();
-	InitEnemyHp();
 	InitBall();
 	InitCatch();
 	InitEscape();
@@ -56,7 +54,6 @@ void UninitGame()
 	InitCatch();
 	UninitBall();
 	UninitEnemy();
-	UninitEnemyHp();
 	UninitPlayer();
 	UninitPlayerHp();
 	UninitBugIncrease();
@@ -70,7 +67,6 @@ void UpdateGame(void)
 	UpdatePlayerHp();
 	UpdateBugIncrease();
 	UpdateEnemy();
-	UpdateEnemyHp();
 	UpdateBall();
 	UpdateCatch();
 	UpdateRandom();
@@ -87,32 +83,23 @@ void DrawGame(void)
 {
 	PLAYER* player = GetPlayer();
 
+	DrawBG();
+	DrawBugIncrease();
+	DrawBug();
+	DrawPlayerHp();
 	if (player->drawdepth == true)
 	{
-		DrawBG();
-		DrawBugIncrease();
-		DrawBug();
-		DrawPlayerHp();
 		DrawPlayer();
 		DrawEnemy();
-		DrawEnemyHp();
 		DrawBall();
-		DrawCatch();
-		DrawRandom();
 	}
 	if (player->drawdepth == false)
 	{
-		DrawBG();
-		DrawBugIncrease();
-		DrawBug();
-		DrawPlayerHp();
 		DrawBall();
 		DrawEnemy();
-		DrawEnemyHp();
 		DrawPlayer();
-		DrawCatch();
-		DrawRandom();
 	}
-
+	DrawCatch();
+	DrawRandom();
 }
 

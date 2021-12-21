@@ -1,10 +1,11 @@
 //スキル_エネミー追跡処理 [ballturnaround.cpp]
 #include "ballturnaround.h"
+//システム.h
 #include "texture.h"
 #include "sprite.h"
 #include "input.h"
-
-#include "enemy.h"
+//エネミー.h
+#include "firewall.h"
 #include "ball.h"
 #include "bugincrease.h"
 
@@ -30,7 +31,7 @@ HRESULT InitBallTurnAround(void)
 //-----追跡処理
 void _BallTurnAround(void)
 {
-	ENEMY* enemy = GetEnemy();
+	FIREWALL* firewall = GetFireWall();
 	BALL* ball = GetBall();
 	BUG* bug = GetBugIncrease();
 	RANDOM* random = GetRandom();
@@ -42,8 +43,8 @@ void _BallTurnAround(void)
 		{
 			if (ball->enemyhitflag == true)
 			{
-				float X = enemy->pos.x - ball->pos.x;
-				float Y = enemy->pos.y - ball->pos.y;
+				float X = firewall->pos.x - ball->pos.x;
+				float Y = firewall->pos.y - ball->pos.y;
 
 				ball->rad = atan2(Y, X);
 

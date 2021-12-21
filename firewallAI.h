@@ -8,4 +8,4 @@
 
 
 //-----プロトタイプ宣言
-void enemyAI();
+void FireWallAI();

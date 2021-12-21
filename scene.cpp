@@ -12,14 +12,21 @@
 #include "fade.h"
 #include "input.h"
 
+//タイトル.h
 #include "title.h"
+//マップ.h
 #include "map.h"
-#include "banner.h"
 #include "rest.h"
-#include "game.h"
-#include "clear.h"
+#include "shop.h"
+#include "banner.h"
 #include "deckmenu.h"
+//戦闘.h
+#include "game.h"
+//クリア.h
+#include "clear.h"
+//ゲームオーバー.h
 #include "gameover.h"
+//セーブ機能.h
 #include "save.h"
 
 /*------------------------------------------------------------------------------
@@ -64,12 +71,14 @@ void InitScene(SCENE index)
 
 	case SCENE_DECKMENU:
 		InitDeckMenu();
-		InitBanner();
 		break;
 
 	case SCENE_REST:
 		InitRest();
-		InitBanner();
+		break;
+
+	case SCENE_SHOP:
+		InitShop();
 		break;
 
 	case SCENE_GAME:
@@ -112,6 +121,11 @@ void UninitScene(void)
 
 	case SCENE_REST:
 		UninitRest();
+		UninitBanner();
+		break;
+
+	case SCENE_SHOP:
+		UninitShop();
 		UninitBanner();
 		break;
 
@@ -158,6 +172,11 @@ void UpdateScene(void)
 		UpdateBanner();
 		break;
 
+	case SCENE_SHOP:
+		UpdateShop();
+		UpdateBanner();
+		break;
+
 	case SCENE_GAME:
 		UpdateGame();
 		break;
@@ -200,6 +219,11 @@ void DrawScene(void)
 
 	case SCENE_REST:
 		DrawRest();
+		DrawBanner();
+		break;
+
+	case SCENE_SHOP:
+		DrawShop();
 		DrawBanner();
 		break;
 

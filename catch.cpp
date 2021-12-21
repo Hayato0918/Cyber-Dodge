@@ -1,13 +1,16 @@
 //キャッチ処理 [catch.cpp]
-#include "main.h"
 #include "catch.h"
+//システム.h
 #include "input.h"
 #include "texture.h"
 #include "sprite.h"
+//エネミー.h
+#include "firewall.h"
+#include "slime.h"
 
 #include "player.h"
-#include "enemy.h"
 #include "ball.h"
+#include "map_point.h"
 
 //-----マクロ定義
 #define catchtime 30		//キャッチ判定を出す時間
@@ -52,16 +55,14 @@ void UninitCatch(void)
 void UpdateCatch(void)
 {
 	PLAYER* player = GetPlayer();
-	ENEMY* enemy = GetEnemy();
+	FIREWALL* firewall = GetFireWall();
+	SLIME* slime = GetSlime();
 	BALL* ball = GetBall();
+	MAP_PLAYER* map_player = GetMapPlayer();
 
 	//-----プレイヤーの向きに応じてキャッチの方向を決める
 	if (Catch.playerflag == true)
 	{
-		if (player->rotate == 0)		//上
-			Catch.playerpos = D3DXVECTOR2(player->pos.x + player->size.x * 0.5f, player->pos.y - ball->size.y * 0.5f);
-		if (player->rotate == 1)		//下
-			Catch.playerpos = D3DXVECTOR2(player->pos.x + player->size.x * 0.5f, player->pos.y + player->size.y + ball->size.y * 0.5f);
 		if (player->rotate == 2)	//左
 			Catch.playerpos = D3DXVECTOR2(player->pos.x, player->pos.y + player->size.y * 0.4f);
 		if (player->rotate == 3)		//右
@@ -71,21 +72,30 @@ void UpdateCatch(void)
 	//-----エネミーの向きに応じてキャッチの方向を決める
 	if (Catch.enemyflag == 1)
 	{
-		if (enemy->rotate == 0)		//上
-			Catch.enemypos = D3DXVECTOR2(enemy->pos.x + enemy->size.x * 0.5f, enemy->pos.y - ball->size.y * 0.5f);
-		if (enemy->rotate == 1)		//下
-			Catch.enemypos = D3DXVECTOR2(enemy->pos.x + enemy->size.x * 0.5f, enemy->pos.y + enemy->size.y + ball->size.y * 0.5f);
-		if (enemy->rotate == 2)	//左
-			Catch.enemypos = D3DXVECTOR2(enemy->pos.x, enemy->pos.y + enemy->size.y * 0.5f);
-		if (enemy->rotate == 3)		//右
-			Catch.enemypos = D3DXVECTOR2(enemy->pos.x + enemy->size.x, enemy->pos.y + enemy->size.y * 0.5f);
+		if (map_player->encount == 1)
+		{
+			if (slime->rotate == 2)	//左
+				Catch.enemypos = D3DXVECTOR2(slime->pos.x, slime->pos.y + slime->size.y * 0.5f);
+			if (slime->rotate == 3)		//右
+				Catch.enemypos = D3DXVECTOR2(slime->pos.x + slime->size.x, slime->pos.y + slime->size.y * 0.5f);
+		}
+		if (map_player->encount == 2)
+		{
+			if (firewall->rotate == 0)		//上
+				Catch.enemypos = D3DXVECTOR2(firewall->pos.x + firewall->size.x * 0.5f, firewall->pos.y - ball->size.y * 0.5f);
+			if (firewall->rotate == 1)		//下
+				Catch.enemypos = D3DXVECTOR2(firewall->pos.x + firewall->size.x * 0.5f, firewall->pos.y + firewall->size.y + ball->size.y * 0.5f);
+			if (firewall->rotate == 2)	//左
+				Catch.enemypos = D3DXVECTOR2(firewall->pos.x, firewall->pos.y + firewall->size.y * 0.5f);
+			if (firewall->rotate == 3)		//右
+				Catch.enemypos = D3DXVECTOR2(firewall->pos.x + firewall->size.x, firewall->pos.y + firewall->size.y * 0.5f);
+		}
 	}
 }
 
 //-----描画処理
 void DrawCatch(void)
 {
-
 	if(Catch.playerflag == true)
 	DrawSpriteColor(Catch.texture, Catch.playerpos.x, Catch.playerpos.y, Catch.size.x, Catch.size.y, 0.0f, 0.0f, 1.0f, 1.0f, Catch.color);
 	if(Catch.enemyflag == 1)
@@ -156,8 +166,8 @@ void M_Catch(void)
 	//-----キャッチ
 	if (Catch.enemyintervalflag == 0 && ball->enemyhaveflag == 0)
 	{
-			Catch.enemyflag = 1;
-			Catch.enemyintervalflag = 1;
+		Catch.enemyflag = 1;
+		Catch.enemyintervalflag = 1;
 	}
 	//-----インターバル(1s)
 	if (Catch.enemyintervalflag == 1)

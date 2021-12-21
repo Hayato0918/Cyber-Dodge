@@ -1,10 +1,8 @@
 //スキル_時間停止処理 [timestop.cpp]
 #include "timestop.h"
-#include "input.h"
-#include "texture.h"
-#include "sprite.h"
+//-----エネミー.h
+#include "firewall.h"
 
-#include "enemy.h"
 #include "bugincrease.h"
 #include "catch.h"
 
@@ -33,7 +31,7 @@ HRESULT InitTimestop(void)
 //-----巨大化処理
 void _Timestop(void)
 {
-	ENEMY* enemy = GetEnemy();
+	FIREWALL* firewall = GetFireWall();
 	BUG* bug = GetBugIncrease();
 	RANDOM* random = GetRandom();
 	CATCH* cattch = GetCatch();
@@ -41,7 +39,7 @@ void _Timestop(void)
 	//ランダムで4が出たら、6s間敵が行動不能になる
 	if (random->code == 4 && random->active == true && timestop.use == false)
 	{
-		timestop.posnow = enemy->pos;
+		timestop.posnow = firewall->pos;
 		timestop.timeflag = true;
 		bug->gaugesize.x = bug->gaugesize.x + timestop.usegauge * bug->gaugeonce;
 		timestop.use = true;
@@ -50,7 +48,7 @@ void _Timestop(void)
 	if (timestop.timeflag == true)
 	{
 		timestop.time = timestop.time + 1.0f;
-		enemy->pos = timestop.posnow;
+		firewall->pos = timestop.posnow;
 		cattch->enemyflag = 2;
 		cattch->enemyintervalflag = 2;
 	}

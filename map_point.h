@@ -36,6 +36,7 @@ typedef struct
 	bool circletextureflag;
 
 	int gamecount;	//ƒQ[ƒ€ƒV[ƒ“‚É‰½‰ñˆÚ“®‚µ‚½‚©‚ğŠÇ—‚·‚é•Ï”
+	int encount;	//‚Ç‚Ì“G‚Æí‚¤‚©‚ğŠÇ—‚·‚é•Ï”
 
 }MAP_PLAYER;
 
