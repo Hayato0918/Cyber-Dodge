@@ -1,4 +1,4 @@
-//休憩マス処理 [rest.h]
+//バナーバグゲージ処理 [banner_bug.h]
 #pragma once
 #include "main.h"
 #include "renderer.h"
@@ -8,22 +8,18 @@ typedef struct
 {
 	D3DXVECTOR2 pos;
 	D3DXVECTOR2 size;
-	float u, v, uw, vh;
 	int texture;
-}REST;
+}BANNER_BUGFRAME;
 
 typedef struct
 {
 	D3DXVECTOR2 pos;
 	D3DXVECTOR2 size;
-	float u, v, uw, vh;
 	int texture;
-	int count;
-}RESTPOINT;
-
+}BANNER_BUGGAUGE;
 
 //-----プロトタイプ宣言
-HRESULT InitRest(void);
-void UninitRest(void);
-void UpdateRest(void);
-void DrawRest(void);
+HRESULT InitBannerBug(void);
+void UninitBannerBug(void);
+void UpdateBannerBug(void);
+void DrawBannerBug(void);

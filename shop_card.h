@@ -13,7 +13,7 @@ typedef struct
 	bool drawflag;
 }SHOP_CARD;
 
-void InitShopCard(void);
+HRESULT InitShopCard(void);
 void UninitShopCard(void);
 void UpdateShopCard(void);
 void DrawShopCard(void);

@@ -425,13 +425,21 @@ void UpdateMapPlayer(void)
 					SceneTransition(SCENE_GAME);
 				}
 				if (map[map_player.UDcount][map_player.LRcount].randomcode == 2)	//強敵マス
+				{
 					SceneTransition(SCENE_GAME);
+				}
 				if (map[map_player.UDcount][map_player.LRcount].randomcode == 3)	//休憩マス
+				{
 					SceneTransition(SCENE_REST);
+				}
 				if (map[map_player.UDcount][map_player.LRcount].randomcode == 4)	//イベントマス
+				{
 					SceneTransition(SCENE_EVENT);
+				}
 				if (map[map_player.UDcount][map_player.LRcount].randomcode == 5)	//商人マス
+				{
 					SceneTransition(SCENE_SHOP);
+				}
 
 				map_player.LRcount = 0;
 				map_player.UDcount = map_player.UDcount + 1;

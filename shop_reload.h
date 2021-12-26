@@ -12,7 +12,7 @@ typedef struct
 	bool reloadflag;	//スキルの再抽選を実行するかを管理するフラグ
 }SHOP_RELOAD;
 
-void InitShopReload(void);
+HRESULT InitShopReload(void);
 void UninitShopReload(void);
 void UpdateShopReload(void);
 void DrawShopReload(void);

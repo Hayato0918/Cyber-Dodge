@@ -6,11 +6,13 @@
 
 SHOP_DELETE shop_delete;
 
-void InitShopDelete()
+HRESULT InitShopDelete()
 {
 	shop_delete.pos = D3DXVECTOR2(160.0f, 525.0f);
 	shop_delete.size = D3DXVECTOR2(300.0f, 250.0f);
 	shop_delete.texture = LoadTexture("data/TEXTURE/test/red.png");
+
+	return S_OK;
 }
 
 void UninitShopDelete()

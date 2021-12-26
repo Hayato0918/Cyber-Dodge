@@ -14,7 +14,7 @@
 
 SHOP_SELECT shop_select;
 
-void InitShopSelect()
+HRESULT InitShopSelect()
 {
 	SHOP_CARD* shop_card = GetShopCard();
 
@@ -24,6 +24,8 @@ void InitShopSelect()
 
 	shop_select.xcount = 0;
 	shop_select.ycount = 0;
+
+	return S_OK;
 }
 
 void UninitShopSelect()

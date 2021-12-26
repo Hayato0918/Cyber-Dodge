@@ -11,6 +11,9 @@
 #include "game.h"
 #include "fade.h"
 #include "input.h"
+//テスト用
+#include "Texture.h"
+#include "sprite.h"
 
 //タイトル.h
 #include "title.h"
@@ -239,6 +242,11 @@ void DrawScene(void)
 		DrawGameOver();
 		break;
 	}
+
+	//テスト用
+	int masstexture;
+	masstexture = LoadTexture("data/TEXTURE/test/mass.png");
+	DrawSpriteLeftTop(masstexture, 0.f, 0.f, 1600.f, 900.f, 0.f, 0.f, 1.f, 1.f);
 
 	DrawFade();
 }

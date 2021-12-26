@@ -13,7 +13,7 @@ typedef struct
 	int ycount;
 }SHOP_SELECT;
 
-void InitShopSelect(void);
+HRESULT InitShopSelect(void);
 void UninitShopSelect(void);
 void UpdateShopSelect(void);
 void DrawShopSelect(void);

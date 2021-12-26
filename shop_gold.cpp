@@ -10,7 +10,7 @@
 
 SHOP_GOLD shop_gold[shop_skill + 1];	//スキルカード+スキル削除
 
-void InitShopGold()
+HRESULT InitShopGold()
 {
 	SHOP_CARD* shop_card = GetShopCard();
 	SHOP_DELETE* shop_delete = GetShopDelete();
@@ -25,6 +25,8 @@ void InitShopGold()
 	shop_gold[shop_skill].pos = D3DXVECTOR2(shop_delete->pos.x, shop_delete->pos.y + shop_delete->size.y + 30.0f);
 	shop_gold[shop_skill].size = D3DXVECTOR2(shop_delete->size.x, 50.0f);
 	shop_gold[shop_skill].texture = LoadTexture("data/TEXTURE/test/yellow.png");
+
+	return S_OK;
 }
 
 void UninitShopGold()

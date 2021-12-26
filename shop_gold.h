@@ -11,7 +11,7 @@ typedef struct
 	int texture;
 }SHOP_GOLD;
 
-void InitShopGold(void);
+HRESULT InitShopGold(void);
 void UninitShopGold(void);
 void UpdateShopGold(void);
 void DrawShopGold(void);

@@ -12,12 +12,14 @@
 
 SHOP_RELOAD shop_reload;
 
-void InitShopReload()
+HRESULT InitShopReload()
 {
 	shop_reload.pos = D3DXVECTOR2(1100.0f, 525.0f);
 	shop_reload.size = D3DXVECTOR2(400.0f, 125.0f);
 	shop_reload.reloadflag = false;
 	shop_reload.texture = LoadTexture("data/TEXTURE/test/red.png");
+
+	return S_OK;
 }
 
 void UninitShopReload()

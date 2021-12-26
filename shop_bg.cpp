@@ -8,11 +8,13 @@
 
 SHOP_BG shop_bg;
 
-void InitShopBg()
+HRESULT InitShopBg()
 {
 	shop_bg.pos = D3DXVECTOR2(0.0f, 0.0f);
 	shop_bg.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
 	shop_bg.texture = LoadTexture("data/TEXTURE/test/black.png");
+
+	return S_OK;
 }
 
 void UninitShopBg()

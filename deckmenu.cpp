@@ -1,16 +1,19 @@
 //デッキメニュー処理 [deckmenu.cpp]
 #include "deckmenu.h"
+//システム.h
 #include "input.h"
 #include "texture.h"
 #include "sprite.h"
 #include "fade.h"
+
+#include "map_point.h"
 #include "skillrandom.h"
 
 //-----マクロ定義
 
 #define CARD_SPACE_WIDTH 300.0f
 #define CARD_SPACE_HIGHT 300.0f
-#define ynum 9
+#define ynum 8
 #define xnum 4
 
 //-----プロトタイプ宣言
@@ -25,8 +28,10 @@ int a, b;
 //-----初期化処理
 HRESULT InitDeckMenu(void)
 {
-	RANDOM* random = GetRandom();
-	SKILL* skill = GetSkill();
+	a = 0;
+	b = 0;
+
+	MAP_PLAYER* map_player = GetMapPlayer();
 
 	for (int y = 0; y < ynum; y++)
 	{
@@ -38,6 +43,9 @@ HRESULT InitDeckMenu(void)
 			deckmenu_card[y][x].nottexture = LoadTexture("data/TEXTURE/deckmenu/notget.png");
 		}
 	}
+
+	RANDOM* random = GetRandom();
+	SKILL* skill = GetSkill();
 
 	for (int i = 0; i < skill->slot; i++)
 	{
@@ -178,7 +186,7 @@ void UpdateDeckMenu(void)
 										deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.y);
 	}
 	//下移動
-	if (GetKeyboardTrigger(DIK_S) && g_Selection.UDcount < ynum - 2 && g_Selection.use == true)
+	if (GetKeyboardTrigger(DIK_S) && g_Selection.UDcount < ynum - 1 && g_Selection.use == true)
 	{
 		g_Selection.UDcount = g_Selection.UDcount + 1;
 		//2段を区切りに、カードの位置を移動

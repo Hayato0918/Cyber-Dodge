@@ -6,7 +6,7 @@
 #define shop_skill 4
 
 //-----プロトタイプ宣言
-void InitShop(void);
+HRESULT InitShop(void);
 void UninitShop(void);
 void UpdateShop(void);
 void DrawShop(void);

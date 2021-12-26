@@ -1,4 +1,4 @@
-//休憩マス処理 [rest.h]
+//休憩マスコマンド処理 [rest_command.h]
 #pragma once
 #include "main.h"
 #include "renderer.h"
@@ -10,7 +10,7 @@ typedef struct
 	D3DXVECTOR2 size;
 	float u, v, uw, vh;
 	int texture;
-}REST;
+}REST_HPUP;
 
 typedef struct
 {
@@ -18,12 +18,13 @@ typedef struct
 	D3DXVECTOR2 size;
 	float u, v, uw, vh;
 	int texture;
-	int count;
-}RESTPOINT;
-
+}REST_STATUSUP;
 
 //-----プロトタイプ宣言
-HRESULT InitRest(void);
-void UninitRest(void);
-void UpdateRest(void);
-void DrawRest(void);
+HRESULT InitRestCommand(void);
+void UninitRestCommand(void);
+void UpdateRestCommand(void);
+void DrawRestCommand(void);
+
+REST_HPUP* GetRestCommandHP();
+REST_STATUSUP* GetRestCommandStatus();

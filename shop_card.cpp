@@ -14,7 +14,7 @@
 SHOP_CARD shop_card[SKILL_NUM];
 int notexture;
 
-void InitShopCard()
+HRESULT InitShopCard()
 {
 	notexture = LoadTexture("data/TEXTURE/test/yellow.png");
 
@@ -32,18 +32,11 @@ void InitShopCard()
 
 	for (int i = 0; i < shop_skill; i++)
 	{
+		srand((unsigned int)time(NULL));
+
 		do   //重複チェック
 		{
 			shop_card[i].code = (rand() % skill->num) + 1;
-
-			//for (t = 0; t < skill->num; t++)
-			//{
-			//	if (shop_card[i].code == random[t].code)	//すでにそのスキルを所持していたらもう一度codeを割り振る
-			//	{
-			//		if (random[t].haveflag == true)
-			//			break;
-			//	}
-			//}
 
 			for (t = 0; t < i; t++)
 			{
@@ -85,6 +78,8 @@ void InitShopCard()
 		if (shop_card[i].code == 14)
 			shop_card[i].texture = LoadTexture("data/TEXTURE/skill/smallplayer.png");
 	}
+
+	return S_OK;
 }
 
 void UninitShopCard()
@@ -98,13 +93,10 @@ void UpdateShopCard()
 	RANDOM* random = GetRandom();
 	SKILL * skill = GetSkill();
 
-	srand((unsigned int)time(NULL));
-
 	if (GetKeyboardTrigger(DIK_RETURN) && shop_select->ycount == 0 && shop_card[shop_select->xcount].drawflag == true)
 	{
 		skill->slot += 1;
 		random[skill->slot].code = shop_card[shop_select->xcount].code;
-
 		shop_card[shop_select->xcount].drawflag = false;
 	}
 }

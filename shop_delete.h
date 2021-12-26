@@ -11,7 +11,7 @@ typedef struct
 	int texture;
 }SHOP_DELETE;
 
-void InitShopDelete(void);
+HRESULT InitShopDelete(void);
 void UninitShopDelete(void);
 void UpdateShopDelete(void);
 void DrawShopDelete(void);

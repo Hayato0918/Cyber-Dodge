@@ -11,7 +11,7 @@ typedef struct
 	int texture;
 }SHOP_EXIT;
 
-void InitShopExit(void);
+HRESULT InitShopExit(void);
 void UninitShopExit(void);
 void UpdateShopExit(void);
 void DrawShopExit(void);

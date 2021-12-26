@@ -9,7 +9,7 @@
 #include "shop_exit.h"
 #include "shop_select.h"
 
-void InitShop(void)
+HRESULT InitShop(void)
 {
 	InitShopBg();
 	InitShopCard();
@@ -18,6 +18,8 @@ void InitShop(void)
 	InitShopReload();
 	InitShopExit();
 	InitShopSelect();
+
+	return S_OK;
 }
 
 void UninitShop(void)

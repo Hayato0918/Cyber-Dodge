@@ -85,6 +85,12 @@
     <Filter Include="ヘッダー ファイル\skill\system">
       <UniqueIdentifier>{07550639-b5d6-41a2-a984-146d2a862922}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\map\banner">
+      <UniqueIdentifier>{b0703d40-e9a7-4914-879f-281356a1e4e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\map\banner">
+      <UniqueIdentifier>{7e949712-4443-4a67-9a9b-397b2dbec23b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="title.cpp">
@@ -194,9 +200,6 @@
     </ClCompile>
     <ClCompile Include="rest.cpp">
       <Filter>ソース ファイル\map\rest</Filter>
-    </ClCompile>
-    <ClCompile Include="banner .cpp">
-      <Filter>ソース ファイル\map</Filter>
     </ClCompile>
     <ClCompile Include="save.cpp">
       <Filter>ソース ファイル</Filter>
@@ -309,6 +312,45 @@
     <ClCompile Include="shop_select.cpp">
       <Filter>ソース ファイル\map\shop</Filter>
     </ClCompile>
+    <ClCompile Include="banner .cpp">
+      <Filter>ソース ファイル\map\banner</Filter>
+    </ClCompile>
+    <ClCompile Include="banner_hp.cpp">
+      <Filter>ソース ファイル\map\banner</Filter>
+    </ClCompile>
+    <ClCompile Include="banner_bg.cpp">
+      <Filter>ソース ファイル\map\banner</Filter>
+    </ClCompile>
+    <ClCompile Include="banner_icon.cpp">
+      <Filter>ソース ファイル\map\banner</Filter>
+    </ClCompile>
+    <ClCompile Include="banner_name.cpp">
+      <Filter>ソース ファイル\map\banner</Filter>
+    </ClCompile>
+    <ClCompile Include="banner_gold.cpp">
+      <Filter>ソース ファイル\map\banner</Filter>
+    </ClCompile>
+    <ClCompile Include="banner_bug.cpp">
+      <Filter>ソース ファイル\map\banner</Filter>
+    </ClCompile>
+    <ClCompile Include="rest_picture.cpp">
+      <Filter>ソース ファイル\map\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="rest_bg.cpp">
+      <Filter>ソース ファイル\map\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="rest_status.cpp">
+      <Filter>ソース ファイル\map\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="rest_command.cpp">
+      <Filter>ソース ファイル\map\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="rest_exit.cpp">
+      <Filter>ソース ファイル\map\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="rest_select.cpp">
+      <Filter>ソース ファイル\map\rest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="title.h">
@@ -418,9 +460,6 @@
     </ClInclude>
     <ClInclude Include="rest.h">
       <Filter>ヘッダー ファイル\map\rest</Filter>
-    </ClInclude>
-    <ClInclude Include="banner.h">
-      <Filter>ヘッダー ファイル\map</Filter>
     </ClInclude>
     <ClInclude Include="save.h">
       <Filter>ヘッダー ファイル</Filter>
@@ -532,6 +571,45 @@
     </ClInclude>
     <ClInclude Include="skillrandom.h">
       <Filter>ヘッダー ファイル\skill\system</Filter>
+    </ClInclude>
+    <ClInclude Include="banner.h">
+      <Filter>ヘッダー ファイル\map\banner</Filter>
+    </ClInclude>
+    <ClInclude Include="banner_hp.h">
+      <Filter>ヘッダー ファイル\map\banner</Filter>
+    </ClInclude>
+    <ClInclude Include="banner_bg.h">
+      <Filter>ヘッダー ファイル\map\banner</Filter>
+    </ClInclude>
+    <ClInclude Include="banner_icon.h">
+      <Filter>ヘッダー ファイル\map\banner</Filter>
+    </ClInclude>
+    <ClInclude Include="banner_name.h">
+      <Filter>ヘッダー ファイル\map\banner</Filter>
+    </ClInclude>
+    <ClInclude Include="banner_gold.h">
+      <Filter>ヘッダー ファイル\map\banner</Filter>
+    </ClInclude>
+    <ClInclude Include="banner_bug.h">
+      <Filter>ヘッダー ファイル\map\banner</Filter>
+    </ClInclude>
+    <ClInclude Include="rest_picture.h">
+      <Filter>ヘッダー ファイル\map\rest</Filter>
+    </ClInclude>
+    <ClInclude Include="rest_bg.h">
+      <Filter>ヘッダー ファイル\map\rest</Filter>
+    </ClInclude>
+    <ClInclude Include="rest_status.h">
+      <Filter>ヘッダー ファイル\map\rest</Filter>
+    </ClInclude>
+    <ClInclude Include="rest_command.h">
+      <Filter>ヘッダー ファイル\map\rest</Filter>
+    </ClInclude>
+    <ClInclude Include="rest_exit.h">
+      <Filter>ヘッダー ファイル\map\rest</Filter>
+    </ClInclude>
+    <ClInclude Include="rest_select.h">
+      <Filter>ヘッダー ファイル\map\rest</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

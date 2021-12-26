@@ -1,88 +1,87 @@
 //休憩マス処理 [rest.cpp]
-
+#include "rest.h"
+//システム.h
 #include "map.h"
 #include "texture.h"
 #include "sprite.h"
 #include "input.h"
 #include "fade.h"
+//
+#include "rest_bg.h"
+#include "rest_picture.h"
+#include "rest_status.h"
+#include "rest_command.h"
+#include "rest_exit.h"
+#include "rest_select.h"
 
-#include "rest.h"
 #include "player_hp.h"
 
 REST rest;
 RESTPOINT restpoint;
 
-void InitRest(void)
+HRESULT InitRest(void)
 {
-	rest.pos = D3DXVECTOR2(0.0f, 0.0f);
-	rest.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
-	rest.texture = LoadTexture("data/TEXTURE/rest_bg.png");
+	//bg
+	InitRestBG();
+	//一枚絵
+	InitRestPicture();
+	//ステータス表示
+	InitRestStatus();
+	//各種コマンド(HP回復、ステータス強化)
+	InitRestCommand();
+	//退出
+	InitRestExit();
+	//選択
+	InitRestSelect();
 
-	restpoint.pos = D3DXVECTOR2(1180.0f, 36.0f);
-	restpoint.size = D3DXVECTOR2(390.0f, 83.0f);
-	restpoint.texture = LoadTexture("data/TEXTURE/rest_frame.png");
+	return S_OK;
 }
 
 void UninitRest(void)
 {
+	//bg
+	UninitRestBG();
+	//一枚絵
+	UninitRestPicture();
+	//ステータス表示
+	UninitRestStatus();
+	//各種コマンド(HP回復、ステータス強化)
+	UninitRestCommand();
+	//退出
+	UninitRestExit();
+	//選択
+	UninitRestSelect();
 
 }
 
 void UpdateRest(void)
 {
-	PLAYERHP* player_hp = GetPlayerHp();
-
-	if (PADUSE == 0)
-	{
-		//休憩マスの選択
-		if (IsButtonTriggered(0, BUTTON_UP) && restpoint.count > 0)
-		{
-			restpoint.pos.y -= 116;
-			restpoint.count -= 1;
-		}
-		if (IsButtonTriggered(0, BUTTON_DOWN) && restpoint.count < 2)
-		{
-			restpoint.pos.y += 116;
-			restpoint.count += 1;
-		}
-		//選択した時の効果
-		if (IsButtonTriggered(0, BUTTON_X) && restpoint.count == 0)
-		{
-			player_hp->gaugesize.x = player_hp->gaugesize.x + 100;
-			player_hp->pos.x = player_hp->pos.x - 100;
-			SceneTransition(SCENE_MAP);
-		}
-		if (IsButtonTriggered(0, BUTTON_X) && 1 < restpoint.count < 2)
-			SceneTransition(SCENE_MAP);
-	}
-	if (PADUSE == 1)
-	{
-		//休憩マスの選択
-		if (GetKeyboardTrigger(DIK_W) && restpoint.count > 0)
-		{
-			restpoint.pos.y -= 116;
-			restpoint.count -= 1;
-		}
-		if (GetKeyboardTrigger(DIK_S) && restpoint.count < 2)
-		{
-			restpoint.pos.y += 116;
-			restpoint.count += 1;
-		}
-		//選択した時の効果
-		if (GetKeyboardTrigger(DIK_RETURN) && restpoint.count == 0)
-		{
-			player_hp->gaugesize.x = player_hp->gaugesize.x + 100;
-			player_hp->pos.x = player_hp->pos.x - 100;
-			SceneTransition(SCENE_MAP);
-		}
-		if (GetKeyboardTrigger(DIK_RETURN) && 1 < restpoint.count < 2)
-			SceneTransition(SCENE_MAP);
-	}
+	//bg
+	UpdateRestBG();
+	//一枚絵
+	UpdateRestPicture();
+	//ステータス表示
+	UpdateRestStatus();
+	//各種コマンド(HP回復、ステータス強化)
+	UpdateRestCommand();
+	//退出
+	UpdateRestExit();
+	//選択
+	UpdateRestSelect();
 }
 
 void DrawRest(void)
 {
-	DrawSpriteLeftTop(rest.texture, rest.pos.x, rest.pos.y, rest.size.x, rest.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
-
-	DrawSpriteLeftTop(restpoint.texture, restpoint.pos.x, restpoint.pos.y, restpoint.size.x, restpoint.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+	//bg
+	DrawRestBG();
+	//一枚絵
+	DrawRestPicture();
+	//ステータス表示
+	DrawRestStatus();
+	//各種コマンド(HP回復、ステータス強化)
+	DrawRestCommand();
+	//退出
+	DrawRestExit();
+	//選択
+	DrawRestSelect();
 }

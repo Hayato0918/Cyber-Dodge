@@ -11,11 +11,13 @@
 
 SHOP_EXIT shop_exit;
 
-void InitShopExit()
+HRESULT InitShopExit()
 {
 	shop_exit.pos = D3DXVECTOR2(1100.0f, 700.0f);
 	shop_exit.size = D3DXVECTOR2(400.0f, 125.0f);
 	shop_exit.texture = LoadTexture("data/TEXTURE/test/red.png");
+
+	return S_OK;
 }
 
 void UninitShopExit()
