@@ -24,7 +24,7 @@ HRESULT InitRandom(void)
 	MAP_PLAYER* map_player = GetMapPlayer();
 
 	skill.usecount = 0;	//今選択されてるスキル
-	skill.num = 14;		//作成済みスキルの総数
+	skill.num = 22;		//作成済みスキルの総数
 
 	if (map_player->gamecount == 1)
 	{

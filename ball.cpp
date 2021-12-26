@@ -7,14 +7,17 @@
 #include "fade.h"
 //プレイヤー.h
 #include "player.h"
-#include "invincible.h"
 //エネミー.h
 #include "firewall.h"
 #include "slime.h"
+//スキル.h
+#include "autocatch.h"
+#include "invincible.h"
 //
 #include "map_point.h"
 
 //-----マクロ定義
+#define auto_ctime_2 60		//1s間
 
 //-----プロトタイプ宣言
 BALL ball;
@@ -206,6 +209,8 @@ void E_Throw(void)
 //プレイヤーが投げる処理
 void P_Throw(void)
 {
+	AUTO* auto_c = GetAuto();
+
 	if (PADUSE == 0)
 	{
 		//-----プレイヤーの投げ動作
@@ -218,6 +223,17 @@ void P_Throw(void)
 			ball.playerthrowflag = true;
 			ball.enemyhitflag = true;
 			ball.throwflag = true;
+
+			//プレイヤーがスキル：オートキャッチ使用中に投げた場合の吸い寄せ防止
+			if (auto_c->timeflag_2 == true)
+				auto_c->auto_catch = false;
+			auto_c->time_2 = auto_c->time_2 + 1.0f;
+			if (auto_c->time_2 > auto_ctime_2)
+			{
+				auto_c->auto_catch = true;
+				auto_c->timeflag_2 = false;
+				auto_c->time_2 = 0.0f;
+			}
 		}
 	}
 
@@ -233,6 +249,18 @@ void P_Throw(void)
 			ball.playerthrowflag = true;
 			ball.enemyhitflag = true;
 			ball.throwflag = true;
+		}
+
+
+		//プレイヤーがスキル：オートキャッチ使用中に投げた場合の吸い寄せ防止
+		if (auto_c->timeflag_2 == true)
+			auto_c->auto_catch = false;
+		auto_c->time_2 = auto_c->time_2 + 1.0f;
+		if (auto_c->time_2 > auto_ctime_2)
+		{
+			auto_c->auto_catch = true;
+			auto_c->timeflag_2 = false;
+			auto_c->time_2 = 0.0f;
 		}
 	}
 }

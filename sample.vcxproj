@@ -125,6 +125,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="anten.cpp" />
+    <ClCompile Include="autocatch.cpp" />
     <ClCompile Include="ball.cpp" />
     <ClCompile Include="ballturnaround.cpp" />
     <ClCompile Include="banner .cpp" />
@@ -148,6 +149,8 @@
     <ClCompile Include="catchjamming.cpp" />
     <ClCompile Include="clear.cpp" />
     <ClCompile Include="deckmenu.cpp" />
+    <ClCompile Include="disappear.cpp" />
+    <ClCompile Include="doubleattack.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="firewall.cpp" />
     <ClCompile Include="firewallAI.cpp" />
@@ -161,12 +164,14 @@
     <ClCompile Include="input.cpp" />
     <ClCompile Include="invade.cpp" />
     <ClCompile Include="invincible.cpp" />
+    <ClCompile Include="landmines.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map.cpp" />
     <ClCompile Include="map_point.cpp" />
     <ClCompile Include="map_hack.cpp" />
     <ClCompile Include="map_line.cpp" />
     <ClCompile Include="mindhack.cpp" />
+    <ClCompile Include="otoshiana.cpp" />
     <ClCompile Include="penetration.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="player_animation.cpp" />
@@ -210,9 +215,16 @@
     <ClCompile Include="title.cpp" />
     <ClCompile Include="shop_card.cpp" />
     <ClCompile Include="shop_delete.cpp" />
+    <ClCompile Include="title_bg.cpp" />
+    <ClCompile Include="title_exit.cpp" />
+    <ClCompile Include="title_gamestart.cpp" />
+    <ClCompile Include="title_select.cpp" />
+    <ClCompile Include="title_teamname.cpp" />
+    <ClCompile Include="warp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="anten.h" />
+    <ClInclude Include="autocatch.h" />
     <ClInclude Include="ball.h" />
     <ClInclude Include="ballturnaround.h" />
     <ClInclude Include="banner.h" />
@@ -236,6 +248,8 @@
     <ClInclude Include="catchjamming.h" />
     <ClInclude Include="clear.h" />
     <ClInclude Include="deckmenu.h" />
+    <ClInclude Include="disappear.h" />
+    <ClInclude Include="doubleattack.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="firewall.h" />
     <ClInclude Include="firewallAI.h" />
@@ -249,12 +263,14 @@
     <ClInclude Include="input.h" />
     <ClInclude Include="invade.h" />
     <ClInclude Include="invincible.h" />
+    <ClInclude Include="landmines.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="map_point.h" />
     <ClInclude Include="map_hack.h" />
     <ClInclude Include="map_line.h" />
     <ClInclude Include="mindhack.h" />
+    <ClInclude Include="otoshiana.h" />
     <ClInclude Include="penetration.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="player_animation.h" />
@@ -298,6 +314,12 @@
     <ClInclude Include="timestop.h" />
     <ClInclude Include="title.h" />
     <ClInclude Include="rest_status.h" />
+    <ClInclude Include="title_bg.h" />
+    <ClInclude Include="title_exit.h" />
+    <ClInclude Include="title_gamestart.h" />
+    <ClInclude Include="title_select.h" />
+    <ClInclude Include="title_teamname.h" />
+    <ClInclude Include="warp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

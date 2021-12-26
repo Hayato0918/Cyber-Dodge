@@ -46,7 +46,7 @@ void _Invincible(void)
 
 	invincible.pos = D3DXVECTOR2(player->pos.x, player->pos.y);
 
-	for (int i = 0; i <36; i++)
+	for (int i = 0; i < SKILL_NUM; i++)
 	{
 		if (random[i].code == 10 && random[i].active == true && invincible.use == false)
 		{

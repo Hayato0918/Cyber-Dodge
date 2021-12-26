@@ -36,7 +36,7 @@ void _SmallPlayer(void)
 	BUG* bug = GetBugIncrease();;
 
 	//ランダムで7が選ばれたら、3s間キャラのサイズが0.5倍小さくなるになる
-	for (int i = 0; i < 36; i++)
+	for (int i = 0; i < SKILL_NUM; i++)
 	{
 		if (random[i].code == 14 && random[i].active == true && smallplayer.use == false)
 		{

@@ -41,7 +41,7 @@ void _Billiards(void)
 	RANDOM* random = GetRandom();
 
 	//ƒXƒLƒ‹‚ªŽg‚¦‚é‚©‚Ì”»’f
-	for (int i = 0; i < 36; i++)
+	for (int i = 0; i < SKILL_NUM; i++)
 	{
 		if (random[i].code == 6 && random[i].active == true && billiards.use == false && ball->playerhaveflag == false)
 		{

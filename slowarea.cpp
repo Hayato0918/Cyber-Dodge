@@ -45,7 +45,7 @@ void _SlowArea(void)
 	BUG* bug = GetBugIncrease();;
 
 	//-----ランダムで6が選ばれたら、3s間足がおそくなるエリアができる
-	for (int i = 0; i < 36; i++)
+	for (int i = 0; i < SKILL_NUM; i++)
 	{
 		if (random[i].code == 13 && random[i].active == true && slowarea.use == false)
 		{

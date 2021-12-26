@@ -44,7 +44,7 @@ void _Barrier(void)
 	barrier.pos = D3DXVECTOR2(player->pos.x - player->size.x * 0.5f, player->pos.y);
 
 	//-----3sŠÔƒoƒŠƒA‚ğ’£‚é
-	for (int i = 0; i < 36; i++)
+	for (int i = 0; i < SKILL_NUM; i++)
 	{
 		if (random[i].code == 3 && random[i].active == true && barrier.use == false)
 		{

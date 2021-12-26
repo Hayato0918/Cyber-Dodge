@@ -36,12 +36,15 @@ void _SpeedUp(void)
 	RANDOM* random = GetRandom();
 
 	//ランダムで4が出たら、10s間キャラのスピードが2倍になる
-	if (random->code == 4 && random->active == true && speedup.use == false)
+	for (int i = 0; i < SKILL_NUM; i++)
 	{
-		player->move *= 2;
-		speedup.timeflag = true;
-		bug->gaugesize.x = bug->gaugesize.x + speedup.usegauge * bug->gaugeonce;
-		speedup.use = true;
+		if (random[i].code == 4 && random[i].active == true && speedup.use == false)
+		{
+			player->move *= 2;
+			speedup.timeflag = true;
+			bug->gaugesize.x = bug->gaugesize.x + speedup.usegauge * bug->gaugeonce;
+			speedup.use = true;
+		}
 	}
 	//スキル使用10s後にもとのスピードに戻る
 	if (speedup.timeflag == true)

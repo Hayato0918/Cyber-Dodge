@@ -9,19 +9,20 @@
 //エネミー.h
 #include "firewall.h"
 #include "slime.h"
-
+//プレイヤー.h
 #include "player_operate.h"
 #include "player_animation.h"
 #include "player_damage.h"
-
+#include "player_hp.h"
+//ボール.h
 #include "ball.h"
 #include "catch.h"
-#include "skill.h"
-#include "invade.h"
-#include "player_hp.h"
-#include "skillrandom.h"
-
+//マップ.h
 #include "map_point.h"
+//スキル.h
+#include "skill.h"
+#include "skillrandom.h"
+#include "invade.h"
 
 //-----マクロ定義
 

@@ -38,11 +38,14 @@ void _PlayerRegen(void)
 	RANDOM* random = GetRandom();
 
 	//ランダムで4が出たら、10s間キャラの体力が1sずつに10回復する
-	if (random->code == 4 && random->active == true && regen.use == false)
+	for (int i = 0; i < SKILL_NUM; i++)
 	{
-		regen.timeflag = true;
-		bug->gaugesize.x = bug->gaugesize.x + regen.usegauge * bug->gaugeonce;
-		regen.use = true;
+		if (random[i].code == 4 && random[i].active == true && regen.use == false)
+		{
+			regen.timeflag = true;
+			bug->gaugesize.x = bug->gaugesize.x + regen.usegauge * bug->gaugeonce;
+			regen.use = true;
+		}
 	}
 	//スキル発動後秒数をカウント
 	if (regen.timeflag == true)

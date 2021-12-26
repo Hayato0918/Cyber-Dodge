@@ -36,12 +36,15 @@ void _PowerUp(void)
 	RANDOM* random = GetRandom();
 
 	//ランダムで4が出たら、10s間キャラのパワーが+50になる
-	if (random->code == 4 && random->active == true && powerup.use == false)
+	for (int i = 0; i < SKILL_NUM; i++)
 	{
-		player->atk += 50;
-		powerup.timeflag = true;
-		bug->gaugesize.x = bug->gaugesize.x + powerup.usegauge * bug->gaugeonce;
-		powerup.use = true;
+		if (random[i].code == 4 && random[i].active == true && powerup.use == false)
+		{
+			player->atk += 50;
+			powerup.timeflag = true;
+			bug->gaugesize.x = bug->gaugesize.x + powerup.usegauge * bug->gaugeonce;
+			powerup.use = true;
+		}
 	}
 	//スキル使用10s後にもとの強さに戻る
 	if (powerup.timeflag == true)

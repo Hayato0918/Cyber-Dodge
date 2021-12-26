@@ -7,10 +7,13 @@
 //エネミー.h
 #include "firewall.h"
 #include "slime.h"
-
+//プレイヤー
 #include "player.h"
+//
 #include "ball.h"
 #include "map_point.h"
+//スキル.h
+#include "autocatch.h"
 
 //-----マクロ定義
 #define catchtime 30		//キャッチ判定を出す時間
@@ -25,6 +28,7 @@ CATCH Catch;
 HRESULT InitCatch(void)
 {
 	Catch.playerpos = D3DXVECTOR2(0.0f, 0.0f);
+	Catch.playersize = D3DXVECTOR2(60.0, 60.0);
 	Catch.playerflag = false;
 	Catch.playerintervalflag = false;
 	Catch.playerintervaltime = 0.0f;
@@ -32,6 +36,7 @@ HRESULT InitCatch(void)
 	Catch.playercoltime = 0.0f;
 
 	Catch.enemypos = D3DXVECTOR2(0.0f, 0.0f);
+	Catch.enemysize = D3DXVECTOR2(60.0, 60.0);
 	Catch.enemyflag = 0;
 	Catch.enemyintervalflag = 0;
 	Catch.enemyintervaltime = 0.0f;
@@ -97,15 +102,16 @@ void UpdateCatch(void)
 void DrawCatch(void)
 {
 	if(Catch.playerflag == true)
-	DrawSpriteColor(Catch.texture, Catch.playerpos.x, Catch.playerpos.y, Catch.size.x, Catch.size.y, 0.0f, 0.0f, 1.0f, 1.0f, Catch.color);
+		DrawSpriteColor(Catch.texture, Catch.playerpos.x, Catch.playerpos.y, Catch.playersize.x, Catch.playersize.y, 0.0f, 0.0f, 1.0f, 1.0f, Catch.color);
 	if(Catch.enemyflag == 1)
-		DrawSpriteColor(Catch.texture, Catch.enemypos.x, Catch.enemypos.y, Catch.size.x, Catch.size.y, 0.0f, 0.0f, 1.0f, 1.0f, Catch.color);
+		DrawSpriteColor(Catch.texture, Catch.enemypos.x, Catch.enemypos.y, Catch.enemysize.x, Catch.enemysize.y, 0.0f, 0.0f, 1.0f, 1.0f, Catch.color);
 }
 
 //-----プレイヤーのキャッチ処理
 void P_Catch(void)
 {
 	BALL* ball = GetBall();
+	AUTO* auto_c = GetAuto();
 
 	if (PADUSE == 0)
 	{
@@ -144,10 +150,29 @@ void P_Catch(void)
 	//-----キャッチモーション中にボールがキャッチ判定内に入ったら
 	if (Catch.playerflag == true)
 	{
-		if (Catch.playerpos.x + Catch.size.x > ball->pos.x && Catch.playerpos.x < ball->pos.x + ball->size.x)
+		//スキル：オートキャッチが機能していない場合
+		if (auto_c->use == false)
 		{
-			if (Catch.playerpos.y + Catch.size.y > ball->pos.y && Catch.playerpos.y < ball->pos.y + ball->size.y)
+			if (Catch.playerpos.x + Catch.playersize.x > ball->pos.x && Catch.playerpos.x < ball->pos.x + ball->size.x)
 			{
+				if (Catch.playerpos.y + Catch.playersize.y > ball->pos.y && Catch.playerpos.y < ball->pos.y + ball->size.y)
+				{
+					ball->playerhitflag = false;
+					ball->playerthrowflag = false;
+					ball->throwflag = false;
+					ball->playerhaveflag = true;
+					ball->move = D3DXVECTOR2(ball->startmove.x, ball->startmove.y);
+				}
+			}
+		}
+
+		//スキル：オートキャッチが機能している場合
+		if (auto_c->use == true)
+		{
+			if (Catch.playerpos.x + Catch.playersize.x > ball->pos.x && Catch.playerpos.x < ball->pos.x + ball->size.x)
+			{
+				//スキル：オートキャッチで増えた当たり判定を加算、座標を移動
+				if (Catch.playerpos.y + (Catch.playersize.y * 4) > ball->pos.y && (Catch.playerpos.y - Catch.playersize.y) < ball->pos.y + ball->size.y)
 				ball->playerhitflag = false;
 				ball->playerthrowflag = false;
 				ball->throwflag = false;
@@ -188,9 +213,9 @@ void M_Catch(void)
 	//-----キャッチモーション中にボールがキャッチ判定内に入ったら
 	if (Catch.enemyflag == 1)
 	{
-		if (Catch.enemypos.x + Catch.size.x > ball->pos.x && Catch.enemypos.x < ball->pos.x + ball->size.x)
+		if (Catch.enemypos.x + Catch.enemysize.x > ball->pos.x && Catch.enemypos.x < ball->pos.x + ball->size.x)
 		{
-			if (Catch.enemypos.y + Catch.size.y > ball->pos.y && Catch.enemypos.y < ball->pos.y + ball->size.y)
+			if (Catch.enemypos.y + Catch.enemysize.y > ball->pos.y && Catch.enemypos.y < ball->pos.y + ball->size.y)
 			{
 				Catch.enemyintervaltime = 0.0f;
 				ball->throwflag = false;

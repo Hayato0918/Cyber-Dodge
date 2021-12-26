@@ -2,10 +2,13 @@
 #include "enemy_powerdown.h"
 //エネミー.h
 #include "firewall.h"
+#include "slime.h"
 
 #include "bugincrease.h"
 
 #include "skillrandom.h"
+
+#include "map_point.h"
 
 //-----マクロ定義
 #define powerdowntime 600		//10s間
@@ -30,16 +33,24 @@ HRESULT InitPowerDown(void)
 void _PowerDown(void)
 {
 	FIREWALL* firewall = GetFireWall();
+	SLIME* slime = GetSlime();
 	BUG* bug = GetBugIncrease();
 	RANDOM* random = GetRandom();
+	MAP_PLAYER* map_player = GetMapPlayer();
 
 	//ランダムで4が出たら、10s間敵のパワーが-50になる
-	if (random->code == 4 && random->active == true && powerdown.use == false)
+	for (int i = 0; i < SKILL_NUM; i++)
 	{
-		firewall->atk = firewall->atk - 50;
-		powerdown.timeflag = true;
-		bug->gaugesize.x = bug->gaugesize.x + powerdown.usegauge * bug->gaugeonce;
-		powerdown.use = true;
+		if (random[i].code == 4 && random[i].active == true && powerdown.use == false)
+		{
+			if (map_player->encount == 1)
+				slime->atk = slime->atk - 50;
+			if(map_player->encount == 2)
+			firewall->atk = firewall->atk - 50;
+			powerdown.timeflag = true;
+			bug->gaugesize.x = bug->gaugesize.x + powerdown.usegauge * bug->gaugeonce;
+			powerdown.use = true;
+		}
 	}
 	//スキル使用10s後にもとの強さに戻る
 	if (powerdown.timeflag == true)

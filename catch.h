@@ -8,6 +8,7 @@
 typedef struct
 {
 	D3DXVECTOR2 playerpos;	//プレイヤー側のキャッチゾーンの位置
+	D3DXVECTOR2 playersize;
 	D3DXVECTOR2 size;
 	int texture;
 	D3DXCOLOR color;
@@ -18,6 +19,7 @@ typedef struct
 	bool playercolflag;	//プレイヤーがボールをキャッチしているかを管理するフラグ
 
 	D3DXVECTOR2 enemypos;	//エネミー側のキャッチゾーンの位置
+	D3DXVECTOR2 enemysize;
 	int enemyflag;		//エネミーがキャッチ動作をしているかを管理するフラグ
 	int enemyintervalflag;	//エネミーのキャッチのインターバルを管理するフラグ
 	float enemyintervaltime;	//エネミーのキャッチのインターバル秒を管理する変数

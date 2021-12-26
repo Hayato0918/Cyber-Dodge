@@ -5,6 +5,8 @@
 #include "sprite.h"
 //エネミー.h
 #include "firewall.h"
+#include "slime.h"
+#include "map_point.h"
 
 #include "player.h"
 #include "bugincrease.h"
@@ -42,10 +44,12 @@ void _Ganseki(void)
 	BUG* bug = GetBugIncrease();;
 	BALL* ball = GetBall();
 	FIREWALL* firewall = GetFireWall();
+	SLIME* slime = GetSlime();
+	MAP_PLAYER* map_player = GetMapPlayer();
 	KANTSUU* kantsuu = GetKantsuu();
 
 	//-----発動から30秒間、フィールドに残る障害物として岩石を生成する
-	for (int i = 0; i < 36; i++)
+	for (int i = 0; i < SKILL_NUM; i++)
 	{
 		if (random[i].code == 12 && random[i].active == true && ganseki.use == false)
 		{
@@ -92,14 +96,30 @@ void _Ganseki(void)
 		}
 
 		//エネミーコリジョン
-		if (ganseki.pos.x < firewall->pos.x + firewall->size.x && ganseki.pos.x + ganseki.size.x * 0.8f > firewall->pos.x)
+		if (map_player->encount == 1)
 		{
-			if (ganseki.pos.y + ganseki.size.y * 0.2f < firewall->pos.y + firewall->size.y && ganseki.pos.y + ganseki.size.y * 0.8f > firewall->pos.y)
+			if (ganseki.pos.x < slime->pos.x + slime->size.x && ganseki.pos.x + ganseki.size.x * 0.8f > slime->pos.x)
 			{
-				if (firewall->move.x < 0)
-					firewall->pos.x -= 2.0f;
-				if (firewall->move.x > 0)
-					firewall->pos.x += 2.0f;
+				if (ganseki.pos.y + ganseki.size.y * 0.2f < slime->pos.y + slime->size.y && ganseki.pos.y + ganseki.size.y * 0.8f > slime->pos.y)
+				{
+					if (slime->move.x < 0)
+						slime->pos.x -= 2.0f;
+					if (slime->move.x > 0)
+						slime->pos.x += 2.0f;
+				}
+			}
+		}
+		if (map_player->encount == 2)
+		{
+			if (ganseki.pos.x < firewall->pos.x + firewall->size.x && ganseki.pos.x + ganseki.size.x * 0.8f > firewall->pos.x)
+			{
+				if (ganseki.pos.y + ganseki.size.y * 0.2f < firewall->pos.y + firewall->size.y && ganseki.pos.y + ganseki.size.y * 0.8f > firewall->pos.y)
+				{
+					if (firewall->move.x < 0)
+						firewall->pos.x -= 2.0f;
+					if (firewall->move.x > 0)
+						firewall->pos.x += 2.0f;
+				}
 			}
 		}
 	}

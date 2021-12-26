@@ -36,7 +36,7 @@ void _BuildUp(void)
 	RANDOM* random = GetRandom();
 
 	//ランダムで4が出たら、3s間キャラのサイズが2倍になる
-	for (int i = 0; i < 36; i++)
+	for (int i = 0; i < SKILL_NUM; i++)
 	{
 		if (random[i].code == 7 && random[i].active == true && buildup.use == false)
 		{

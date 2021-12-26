@@ -36,7 +36,7 @@ void _BigBall(void)
 	BUG* bug = GetBugIncrease();;
 
 	//ランダムで選ばれたら、3s間ボールのサイズが大きくなる
-	for (int i = 0; i < 36; i++)
+	for (int i = 0; i < SKILL_NUM; i++)
 	{
 		if (random[i].code == 5 && random[i].active == true && bigball.use == false)
 		{

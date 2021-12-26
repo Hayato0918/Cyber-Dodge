@@ -91,11 +91,14 @@
     <Filter Include="ヘッダー ファイル\map\banner">
       <UniqueIdentifier>{7e949712-4443-4a67-9a9b-397b2dbec23b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\title">
+      <UniqueIdentifier>{157ff4df-ba11-455c-ba53-d1ecc3857058}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\title">
+      <UniqueIdentifier>{4bfe66d6-aa7d-46cc-a07e-5e8e36c21fa4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="title.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="scene.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -351,11 +354,44 @@
     <ClCompile Include="rest_select.cpp">
       <Filter>ソース ファイル\map\rest</Filter>
     </ClCompile>
+    <ClCompile Include="autocatch.cpp">
+      <Filter>ソース ファイル\skill</Filter>
+    </ClCompile>
+    <ClCompile Include="doubleattack.cpp">
+      <Filter>ソース ファイル\skill</Filter>
+    </ClCompile>
+    <ClCompile Include="warp.cpp">
+      <Filter>ソース ファイル\skill</Filter>
+    </ClCompile>
+    <ClCompile Include="disappear.cpp">
+      <Filter>ソース ファイル\skill</Filter>
+    </ClCompile>
+    <ClCompile Include="otoshiana.cpp">
+      <Filter>ソース ファイル\skill</Filter>
+    </ClCompile>
+    <ClCompile Include="landmines.cpp">
+      <Filter>ソース ファイル\skill</Filter>
+    </ClCompile>
+    <ClCompile Include="title.cpp">
+      <Filter>ソース ファイル\title</Filter>
+    </ClCompile>
+    <ClCompile Include="title_teamname.cpp">
+      <Filter>ソース ファイル\title</Filter>
+    </ClCompile>
+    <ClCompile Include="title_bg.cpp">
+      <Filter>ソース ファイル\title</Filter>
+    </ClCompile>
+    <ClCompile Include="title_gamestart.cpp">
+      <Filter>ソース ファイル\title</Filter>
+    </ClCompile>
+    <ClCompile Include="title_exit.cpp">
+      <Filter>ソース ファイル\title</Filter>
+    </ClCompile>
+    <ClCompile Include="title_select.cpp">
+      <Filter>ソース ファイル\title</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="title.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="scene.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -610,6 +646,42 @@
     </ClInclude>
     <ClInclude Include="rest_select.h">
       <Filter>ヘッダー ファイル\map\rest</Filter>
+    </ClInclude>
+    <ClInclude Include="autocatch.h">
+      <Filter>ヘッダー ファイル\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="doubleattack.h">
+      <Filter>ヘッダー ファイル\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="warp.h">
+      <Filter>ヘッダー ファイル\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="disappear.h">
+      <Filter>ヘッダー ファイル\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="otoshiana.h">
+      <Filter>ヘッダー ファイル\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="landmines.h">
+      <Filter>ヘッダー ファイル\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="title.h">
+      <Filter>ヘッダー ファイル\title</Filter>
+    </ClInclude>
+    <ClInclude Include="title_teamname.h">
+      <Filter>ヘッダー ファイル\title</Filter>
+    </ClInclude>
+    <ClInclude Include="title_bg.h">
+      <Filter>ヘッダー ファイル\title</Filter>
+    </ClInclude>
+    <ClInclude Include="title_gamestart.h">
+      <Filter>ヘッダー ファイル\title</Filter>
+    </ClInclude>
+    <ClInclude Include="title_exit.h">
+      <Filter>ヘッダー ファイル\title</Filter>
+    </ClInclude>
+    <ClInclude Include="title_select.h">
+      <Filter>ヘッダー ファイル\title</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -2,6 +2,7 @@
 #include "timestop.h"
 //-----エネミー.h
 #include "firewall.h"
+#include "slime.h"
 
 #include "bugincrease.h"
 #include "catch.h"
@@ -37,12 +38,15 @@ void _Timestop(void)
 	CATCH* cattch = GetCatch();
 
 	//ランダムで4が出たら、6s間敵が行動不能になる
-	if (random->code == 4 && random->active == true && timestop.use == false)
+	for (int i = 0; i < SKILL_NUM; i++)
 	{
-		timestop.posnow = firewall->pos;
-		timestop.timeflag = true;
-		bug->gaugesize.x = bug->gaugesize.x + timestop.usegauge * bug->gaugeonce;
-		timestop.use = true;
+		if (random[i].code == 4 && random[i].active == true && timestop.use == false)
+		{
+			timestop.posnow = firewall->pos;
+			timestop.timeflag = true;
+			bug->gaugesize.x = bug->gaugesize.x + timestop.usegauge * bug->gaugeonce;
+			timestop.use = true;
+		}
 	}
 	//スキル使用6s後にもとに戻る
 	if (timestop.timeflag == true)

@@ -31,7 +31,7 @@ void _Kantsuu(void)
 	BUG* bug = GetBugIncrease();;
 
 	//-----発動から3秒間、ボールが障害物の判定を貫通するようになる。
-	for (int i = 0; i < 36; i++)
+	for (int i = 0; i < SKILL_NUM; i++)
 	{
 		if (random[i].code == 11 && random[i].active == true && kantsuu.use == false)
 		{
