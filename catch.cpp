@@ -28,7 +28,7 @@ CATCH Catch;
 HRESULT InitCatch(void)
 {
 	Catch.playerpos = D3DXVECTOR2(0.0f, 0.0f);
-	Catch.playersize = D3DXVECTOR2(60.0, 60.0);
+	Catch.playersize = D3DXVECTOR2(100.0, 240.0);
 	Catch.playerflag = false;
 	Catch.playerintervalflag = false;
 	Catch.playerintervaltime = 0.0f;
@@ -69,9 +69,9 @@ void UpdateCatch(void)
 	if (Catch.playerflag == true)
 	{
 		if (player->rotate == 2)	//左
-			Catch.playerpos = D3DXVECTOR2(player->pos.x, player->pos.y + player->size.y * 0.4f);
+			Catch.playerpos = D3DXVECTOR2(player->pos.x, player->pos.y + player->size.y * 0.4f + 20.f);
 		if (player->rotate == 3)		//右
-			Catch.playerpos = D3DXVECTOR2(player->pos.x + player->size.x, player->pos.y + player->size.y * 0.4f);
+			Catch.playerpos = D3DXVECTOR2(player->pos.x + player->size.x, player->pos.y + player->size.y * 0.4f + 20.f);
 	}
 
 	//-----エネミーの向きに応じてキャッチの方向を決める
@@ -155,7 +155,7 @@ void P_Catch(void)
 		{
 			if (Catch.playerpos.x + Catch.playersize.x > ball->pos.x && Catch.playerpos.x < ball->pos.x + ball->size.x)
 			{
-				if (Catch.playerpos.y + Catch.playersize.y > ball->pos.y && Catch.playerpos.y < ball->pos.y + ball->size.y)
+				if (Catch.playerpos.y + Catch.playersize.y > ball->pos.y && Catch.playerpos.y - 100.f < ball->pos.y + ball->size.y)
 				{
 					ball->playerhitflag = false;
 					ball->playerthrowflag = false;
@@ -173,11 +173,13 @@ void P_Catch(void)
 			{
 				//スキル：オートキャッチで増えた当たり判定を加算、座標を移動
 				if (Catch.playerpos.y + (Catch.playersize.y * 4) > ball->pos.y && (Catch.playerpos.y - Catch.playersize.y) < ball->pos.y + ball->size.y)
-				ball->playerhitflag = false;
-				ball->playerthrowflag = false;
-				ball->throwflag = false;
-				ball->playerhaveflag = true;
-				ball->move = D3DXVECTOR2(ball->startmove.x, ball->startmove.y);
+				{
+					ball->playerhitflag = false;
+					ball->playerthrowflag = false;
+					ball->throwflag = false;
+					ball->playerhaveflag = true;
+					ball->move = D3DXVECTOR2(ball->startmove.x, ball->startmove.y);
+				}
 			}
 		}
 	}

@@ -26,6 +26,9 @@ HRESULT InitPowerDown(void)
 	powerdown.time = 0.0f;
 	powerdown.usegauge = 30;
 
+	powerdown.bugincrease = false;
+	powerdown.bugdrawnum = 0;
+
 	return S_OK;
 }
 
@@ -35,20 +38,34 @@ void _PowerDown(void)
 	FIREWALL* firewall = GetFireWall();
 	SLIME* slime = GetSlime();
 	BUG* bug = GetBugIncrease();
+	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();
 	MAP_PLAYER* map_player = GetMapPlayer();
 
 	//ランダムで4が出たら、10s間敵のパワーが-50になる
 	for (int i = 0; i < SKILL_NUM; i++)
 	{
-		if (random[i].code == 4 && random[i].active == true && powerdown.use == false)
+		if (random[i].code == 18 && random[i].active == true && powerdown.use == false)
 		{
 			if (map_player->encount == 1)
 				slime->atk = slime->atk - 50;
 			if(map_player->encount == 2)
 			firewall->atk = firewall->atk - 50;
 			powerdown.timeflag = true;
-			bug->gaugesize.x = bug->gaugesize.x + powerdown.usegauge * bug->gaugeonce;
+			//-----バグゲージの上昇
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && powerdown.bugincrease == false)
+				{
+					for (int j = i; powerdown.bugdrawnum < 6; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						powerdown.bugdrawnum = powerdown.bugdrawnum + 1;
+					}
+					powerdown.bugincrease = true;
+				}
+			}
 			powerdown.use = true;
 		}
 	}

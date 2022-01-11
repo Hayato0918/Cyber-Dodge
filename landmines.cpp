@@ -39,6 +39,9 @@ HRESULT InitLandMines(void)
 	landmines.time = 0.0f;
 	landmines.usegauge = 10;
 
+	landmines.bugincrease = false;
+	landmines.bugdrawnum = 0;
+
 	return S_OK;
 }
 
@@ -48,15 +51,29 @@ void _LandMines(void)
 	SLIME* slime = GetSlime();
 	FIREWALL* firewall = GetFireWall();
 	BUG* bug = GetBugIncrease();
+	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();
 	MAP_PLAYER* map_player = GetMapPlayer();
 
 	//Uキーを押したら地雷を設置
 	for (int i = 0; i < SKILL_NUM; i++)
 	{
-		if (random[i].code == 4 && random[i].active == true && landmines.use == false && landmines.possesion > 0)
+		if (random[i].code == 19 && random[i].active == true && landmines.use == false && landmines.possesion > 0)
 		{
-			bug->gaugesize.x = bug->gaugesize.x + landmines.usegauge * bug->gaugeonce;
+			//-----バグゲージの上昇
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && landmines.bugincrease == false)
+				{
+					for (int j = i; landmines.bugdrawnum < 8; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						landmines.bugdrawnum = landmines.bugdrawnum + 1;
+					}
+					landmines.bugincrease = true;
+				}
+			}
 			landmines.use = true;
 		}
 	}

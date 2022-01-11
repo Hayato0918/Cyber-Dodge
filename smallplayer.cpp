@@ -25,6 +25,9 @@ HRESULT InitSmallPlayer(void)
 	smallplayer.time = 0.0f;
 	smallplayer.usegauge = 10;
 
+	smallplayer.bugincrease = false;
+	smallplayer.bugdrawnum = 0;
+
 	return S_OK;
 }
 
@@ -33,14 +36,28 @@ void _SmallPlayer(void)
 {
 	PLAYER* player = GetPlayer();
 	RANDOM* random = GetRandom();
-	BUG* bug = GetBugIncrease();;
+	BUG* bug = GetBugIncrease();
+	BUGGAUGE* buggauge = GetBugGauge();
 
 	//ランダムで7が選ばれたら、3s間キャラのサイズが0.5倍小さくなるになる
 	for (int i = 0; i < SKILL_NUM; i++)
 	{
 		if (random[i].code == 14 && random[i].active == true && smallplayer.use == false)
 		{
-			bug->gaugesize.x = bug->gaugesize.x + smallplayer.usegauge * bug->gaugeonce;
+			//-----バグゲージの上昇
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && smallplayer.bugincrease == false)
+				{
+					for (int j = i; smallplayer.bugdrawnum < 2; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						smallplayer.bugdrawnum = smallplayer.bugdrawnum + 1;
+					}
+					smallplayer.bugincrease = true;
+				}
+			}
 			player->size = D3DXVECTOR2(player->size.x * 0.5f, player->size.y * 0.5f);
 			smallplayer.timeflag = true;
 			smallplayer.use = true;

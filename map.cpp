@@ -5,9 +5,9 @@
 #include "fade.h"
 #include "sound.h"
 
+#include "map_bg.h"
 #include "map_point.h"
 #include "map_hack.h"
-#include "map_line.h"
 
 #include "banner.h"
 #include "save.h"
@@ -22,30 +22,35 @@
 
 
 //-----‰Šú‰»ŠÖ”
-void InitMap(void)
+HRESULT InitMap(void)
 {
+	InitMapBG();
 	InitMapPoint();
+	//InitMapLine();
 	InitMapPlayer();
-	InitPolygon();
 	InitMapHack();
+
+	return S_OK;
 }
 
 //-----I—¹ˆ—ŠÖ”
 void UninitMap()
 {
 	UninitMapPoint();
+	//UninitMapLine();
 	UninitMapPlayer();
 	UninitMapHack();
-	UninitPolygon();
+	UninitMapBG();
 }
 
 //-----XVˆ—‚ğ‚·‚éŠÖ”
 void UpdateMap(void)
 {
+	UpdateMapBG();
 	UpdateMapPoint();
+	//UpdateMapLine();
 	UpdateMapPlayer();
 	UpdateMapHack();
-	UpdatePolygon();
 
 	if (GetKeyboardTrigger(DIK_1))
 		Save();
@@ -58,8 +63,9 @@ void UpdateMap(void)
 //-----•`‰æˆ—ŠÖ”
 void DrawMap(void)
 {
+	DrawMapBG();
+	//DrawMapLine();
 	DrawMapPoint();
 	DrawMapPlayer();
-	DrawPolygon();
 	DrawMapHack();
 }

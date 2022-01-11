@@ -35,8 +35,9 @@ void UninitTitleExit(void)
 void UpdateTitleExit(void)
 {
 	TITLE_SELECT* title_select = GetTitleSelect();
+	TITLE_BG* title_bg = GetTitleBG();
 
-	if (title_select->count == 1 && GetKeyboardTrigger(DIK_RETURN))
+	if (title_select->count == 1 && GetKeyboardTrigger(DIK_RETURN) && title_bg->drawflag == true)
 		exit(0);
 }
 

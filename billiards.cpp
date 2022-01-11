@@ -26,6 +26,9 @@ HRESULT InitBilliards(void)
 	billiards.time = 0.0f;
 	billiards.usegauge = 20;
 
+	billiards.bugincrease = false;
+	billiards.bugdrawnum = 0;
+
 	billiards.texture = LoadTexture("data/TEXTURE/cuestick.png");
 
 	return S_OK;
@@ -37,15 +40,29 @@ void _Billiards(void)
 		//玉を持っていない間キュースティックを一定時間表示、その間玉を一定の速度で打ち出すような処理を行います。
 
 	BALL* ball = GetBall();
-	BUG* bug = GetBugIncrease();;
+	BUG* bug = GetBugIncrease();
 	RANDOM* random = GetRandom();
+	BUGGAUGE* buggauge = GetBugGauge();
 
 	//スキルが使えるかの判断
 	for (int i = 0; i < SKILL_NUM; i++)
 	{
 		if (random[i].code == 6 && random[i].active == true && billiards.use == false && ball->playerhaveflag == false)
 		{
-			bug->gaugesize.x = bug->gaugesize.x + billiards.usegauge * bug->gaugeonce;
+			//-----バグゲージの上昇
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && billiards.bugincrease == false)
+				{
+					for (int j = i; billiards.bugdrawnum < 4; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						billiards.bugdrawnum = billiards.bugdrawnum + 1;
+					}
+					billiards.bugincrease = true;
+				}
+			}
 			billiards.timeflag = true;
 			billiards.use = true;
 		}

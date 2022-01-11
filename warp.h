@@ -19,6 +19,9 @@ typedef struct
 	bool timeflag;	//スキルの適用時間を管理するフラグ
 
 	int usegauge;	//バグゲージの上昇量
+
+	bool bugincrease;
+	int bugdrawnum;
 }WARP;
 
 //-----プロトタイプ宣言

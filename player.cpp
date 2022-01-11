@@ -46,7 +46,7 @@ HRESULT InitPlayer(void)
 		player.rotate = 3;
 		player.drawflag = true;
 
-		player.atk = 150;
+		player.atk = 50;
 		player.def = 0;
 
 		player.u = 0.0f;

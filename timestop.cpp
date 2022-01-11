@@ -26,6 +26,9 @@ HRESULT InitTimestop(void)
 	timestop.usegauge = 80;
 	timestop.posnow = D3DXVECTOR2(0.0f, 0.0f);
 
+	timestop.bugincrease = false;
+	timestop.bugdrawnum = 0;
+
 	return S_OK;
 }
 
@@ -34,17 +37,31 @@ void _Timestop(void)
 {
 	FIREWALL* firewall = GetFireWall();
 	BUG* bug = GetBugIncrease();
+	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();
 	CATCH* cattch = GetCatch();
 
 	//ランダムで4が出たら、6s間敵が行動不能になる
 	for (int i = 0; i < SKILL_NUM; i++)
 	{
-		if (random[i].code == 4 && random[i].active == true && timestop.use == false)
+		if (random[i].code == 25 && random[i].active == true && timestop.use == false)
 		{
 			timestop.posnow = firewall->pos;
 			timestop.timeflag = true;
-			bug->gaugesize.x = bug->gaugesize.x + timestop.usegauge * bug->gaugeonce;
+			//-----バグゲージの上昇
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && timestop.bugincrease == false)
+				{
+					for (int j = i; timestop.bugdrawnum < 16; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						timestop.bugdrawnum = timestop.bugdrawnum + 1;
+					}
+					timestop.bugincrease = true;
+				}
+			}
 			timestop.use = true;
 		}
 	}

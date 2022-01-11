@@ -27,6 +27,9 @@ HRESULT InitPlayerRegen(void)
 	regen.number = 0;
 	regen.usegauge = 30;
 
+	regen.bugincrease = false;
+	regen.bugdrawnum = 0;
+
 	return S_OK;
 }
 
@@ -35,15 +38,29 @@ void _PlayerRegen(void)
 {
 	PLAYERHP* hp = GetPlayerHp();
 	BUG* bug = GetBugIncrease();
+	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();
 
 	//ランダムで4が出たら、10s間キャラの体力が1sずつに10回復する
 	for (int i = 0; i < SKILL_NUM; i++)
 	{
-		if (random[i].code == 4 && random[i].active == true && regen.use == false)
+		if (random[i].code == 23 && random[i].active == true && regen.use == false)
 		{
 			regen.timeflag = true;
-			bug->gaugesize.x = bug->gaugesize.x + regen.usegauge * bug->gaugeonce;
+			//-----バグゲージの上昇
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && regen.bugincrease == false)
+				{
+					for (int j = i; regen.bugdrawnum < 4; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						regen.bugdrawnum = regen.bugdrawnum + 1;
+					}
+					regen.bugincrease = true;
+				}
+			}
 			regen.use = true;
 		}
 	}
@@ -73,6 +90,9 @@ void _PlayerRegen(void)
 	{
 		regen.timeflag = false;
 		regen.time = 0.0f;
+		regen.use = false;
+		regen.bugincrease = false;
+		regen.bugdrawnum = 0;
 		regen.number = 0;
 	}
 }

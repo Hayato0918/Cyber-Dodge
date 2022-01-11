@@ -21,6 +21,9 @@ HRESULT InitKantsuu(void)
 	kantsuu.time = 0.0f;
 	kantsuu.usegauge = 10;
 
+	kantsuu.bugincrease = false;
+	kantsuu.bugdrawnum = 0;
+
 	return S_OK;
 }
 
@@ -28,14 +31,28 @@ HRESULT InitKantsuu(void)
 void _Kantsuu(void)
 {
 	RANDOM* random = GetRandom();
-	BUG* bug = GetBugIncrease();;
+	BUG* bug = GetBugIncrease();
+	BUGGAUGE* buggauge = GetBugGauge();
 
 	//-----発動から3秒間、ボールが障害物の判定を貫通するようになる。
 	for (int i = 0; i < SKILL_NUM; i++)
 	{
 		if (random[i].code == 11 && random[i].active == true && kantsuu.use == false)
 		{
-			bug->gaugesize.x = bug->gaugesize.x + kantsuu.usegauge * bug->gaugeonce;
+			//-----バグゲージの上昇
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && kantsuu.bugincrease == false)
+				{
+					for (int j = i; kantsuu.bugdrawnum < 2; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						kantsuu.bugdrawnum = kantsuu.bugdrawnum + 1;
+					}
+					kantsuu.bugincrease = true;
+				}
+			}
 			kantsuu.timeflag = true;
 			kantsuu.use = true;
 		}

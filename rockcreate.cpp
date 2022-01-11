@@ -33,6 +33,9 @@ HRESULT InitGanseki(void)
 	ganseki.size = D3DXVECTOR2(200.0f, 300.0f);
 	ganseki.texture = LoadTexture("data/TEXTURE/Rock.png");
 
+	ganseki.bugincrease = false;
+	ganseki.bugdrawnum = 0;
+
 	return S_OK;
 }
 
@@ -41,7 +44,8 @@ void _Ganseki(void)
 {
 	PLAYER* player = GetPlayer();
 	RANDOM* random = GetRandom();
-	BUG* bug = GetBugIncrease();;
+	BUG* bug = GetBugIncrease();
+	BUGGAUGE* buggauge = GetBugGauge();
 	BALL* ball = GetBall();
 	FIREWALL* firewall = GetFireWall();
 	SLIME* slime = GetSlime();
@@ -53,7 +57,20 @@ void _Ganseki(void)
 	{
 		if (random[i].code == 12 && random[i].active == true && ganseki.use == false)
 		{
-			bug->gaugesize.x = bug->gaugesize.x + ganseki.usegauge * bug->gaugeonce;
+			//-----バグゲージの上昇
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && ganseki.bugincrease == false)
+				{
+					for (int j = i; ganseki.bugdrawnum < 4; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						ganseki.bugdrawnum = ganseki.bugdrawnum + 1;
+					}
+					ganseki.bugincrease = true;
+				}
+			}
 			ganseki.pos.y = player->pos.y;
 			if (player->rotate == 3)
 				ganseki.pos.x = player->pos.x + 540.0f;

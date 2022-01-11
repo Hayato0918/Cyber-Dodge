@@ -18,6 +18,9 @@ typedef struct
 	int  possesion; //地雷の所持数
 	int usegauge;	//バグゲージの上昇量
 	int texture;    //画像
+
+	bool bugincrease;
+	int bugdrawnum;
 }LANDMINES;
 
 //-----プロトタイプ宣言

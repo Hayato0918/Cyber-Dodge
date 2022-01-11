@@ -32,6 +32,9 @@ HRESULT InitSlowArea(void)
 	slowarea.time = 0.0f;
 	slowarea.usegauge = 30;
 
+	slowarea.bugincrease = false;
+	slowarea.bugdrawnum = 0;
+
 	slowarea.texture = LoadTexture("data/TEXTURE/slow.png");
 
 	return S_OK;
@@ -42,14 +45,28 @@ void _SlowArea(void)
 {
 	PLAYER* player = GetPlayer();
 	RANDOM* random = GetRandom();
-	BUG* bug = GetBugIncrease();;
+	BUG* bug = GetBugIncrease();
+	BUGGAUGE* buggauge = GetBugGauge();
 
 	//-----ランダムで6が選ばれたら、3s間足がおそくなるエリアができる
 	for (int i = 0; i < SKILL_NUM; i++)
 	{
 		if (random[i].code == 13 && random[i].active == true && slowarea.use == false)
 		{
-			bug->gaugesize.x = bug->gaugesize.x + slowarea.usegauge * bug->gaugeonce;
+			//-----バグゲージの上昇
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && slowarea.bugincrease == false)
+				{
+					for (int j = i; slowarea.bugdrawnum < 4; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						slowarea.bugdrawnum = slowarea.bugdrawnum + 1;
+					}
+					slowarea.bugincrease = true;
+				}
+			}
 			slowarea.timeflag = true;
 			slowarea.use = true;
 		}

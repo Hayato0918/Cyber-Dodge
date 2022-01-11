@@ -37,6 +37,9 @@ HRESULT InitOtosiana(void)
 	otosiana.time = 0.0f;
 	otosiana.usegauge = 10;
 
+	otosiana.bugincrease = false;
+	otosiana.bugdrawnum = 0;
+
 	return S_OK;
 }
 
@@ -46,6 +49,7 @@ void _Otosiana(void)
 	FIREWALL* firewall = GetFireWall();
 	SLIME* slime = GetSlime();
 	BUG* bug = GetBugIncrease();
+	BUGGAUGE* buggauge = GetBugGauge();
 	PLAYER* player = GetPlayer();
 	RANDOM* random = GetRandom();
 	MAP_PLAYER* map_player = GetMapPlayer();
@@ -53,10 +57,22 @@ void _Otosiana(void)
 	//Yキーを押したら落とし穴を設置
 	for (int i = 0; i < SKILL_NUM; i++)
 	{
-		if (random[i].code == 4 && random[i].active == true && otosiana.use == false)
+		if (random[i].code == 21 && random[i].active == true && otosiana.use == false)
 		{
-			bug->gaugesize.x = bug->gaugesize.x + otosiana.usegauge * bug->gaugeonce;
-			otosiana.timeflag = true;
+			//-----バグゲージの上昇
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && otosiana.bugincrease == false)
+				{
+					for (int j = i; otosiana.bugdrawnum < 4; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						otosiana.bugdrawnum = otosiana.bugdrawnum + 1;
+					}
+					otosiana.bugincrease = true;
+				}
+			}
 			otosiana.use = true;
 		}
 	}

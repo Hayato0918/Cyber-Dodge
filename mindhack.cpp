@@ -30,6 +30,9 @@ HRESULT InitMindhack(void)
 	mindhack.time = 0.0f;
 	mindhack.usegauge = 40;
 
+	mindhack.bugincrease = false;
+	mindhack.bugdrawnum = 0;
+
 	return S_OK;
 }
 
@@ -40,6 +43,7 @@ void _Mindhack(void)
 	FIREWALL* firewall = GetFireWall();
 	SLIME* slime = GetSlime();
 	BUG* bug = GetBugIncrease();
+	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();
 	REVERSE* reverse = GetReverse();
 	MAP_PLAYER* map_player = GetMapPlayer();
@@ -47,10 +51,23 @@ void _Mindhack(void)
 	//ランダムで4が出たら、6s間敵が行動不能になる
 	for (int i = 0; i < SKILL_NUM; i++)
 	{
-		if (random[i].code == 4 && random[i].active == true && mindhack.use == false)
+		if (random[i].code == 20 && random[i].active == true && mindhack.use == false)
 		{
 			mindhack.timeflag = true;
-			bug->gaugesize.x = bug->gaugesize.x + mindhack.usegauge * bug->gaugeonce;
+			//-----バグゲージの上昇
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && mindhack.bugincrease == false)
+				{
+					for (int j = i; mindhack.bugdrawnum < 8; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						mindhack.bugdrawnum = mindhack.bugdrawnum + 1;
+					}
+					mindhack.bugincrease = true;
+				}
+			}
 			mindhack.use = true;
 		}
 	}

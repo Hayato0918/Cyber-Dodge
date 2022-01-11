@@ -23,7 +23,8 @@ HRESULT InitBigBall(void)
 	bigball.use = false;
 	bigball.timeflag = false;
 	bigball.time = 0.0f;
-	bigball.usegauge = 20;
+	bigball.bugincrease = false;
+	bigball.bugdrawnum = 0;
 
 	return S_OK;
 }
@@ -33,14 +34,28 @@ void _BigBall(void)
 {
 	BALL* ball = GetBall();
 	RANDOM* random = GetRandom();
-	BUG* bug = GetBugIncrease();;
+	BUG* bug = GetBugIncrease();
+	BUGGAUGE* buggauge = GetBugGauge();
 
 	//ランダムで選ばれたら、3s間ボールのサイズが大きくなる
 	for (int i = 0; i < SKILL_NUM; i++)
 	{
 		if (random[i].code == 5 && random[i].active == true && bigball.use == false)
 		{
-			bug->gaugesize.x = bug->gaugesize.x + bigball.usegauge * bug->gaugeonce;
+			//-----バグゲージの上昇
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && bigball.bugincrease == false)
+				{
+					for (int j = i; bigball.bugdrawnum < 4; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						bigball.bugdrawnum = bigball.bugdrawnum + 1;
+					}
+					bigball.bugincrease = true;
+				}
+			}
 			ball->size = D3DXVECTOR2(ball->size.x * 2, ball->size.y * 2);
 			bigball.timeflag = true;
 			bigball.use = true;

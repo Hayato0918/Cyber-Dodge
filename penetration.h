@@ -10,6 +10,9 @@ typedef struct
 	float time;
 	bool timeflag;
 	int usegauge;
+
+	bool bugincrease;
+	int bugdrawnum;
 }KANTSUU;
 
 //-----プロトタイプ宣言

@@ -1,4 +1,3 @@
-#pragma once
 //スキル_自動キャッチ処理 [auto_catch.h]
 
 #pragma once
@@ -17,6 +16,8 @@ typedef struct
 	bool auto_catch;		//スキル：オートキャッチが機能し、キャッチに成功したかの状態
 
 	int usegauge;	//バグゲージの上昇量
+	bool bugincrease;
+	int bugdrawnum;
 }AUTO;
 
 //-----プロトタイプ宣言

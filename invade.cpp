@@ -25,6 +25,9 @@ HRESULT InitInvade(void)
 	invade.time = 0.0f;
 	invade.usegauge = 10;
 
+	invade.bugincrease = false;
+	invade.bugdrawnum = 0;
+
 	return S_OK;
 }
 
@@ -33,14 +36,28 @@ void _Invade(void)
 {
 	PLAYER* player = GetPlayer();
 	RANDOM* random = GetRandom();
-	BUG* bug = GetBugIncrease();;
+	BUG* bug = GetBugIncrease();
+	BUGGAUGE* buggauge = GetBugGauge();
 
 	//ランダムで5が選ばれたら、3秒間敵の陣地に入れる
 	for (int i = 0; i < SKILL_NUM; i++)
 	{
 		if (random[i].code == 9 && random[i].active == true && invade.use == false)
 		{
-			bug->gaugesize.x = bug->gaugesize.x + invade.usegauge * bug->gaugeonce;
+			//-----バグゲージの上昇
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && invade.bugincrease == false)
+				{
+					for (int j = i; invade.bugdrawnum < 2; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						invade.bugdrawnum = invade.bugdrawnum + 1;
+					}
+					invade.bugincrease = true;
+				}
+			}
 
 			//-----プレイヤーの位置を敵陣までワープさせる
 			player->pos.x = (SCREEN_WIDTH / 2) + 5;

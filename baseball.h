@@ -13,6 +13,9 @@ typedef struct
 	bool timeflag;		//スキルの適用時間を管理するフラグ
 	int texture;		//テクスチャ
 	int usegauge;
+
+	bool bugincrease;
+	int bugdrawnum;
 }BASEBALL;
 
 //-----プロトタイプ宣言

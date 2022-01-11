@@ -13,6 +13,9 @@ typedef struct
 	int number;
 
 	int usegauge;	//バグゲージの上昇量
+
+	bool bugincrease;
+	int bugdrawnum;
 }PLAYERREGEN;
 
 //-----プロトタイプ宣言

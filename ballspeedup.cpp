@@ -27,6 +27,9 @@ HRESULT InitBallSpeedUp(void)
 	ballspeedup.timeflag = false;
 	ballspeedup.useflag = false;
 
+	ballspeedup.bugincrease = false;
+	ballspeedup.bugdrawnum = 0;
+
 	return S_OK;
 }
 
@@ -36,6 +39,7 @@ void _BallSpeedUp(void)
 	BALL* ball = GetBall();
 	BUG* bug = GetBugIncrease();
 	RANDOM* random = GetRandom();
+	BUGGAUGE* buggauge = GetBugGauge();
 
 	//------ボールの速さを1.5倍する
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -46,7 +50,19 @@ void _BallSpeedUp(void)
 			ballspeedup.beforemove = ball->move.x;
 
 			//-----バグゲージの上昇
-			bug->gaugesize.x = bug->gaugesize.x + ballspeedup.usegauge * bug->gaugeonce;
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && ballspeedup.bugincrease == false)
+				{
+					for (int j = i; ballspeedup.bugdrawnum < 4; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						ballspeedup.bugdrawnum = ballspeedup.bugdrawnum + 1;
+					}
+					ballspeedup.bugincrease = true;
+				}
+			}
 
 			//-----効果の適用させるよ
 			ballspeedup.timeflag = true;

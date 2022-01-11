@@ -14,6 +14,8 @@ typedef struct
 	bool useflag;	//スキルを1回だけ加算するためのフラグ
 
 	int usegauge;	//バグゲージの上昇量
+	bool bugincrease;
+	int bugdrawnum;
 }BALLSPEEDUP;
 
 //-----プロトタイプ宣言

@@ -13,6 +13,9 @@ typedef struct
 	D3DXVECTOR2 pos;
 	D3DXVECTOR2 size;
 	int texture;
+
+	bool bugincrease;
+	int bugdrawnum;
 }GANSEKI;
 
 //-----プロトタイプ宣言

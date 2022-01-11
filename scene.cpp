@@ -84,6 +84,9 @@ void InitScene(SCENE index)
 		InitShop();
 		break;
 
+	case SCENE_EVENT:
+		break;
+
 	case SCENE_GAME:
 		InitGame();
 		break;
@@ -132,6 +135,9 @@ void UninitScene(void)
 		UninitBanner();
 		break;
 
+	case SCENE_EVENT:
+		break;
+
 	case SCENE_GAME:
 		UninitGame();
 		break;
@@ -178,6 +184,9 @@ void UpdateScene(void)
 	case SCENE_SHOP:
 		UpdateShop();
 		UpdateBanner();
+		break;
+
+	case SCENE_EVENT:
 		break;
 
 	case SCENE_GAME:
@@ -230,6 +239,9 @@ void DrawScene(void)
 		DrawBanner();
 		break;
 
+	case SCENE_EVENT:
+		break;
+
 	case SCENE_GAME:
 		DrawGame();
 		break;
@@ -244,9 +256,9 @@ void DrawScene(void)
 	}
 
 	//テスト用
-	int masstexture;
-	masstexture = LoadTexture("data/TEXTURE/test/mass.png");
-	DrawSpriteLeftTop(masstexture, 0.f, 0.f, 1600.f, 900.f, 0.f, 0.f, 1.f, 1.f);
+	//int masstexture;
+	//masstexture = LoadTexture("data/TEXTURE/test/mass.png");
+	//DrawSpriteLeftTop(masstexture, 0.f, 0.f, 1600.f, 900.f, 0.f, 0.f, 1.f, 1.f);
 
 	DrawFade();
 }

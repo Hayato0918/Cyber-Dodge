@@ -34,9 +34,10 @@ void UninitTitleStart(void)
 //-----XVˆ—
 void UpdateTitleStart(void)
 {
+	TITLE_BG* title_bg = GetTitleBG();
 	TITLE_SELECT* title_select = GetTitleSelect();
 
-	if (title_select->count == 0 && GetKeyboardTrigger(DIK_RETURN))
+	if (title_select->count == 0 && GetKeyboardTrigger(DIK_RETURN) && title_bg->drawflag == true)
 		SceneTransition(SCENE_MAP);
 }
 

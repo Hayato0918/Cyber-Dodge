@@ -23,6 +23,9 @@ HRESULT InitDisappear(void)
 
 	disappear.usegauge = 10;
 
+	disappear.bugincrease = false;
+	disappear.bugdrawnum = 0;
+
 	return S_OK;
 }
 
@@ -32,13 +35,27 @@ void _Disappear(void)
 	OTOSIANA* otosiana = GetOtosiana();
 	RANDOM* random = GetRandom();
 	BUG* bug = GetBugIncrease();
+	BUGGAUGE* buggauge = GetBugGauge();
 
 	//Tキーを押したら障害物を消滅
 	for (int i = 0; i < SKILL_NUM; i++)
 	{
-		if (random[i].code = 4 && random[i].active == true && disappear.use == false)
+		if (random[i].code == 16 && random[i].active == true && disappear.use == false)
 		{
-			bug->gaugesize.x = bug->gaugesize.x + disappear.usegauge * bug->gaugeonce;
+			//-----バグゲージの上昇
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && disappear.bugincrease == false)
+				{
+					for (int j = i; disappear.bugdrawnum < 2; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						disappear.bugdrawnum = disappear.bugdrawnum + 1;
+					}
+					disappear.bugincrease = true;
+				}
+			}
 			disappear.use = true;
 		}
 	}

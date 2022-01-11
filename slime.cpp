@@ -29,8 +29,8 @@ HRESULT InitSlime(void)
 	slime.move = D3DXVECTOR2(2.0f, 2.0f);
 	slime.rotate = 2;
 
-	slime.atk = 150;
-	slime.def = 50;
+	slime.atk = 40;
+	slime.def = 0;
 
 	slime.u = 0.0f;
 	slime.v = 1.0f;

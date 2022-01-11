@@ -16,7 +16,7 @@ HRESULT InitBannerIcon(void)
 {
 	banner_icon.pos = D3DXVECTOR2(10.0f, 0.0f);
 	banner_icon.size = D3DXVECTOR2(60.0f, 60.0f);
-	banner_icon.texture = LoadTexture("data/TEXTURE/map_point.png");
+	banner_icon.texture = LoadTexture("data/TEXTURE/map/map_point.png");
 
 	return S_OK;
 }

@@ -25,6 +25,9 @@ HRESULT InitBuildUp(void)
 	buildup.time = 0.0f;
 	buildup.usegauge = 10;
 
+	buildup.bugincrease = false;
+	buildup.bugdrawnum = 0;
+
 	return S_OK;
 }
 
@@ -34,6 +37,7 @@ void _BuildUp(void)
 	PLAYER* player = GetPlayer();
 	BUG* bug = GetBugIncrease();;
 	RANDOM* random = GetRandom();
+	BUGGAUGE* buggauge = GetBugGauge();
 
 	//ランダムで4が出たら、3s間キャラのサイズが2倍になる
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -42,7 +46,20 @@ void _BuildUp(void)
 		{
 			player->size = D3DXVECTOR2(player->size.x * 2, player->size.y * 2);
 			buildup.timeflag = true;
-			bug->gaugesize.x = bug->gaugesize.x + buildup.usegauge * bug->gaugeonce;
+			//-----バグゲージの上昇
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && buildup.bugincrease == false)
+				{
+					for (int j = i; buildup.bugdrawnum < 2; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						buildup.bugdrawnum = buildup.bugdrawnum + 1;
+					}
+					buildup.bugincrease = true;
+				}
+			}
 			buildup.use = true;
 		}
 	}

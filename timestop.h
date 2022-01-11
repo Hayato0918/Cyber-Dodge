@@ -12,6 +12,9 @@ typedef struct
 	D3DXVECTOR2 posnow;	//敵を行動不可にするための一時的な格納場所
 
 	int usegauge;	//バグゲージの上昇量
+
+	bool bugincrease;
+	int bugdrawnum;
 }TIMESTOP;
 
 //-----プロトタイプ宣言

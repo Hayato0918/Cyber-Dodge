@@ -25,6 +25,9 @@ HRESULT InitPowerUp(void)
 	powerup.time = 0.0f;
 	powerup.usegauge = 20;
 
+	powerup.bugincrease = false;
+	powerup.bugdrawnum = 0;
+
 	return S_OK;
 }
 
@@ -33,16 +36,30 @@ void _PowerUp(void)
 {
 	PLAYER* player = GetPlayer();
 	BUG* bug = GetBugIncrease();
+	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();
 
 	//ランダムで4が出たら、10s間キャラのパワーが+50になる
 	for (int i = 0; i < SKILL_NUM; i++)
 	{
-		if (random[i].code == 4 && random[i].active == true && powerup.use == false)
+		if (random[i].code == 22 && random[i].active == true && powerup.use == false)
 		{
 			player->atk += 50;
 			powerup.timeflag = true;
-			bug->gaugesize.x = bug->gaugesize.x + powerup.usegauge * bug->gaugeonce;
+			//-----バグゲージの上昇
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && powerup.bugincrease == false)
+				{
+					for (int j = i; powerup.bugdrawnum < 4; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						powerup.bugdrawnum = powerup.bugdrawnum + 1;
+					}
+					powerup.bugincrease = true;
+				}
+			}
 			powerup.use = true;
 		}
 	}

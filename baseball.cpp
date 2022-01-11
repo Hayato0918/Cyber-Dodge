@@ -26,6 +26,9 @@ HRESULT InitBaseball(void)
 	baseball.time = 0.0f;
 	baseball.usegauge = 20;
 
+	baseball.bugincrease = false;
+	baseball.bugdrawnum = 0;
+
 	baseball.texture = LoadTexture("data/TEXTURE/bat.png");
 
 	return S_OK;
@@ -39,13 +42,27 @@ void _Baseball(void)
 	BALL* ball = GetBall();
 	BUG* bug = GetBugIncrease();
 	RANDOM* random = GetRandom();
+	BUGGAUGE* buggauge = GetBugGauge();
 
 	//スキルが使えるかの判断
 	for (int i = 0; i < SKILL_NUM; i++)
 	{
 		if (random[i].code == 4 && random[i].active == true && baseball.use == false && ball->playerhaveflag == false)
 		{
-			bug->gaugesize.x = bug->gaugesize.x + baseball.usegauge * bug->gaugeonce;
+			//-----バグゲージの上昇
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && baseball.bugincrease == false)
+				{
+					for (int j = i; baseball.bugdrawnum < 4; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						baseball.bugdrawnum = baseball.bugdrawnum + 1;
+					}
+					baseball.bugincrease = true;
+				}
+			}
 			baseball.timeflag = true;
 			baseball.use = true;
 		}

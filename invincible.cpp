@@ -31,6 +31,9 @@ HRESULT InitInvincible(void)
 	invincible.time = 0.0f;
 	invincible.usegauge = 40;
 
+	invincible.bugincrease = false;
+	invincible.bugdrawnum = 0;
+
 	invincible.texture = LoadTexture("data/TEXTURE/player_muteki.png");
 
 	return S_OK;
@@ -41,7 +44,8 @@ void _Invincible(void)
 {
 	PLAYER* player = GetPlayer();
 	BALL* ball = GetBall();
-	BUG* bug = GetBugIncrease();;
+	BUG* bug = GetBugIncrease();
+	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();
 
 	invincible.pos = D3DXVECTOR2(player->pos.x, player->pos.y);
@@ -52,7 +56,20 @@ void _Invincible(void)
 		{
 			ball->playerhitflag = false;
 			invincible.timeflag = true;
-			bug->gaugesize.x = bug->gaugesize.x + invincible.usegauge * bug->gaugeonce;
+			//-----バグゲージの上昇
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && invincible.bugincrease == false)
+				{
+					for (int j = i; invincible.bugdrawnum < 8; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						invincible.bugdrawnum = invincible.bugdrawnum + 1;
+					}
+					invincible.bugincrease = true;
+				}
+			}
 			invincible.use = true;
 		}
 	}

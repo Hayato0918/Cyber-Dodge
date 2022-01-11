@@ -25,6 +25,9 @@ HRESULT InitSpeedUp(void)
 	speedup.time = 0.0f;
 	speedup.usegauge = 20;
 
+	speedup.bugincrease = false;
+	speedup.bugdrawnum = 0;
+
 	return S_OK;
 }
 
@@ -33,16 +36,30 @@ void _SpeedUp(void)
 {
 	PLAYER* player = GetPlayer();
 	BUG* bug = GetBugIncrease();
+	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();
 
 	//ランダムで4が出たら、10s間キャラのスピードが2倍になる
 	for (int i = 0; i < SKILL_NUM; i++)
 	{
-		if (random[i].code == 4 && random[i].active == true && speedup.use == false)
+		if (random[i].code == 24 && random[i].active == true && speedup.use == false)
 		{
 			player->move *= 2;
 			speedup.timeflag = true;
-			bug->gaugesize.x = bug->gaugesize.x + speedup.usegauge * bug->gaugeonce;
+			//-----バグゲージの上昇
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && speedup.bugincrease == false)
+				{
+					for (int j = i; speedup.bugdrawnum < 4; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						speedup.bugdrawnum = speedup.bugdrawnum + 1;
+					}
+					speedup.bugincrease = true;
+				}
+			}
 			speedup.use = true;
 		}
 	}

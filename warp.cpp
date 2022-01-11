@@ -40,6 +40,9 @@ HRESULT InitWarp(void)
 	warp.time = 0.0f;
 	warp.usegauge = 30;
 
+	warp.bugincrease = false;
+	warp.bugdrawnum = 0;
+
 	return S_OK;
 }
 
@@ -48,6 +51,7 @@ void _Warp(void)
 {
 	PLAYER* player = GetPlayer();
 	BUG* bug = GetBugIncrease();
+	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();
 	SLIME* slime = GetSlime();
 	FIREWALL* firewall = GetFireWall();
@@ -57,7 +61,7 @@ void _Warp(void)
 	//ランダムで4が出たら、10s間ワープホールが出現
 	for (int i = 0; i < SKILL_NUM; i++)
 	{
-		if (random[i].code == 4 && random[i].active == true && warp.use == false)
+		if (random[i].code == 26 && random[i].active == true && warp.use == false)
 		{
 			//プレイヤーの前と敵の後ろにワープホールを出現させる
 			warp.player_pos.x = player->pos.x + (player->size.x * 1);
@@ -84,7 +88,20 @@ void _Warp(void)
 
 			warp.timeflag = true;
 
-			bug->gaugesize.x = bug->gaugesize.x + warp.usegauge * bug->gaugeonce;
+			//-----バグゲージの上昇
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && warp.bugincrease == false)
+				{
+					for (int j = i; warp.bugdrawnum < 6; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						warp.bugdrawnum = warp.bugdrawnum + 1;
+					}
+					warp.bugincrease = true;
+				}
+			}
 		}
 	}
 

@@ -25,6 +25,9 @@ HRESULT InitBallTurnAround(void)
 	ballturnaround.use = false;
 	ballturnaround.usegauge = 30;
 
+	ballturnaround.bugincrease = false;
+	ballturnaround.bugdrawnum = 0;
+
 	return S_OK;
 }
 
@@ -34,6 +37,7 @@ void _BallTurnAround(void)
 	FIREWALL* firewall = GetFireWall();
 	BALL* ball = GetBall();
 	BUG* bug = GetBugIncrease();
+	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();
 
 	//-----ボールが敵へ向かっていく
@@ -57,7 +61,20 @@ void _BallTurnAround(void)
 				ballturnaround.use = true;
 
 			//-----バグゲージの上昇
-			bug->gaugesize.x = bug->gaugesize.x + ballturnaround.usegauge * bug->gaugeonce;
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && ballturnaround.bugincrease == false)
+				{
+					for (int j = i; ballturnaround.bugdrawnum < 6; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						ballturnaround.bugdrawnum = ballturnaround.bugdrawnum + 1;
+					}
+					ballturnaround.bugincrease = true;
+				}
+			}
+
 			ballturnaround.use = true;
 		}
 	}

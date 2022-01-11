@@ -152,6 +152,7 @@
     <ClCompile Include="disappear.cpp" />
     <ClCompile Include="doubleattack.cpp" />
     <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="event.cpp" />
     <ClCompile Include="firewall.cpp" />
     <ClCompile Include="firewallAI.cpp" />
     <ClCompile Include="firewall_animation.cpp" />
@@ -167,9 +168,9 @@
     <ClCompile Include="landmines.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map.cpp" />
+    <ClCompile Include="map_bg.cpp" />
     <ClCompile Include="map_point.cpp" />
     <ClCompile Include="map_hack.cpp" />
-    <ClCompile Include="map_line.cpp" />
     <ClCompile Include="mindhack.cpp" />
     <ClCompile Include="otoshiana.cpp" />
     <ClCompile Include="penetration.cpp" />
@@ -251,6 +252,7 @@
     <ClInclude Include="disappear.h" />
     <ClInclude Include="doubleattack.h" />
     <ClInclude Include="enemy.h" />
+    <ClInclude Include="event.h" />
     <ClInclude Include="firewall.h" />
     <ClInclude Include="firewallAI.h" />
     <ClInclude Include="firewall_animation.h" />
@@ -266,9 +268,9 @@
     <ClInclude Include="landmines.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="map.h" />
+    <ClInclude Include="map_bg.h" />
     <ClInclude Include="map_point.h" />
     <ClInclude Include="map_hack.h" />
-    <ClInclude Include="map_line.h" />
     <ClInclude Include="mindhack.h" />
     <ClInclude Include="otoshiana.h" />
     <ClInclude Include="penetration.h" />

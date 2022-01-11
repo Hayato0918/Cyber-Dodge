@@ -9,6 +9,9 @@ typedef struct
 	bool use;	//スキルを使用したかを管理するフラグ
 
 	int usegauge;	//バグゲージの上昇量
+
+	bool bugincrease;
+	int bugdrawnum;
 }DISAPPEAR;
 
 //-----プロトタイプ宣言

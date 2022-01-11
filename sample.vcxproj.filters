@@ -97,6 +97,12 @@
     <Filter Include="ヘッダー ファイル\title">
       <UniqueIdentifier>{4bfe66d6-aa7d-46cc-a07e-5e8e36c21fa4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\map\event">
+      <UniqueIdentifier>{30591c51-8579-4ee2-b478-e97e99f2aefa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\map\event">
+      <UniqueIdentifier>{acbee279-bf21-4ea2-b339-e44d953c34c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scene.cpp">
@@ -188,9 +194,6 @@
     </ClCompile>
     <ClCompile Include="gameover.cpp">
       <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="map_line.cpp">
-      <Filter>ソース ファイル\map</Filter>
     </ClCompile>
     <ClCompile Include="map_hack.cpp">
       <Filter>ソース ファイル\map</Filter>
@@ -390,6 +393,12 @@
     <ClCompile Include="title_select.cpp">
       <Filter>ソース ファイル\title</Filter>
     </ClCompile>
+    <ClCompile Include="map_bg.cpp">
+      <Filter>ソース ファイル\map</Filter>
+    </ClCompile>
+    <ClCompile Include="event.cpp">
+      <Filter>ソース ファイル\map\event</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -481,9 +490,6 @@
     </ClInclude>
     <ClInclude Include="gameover.h">
       <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="map_line.h">
-      <Filter>ヘッダー ファイル\map</Filter>
     </ClInclude>
     <ClInclude Include="map_hack.h">
       <Filter>ヘッダー ファイル\map</Filter>
@@ -682,6 +688,12 @@
     </ClInclude>
     <ClInclude Include="title_select.h">
       <Filter>ヘッダー ファイル\title</Filter>
+    </ClInclude>
+    <ClInclude Include="map_bg.h">
+      <Filter>ヘッダー ファイル\map</Filter>
+    </ClInclude>
+    <ClInclude Include="event.h">
+      <Filter>ヘッダー ファイル\map\event</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

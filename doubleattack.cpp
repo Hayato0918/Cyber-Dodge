@@ -25,6 +25,9 @@ HRESULT InitDouble(void)
 	dable.time = 0.0f;
 	dable.usegauge = 30;
 
+	dable.bugincrease = false;
+	dable.bugdrawnum = 0;
+
 	return S_OK;
 }
 
@@ -34,15 +37,29 @@ void _Double(void)
 	PLAYER* player = GetPlayer();
 	BUG* bug = GetBugIncrease();
 	RANDOM* random = GetRandom();
+	BUGGAUGE* buggauge = GetBugGauge();
 
 	//ランダムで4が出たら、10s間キャラの攻撃力が2倍になる
 	for (int i = 0; i < SKILL_NUM; i++)
 	{
-		if (random[i].code == 4 && random[i].active == true && dable.use == false)
+		if (random[i].code == 17 && random[i].active == true && dable.use == false)
 		{
 			player->atk *= 2;
 			dable.timeflag = true;
-			bug->gaugesize.x = bug->gaugesize.x + dable.usegauge * bug->gaugeonce;
+			//-----バグゲージの上昇
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && dable.bugincrease == false)
+				{
+					for (int j = i; dable.bugdrawnum < 6; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						dable.bugdrawnum = dable.bugdrawnum + 1;
+					}
+					dable.bugincrease = true;
+				}
+			}
 			dable.use = true;
 		}
 	}

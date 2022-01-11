@@ -18,6 +18,8 @@ typedef struct
 	int usegauge;	//バグゲージの上昇量
 	int texture;    //画像
 
+	bool bugincrease;
+	int bugdrawnum;
 }OTOSIANA;
 
 //-----プロトタイプ宣言

@@ -24,7 +24,7 @@ HRESULT InitRandom(void)
 	MAP_PLAYER* map_player = GetMapPlayer();
 
 	skill.usecount = 0;	//今選択されてるスキル
-	skill.num = 22;		//作成済みスキルの総数
+	skill.num = 26;		//作成済みスキルの総数
 
 	if (map_player->gamecount == 1)
 	{
@@ -62,10 +62,12 @@ HRESULT InitRandom(void)
 		}
 	}
 
+	random[0].code = 26;
+
 	for (int i = 0; i < skill.slot; i++)
 	{
 		//割り当てられたcodeに対応したテクスチャを表示
-		if (random[i].code == 1)
+	/*	if (random[i].code == 1)
 			random[i].texture = LoadTexture("data/TEXTURE/skill/speedup.png");
 		if (random[i].code == 2)
 			random[i].texture = LoadTexture("data/TEXTURE/skill/turnaround.png");
@@ -93,6 +95,30 @@ HRESULT InitRandom(void)
 			random[i].texture = LoadTexture("data/TEXTURE/skill/slowarea.png");
 		if (random[i].code == 14)
 			random[i].texture = LoadTexture("data/TEXTURE/skill/smallplayer.png");
+		if (random[i].code == 15)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/autocatch.png");
+		if (random[i].code == 16)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/disappear.png");
+		if (random[i].code == 17)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/doubleattack.png");
+		if (random[i].code == 18)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/enemy_powerdown.png");
+		if (random[i].code == 19)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/landmine.png");
+		if (random[i].code == 20)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/mindhack.png");
+		if (random[i].code == 21)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/otoshiana.png");
+		if (random[i].code == 22)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/player_powerup.png");
+		if (random[i].code == 23)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/player_regen.png");
+		if (random[i].code == 24)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/player_speedup.png");
+		if (random[i].code == 25)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/timestop.png");
+		if (random[i].code == 26)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/warp.png");*/
 	}
 
 	return S_OK;
@@ -122,20 +148,20 @@ void UpdateRandom(void)
 		random[skill.usecount].drawflag = false;
 		skill.usecount = skill.usecount + 1;
 	}
-	//スキルを全部使い切ったら、「2」をおしてスキル再抽選
+	//スキルを全部使い切ったら、「2」をおしてスキル復活
 	if (GetKeyboardTrigger(DIK_2) && skill.usecount == skill.slot)
 	{
 		for (int i = 0; i < skill.slot; i++)
 		{
-			do   //重複チェック
-			{
-				random[i].code = (rand() % skill.num) + 1;
-				for (t = 0; t < i; t++)
-				{
-					if (random[i].code == random[t].code)	//被りがあったらもう一度codeを割り振る
-						break;
-				}
-			} while (i != t);
+		//	do   //重複チェック
+		//	{
+		//		random[i].code = (rand() % skill.num) + 1;
+		//		for (t = 0; t < i; t++)
+		//		{
+		//			if (random[i].code == random[t].code)	//被りがあったらもう一度codeを割り振る
+		//				break;
+		//		}
+		//	} while (i != t);
 
 			random[i].pos = D3DXVECTOR2(100.0f - i * 10, 120.0f - i * 10);
 			random[i].drawflag = true;

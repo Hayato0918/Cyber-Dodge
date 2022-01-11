@@ -31,6 +31,9 @@ HRESULT InitBarrier(void)
 	barrier.time = 0.0f;
 	barrier.usegauge = 20;
 
+	barrier.bugincrease = false;
+	barrier.bugdrawnum = 0;
+
 	return S_OK;
 }
 
@@ -39,6 +42,7 @@ void _Barrier(void)
 {
 	PLAYER* player = GetPlayer();
 	BUG* bug = GetBugIncrease();
+	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();
 
 	barrier.pos = D3DXVECTOR2(player->pos.x - player->size.x * 0.5f, player->pos.y);
@@ -50,7 +54,20 @@ void _Barrier(void)
 		{
 			barrier.drawflag = true;
 			barrier.timeflag = true;
-			bug->gaugesize.x = bug->gaugesize.x + barrier.usegauge * bug->gaugeonce;
+			//-----バグゲージの上昇
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && barrier.bugincrease == false)
+				{
+					for (int j = i; barrier.bugdrawnum < 4; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						barrier.bugdrawnum = barrier.bugdrawnum + 1;
+					}
+					barrier.bugincrease = true;
+				}
+			}
 			barrier.use = true;
 		}
 	}

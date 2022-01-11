@@ -28,6 +28,9 @@ HRESULT InitAuto_c(void)
 	auto_c.auto_catch = false;
 	auto_c.auto_catchflag = false;
 
+	auto_c.bugincrease = false;
+	auto_c.bugdrawnum = 0;
+
 	return S_OK;
 }
 
@@ -38,18 +41,34 @@ void _Auto_c(void)
 	BUG* bug = GetBugIncrease();
 	RANDOM* random = GetRandom();
 	CATCH* Catch = GetCatch();
+	BUGGAUGE* buggauge = GetBugGauge();
 
-	//ランダムで4が出たら、10s間キャラの攻撃力が2倍になる
+	//ランダムで15が出たら、10s間キャラの攻撃力が2倍になる
 	for (int i = 0; i < SKILL_NUM; i++)
 	{
-		if (random[i].code == 4 && random[i].active == true && auto_c.use == false)
+		if (random[i].code == 15 && random[i].active == true && auto_c.use == false)
 		{
 			Catch->playerpos.y -= Catch->playersize.y;
 			Catch->playersize.y *= 4;
 			auto_c.auto_catch = true;
 			auto_c.auto_catchflag = true;
 			auto_c.timeflag = true;
-			bug->gaugesize.x = bug->gaugesize.x + auto_c.usegauge * bug->gaugeonce;
+
+			//-----バグゲージの上昇
+			for (int i = 0; i < 20; i++)
+			{
+				if (buggauge[i].drawflag == false && auto_c.bugincrease == false)
+				{
+					for (int j = i; auto_c.bugdrawnum < 10; j++)
+					{
+						buggauge[j].drawflag = true;
+						bug->drawnum = bug->drawnum + 1;
+						auto_c.bugdrawnum = auto_c.bugdrawnum + 1;
+					}
+					auto_c.bugincrease = true;
+				}
+			}
+
 			auto_c.use = true;
 		}
 	}

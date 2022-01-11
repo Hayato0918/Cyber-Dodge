@@ -11,6 +11,9 @@ typedef struct
 	float time;		//スキルの適用時間を管理する変数
 	bool timeflag;	//スキルの適用時間を管理するフラグ
 	int usegauge;
+
+	bool bugincrease;
+	int bugdrawnum;
 }INVADE;
 
 //-----プロトタイプ宣言
