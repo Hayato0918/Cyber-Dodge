@@ -4,6 +4,8 @@
 #include "title_bg.h"
 #include "title_teamname.h"
 #include "title_gamestart.h"
+#include "title_continue.h"
+#include "title_option.h"
 #include "title_exit.h"
 #include "title_select.h"
 
@@ -19,6 +21,8 @@ HRESULT InitTitle(void)
 	InitTitleBG();
 	InitTitleTeamName();
 	InitTitleStart();
+	InitTitleContinue();
+	InitTitleOption();
 	InitTitleExit();
 	InitTitleSelect();
 
@@ -31,6 +35,8 @@ void UninitTitle(void)
 	UninitTitleBG();
 	UninitTitleTeamName();
 	UninitTitleStart();
+	UninitTitleContinue();
+	UninitTitleOption();
 	UninitTitleExit();
 	UninitTitleSelect();
 }
@@ -41,6 +47,8 @@ void UpdateTitle(void)
 	UpdateTitleBG();
 	UpdateTitleTeamName();
 	UpdateTitleStart();
+	UpdateTitleContinue();
+	UpdateTitleOption();
 	UpdateTitleExit();
 	UpdateTitleSelect();
 }
@@ -51,6 +59,8 @@ void DrawTitle(void)
 	DrawTitleBG();
 	DrawTitleTeamName();
 	DrawTitleStart();
+	DrawTitleContinue();
+	DrawTitleOption();
 	DrawTitleExit();
 	DrawTitleSelect();
 }

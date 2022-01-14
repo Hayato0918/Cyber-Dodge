@@ -15,53 +15,43 @@ void firewall_animation()
 		if (firewall->rotate == 3)		//右を向いてたら
 		{
 			firewall->standLRflag = false;
-			if (firewall->standtexturetime < 20)
+			if (firewall->standtexturetime < 27)
 			{
-				firewall->u = 0.75f;
-				firewall->uw = 0.25f;
+				firewall->u = 0.67f;
+				firewall->uw = 0.33f;
 			}
-			if (firewall->standtexturetime >= 20 && firewall->standtexturetime < 40)
+			if (firewall->standtexturetime >= 27 && firewall->standtexturetime < 54)
 			{
-				firewall->u = 0.5f;
-				firewall->uw = 0.25f;
+				firewall->u = 0.34f;
+				firewall->uw = 0.33f;
 			}
-			if (firewall->standtexturetime >= 40 && firewall->standtexturetime < 60)
-			{
-				firewall->u = 0.25f;
-				firewall->uw = 0.25f;
-			}
-			if (firewall->standtexturetime >= 60 && firewall->standtexturetime < 80)
+			if (firewall->standtexturetime >= 54 && firewall->standtexturetime < 81)
 			{
 				firewall->u = 0.0f;
-				firewall->uw = 0.25f;
+				firewall->uw = 0.34f;
 			}
-			if (firewall->standtexturetime >= 80)
+			if (firewall->standtexturetime >= 81)
 				firewall->standtexturetime = 0.0f;
 		}
 		if (firewall->rotate == 2)		//左を向いてたら
 		{
 			firewall->standLRflag = true;
-			if (firewall->standtexturetime < 20)
+			if (firewall->standtexturetime < 27)
 			{
 				firewall->u = 0.0f;
-				firewall->uw = 0.25f;
+				firewall->uw = 0.32f;
 			}
-			if (firewall->standtexturetime >= 20 && firewall->standtexturetime < 40)
+			if (firewall->standtexturetime >= 27 && firewall->standtexturetime < 54)
 			{
-				firewall->u = 0.25f;
-				firewall->uw = 0.25f;
+				firewall->u = 0.32f;
+				firewall->uw = 0.32f;
 			}
-			if (firewall->standtexturetime >= 40 && firewall->standtexturetime < 60)
+			if (firewall->standtexturetime >= 54 && firewall->standtexturetime < 81)
 			{
-				firewall->u = 0.5f;
-				firewall->uw = 0.25f;
+				firewall->u = 0.64f;
+				firewall->uw = 0.32f;
 			}
-			if (firewall->standtexturetime >= 60 && firewall->standtexturetime < 80)
-			{
-				firewall->u = 0.75f;
-				firewall->uw = 0.25f;
-			}
-			if (firewall->standtexturetime >= 80)
+			if (firewall->standtexturetime >= 81)
 				firewall->standtexturetime = 0.0f;
 		}
 	}
@@ -115,6 +105,9 @@ void firewall_animation()
 	}
 	if (firewall->walktextureflag == false)
 		firewall->walktexturetime = 0.0f;
+
+	//-----キャッチしたとき
+	//if()
 
 	//-----死んだとき
 	if (firewall->drawflag == false)

@@ -15,7 +15,6 @@
 #include "player_hp.h"
 #include "ball.h"
 #include "catch.h"
-#include "escape.h"
 
 #include "skillrandom.h"
 
@@ -40,7 +39,6 @@ void InitGame(void)
 	InitEnemy();
 	InitBall();
 	InitCatch();
-	InitEscape();
 	InitRandom();
 
 }
@@ -83,23 +81,30 @@ void DrawGame(void)
 {
 	PLAYER* player = GetPlayer();
 
-	DrawBG();
-	DrawBugIncrease();
-	DrawBug();
-	DrawPlayerHp();
 	if (player->drawdepth == true)
 	{
+		DrawBG();
 		DrawPlayer();
 		DrawEnemy();
 		DrawBall();
+		DrawCatch();
+		DrawBug();
+		DrawRandom();
+		DrawBugIncrease();
+		DrawPlayerHp();
 	}
 	if (player->drawdepth == false)
 	{
-		DrawBall();
+		DrawBG();
 		DrawEnemy();
 		DrawPlayer();
+		DrawBall();
+		DrawCatch();
+		DrawBug();
+		DrawRandom();
+		DrawBugIncrease();
+		DrawPlayerHp();
 	}
-	DrawCatch();
-	DrawRandom();
+
 }
 

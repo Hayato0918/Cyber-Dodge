@@ -17,6 +17,10 @@
 
 //タイトル.h
 #include "title.h"
+//設定.h
+#include "option.h"
+//名前決め.h
+#include "name.h"
 //マップ.h
 #include "map.h"
 #include "rest.h"
@@ -67,6 +71,14 @@ void InitScene(SCENE index)
 		InitTitle();
 		break;
 
+	case SCENE_OPTION:
+		InitOption();
+		break;
+
+	case SCENE_NAME:
+		InitName();
+		break;
+
 	case SCENE_MAP:
 		InitMap();
 		InitBanner();
@@ -113,6 +125,14 @@ void UninitScene(void)
 
 	case SCENE_TITLE:
 		UninitTitle();
+		break;
+
+	case SCENE_OPTION:
+		UninitOption();
+		break;
+
+	case SCENE_NAME:
+		UninitName();
 		break;
 
 	case SCENE_MAP:
@@ -164,6 +184,14 @@ void UpdateScene(void)
 
 	case SCENE_TITLE:
 		UpdateTitle();
+		break;
+
+	case SCENE_OPTION:
+		UpdateOption();
+		break;
+
+	case SCENE_NAME:
+		UpdateName();
 		break;
 
 	case SCENE_MAP:
@@ -219,6 +247,14 @@ void DrawScene(void)
 		DrawTitle();
 		break;
 
+	case SCENE_OPTION:
+		DrawOption();
+		break;
+
+	case SCENE_NAME:
+		DrawName();
+		break;
+
 	case SCENE_MAP:
 		DrawMap();
 		DrawBanner();
@@ -256,9 +292,9 @@ void DrawScene(void)
 	}
 
 	//テスト用
-	//int masstexture;
-	//masstexture = LoadTexture("data/TEXTURE/test/mass.png");
-	//DrawSpriteLeftTop(masstexture, 0.f, 0.f, 1600.f, 900.f, 0.f, 0.f, 1.f, 1.f);
+	int masstexture;
+	masstexture = LoadTexture("data/TEXTURE/test/mass.png");
+	DrawSpriteLeftTop(masstexture, 0.f, 0.f, 1600.f, 900.f, 0.f, 0.f, 1.f, 1.f);
 
 	DrawFade();
 }

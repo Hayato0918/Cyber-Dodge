@@ -14,6 +14,7 @@
 #include "map_point.h"
 //スキル.h
 #include "autocatch.h"
+#include "notCatch.h"
 
 //-----マクロ定義
 #define catchtime 30		//キャッチ判定を出す時間
@@ -112,6 +113,12 @@ void P_Catch(void)
 {
 	BALL* ball = GetBall();
 	AUTO* auto_c = GetAuto();
+	NOTCATCH* notcatch = GetNotCatch();
+
+	if (notcatch->use && ball->fallflag == false)
+	{
+		return;
+	}
 
 	if (PADUSE == 0)
 	{
@@ -189,6 +196,13 @@ void P_Catch(void)
 void M_Catch(void)
 {
 	BALL* ball = GetBall();
+	NOTCATCH* notcatch = GetNotCatch();
+
+	if (notcatch->use && ball->fallflag == false)
+	{
+		return;
+	}
+
 
 	//-----キャッチ
 	if (Catch.enemyintervalflag == 0 && ball->enemyhaveflag == 0)

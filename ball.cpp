@@ -13,6 +13,7 @@
 //スキル.h
 #include "autocatch.h"
 #include "invincible.h"
+#include "create.h"
 //
 #include "map_point.h"
 
@@ -43,7 +44,7 @@ HRESULT InitBall(void)
 	ball.playerthrowflag = false;
 	ball.enemyhaveflag = false;
 	ball.enemyhitflag = false;
-	ball.fallflag = false;
+	ball.fallflag = true;
 	ball.rad = 0.0f;
 	ball.plyer_oldposY = 0.0f;
 
@@ -177,6 +178,58 @@ void UpdateBall(void)
 			ball.enemyhitflag = false;
 			ball.playerhitflag = false;
 			ball.fallflag = true;
+		}
+	}
+
+	//岩石との当たり判定
+	CREATE* create = GetCreate(0);
+
+	if (create->timeflag)
+	{
+		for (int i = 0; i < 3; i++) // ここの3は生成される岩石の個数を表す。createで数を変更した際はここも変更して下さい。
+		{
+			CREATE* create = GetCreate(i);
+
+			if (ball.pos.x + ball.size.x > create->pos.x - create->size.x / 2 && ball.pos.x < create->pos.x + create->size.x / 2 &&
+				ball.pos.y + ball.size.y > create->pos.y - create->size.y / 2 && ball.pos.y < create->pos.y + create->size.y / 2)
+			{
+				float ax = 0.0f;
+				float ay = 0.0f;
+				if (ball.pos.x + ball.size.x < create->pos.x)
+					//岩石の左側
+				{
+					ax = (create->pos.x - ball.pos.x + ball.size.x) / create->size.x / 2;
+				}
+				else if (ball.pos.x > create->pos.x)
+					//岩石の右側
+				{
+					ax = (ball.pos.x - create->pos.x) / create->size.x / 2;
+				}
+
+				if (ball.pos.y + ball.size.y < create->pos.y)
+					//岩石の上側
+				{
+					ay = (create->pos.y - ball.pos.y + ball.size.y) / create->size.y / 2;
+				}
+				else if (ball.pos.y > create->pos.y)
+					//岩石の下側
+				{
+					ay = (ball.pos.y - create->pos.y) / create->size.y / 2;
+				}
+
+				if (ax > ay)
+				{
+					ball.move.x *= -1;
+				}
+				else if (ax < ay)
+				{
+					ball.move.y *= -1;
+				}
+				else
+				{
+					ball.move.x *= -1;
+				}
+			}
 		}
 	}
 }

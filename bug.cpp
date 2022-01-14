@@ -7,6 +7,9 @@
 #include "bunshin.h"
 #include "reverse.h"
 #include "regen.h"
+#include "notCatch.h"
+#include "create.h"
+#include "areaChange.h"
 
 //-----É}ÉNÉçíËã`
 
@@ -21,6 +24,9 @@ HRESULT InitBug(void)
 	InitEnemyClone();
 	InitReverse();
 	InitRegen();
+	InitNotCatch();
+	InitCreate();
+	InitAreaChange();
 
 	return S_OK;
 }
@@ -31,10 +37,14 @@ void _Bug(void)
 	_EnemyClone();
 	_Reverse();
 	_Regen();
+	_NotCatch();
+	_Create();
+	_AreaChange();
 }
 
 void DrawBug(void)
 {
 	DrawAnten();
 	DrawEnemyClone();
+	DrawCreate();
 }

@@ -16,12 +16,12 @@ MAP_HACK map_hack;
 //-----èâä˙âªèàóù
 HRESULT InitMapHack(void)
 {
-	map_hack.pos = D3DXVECTOR2(325.0f, 450.0f);
-	map_hack.size = D3DXVECTOR2(600.0f, 850.0f);
+	map_hack.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.203f, SCREEN_HEIGHT * 0.535f);		//1600:900Å®325:450
+	map_hack.size = D3DXVECTOR2(SCREEN_WIDTH * 0.375f, SCREEN_HEIGHT * 0.9f);		//1600:900Å®600:850
 	map_hack.texture = LoadTexture("data/TEXTURE/hackingmenu/hackingmenu.png");
 
-	map_hack.frame_pos = D3DXVECTOR2(350.0f, 250.0f);
-	map_hack.frame_size = D3DXVECTOR2(450.0f, 100.0f);
+	map_hack.frame_pos = D3DXVECTOR2(SCREEN_WIDTH * 0.219f, SCREEN_HEIGHT * 0.278f);	//1600:900Å®350,250
+	map_hack.frame_size = D3DXVECTOR2(SCREEN_WIDTH * 0.28125f, SCREEN_HEIGHT * 0.111f);		//1600:900Å®450,100
 	map_hack.frametexture = LoadTexture("data/TEXTURE/bugframe.png");
 
 	map_hack.UDcount = 0;
@@ -56,12 +56,12 @@ void UpdateMapHack(void)
 			if (GetKeyboardTrigger(DIK_W) && map_hack.UDcount > 0)
 			{
 				map_hack.UDcount -= 1;
-				map_hack.frame_pos.y -= 115.0f;
+				map_hack.frame_pos.y -= SCREEN_HEIGHT * 0.128f;		//1600:900Å®115
 			}
 			if (GetKeyboardTrigger(DIK_S) && map_hack.UDcount < 4)
 			{
 				map_hack.UDcount += 1;
-				map_hack.frame_pos.y += 115.0f;
+				map_hack.frame_pos.y += SCREEN_HEIGHT * 0.128f;		//1600:900Å®115
 			}
 		}
 	}
@@ -83,12 +83,12 @@ void UpdateMapHack(void)
 			if (IsButtonTriggered(0, BUTTON_UP) && map_hack.UDcount > 0)
 			{
 				map_hack.UDcount -= 1;
-				map_hack.frame_pos.y -= 115.0f;
+				map_hack.frame_pos.y -= SCREEN_HEIGHT * 0.128f;		//1600:900Å®115
 			}
 			if (IsButtonTriggered(0, BUTTON_DOWN) && map_hack.UDcount < 4)
 			{
 				map_hack.UDcount += 1;
-				map_hack.frame_pos.y += 115.0f;
+				map_hack.frame_pos.y += SCREEN_HEIGHT * 0.128f;		//1600:900Å®115
 			}
 		}
 	}

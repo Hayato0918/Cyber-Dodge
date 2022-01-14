@@ -11,6 +11,7 @@ typedef struct
 	D3DXVECTOR2 size;
 	D3DXVECTOR2 move;
 	int texture;	//
+	D3DXVECTOR2 colPos;
 	int rotate;		//Œü‚¢‚Ä‚é•ûŒü‚ğæ“¾‚·‚é•Ï”
 
 	bool drawflag;	//•`‰æ‚·‚é‚©‚ğŠÇ—‚·‚éƒtƒ‰ƒO

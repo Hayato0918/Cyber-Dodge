@@ -34,6 +34,7 @@ void _BigBall(void)
 {
 	BALL* ball = GetBall();
 	RANDOM* random = GetRandom();
+	SKILL* skill = GetSkill();
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
 
@@ -68,6 +69,17 @@ void _BigBall(void)
 	{
 		bigball.timeflag = false;
 		ball->size = D3DXVECTOR2(ball->size.x * 0.5f, ball->size.y * 0.5f);
+		bigball.bugincrease = false;
+		bigball.bugdrawnum = 0;
 		bigball.time = 0.0f;
+	}
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	{
+		bigball.timeflag = false;
+		//ball->size = D3DXVECTOR2(ball->size.x * 0.5f, ball->size.y * 0.5f);
+		bigball.bugincrease = false;
+		bigball.bugdrawnum = 0;
+		bigball.time = 0.0f;
+		bigball.use = false;
 	}
 }

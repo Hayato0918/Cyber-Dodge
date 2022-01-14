@@ -11,6 +11,7 @@ typedef struct
 	D3DXVECTOR2 size;
 	D3DXVECTOR2 move;
 	int rotate;		//向いてる方向を取得する変数
+	D3DXVECTOR2 colPos;	//岩石に対して行う当たり判定に使用する。中にはプレイヤーの足元の座標が入っている変数。
 
 	float u, v, uw, vh;
 	bool drawflag;	//描画するかを管理するフラグ

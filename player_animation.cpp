@@ -97,18 +97,18 @@ void player_animation()
 				player->catchLRflag = false;
 				if (player->catchtexturetime < 5)	//
 				{
-					player->u = 0.7f;
+					player->u = 0.0f;
 					player->uw = 0.3f;
 				}
 				if (player->catchtexturetime >= 5 && player->catchtexturetime < 15)
 				{
-					player->u = 0.33f;
+					player->u = 0.31f;
 					player->uw = 0.375f;
 				}
 				if (player->catchtexturetime >= 15 && player->catchtexturetime < 20)
 				{
-					player->u = 0.0f;
-					player->uw = 0.33f;
+					player->u = 0.675f;
+					player->uw = 0.315f;
 				}
 				if (player->catchtexturetime >= 20)
 					player->catchtextureflag = false;
@@ -124,13 +124,13 @@ void player_animation()
 				}
 				if (player->catchtexturetime >= 5 && player->catchtexturetime < 15)
 				{
-					player->u = 0.29f;
+					player->u = 0.31f;
 					player->uw = 0.375f;
 				}
 				if (player->catchtexturetime >= 15 && player->catchtexturetime < 20)
 				{
-					player->u = 0.67f;
-					player->uw = 0.33f;
+					player->u = 0.675f;
+					player->uw = 0.315f;
 				}
 				if (player->catchtexturetime >= 20)
 					player->catchtextureflag = false;
@@ -153,20 +153,19 @@ void player_animation()
 			{
 				player->picktextureflag = true;
 				player->pickLRflag = false;
-				if (player->picktexturetime < 30)	//
+				if (player->picktexturetime < 10)	//
 				{
 					player->u = 0.0f;
-					player->uw = 0.55f;
+					player->uw = 0.58f;
 				}
-				if (player->picktexturetime >= 30 && player->picktexturetime < 20)
+				if (player->picktexturetime >= 10 && player->picktexturetime < 15)
 				{
-					player->u = 0.55f;
-					player->uw = 0.45f;
+					player->u = 0.58f;
+					player->uw = 0.42f;
 				}
-				if (player->picktexturetime >= 20)
+				if (player->picktexturetime >= 15)
 				{
 					player->picktextureflag = false;
-
 				}
 			}
 			if (player->rotate == 2)
@@ -175,13 +174,13 @@ void player_animation()
 				player->pickLRflag = true;
 				if (player->picktexturetime < 10)
 				{
-					player->u = 0.45f;
-					player->uw = 0.55f;
+					player->u = 0.42f;
+					player->uw = 0.58f;
 				}
 				if (player->picktexturetime >= 10 && player->picktexturetime < 15)
 				{
 					player->u = 0.0f;
-					player->uw = 0.45f;
+					player->uw = 0.42f;
 				}
 				if (player->picktexturetime >= 15)
 				{
@@ -207,27 +206,27 @@ void player_animation()
 			if (player->throwtexturetime < 5)	//
 			{
 				player->u = 0.0f;
-				player->uw = 0.2f;
+				player->uw = 0.22f;
 			}
 			if (player->throwtexturetime >= 5 && player->throwtexturetime < 10)
 			{
-				player->u = 0.2f;
-				player->uw = 0.2f;
+				player->u = 0.22f;
+				player->uw = 0.22f;
 			}
 			if (player->throwtexturetime >= 10 && player->throwtexturetime < 15)
 			{
-				player->u = 0.4f;
-				player->uw = 0.26f;
+				player->u = 0.44f;
+				player->uw = 0.23f;
 			}
 			if (player->throwtexturetime >= 15 && player->throwtexturetime < 20)
 			{
-				player->u = 0.66f;
-				player->uw = 0.18f;
+				player->u = 0.67f;
+				player->uw = 0.16f;
 			}
 			if (player->throwtexturetime >= 20 && player->throwtexturetime < 25)
 			{
-				player->u = 0.84f;
-				player->uw = 0.16f;
+				player->u = 0.83f;
+				player->uw = 0.17f;
 			}
 			if (player->throwtexturetime >= 25)
 			{
@@ -242,28 +241,28 @@ void player_animation()
 			player->throwLRflag = true;
 			if (player->throwtexturetime < 5)	//
 			{
-				player->u = 0.8f;
-				player->uw = 0.2f;
+				player->u = 0.78f;
+				player->uw = 0.22f;
 			}
 			if (player->throwtexturetime >= 5 && player->throwtexturetime < 10)
 			{
-				player->u = 0.6f;
-				player->uw = 0.2f;
+				player->u = 0.56f;
+				player->uw = 0.22f;
 			}
 			if (player->throwtexturetime >= 10 && player->throwtexturetime < 15)
 			{
-				player->u = 0.34f;
-				player->uw = 0.26f;
+				player->u = 0.33f;
+				player->uw = 0.23f;
 			}
 			if (player->throwtexturetime >= 15 && player->throwtexturetime < 20)
 			{
-				player->u = 0.16f;
-				player->uw = 0.18f;
+				player->u = 0.17f;
+				player->uw = 0.16f;
 			}
 			if (player->throwtexturetime >= 20 && player->throwtexturetime < 25)
 			{
 				player->u = 0.0f;
-				player->uw = 0.16f;
+				player->uw = 0.17f;
 			}
 			if (player->throwtexturetime >= 25)
 			{

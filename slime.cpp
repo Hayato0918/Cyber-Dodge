@@ -8,11 +8,13 @@
 #include "fade.h"
 
 #include "player.h"
+#include "bg.h"
 #include "ball.h"
 #include "catch.h"
 #include "slime_hp.h"
 #include "slimeAI.h"
 #include "skillrandom.h"
+#include "create.h"
 
 //-----マクロ定義
 
@@ -27,6 +29,7 @@ HRESULT InitSlime(void)
 	slime.pos = D3DXVECTOR2(800.0f, 320.0f);
 	slime.size = D3DXVECTOR2(128.0f, 128);
 	slime.move = D3DXVECTOR2(2.0f, 2.0f);
+	slime.colPos = D3DXVECTOR2(slime.pos.x + slime.size.x / 2, slime.pos.y + slime.size.y / 2 + slime.size.y / 4);
 	slime.rotate = 2;
 
 	slime.atk = 40;
@@ -57,6 +60,7 @@ void UpdateSlime(void)
 	PLAYER* player = GetPlayer();
 	SLIMEHP* slime_hp = GetSlimeHp();
 	SKILL* skill = GetSkill();
+	BG* bg = GetBG();
 
 	if (slime.walktime > 2)
 		slime.u = 0.335f;
@@ -100,8 +104,8 @@ void UpdateSlime(void)
 		slime.pos.y = 280.f - slime.size.y * 0.5f;
 	if (slime.pos.y >= SCREEN_HEIGHT - slime.size.y - 15 - 120)	//下
 		slime.pos.y = SCREEN_HEIGHT - slime.size.y - 15 - 120;
-	if (slime.pos.x <= SCREEN_WIDTH * 0.5f)		//左
-		slime.pos.x = SCREEN_WIDTH * 0.5f;
+	if (slime.pos.x <= bg->clPos.x)								//左
+		slime.pos.x = bg->clPos.x;
 	if (slime.pos.x >= SCREEN_WIDTH - slime.size.x)		//右
 		slime.pos.x = SCREEN_WIDTH - slime.size.x;
 
@@ -137,6 +141,67 @@ void UpdateSlime(void)
 			slime.getskill = true;
 		}
 		SceneTransition(SCENE_MAP);
+	}
+
+
+	//岩石との当たり判定
+	slime.colPos = D3DXVECTOR2(slime.pos.x + slime.size.x / 2, slime.pos.y + slime.size.y / 2 + slime.size.y / 4); //当たり判定の座標の更新
+
+	CREATE* create = GetCreate(0);
+
+	if (create->timeflag)
+	{
+		for (int i = 0; i < 3; i++) // ここの3は生成される岩石の個数を表す。createで数を変更した際はここも変更して下さい。
+		{
+			CREATE* create = GetCreate(i);
+
+			if (slime.colPos.x > create->pos.x - create->size.x / 2 && slime.colPos.x < create->pos.x + create->size.x / 2 &&
+				slime.colPos.y > create->pos.y - create->size.y / 2 && slime.colPos.y < create->pos.y + create->size.y / 2)
+			{
+				float ax = 0.0f;
+				float ay = 0.0f;
+				float bx = 0.0f;
+				float by = 450.0f;
+				if (slime.colPos.x < create->pos.x)
+					//岩石の左側
+				{
+					ax = (create->pos.x - slime.colPos.x) / create->size.x / 2;
+					bx = create->pos.x - create->size.x / 2 - slime.size.x / 2;
+				}
+				else if (slime.colPos.x > create->pos.x)
+					//岩石の右側
+				{
+					ax = (slime.colPos.x - create->pos.x) / create->size.x / 2;
+					bx = create->pos.x + create->size.x / 2 - slime.size.x / 2;
+				}
+
+				if (slime.colPos.y < create->pos.y)
+					//岩石の上側
+				{
+					ay = (create->pos.y - slime.colPos.y) / create->size.y / 2;
+					by = create->pos.y - create->size.y / 2 - slime.size.y / 2 - slime.size.y / 4;
+				}
+				else if (slime.colPos.y > create->pos.y)
+					//岩石の下側
+				{
+					ay = (slime.colPos.y - create->pos.y) / create->size.y / 2;
+					by = create->pos.y + create->size.y / 2 - slime.size.y / 2 - slime.size.y / 4;
+				}
+
+				if (ax > ay)
+				{
+					slime.pos.x = bx;
+				}
+				else if (ax < ay)
+				{
+					slime.pos.y = by;
+				}
+				else
+				{
+					slime.pos.x = create->pos.x - create->size.x / 2 - slime.size.x / 2;
+				}
+			}
+		}
 	}
 }
 

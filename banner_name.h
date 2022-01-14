@@ -8,6 +8,7 @@ typedef struct
 {
 	D3DXVECTOR2 pos;
 	D3DXVECTOR2 size;
+	float u;
 	int texture;
 }BANNER_NAME;
 

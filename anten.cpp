@@ -15,12 +15,11 @@ ANTEN anten;
 //-----初期化処理
 HRESULT InitAnten(void)
 {
-	anten.pos = D3DXVECTOR2(0.0f, SCREEN_HEIGHT - 450.0f);
-	anten.size = D3DXVECTOR2(960.0f, 540.0f);
+	anten.pos = D3DXVECTOR2(0.0f, 0.f);
+	anten.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 	anten.use = false;
 	anten.drawflag = false;
-
 	anten.texture = LoadTexture("data/TEXTURE/anten.png");
 
 	return S_OK;
@@ -32,15 +31,15 @@ void _Anten(void)
 	BUG* bug = GetBugIncrease();
 	BUGRANDOM* bugrandom = GetBugRandom();
 
-	//バグゲージが100以上になったら画面を霧が覆う
-	if (bugrandom->code == 1 && bug->gaugesize.x >= 100 == true && anten.use == false)
+	//バグゲージが100以上になって、スキルを使うかボールが当たると画面を霧が覆う
+	if (bugrandom->code == 1 && bug->breakflag == true && anten.use == false)
 	{
 		anten.use = true;
 		anten.drawflag = true;
 	}
 
 	//バグゲージが100以下になったら霧が晴れる
-	if (bug->gaugesize.x <= 100  && anten.use == true)
+	if (bug->breakflag == false && anten.use == true)
 	{
 		anten.use = false;
 		anten.drawflag = false;

@@ -103,6 +103,18 @@
     <Filter Include="ヘッダー ファイル\map\event">
       <UniqueIdentifier>{acbee279-bf21-4ea2-b339-e44d953c34c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\name">
+      <UniqueIdentifier>{fe79cf71-ebb9-4b73-8650-128267230f43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\name">
+      <UniqueIdentifier>{1e20ed29-3013-456a-9d93-35ee2d0ecd2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\option">
+      <UniqueIdentifier>{c52b8ac7-2bab-4468-a8a4-5089b85fdbcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\option">
+      <UniqueIdentifier>{ea2faf10-3855-4f35-86cb-20daaa950ac0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scene.cpp">
@@ -139,9 +151,6 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="catch.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="escape.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="buildup.cpp">
@@ -399,6 +408,45 @@
     <ClCompile Include="event.cpp">
       <Filter>ソース ファイル\map\event</Filter>
     </ClCompile>
+    <ClCompile Include="notCatch.cpp">
+      <Filter>ソース ファイル\bug</Filter>
+    </ClCompile>
+    <ClCompile Include="areaChange.cpp">
+      <Filter>ソース ファイル\bug</Filter>
+    </ClCompile>
+    <ClCompile Include="name.cpp">
+      <Filter>ソース ファイル\name</Filter>
+    </ClCompile>
+    <ClCompile Include="title_option.cpp">
+      <Filter>ソース ファイル\title</Filter>
+    </ClCompile>
+    <ClCompile Include="title_continue.cpp">
+      <Filter>ソース ファイル\title</Filter>
+    </ClCompile>
+    <ClCompile Include="name_keyboard.cpp">
+      <Filter>ソース ファイル\name</Filter>
+    </ClCompile>
+    <ClCompile Include="name_bg.cpp">
+      <Filter>ソース ファイル\name</Filter>
+    </ClCompile>
+    <ClCompile Include="name_select.cpp">
+      <Filter>ソース ファイル\name</Filter>
+    </ClCompile>
+    <ClCompile Include="name_input.cpp">
+      <Filter>ソース ファイル\name</Filter>
+    </ClCompile>
+    <ClCompile Include="option.cpp">
+      <Filter>ソース ファイル\option</Filter>
+    </ClCompile>
+    <ClCompile Include="option_bg.cpp">
+      <Filter>ソース ファイル\option</Filter>
+    </ClCompile>
+    <ClCompile Include="option_select.cpp">
+      <Filter>ソース ファイル\option</Filter>
+    </ClCompile>
+    <ClCompile Include="create.cpp">
+      <Filter>ソース ファイル\bug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -435,9 +483,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="catch.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="escape.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="buildup.h">
@@ -694,6 +739,45 @@
     </ClInclude>
     <ClInclude Include="event.h">
       <Filter>ヘッダー ファイル\map\event</Filter>
+    </ClInclude>
+    <ClInclude Include="notCatch.h">
+      <Filter>ヘッダー ファイル\bug</Filter>
+    </ClInclude>
+    <ClInclude Include="create.h">
+      <Filter>ヘッダー ファイル\bug</Filter>
+    </ClInclude>
+    <ClInclude Include="areaChange.h">
+      <Filter>ヘッダー ファイル\bug</Filter>
+    </ClInclude>
+    <ClInclude Include="name.h">
+      <Filter>ヘッダー ファイル\name</Filter>
+    </ClInclude>
+    <ClInclude Include="title_option.h">
+      <Filter>ヘッダー ファイル\title</Filter>
+    </ClInclude>
+    <ClInclude Include="title_continue.h">
+      <Filter>ヘッダー ファイル\title</Filter>
+    </ClInclude>
+    <ClInclude Include="name_keyboard.h">
+      <Filter>ヘッダー ファイル\name</Filter>
+    </ClInclude>
+    <ClInclude Include="name_bg.h">
+      <Filter>ヘッダー ファイル\name</Filter>
+    </ClInclude>
+    <ClInclude Include="name_select.h">
+      <Filter>ヘッダー ファイル\name</Filter>
+    </ClInclude>
+    <ClInclude Include="name_input.h">
+      <Filter>ヘッダー ファイル\name</Filter>
+    </ClInclude>
+    <ClInclude Include="option.h">
+      <Filter>ヘッダー ファイル\option</Filter>
+    </ClInclude>
+    <ClInclude Include="option_bg.h">
+      <Filter>ヘッダー ファイル\option</Filter>
+    </ClInclude>
+    <ClInclude Include="option_select.h">
+      <Filter>ヘッダー ファイル\option</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

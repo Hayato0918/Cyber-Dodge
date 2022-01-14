@@ -163,7 +163,7 @@ void UpdateDeckMenu(void)
 	// ƒy[ƒW”Ø‚è‘Ö‚¦ˆ—
 	if (g_Selection.UDcount % 2 == 0)
 	{
-		g_number.u = 0.2 * g_Selection.UDcount * 0.5f;
+		g_number.u = 0.2f * g_Selection.UDcount * 0.5f;
 	}
 
 	if (g_Selection.UDcount % 2 == 1)

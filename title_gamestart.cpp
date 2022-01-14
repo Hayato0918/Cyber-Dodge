@@ -18,9 +18,9 @@ TITLE_START title_start;
 //-----‰Šú‰»ˆ—
 HRESULT InitTitleStart(void)
 {
-	title_start.pos = D3DXVECTOR2(1100.0f, 550.0f);
-	title_start.size = D3DXVECTOR2(400.f, 100.f);
-	title_start.texture = LoadTexture("data/TEXTURE/test/yellow.png");
+	title_start.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.738f, SCREEN_HEIGHT * 0.667f);	//1600:900¨1180,600
+	title_start.size = D3DXVECTOR2(SCREEN_WIDTH * 0.238f, SCREEN_HEIGHT * 0.078f);	//1600:900¨380,70
+	title_start.texture = LoadTexture("data/TEXTURE/title/gamestart.png");
 
 	return S_OK;
 }
@@ -38,7 +38,7 @@ void UpdateTitleStart(void)
 	TITLE_SELECT* title_select = GetTitleSelect();
 
 	if (title_select->count == 0 && GetKeyboardTrigger(DIK_RETURN) && title_bg->drawflag == true)
-		SceneTransition(SCENE_MAP);
+		SceneTransition(SCENE_NAME);
 }
 
 //-----•`‰æˆ—

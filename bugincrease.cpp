@@ -34,10 +34,14 @@ HRESULT InitBugIncrease(void)
 		bug.framepos = D3DXVECTOR2(150.0f, 20.0f);
 		bug.framesize = D3DXVECTOR2(150.f * bug.gaugeonce, 220);
 		bug.frametexture = LoadTexture("data/TEXTURE/buggauge/gaugeframe.png");
-		bug.breaktexture = LoadTexture("data/TEXTURE/gaugebreak.png");
+		bug.breaktexture = LoadTexture("data/TEXTURE/buggauge/gaugebreak.png");
 		bug.breakflag = false;
+		bug.breaktime = 0.f;
 		bug.drawnum = 0;
 		bug.decreasetime = 0.f;
+
+		bug.gaugeoverflag = false;
+		bug.gaugeovertime = 0.f;
 
 		//ゲージの設定
 		for (int i = 0; i < gaugenum; i++)
@@ -82,28 +86,62 @@ void UpdateBugIncrease(void)
 	BALL* ball = GetBall();
 
 	//-----プレイヤーがボールを持ち続けている時間が一定以上になったら、バグゲージを増やす
-	if (ball->playerhaveflag == true && bug.drawnum < gaugenum)
+	if (bug.gaugeoverflag == false && bug.breakflag == false)
 	{
-		ball->playerhavetime = ball->playerhavetime + 1.0f;
-
-		if (ball->playerhavetime >= gaugeincreasetime)
+		if (ball->playerhaveflag == true && bug.drawnum < gaugenum)
 		{
+			ball->playerhavetime = ball->playerhavetime + 1.0f;
+
+			if (ball->playerhavetime >= gaugeincreasetime)
+			{
 				buggauge[bug.drawnum].drawflag = true;
 				bug.drawnum = bug.drawnum + 1;
 				ball->playerhavetime = 0.f;
+			}
 		}
 	}
 
-	//-----時間経過によるゲージの減少
-	if (ball->playerhaveflag == false && bug.drawnum >= 0)
-	{
-		bug.decreasetime = bug.decreasetime + 1.f;
+	//-----バグゲージが100に達したら、臨界状態にする
+	if (buggauge[19].drawflag == true)
+		bug.gaugeoverflag = true;
 
-		if (bug.decreasetime > gaugedecreasetime)
+	if (bug.gaugeoverflag == true)
+		bug.gaugeovertime = bug.gaugeovertime + 1.f;
+
+	if (bug.gaugeovertime > 480.f)
+	{
+		buggauge[19].drawflag = false;
+		bug.gaugeoverflag = false;
+		bug.gaugeovertime = 0.f;
+	}
+
+	//-----臨界状態でスキルを使ったら、バグゲージを破壊する
+	if (bug.gaugeoverflag == true && player->skilluseflag == true)
+		bug.breakflag = true;
+
+	if (bug.breakflag == true)
+		bug.breaktime = bug.breaktime + 1.f;
+
+	if (bug.breaktime > 900.f)
+	{
+		bug.breakflag = false;
+		bug.breaktime = 0.f;
+	}
+
+
+	//-----時間経過によるゲージの減少
+	if (bug.gaugeoverflag == false && bug.breakflag == false)
+	{
+		if (ball->playerhaveflag == false && bug.drawnum >= 0)
 		{
-			buggauge[bug.drawnum].drawflag = false;
-			bug.drawnum = bug.drawnum - 1;
-			bug.decreasetime = 0.f;
+			bug.decreasetime = bug.decreasetime + 1.f;
+
+			if (bug.decreasetime > gaugedecreasetime)
+			{
+				bug.drawnum = bug.drawnum - 1;
+				buggauge[bug.drawnum].drawflag = false;
+				bug.decreasetime = 0.f;
+			}
 		}
 	}
 

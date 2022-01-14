@@ -13,13 +13,17 @@ typedef struct
 	D3DXVECTOR2 framesize;
 	int frametexture;
 	int breaktexture;
-	bool breakflag;
+	bool breakflag;		//バグが発生して、ゲージが壊れた状態を管理するフラグ
+	float breaktime;	//バグゲージが壊れた状態を管理する変数
 
 	D3DXVECTOR2 gaugepos;
 	D3DXVECTOR2 gaugesize;
 	int drawnum;
 	int gaugetexture;
 	float decreasetime;
+
+	bool gaugeoverflag;	//臨界状態になったかを管理するフラグ
+	float gaugeovertime;
 
 	int numbertexture;
 }BUG;

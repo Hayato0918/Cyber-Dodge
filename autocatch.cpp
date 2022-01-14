@@ -40,6 +40,7 @@ void _Auto_c(void)
 	PLAYER* player = GetPlayer();
 	BUG* bug = GetBugIncrease();
 	RANDOM* random = GetRandom();
+	SKILL* skill = GetSkill();
 	CATCH* Catch = GetCatch();
 	BUGGAUGE* buggauge = GetBugGauge();
 
@@ -81,6 +82,20 @@ void _Auto_c(void)
 		Catch->playersize.y /= 4;
 		auto_c.timeflag = false;
 		auto_c.auto_catch = false;
+		auto_c.auto_catchflag = false;
+		auto_c.bugdrawnum = 0;
+		auto_c.bugincrease = false;
+		auto_c.time = 0.0f;
+	}
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	{
+		Catch->playerpos.y += Catch->playersize.y;
+		Catch->playersize.y /= 4;
+		auto_c.timeflag = false;
+		auto_c.auto_catch = false;
+		auto_c.auto_catchflag = false;
+		auto_c.bugdrawnum = 0;
+		auto_c.bugincrease = false;
 		auto_c.time = 0.0f;
 		auto_c.use = false;
 	}

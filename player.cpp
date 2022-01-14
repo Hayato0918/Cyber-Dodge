@@ -23,6 +23,8 @@
 #include "skill.h"
 #include "skillrandom.h"
 #include "invade.h"
+#include "create.h"
+#include "bg.h"
 
 //-----マクロ定義
 
@@ -55,48 +57,48 @@ HRESULT InitPlayer(void)
 		player.vh = 1.0f;
 
 		//立ち状態のテクスチャ設定
-		player.stand_Ltexture = LoadTexture("data/TEXTURE/player/stand/orgnl_stand_L.png");
-		player.stand_Rtexture = LoadTexture("data/TEXTURE/player/stand/orgnl_stand_R.png");
+		player.stand_Ltexture = LoadTexture("data/TEXTURE/player/stand/stand_R.png");
+		player.stand_Rtexture = LoadTexture("data/TEXTURE/player/stand/stand_L.png");
 		player.standtextureflag = true;
 		player.standLRflag = false;
 		//歩き状態のテクスチャ設定
-		player.walk_Ltexture = LoadTexture("data/TEXTURE/player/walk/orgnl_walk_L.png");
-		player.walk_Rtexture = LoadTexture("data/TEXTURE/player/walk/orgnl_walk_R.png");
+		player.walk_Ltexture = LoadTexture("data/TEXTURE/player/walk/walk_R.png");
+		player.walk_Rtexture = LoadTexture("data/TEXTURE/player/walk/walk_L.png");
 		player.walktextureflag = false;
 		player.walkLRflag = false;
 		//キャッチ状態のテクスチャ設定
-		player.catch_Ltexture = LoadTexture("data/TEXTURE/player/catch/orgnl_catch_L.png");
-		player.catch_Rtexture = LoadTexture("data/TEXTURE/player/catch/orgnl_catch_R.png");
+		player.catch_Ltexture = LoadTexture("data/TEXTURE/player/catch/catch_R.png");
+		player.catch_Rtexture = LoadTexture("data/TEXTURE/player/catch/catch_L.png");
 		player.catchtextureflag = false;
 		player.catchLRflag = false;
 		player.catchtexturetime = 0.0f;
 		//拾い状態のテクスチャ設定
-		player.pick_Ltexture = LoadTexture("data/TEXTURE/player/pick/orgnl_pick_L.png");
-		player.pick_Rtexture = LoadTexture("data/TEXTURE/player/pick/orgnl_pick_R.png");
+		player.pick_Ltexture = LoadTexture("data/TEXTURE/player/pick/pick_R.png");
+		player.pick_Rtexture = LoadTexture("data/TEXTURE/player/pick/pick_L.png");
 		player.picktextureflag = false;
 		player.pickLRflag = false;
 		player.picktexturetime = 0.0f;
 		//投げ状態のテクスチャ設定
-		player.throw_Ltexture = LoadTexture("data/TEXTURE/player/throw/orgnl_throw_L.png");
-		player.throw_Rtexture = LoadTexture("data/TEXTURE/player/throw/orgnl_throw_R.png");
+		player.throw_Ltexture = LoadTexture("data/TEXTURE/player/throw/throw_R.png");
+		player.throw_Rtexture = LoadTexture("data/TEXTURE/player/throw/throw_L.png");
 		player.throwtextureflag = false;
 		player.throwLRflag = false;
 		player.throwtexturetime = 0.0f;
 		//スキル使用時のテクスチャ設定
-		player.skill_Ltexture = LoadTexture("data/TEXTURE/player/skill/orgnl_skill_L.png");
-		player.skill_Rtexture = LoadTexture("data/TEXTURE/player/skill/orgnl_skill_R.png");
+		player.skill_Ltexture = LoadTexture("data/TEXTURE/player/skill/skill_R.png");
+		player.skill_Rtexture = LoadTexture("data/TEXTURE/player/skill/skill_L.png");
 		player.skilltextureflag = false;
 		player.skillLRflag = false;
 		player.skilltexturetime = 0.0f;
 		player.skilluseflag = false;
 		//ダメージ状態のテクスチャ設定
-		player.damage_Ltexture = LoadTexture("data/TEXTURE/player/damage/orgnl_damage_L.png");
-		player.damage_Rtexture = LoadTexture("data/TEXTURE/player/damage/orgnl_damage_R.png");
+		player.damage_Ltexture = LoadTexture("data/TEXTURE/player/damage/damage_R.png");
+		player.damage_Rtexture = LoadTexture("data/TEXTURE/player/damage/damage_L.png");
 		player.damagetextureflag = false;
 		player.damageLRflag = false;
 		player.damagetexturetime = 0.0f;
 		//死亡時のテクスチャ設定
-		player.deathtexture = LoadTexture("data/TEXTURE/player/death/orgnl_death.png");
+		player.deathtexture = LoadTexture("data/TEXTURE/player/death/death.png");
 
 		player.drawdepth = false;
 	}
@@ -117,6 +119,7 @@ void UpdatePlayer(void)
 	INVADE* invade = GetInvade();
 	PLAYERHP* hp = GetPlayerHp();
 	MAP_PLAYER* map_player = GetMapPlayer();
+	BG* bg = GetBG();
 
 	//-----操作処理
 	player_operate();
@@ -131,8 +134,8 @@ void UpdatePlayer(void)
 
 	if (invade->timeflag == false)		//不法侵入スキルの判別
 	{
-		if (player.pos.x >= SCREEN_WIDTH * 0.5f - player.size.x - 5)	//右
-			player.pos.x = SCREEN_WIDTH * 0.5f - player.size.x - 5;
+		if (player.pos.x >= bg->clPos.x - player.size.x - 5)	//右
+			player.pos.x = bg->clPos.x - player.size.x - 5;
 	}
 	if (invade->timeflag == true)
 	{
@@ -156,7 +159,7 @@ void UpdatePlayer(void)
 	if (hp->gaugesize.x <= 0)
 	{
 		player.drawflag = false;
-		SceneTransition(SCENE_MAP);
+		SceneTransition(SCENE_GAMEOVER);
 	}
 
 	//-----アニメーション処理
@@ -164,6 +167,66 @@ void UpdatePlayer(void)
 
 	//-----スキル処理
 	_Skill();
+
+	//岩石との当たり判定
+	player.colPos = D3DXVECTOR2(player.pos.x + player.size.x / 2, player.pos.y + player.size.y / 2 + player.size.y / 4); //当たり判定の座標の更新
+
+	CREATE* create = GetCreate(0);
+
+	if (create->timeflag)
+	{
+		for (int i = 0; i < 3; i++) // ここの3は生成される岩石の個数を表す。createで数を変更した際はここも変更して下さい。
+		{
+			CREATE* create = GetCreate(i);
+
+			if (player.colPos.x > create->pos.x - create->size.x / 2 && player.colPos.x < create->pos.x + create->size.x / 2 &&
+				player.colPos.y > create->pos.y - create->size.y / 2 && player.colPos.y < create->pos.y + create->size.y / 2)
+			{
+				float ax = 0.0f;
+				float ay = 0.0f;
+				float bx = 0.0f;
+				float by = 450.0f;
+				if (player.colPos.x < create->pos.x)
+					//岩石の左側
+				{
+					ax = (create->pos.x - player.colPos.x) / create->size.x / 2;
+					bx = create->pos.x - create->size.x / 2 - player.size.x / 2;
+				}
+				else if (player.colPos.x > create->pos.x)
+					//岩石の右側
+				{
+					ax = (player.colPos.x - create->pos.x) / create->size.x / 2;
+					bx = create->pos.x + create->size.x / 2 - player.size.x / 2;
+				}
+
+				if (player.colPos.y < create->pos.y)
+					//岩石の上側
+				{
+					ay = (create->pos.y - player.colPos.y) / create->size.y / 2;
+					by = create->pos.y - create->size.y / 2 - player.size.y / 2 - player.size.y / 4;
+				}
+				else if (player.colPos.y > create->pos.y)
+					//岩石の下側
+				{
+					ay = (player.colPos.y - create->pos.y) / create->size.y / 2;
+					by = create->pos.y + create->size.y / 2 - player.size.y / 2 - player.size.y / 4;
+				}
+
+				if (ax > ay)
+				{
+					player.pos.x = bx;
+				}
+				else if (ax < ay)
+				{
+					player.pos.y = by;
+				}
+				else
+				{
+					player.pos.x = create->pos.x - create->size.x / 2 - player.size.x / 2;
+				}
+			}
+		}
+	}
 }
 
 //-----描画処理
