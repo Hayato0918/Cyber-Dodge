@@ -447,6 +447,12 @@
     <ClCompile Include="create.cpp">
       <Filter>ソース ファイル\bug</Filter>
     </ClCompile>
+    <ClCompile Include="venom.cpp">
+      <Filter>ソース ファイル\bug</Filter>
+    </ClCompile>
+    <ClCompile Include="pit.cpp">
+      <Filter>ソース ファイル\bug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -778,6 +784,12 @@
     </ClInclude>
     <ClInclude Include="option_select.h">
       <Filter>ヘッダー ファイル\option</Filter>
+    </ClInclude>
+    <ClInclude Include="venom.h">
+      <Filter>ヘッダー ファイル\bug</Filter>
+    </ClInclude>
+    <ClInclude Include="pit.h">
+      <Filter>ヘッダー ファイル\bug</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

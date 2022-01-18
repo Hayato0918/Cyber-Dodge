@@ -184,6 +184,7 @@
     <ClCompile Include="option_select.cpp" />
     <ClCompile Include="otoshiana.cpp" />
     <ClCompile Include="penetration.cpp" />
+    <ClCompile Include="pit.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="player_animation.cpp" />
     <ClCompile Include="player_damage.cpp" />
@@ -233,6 +234,7 @@
     <ClCompile Include="title_option.cpp" />
     <ClCompile Include="title_select.cpp" />
     <ClCompile Include="title_teamname.cpp" />
+    <ClCompile Include="venom.cpp" />
     <ClCompile Include="warp.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -296,6 +298,7 @@
     <ClInclude Include="option_select.h" />
     <ClInclude Include="otoshiana.h" />
     <ClInclude Include="penetration.h" />
+    <ClInclude Include="pit.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="player_animation.h" />
     <ClInclude Include="player_damage.h" />
@@ -345,6 +348,7 @@
     <ClInclude Include="title_option.h" />
     <ClInclude Include="title_select.h" />
     <ClInclude Include="title_teamname.h" />
+    <ClInclude Include="venom.h" />
     <ClInclude Include="warp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
