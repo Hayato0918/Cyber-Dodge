@@ -52,17 +52,3 @@ void UninitMapPlayer(void);
 void UpdateMapPlayer(void);
 void DrawMapPlayer(void);
 MAP_PLAYER* GetMapPlayer();
-
-typedef struct
-{
-	int Ldrawcode;
-	int Rdrawcode;
-	int drawnum;
-	int a;
-}MAP_LINE;
-
-//-----プロトタイプ宣言
-HRESULT InitMapLine(void);
-void UninitMapLine(void);
-void UpdateMapLine(void);
-void DrawMapLine(void);

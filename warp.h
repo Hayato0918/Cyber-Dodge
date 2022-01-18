@@ -18,8 +18,6 @@ typedef struct
 	float time;		//スキルの適用時間を管理する変数
 	bool timeflag;	//スキルの適用時間を管理するフラグ
 
-	int usegauge;	//バグゲージの上昇量
-
 	bool bugincrease;
 	int bugdrawnum;
 }WARP;

@@ -43,9 +43,10 @@ void _Barrier(void)
 	PLAYER* player = GetPlayer();
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
-	RANDOM* random = GetRandom();
+	RANDOM* random = GetRandom();	
 
-	barrier.pos = D3DXVECTOR2(player->pos.x - player->size.x * 0.5f, player->pos.y);
+	barrier.pos = D3DXVECTOR2(player->pos.x, player->pos.y);
+	barrier.size = D3DXVECTOR2(player->size.y, player->size.y);
 
 	//-----3s間バリアを張る
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -71,6 +72,7 @@ void _Barrier(void)
 			barrier.use = true;
 		}
 	}
+
 	//-----スキル使用3s後にもとの大きさに戻る
 	if (barrier.timeflag == true)
 		barrier.time = barrier.time + 1.0f;

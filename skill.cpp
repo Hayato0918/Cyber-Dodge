@@ -228,5 +228,5 @@ void DrawSkill(void)
 	DrawSlowArea();
 
 	//-----ÉèÅ[Év
-	//DrawWarp();
+	DrawWarp();
 }

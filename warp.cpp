@@ -33,12 +33,11 @@ HRESULT InitWarp(void)
 	warp.enemy_pos = D3DXVECTOR2(SCREEN_WIDTH, 320.0f);
 	warp.enemy_size = D3DXVECTOR2(100.0f, 100.0f);
 
+	warp.texture = LoadTexture("data/TEXTURE/circle.png");
 	warp.warp_flag = false;
-	warp.texture = LoadTexture("data/TEXTURE/warp.png");
 	warp.use = false;
 	warp.timeflag = false;
 	warp.time = 0.0f;
-	warp.usegauge = 30;
 
 	warp.bugincrease = false;
 	warp.bugdrawnum = 0;
@@ -50,6 +49,7 @@ HRESULT InitWarp(void)
 void _Warp(void)
 {
 	PLAYER* player = GetPlayer();
+	SKILL* skill = GetSkill();
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();
@@ -67,23 +67,20 @@ void _Warp(void)
 			warp.player_pos.x = player->pos.x + (player->size.x * 1);
 			warp.player_pos.y = player->pos.y + ((player->size.y - warp.enemy_size.y) / 2);
 			if (warp.player_pos.x > SCREEN_WIDTH / 2 - warp.player_size.x)
-			{
 				warp.player_pos.x = SCREEN_WIDTH / 2 - warp.player_size.x;
-			}
+
 			if (map_player->encount == 1)
 			{
 				warp.enemy_pos.x = slime->pos.x + (slime->size.x * 1);
 				warp.enemy_pos.y = slime->pos.y + ((slime->size.y - warp.enemy_size.y) / 2);
 			}
-			if (map_player->encount == 21)
+			if (map_player->encount == 2)
 			{
 				warp.enemy_pos.x = firewall->pos.x + (firewall->size.x * 1);
 				warp.enemy_pos.y = firewall->pos.y + ((firewall->size.y - warp.enemy_size.y) / 2);
 			}
 			if (warp.enemy_pos.x > SCREEN_WIDTH - warp.enemy_size.x)
-			{
 				warp.enemy_pos.x = SCREEN_WIDTH - warp.enemy_size.x;
-			}
 			warp.use = true;
 
 			warp.timeflag = true;
@@ -125,13 +122,22 @@ void _Warp(void)
 	{
 		warp.timeflag = false;
 		warp.time = 0.0f;
+	}
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	{
+		warp.warp_flag = false;
 		warp.use = false;
+		warp.timeflag = false;
+		warp.time = 0.0f;
+
+		warp.bugincrease = false;
+		warp.bugdrawnum = 0;
 	}
 }
 
 void DrawWarp(void)
 {
-	if (warp.use == true)
+	if (warp.timeflag == true)
 	{
 		DrawSpriteLeftTop(warp.texture, warp.player_pos.x, warp.player_pos.y, warp.player_size.x, warp.player_size.y, 0.0f, 0.0f, 1.0f, 1.0f);
 		DrawSpriteLeftTop(warp.texture, warp.enemy_pos.x, warp.enemy_pos.y, warp.enemy_size.x, warp.enemy_size.y, 0.0f, 0.0f, 1.0f, 1.0f);

@@ -1,5 +1,6 @@
 //スキル_時間停止処理 [timestop.cpp]
 #include "timestop.h"
+#include "input.h"
 //-----エネミー.h
 #include "firewall.h"
 #include "slime.h"
@@ -23,7 +24,6 @@ HRESULT InitTimestop(void)
 	timestop.use = false;
 	timestop.timeflag = false;
 	timestop.time = 0.0f;
-	timestop.usegauge = 80;
 	timestop.posnow = D3DXVECTOR2(0.0f, 0.0f);
 
 	timestop.bugincrease = false;
@@ -38,6 +38,7 @@ void _Timestop(void)
 	FIREWALL* firewall = GetFireWall();
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
+	SKILL* skill = GetSkill();
 	RANDOM* random = GetRandom();
 	CATCH* cattch = GetCatch();
 
@@ -78,8 +79,20 @@ void _Timestop(void)
 	{
 		timestop.timeflag = false;
 		timestop.time = 0.0f;
-		timestop.use = false;
 		cattch->enemyflag = 0;
 		cattch->enemyintervalflag = 0;
+	}
+
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	{
+		timestop.use = false;
+		timestop.timeflag = false;
+		timestop.time = 0.0f;
+		timestop.posnow = D3DXVECTOR2(0.0f, 0.0f);
+		cattch->enemyflag = 0;
+		cattch->enemyintervalflag = 0;
+
+		timestop.bugincrease = false;
+		timestop.bugdrawnum = 0;
 	}
 }

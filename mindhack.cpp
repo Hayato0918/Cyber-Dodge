@@ -28,7 +28,6 @@ HRESULT InitMindhack(void)
 	mindhack.use = false;
 	mindhack.timeflag = false;
 	mindhack.time = 0.0f;
-	mindhack.usegauge = 40;
 
 	mindhack.bugincrease = false;
 	mindhack.bugdrawnum = 0;
@@ -44,6 +43,7 @@ void _Mindhack(void)
 	SLIME* slime = GetSlime();
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
+	SKILL* skill = GetSkill();
 	RANDOM* random = GetRandom();
 	REVERSE* reverse = GetReverse();
 	MAP_PLAYER* map_player = GetMapPlayer();
@@ -159,6 +159,14 @@ void _Mindhack(void)
 	{
 		mindhack.timeflag = false;
 		mindhack.time = 0.0f;
+	}
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	{
 		mindhack.use = false;
+		mindhack.timeflag = false;
+		mindhack.time = 0.0f;
+
+		mindhack.bugincrease = false;
+		mindhack.bugdrawnum = 0;
 	}
 }

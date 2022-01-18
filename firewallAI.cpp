@@ -65,11 +65,25 @@ void FireWallAI()
 		//-----落ちているボールまでたどり着いたら、キャッチする
 	if (ball->enemyhitflag == false)
 	{
-		if (firewall->pos.x + firewall->size.x > ball->pos.x && firewall->pos.x < ball->pos.x + ball->size.x)
+		if (firewall->pos.x + firewall->size.x + Catch->enemysize.x > ball->pos.x && firewall->pos.x - Catch->enemysize.x < ball->pos.x + ball->size.x)
 		{
 			if (firewall->pos.y < ball->pos.y + ball->size.y && firewall->pos.y + firewall->size.y > ball->pos.y)
 			{
 				M_Catch();
+			}
+		}
+	}
+	//-----ボールが地面に落ちた状態で自陣にあり、ファイアーウォールの体に接触していたら、キャッチする
+	if (ball->enemyhaveflag == false && ball->fallflag == true && ball->pos.x > SCREEN_WIDTH * 0.5f)
+	{
+		if (firewall->pos.x + firewall->size.x > ball->pos.x && firewall->pos.x < ball->pos.x + ball->size.x)
+		{
+			if (firewall->pos.y < ball->pos.y + ball->size.y && firewall->pos.y + firewall->size.y > ball->pos.y)
+			{
+				Catch->enemyintervaltime = 0.0f;
+				ball->throwflag = false;
+				ball->enemyhaveflag = true;
+				ball->move = D3DXVECTOR2(ball->startmove.x, ball->startmove.y);
 			}
 		}
 	}

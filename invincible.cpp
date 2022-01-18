@@ -29,7 +29,6 @@ HRESULT InitInvincible(void)
 	invincible.use = false;
 	invincible.timeflag = false;
 	invincible.time = 0.0f;
-	invincible.usegauge = 40;
 
 	invincible.bugincrease = false;
 	invincible.bugdrawnum = 0;
@@ -44,6 +43,7 @@ void _Invincible(void)
 {
 	PLAYER* player = GetPlayer();
 	BALL* ball = GetBall();
+	SKILL* skill = GetSkill();
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();
@@ -79,8 +79,17 @@ void _Invincible(void)
 	if (invincible.time > invincibletime)
 	{
 		invincible.timeflag = false;
-		invincible.use = false;
 		invincible.time = 0.0f;
+	}
+
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	{
+		invincible.use = false;
+		invincible.timeflag = false;
+		invincible.time = 0.0f;
+
+		invincible.bugincrease = false;
+		invincible.bugdrawnum = 0;
 	}
 }
 

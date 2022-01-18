@@ -37,7 +37,7 @@ HRESULT InitCatch(void)
 	Catch.playercoltime = 0.0f;
 
 	Catch.enemypos = D3DXVECTOR2(0.0f, 0.0f);
-	Catch.enemysize = D3DXVECTOR2(60.0, 60.0);
+	Catch.enemysize = D3DXVECTOR2(128.0, 256.0);
 	Catch.enemyflag = 0;
 	Catch.enemyintervalflag = 0;
 	Catch.enemyintervaltime = 0.0f;
@@ -87,10 +87,6 @@ void UpdateCatch(void)
 		}
 		if (map_player->encount == 2)
 		{
-			if (firewall->rotate == 0)		//上
-				Catch.enemypos = D3DXVECTOR2(firewall->pos.x + firewall->size.x * 0.5f, firewall->pos.y - ball->size.y * 0.5f);
-			if (firewall->rotate == 1)		//下
-				Catch.enemypos = D3DXVECTOR2(firewall->pos.x + firewall->size.x * 0.5f, firewall->pos.y + firewall->size.y + ball->size.y * 0.5f);
 			if (firewall->rotate == 2)	//左
 				Catch.enemypos = D3DXVECTOR2(firewall->pos.x, firewall->pos.y + firewall->size.y * 0.5f);
 			if (firewall->rotate == 3)		//右
@@ -229,7 +225,7 @@ void M_Catch(void)
 	//-----キャッチモーション中にボールがキャッチ判定内に入ったら
 	if (Catch.enemyflag == 1)
 	{
-		if (Catch.enemypos.x + Catch.enemysize.x > ball->pos.x && Catch.enemypos.x < ball->pos.x + ball->size.x)
+		if (Catch.enemypos.x + Catch.enemysize.x > ball->pos.x && Catch.enemypos.x - Catch.enemysize.x < ball->pos.x + ball->size.x)
 		{
 			if (Catch.enemypos.y + Catch.enemysize.y > ball->pos.y && Catch.enemypos.y < ball->pos.y + ball->size.y)
 			{

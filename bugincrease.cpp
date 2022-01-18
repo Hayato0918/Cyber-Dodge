@@ -6,6 +6,7 @@
 #include "player.h"
 #include "ball.h"
 #include "map_point.h"
+#include "skillrandom.h"
 
 //-----マクロ定義
 #define gaugedecrease 0.2f	//ゲージの減少量
@@ -39,6 +40,7 @@ HRESULT InitBugIncrease(void)
 		bug.breaktime = 0.f;
 		bug.drawnum = 0;
 		bug.decreasetime = 0.f;
+		bug.decreaseflag = false;
 
 		bug.gaugeoverflag = false;
 		bug.gaugeovertime = 0.f;
@@ -84,6 +86,13 @@ void UpdateBugIncrease(void)
 {
 	PLAYER* player = GetPlayer();
 	BALL* ball = GetBall();
+	RANDOM* random = GetRandom();
+
+	if(bug.breakflag == false && bug.drawnum > 16)
+		bug.gaugetexture = LoadTexture("data/TEXTURE/buggauge/gaugebar.png");
+
+	if (bug.drawnum > 20)
+		bug.drawnum = 20;
 
 	//-----プレイヤーがボールを持ち続けている時間が一定以上になったら、バグゲージを増やす
 	if (bug.gaugeoverflag == false && bug.breakflag == false)
@@ -128,23 +137,6 @@ void UpdateBugIncrease(void)
 		bug.breaktime = 0.f;
 	}
 
-
-	//-----時間経過によるゲージの減少
-	if (bug.gaugeoverflag == false && bug.breakflag == false)
-	{
-		if (ball->playerhaveflag == false && bug.drawnum >= 0)
-		{
-			bug.decreasetime = bug.decreasetime + 1.f;
-
-			if (bug.decreasetime > gaugedecreasetime)
-			{
-				bug.drawnum = bug.drawnum - 1;
-				buggauge[bug.drawnum].drawflag = false;
-				bug.decreasetime = 0.f;
-			}
-		}
-	}
-
 	if (bug.drawnum <= 1)
 	{
 		bugnumber[0].drawflag = false;
@@ -162,6 +154,30 @@ void UpdateBugIncrease(void)
 		bugnumber[0].drawflag = true;
 		bugnumber[1].drawflag = true;
 		bugnumber[2].drawflag = true;
+	}
+
+	if (random->active == true)
+		bug.decreaseflag = true;
+	if (bug.drawnum == 0)
+		bug.decreaseflag = false;
+
+	//-----時間経過によるゲージの減少
+	if (bug.decreaseflag == true)
+	{
+		if (bug.gaugeoverflag == false && bug.breakflag == false)
+		{
+			if (ball->playerhaveflag == false && bug.drawnum >= 0)
+			{
+				bug.decreasetime = bug.decreasetime + 1.f;
+
+				if (bug.decreasetime > gaugedecreasetime)
+				{
+					buggauge[bug.drawnum - 1].drawflag = false;
+					bug.drawnum = bug.drawnum - 1;
+					bug.decreasetime = 0.f;
+				}
+			}
+		}
 	}
 
 	//-----ゲージ下の数字の描画設定
@@ -398,25 +414,28 @@ void UpdateBugIncrease(void)
 //-----描画処理
 void DrawBugIncrease(void)
 {
-	//-----バグゲージの描画
-	for (int i = 0; i < gaugenum; i++)
+	if (bug.breakflag == false)
 	{
-		if(buggauge[i].drawflag == true)
-		DrawSpriteLeftTop(bug.gaugetexture, buggauge[i].pos.x, buggauge[i].pos.y, buggauge[i].size.x, buggauge[i].size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+		//-----バグゲージの描画
+		for (int i = 0; i < gaugenum; i++)
+		{
+			if (buggauge[i].drawflag == true)
+				DrawSpriteLeftTop(bug.gaugetexture, buggauge[i].pos.x, buggauge[i].pos.y, buggauge[i].size.x, buggauge[i].size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+		}
+
+		DrawSpriteLeftTop(bug.frametexture, bug.framepos.x, bug.framepos.y, bug.framesize.x, bug.framesize.y, 0.0f, 0.0f, 1.0f, 1.0f);
+
+		//-----数字の描画
+		for (int i = 0; i < 3; i++)
+		{
+			if (bugnumber[i].drawflag == true)
+				DrawSpriteLeftTop(bug.numbertexture, bugnumber[i].pos.x, bugnumber[i].pos.y, bugnumber[i].size.x, bugnumber[i].size.y, bugnumber[i].u, bugnumber[i].v, bugnumber[i].uw, bugnumber[i].vh);
+		}
 	}
 
 	//-----バグゲージの枠の描画
-	if(bug.breakflag == false)
-	DrawSpriteLeftTop(bug.frametexture, bug.framepos.x, bug.framepos.y, bug.framesize.x, bug.framesize.y, 0.0f, 0.0f, 1.0f, 1.0f);
 	if (bug.breakflag == true)
 		DrawSpriteLeftTop(bug.breaktexture, bug.framepos.x, bug.framepos.y, bug.framesize.x, bug.framesize.y, 0.0f, 0.0f, 1.0f, 1.0f);
-
-	//-----数字の描画
-	for (int i = 0; i < 3; i++)
-	{
-		if(bugnumber[i].drawflag == true)
-		DrawSpriteLeftTop(bug.numbertexture, bugnumber[i].pos.x, bugnumber[i].pos.y, bugnumber[i].size.x, bugnumber[i].size.y, bugnumber[i].u, bugnumber[i].v, bugnumber[i].uw, bugnumber[i].vh);
-	}
 }
 
 //-----構造体ポインタ取得処理

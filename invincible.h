@@ -17,8 +17,6 @@ typedef struct
 	bool timeflag;	//スキルの適用時間を管理するフラグ
 	int texture;	   //スキル使用時プレイヤーが無敵状態になっている描画判定
 
-	int usegauge;	//バグゲージの上昇量
-
 	bool bugincrease;
 	int bugdrawnum;
 }INVINCIBLE;

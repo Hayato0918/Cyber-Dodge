@@ -1,6 +1,8 @@
 //ƒ^ƒCƒgƒ‹ˆ— [title.cpp]
 #include "title.h"
 //
+#include "sound.h"
+//
 #include "title_bg.h"
 #include "title_teamname.h"
 #include "title_gamestart.h"

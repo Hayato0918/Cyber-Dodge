@@ -170,6 +170,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map.cpp" />
     <ClCompile Include="map_bg.cpp" />
+    <ClCompile Include="map_line.cpp" />
     <ClCompile Include="map_point.cpp" />
     <ClCompile Include="map_hack.cpp" />
     <ClCompile Include="mindhack.cpp" />
@@ -282,6 +283,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="map_bg.h" />
+    <ClInclude Include="map_line.h" />
     <ClInclude Include="map_point.h" />
     <ClInclude Include="map_hack.h" />
     <ClInclude Include="mindhack.h" />

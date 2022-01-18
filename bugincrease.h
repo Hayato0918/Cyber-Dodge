@@ -21,6 +21,7 @@ typedef struct
 	int drawnum;
 	int gaugetexture;
 	float decreasetime;
+	bool decreaseflag;
 
 	bool gaugeoverflag;	//—ÕŠEó‘Ô‚É‚È‚Á‚½‚©‚ğŠÇ—‚·‚éƒtƒ‰ƒO
 	float gaugeovertime;

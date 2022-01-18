@@ -26,7 +26,6 @@ HRESULT InitMap(void)
 {
 	InitMapBG();
 	InitMapPoint();
-	//InitMapLine();
 	InitMapPlayer();
 	InitMapHack();
 
@@ -37,7 +36,6 @@ HRESULT InitMap(void)
 void UninitMap()
 {
 	UninitMapPoint();
-	//UninitMapLine();
 	UninitMapPlayer();
 	UninitMapHack();
 	UninitMapBG();
@@ -48,7 +46,6 @@ void UpdateMap(void)
 {
 	UpdateMapBG();
 	UpdateMapPoint();
-	//UpdateMapLine();
 	UpdateMapPlayer();
 	UpdateMapHack();
 
@@ -64,7 +61,6 @@ void UpdateMap(void)
 void DrawMap(void)
 {
 	DrawMapBG();
-	//DrawMapLine();
 	DrawMapPoint();
 	DrawMapPlayer();
 	DrawMapHack();
