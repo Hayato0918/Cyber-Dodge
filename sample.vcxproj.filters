@@ -450,6 +450,9 @@
     <ClCompile Include="map_line.cpp">
       <Filter>ソース ファイル\map</Filter>
     </ClCompile>
+    <ClCompile Include="map_player.cpp">
+      <Filter>ソース ファイル\map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -783,6 +786,9 @@
       <Filter>ヘッダー ファイル\option</Filter>
     </ClInclude>
     <ClInclude Include="map_line.h">
+      <Filter>ヘッダー ファイル\map</Filter>
+    </ClInclude>
+    <ClInclude Include="map_player.h">
       <Filter>ヘッダー ファイル\map</Filter>
     </ClInclude>
   </ItemGroup>

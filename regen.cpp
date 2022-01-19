@@ -12,7 +12,7 @@
 #include "bugincrease.h"
 #include "bugrandom.h"
 
-#include "map_point.h"
+#include "map_player.h"
 
 //-----ƒ}ƒNƒ’è‹`
 #define regentime 600		//10sŠÔ

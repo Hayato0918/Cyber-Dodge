@@ -11,7 +11,7 @@
 #include "player.h"
 //
 #include "ball.h"
-#include "map_point.h"
+#include "map_player.h"
 //ÉXÉLÉã.h
 #include "autocatch.h"
 #include "notCatch.h"

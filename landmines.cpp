@@ -8,7 +8,7 @@
 #include "firewall.h"
 #include "slime.h"
 #include "bugincrease.h"
-#include "map_point.h"
+#include "map_player.h"
 
 #include "skillrandom.h"
 

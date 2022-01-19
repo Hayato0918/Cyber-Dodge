@@ -11,7 +11,6 @@ typedef struct
 	D3DXVECTOR2 size;
 	float u, v, uw, vh;
 	int randomcode;
-	int newline;	//マスを1段下げるときに使う変数
 }MAP;
 
 typedef struct
@@ -27,28 +26,5 @@ HRESULT InitMapPoint(void);
 void UninitMapPoint(void);
 void UpdateMapPoint(void);
 void DrawMapPoint(void);
-
-//-----構造体
-typedef struct
-{
-	D3DXVECTOR2 pos;
-	D3DXVECTOR2 size;
-	D3DXVECTOR2 num;
-	int texture;
-	int LRcount, UDcount;
-
-	D3DXVECTOR2 circlepos;
-	D3DXVECTOR2 circlesize;
-	int circletexture;
-	bool circletextureflag;
-
-	int gamecount;	//ゲームシーンに何回移動したかを管理する変数
-	int encount;	//どの敵と戦うかを管理する変数
-}MAP_PLAYER;
-
-//-----プロトタイプ宣言
-HRESULT InitMapPlayer(void);
-void UninitMapPlayer(void);
-void UpdateMapPlayer(void);
-void DrawMapPlayer(void);
-MAP_PLAYER* GetMapPlayer();
+MAP* GetMapPoint();
+MAP_SB* GetMapSB();

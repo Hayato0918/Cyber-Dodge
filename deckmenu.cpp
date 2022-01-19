@@ -6,7 +6,7 @@
 #include "sprite.h"
 #include "fade.h"
 
-#include "map_point.h"
+#include "map_player.h"
 #include "skillrandom.h"
 
 //-----ƒ}ƒNƒ’è‹`

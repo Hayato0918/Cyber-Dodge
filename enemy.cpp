@@ -12,7 +12,7 @@
 #include "firewall.h"
 #include "firewall_hp.h"
 //
-#include "map_point.h"
+#include "map_player.h"
 
 
 HRESULT InitEnemy(void)

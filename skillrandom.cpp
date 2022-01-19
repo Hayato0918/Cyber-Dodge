@@ -4,7 +4,7 @@
 #include "texture.h"
 #include "sprite.h"
 #include "player.h"
-#include "map_point.h"
+#include "map_player.h"
 
 #include <stdlib.h>
 #include <time.h>

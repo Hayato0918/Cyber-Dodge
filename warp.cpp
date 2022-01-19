@@ -10,7 +10,8 @@
 //エネミー.h
 #include "slime.h"
 #include "firewall.h"
-#include "map_point.h"
+//マップ.h
+#include "map_player.h"
 
 #include "ball.h"
 //スキル.h

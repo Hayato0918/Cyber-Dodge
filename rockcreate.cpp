@@ -6,7 +6,7 @@
 //エネミー.h
 #include "firewall.h"
 #include "slime.h"
-#include "map_point.h"
+#include "map_player.h"
 
 #include "player.h"
 #include "bugincrease.h"

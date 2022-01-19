@@ -6,7 +6,9 @@
 #include "sound.h"
 
 #include "map_bg.h"
+#include "map_line.h"
 #include "map_point.h"
+#include "map_player.h"
 #include "map_hack.h"
 
 #include "banner.h"
@@ -25,6 +27,7 @@
 HRESULT InitMap(void)
 {
 	InitMapBG();
+	InitMapLine();
 	InitMapPoint();
 	InitMapPlayer();
 	InitMapHack();
@@ -38,6 +41,7 @@ void UninitMap()
 	UninitMapPoint();
 	UninitMapPlayer();
 	UninitMapHack();
+	UninitMapLine();
 	UninitMapBG();
 }
 
@@ -45,6 +49,7 @@ void UninitMap()
 void UpdateMap(void)
 {
 	UpdateMapBG();
+	UpdateMapLine();
 	UpdateMapPoint();
 	UpdateMapPlayer();
 	UpdateMapHack();
@@ -61,6 +66,7 @@ void UpdateMap(void)
 void DrawMap(void)
 {
 	DrawMapBG();
+	DrawMapLine();
 	DrawMapPoint();
 	DrawMapPlayer();
 	DrawMapHack();

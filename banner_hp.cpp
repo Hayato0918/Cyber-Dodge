@@ -5,7 +5,7 @@
 #include "sprite.h"
 
 #include "player_hp.h"
-#include "map_point.h"
+#include "map_player.h"
 
 //-----ƒ}ƒNƒ’è‹`
 

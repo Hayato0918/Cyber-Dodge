@@ -15,7 +15,7 @@
 #include "invincible.h"
 #include "create.h"
 //
-#include "map_point.h"
+#include "map_player.h"
 
 //-----ƒ}ƒNƒ’è‹`
 #define auto_ctime_2 60		//1sŠÔ

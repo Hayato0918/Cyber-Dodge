@@ -8,7 +8,7 @@
 
 #include "skillrandom.h"
 
-#include "map_point.h"
+#include "map_player.h"
 
 //-----ƒ}ƒNƒ’è‹`
 #define powerdowntime 600		//10sŠÔ

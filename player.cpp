@@ -18,7 +18,7 @@
 #include "ball.h"
 #include "catch.h"
 //マップ.h
-#include "map_point.h"
+#include "map_player.h"
 //スキル.h
 #include "skill.h"
 #include "skillrandom.h"

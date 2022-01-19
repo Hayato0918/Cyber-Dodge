@@ -12,7 +12,7 @@
 #include "reverse.h"
 
 #include "skillrandom.h"
-#include "map_point.h"
+#include "map_player.h"
 
 //-----ƒ}ƒNƒ’è‹`
 #define mindhacktime 360		//6sŠÔ
