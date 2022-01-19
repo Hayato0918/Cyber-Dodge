@@ -3,6 +3,7 @@
 #include <time.h>
 
 #include "map_point.h"
+#include "map_player.h"
 #include "texture.h"
 #include "sprite.h"
 #include "input.h"
@@ -23,6 +24,10 @@ int map_texture;	//マスのテクスチャを設定する変数
 //-----初期化処理
 HRESULT InitMapPoint(void)
 {
+	MAP_PLAYER* map_player = GetMapPlayer();
+
+	if (map_player->UDcount == 0)
+	{
 		//map_texture = LoadTexture("data/TEXTURE/map/map_point.png");
 
 		//-----シート1の場合
@@ -64,7 +69,7 @@ HRESULT InitMapPoint(void)
 		for (int i = 0; i < 4; i++)
 			map[i].randomcode = 1;
 		//-----ボスマスの手前は戦闘マス以外にする
-		for(int i = 18; i < 21; i++)
+		for (int i = 18; i < 21; i++)
 			map[i].randomcode = (rand() % 3) + 3;
 
 
@@ -101,6 +106,8 @@ HRESULT InitMapPoint(void)
 		//ボスマス
 		map_sb.bosssize = D3DXVECTOR2(120, 120);
 		map_sb.bosspos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f - map_sb.bosssize.x, 1700);
+
+	}
 
 	return S_OK;
 }
