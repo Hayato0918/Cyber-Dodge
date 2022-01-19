@@ -28,7 +28,7 @@ HRESULT InitMapPoint(void)
 
 	if (map_player->UDcount == 0)
 	{
-		//map_texture = LoadTexture("data/TEXTURE/map/map_point.png");
+		map_texture = LoadTexture("data/TEXTURE/map/map_point.png");
 
 		//-----シート1の場合
 		//-----1段目
@@ -216,7 +216,7 @@ void DrawMapPoint(void)
 	DrawSpriteLeftTop(map_texture, map_sb.bosspos.x, map_sb.bosspos.y, map_sb.bosssize.x, map_sb.bosssize.y, 0.332f, 0.0f, 0.166f, 1.0f);
 	//マスの描画
 	for (int i = 0; i < map_num; i++)
-		DrawSpriteLeftTop(map_texture, map[i].pos.x, map[i].pos.y, map[i].size.x, map[i].size.y, map[i].u, map[i].v, map[i].uw, map[i].vh);
+		DrawSpriteLeftTop(map_texture, map[i].pos.x, map[i].pos.y, map[i].size.x, map[i].size.y, map[i].u, 0.f, 0.166f, 1.f);
 }
 
 MAP* GetMapPoint()

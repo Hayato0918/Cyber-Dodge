@@ -1,4 +1,4 @@
-//バグゲージ処理 [bug.cpp]
+  //バグゲージ処理 [bug.cpp]
 #include "bugincrease.h"
 #include "texture.h"
 #include "sprite.h"
@@ -156,7 +156,7 @@ void UpdateBugIncrease(void)
 		bugnumber[2].drawflag = true;
 	}
 
-	if (random->active == true)
+	if (bug.drawnum > 0)
 		bug.decreaseflag = true;
 	if (bug.drawnum == 0)
 		bug.decreaseflag = false;

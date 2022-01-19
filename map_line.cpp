@@ -5,6 +5,8 @@
 #include "sprite.h"
 #include "fade.h"
 
+#include "map_player.h"
+
 //-----マクロ定義
 
 //-----プロトタイプ宣言
@@ -15,9 +17,14 @@ MAP_LINE map_line;
 //-----初期化処理
 HRESULT InitMapLine(void)
 {
-	map_line.pos = D3DXVECTOR2(0.0f, 50.0f);
-	map_line.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT * 2.f);
-	map_line.texture = LoadTexture("data/TEXTURE/map/mapline_1.png");
+	MAP_PLAYER* map_player = GetMapPlayer();
+
+	if (map_player->UDcount == 0)
+	{
+		map_line.pos = D3DXVECTOR2(0.0f, 50.0f);
+		map_line.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT * 2.f);
+		map_line.texture = LoadTexture("data/TEXTURE/map/mapline_1.png");
+	}
 
 	return S_OK;
 }
