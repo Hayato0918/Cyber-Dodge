@@ -115,6 +115,12 @@
     <Filter Include="ヘッダー ファイル\option">
       <UniqueIdentifier>{ea2faf10-3855-4f35-86cb-20daaa950ac0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\map\event\system">
+      <UniqueIdentifier>{ff80695c-731d-492a-96c3-8b6da10d1978}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\map\event\system">
+      <UniqueIdentifier>{2cde58e5-016d-45dd-8bb6-7ebeece25881}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scene.cpp">
@@ -402,9 +408,6 @@
     <ClCompile Include="map_bg.cpp">
       <Filter>ソース ファイル\map</Filter>
     </ClCompile>
-    <ClCompile Include="event.cpp">
-      <Filter>ソース ファイル\map\event</Filter>
-    </ClCompile>
     <ClCompile Include="notCatch.cpp">
       <Filter>ソース ファイル\bug</Filter>
     </ClCompile>
@@ -449,6 +452,15 @@
     </ClCompile>
     <ClCompile Include="map_player.cpp">
       <Filter>ソース ファイル\map</Filter>
+    </ClCompile>
+    <ClCompile Include="event.cpp">
+      <Filter>ソース ファイル\map\event\system</Filter>
+    </ClCompile>
+    <ClCompile Include="eventrandom.cpp">
+      <Filter>ソース ファイル\map\event\system</Filter>
+    </ClCompile>
+    <ClCompile Include="kasoukenkyuukuukan.cpp">
+      <Filter>ソース ファイル\map\event</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -737,9 +749,6 @@
     <ClInclude Include="map_bg.h">
       <Filter>ヘッダー ファイル\map</Filter>
     </ClInclude>
-    <ClInclude Include="event.h">
-      <Filter>ヘッダー ファイル\map\event</Filter>
-    </ClInclude>
     <ClInclude Include="notCatch.h">
       <Filter>ヘッダー ファイル\bug</Filter>
     </ClInclude>
@@ -784,6 +793,15 @@
     </ClInclude>
     <ClInclude Include="map_player.h">
       <Filter>ヘッダー ファイル\map</Filter>
+    </ClInclude>
+    <ClInclude Include="event.h">
+      <Filter>ヘッダー ファイル\map\event\system</Filter>
+    </ClInclude>
+    <ClInclude Include="eventrandom.h">
+      <Filter>ヘッダー ファイル\map\event\system</Filter>
+    </ClInclude>
+    <ClInclude Include="kasoukenkyuukuukan.h">
+      <Filter>ヘッダー ファイル\map\event</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

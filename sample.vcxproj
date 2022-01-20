@@ -154,6 +154,7 @@
     <ClCompile Include="doubleattack.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="event.cpp" />
+    <ClCompile Include="eventrandom.cpp" />
     <ClCompile Include="firewall.cpp" />
     <ClCompile Include="firewallAI.cpp" />
     <ClCompile Include="firewall_animation.cpp" />
@@ -165,6 +166,7 @@
     <ClCompile Include="input.cpp" />
     <ClCompile Include="invade.cpp" />
     <ClCompile Include="invincible.cpp" />
+    <ClCompile Include="kasoukenkyuukuukan.cpp" />
     <ClCompile Include="landmines.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map.cpp" />
@@ -239,6 +241,7 @@
   <ItemGroup>
     <ClInclude Include="anten.h" />
     <ClInclude Include="areaChange.h" />
+    <ClInclude Include="kasoukenkyuukuukan.h" />
     <ClInclude Include="autocatch.h" />
     <ClInclude Include="ball.h" />
     <ClInclude Include="ballturnaround.h" />
@@ -267,6 +270,7 @@
     <ClInclude Include="doubleattack.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="event.h" />
+    <ClInclude Include="eventrandom.h" />
     <ClInclude Include="firewall.h" />
     <ClInclude Include="firewallAI.h" />
     <ClInclude Include="firewall_animation.h" />
