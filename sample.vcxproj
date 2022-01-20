@@ -134,7 +134,6 @@
     <ClCompile Include="banner_bug.cpp" />
     <ClCompile Include="banner_gold.cpp" />
     <ClCompile Include="banner_hp.cpp" />
-    <ClCompile Include="banner_icon.cpp" />
     <ClCompile Include="banner_name.cpp" />
     <ClCompile Include="barrier.cpp" />
     <ClCompile Include="baseball.cpp" />
@@ -248,7 +247,6 @@
     <ClInclude Include="banner_bug.h" />
     <ClInclude Include="banner_gold.h" />
     <ClInclude Include="banner_hp.h" />
-    <ClInclude Include="banner_icon.h" />
     <ClInclude Include="banner_name.h" />
     <ClInclude Include="barrier.h" />
     <ClInclude Include="baseball.h" />

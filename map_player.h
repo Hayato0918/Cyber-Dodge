@@ -16,10 +16,13 @@ typedef struct
 	int UDcount;
 	int LRcount;
 
+	int mapnum;
+
 	D3DXVECTOR2 circlepos;
 	D3DXVECTOR2 circlesize;
 	int circletexture;
 	bool circletextureflag;
+	int circlenowpos;
 
 	int gamecount;	//ƒQ[ƒ€ƒV[ƒ“‚É‰½‰ñˆÚ“®‚µ‚½‚©‚ğŠÇ—‚·‚é•Ï”
 	int encount;	//‚Ç‚Ì“G‚Æí‚¤‚©‚ğŠÇ—‚·‚é•Ï”

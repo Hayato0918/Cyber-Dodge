@@ -10,6 +10,7 @@ typedef struct
 	D3DXVECTOR2 pos;
 	D3DXVECTOR2 size;
 	float u, v, uw, vh;
+	bool drawflag;
 }BANNER_HP;
 
 typedef struct

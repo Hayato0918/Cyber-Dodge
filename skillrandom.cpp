@@ -67,18 +67,18 @@ HRESULT InitRandom(void)
 	for (int i = 0; i < skill.slot; i++)
 	{
 		//割り当てられたcodeに対応したテクスチャを表示
-	/*	if (random[i].code == 1)
+		if (random[i].code == 1)
 			random[i].texture = LoadTexture("data/TEXTURE/skill/speedup.png");
 		if (random[i].code == 2)
 			random[i].texture = LoadTexture("data/TEXTURE/skill/turnaround.png");
-		if (random[i].code == 3)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/barrier.png");
-		if (random[i].code == 4)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/baseball.png");
+		//if (random[i].code == 3)
+		//	random[i].texture = LoadTexture("data/TEXTURE/skill/barrier.png");
+		//if (random[i].code == 4)
+		//	random[i].texture = LoadTexture("data/TEXTURE/skill/baseball.png");
 		if (random[i].code == 5)
 			random[i].texture = LoadTexture("data/TEXTURE/skill/bigball.png");
-		if (random[i].code == 6)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/billiards.png");
+		//if (random[i].code == 6)
+		//	random[i].texture = LoadTexture("data/TEXTURE/skill/billiards.png");
 		if (random[i].code == 7)
 			random[i].texture = LoadTexture("data/TEXTURE/skill/buildup.png");
 		if (random[i].code == 8)
@@ -95,8 +95,8 @@ HRESULT InitRandom(void)
 			random[i].texture = LoadTexture("data/TEXTURE/skill/slowarea.png");
 		if (random[i].code == 14)
 			random[i].texture = LoadTexture("data/TEXTURE/skill/smallplayer.png");
-		if (random[i].code == 15)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/autocatch.png");
+		//if (random[i].code == 15)
+		//	random[i].texture = LoadTexture("data/TEXTURE/skill/autocatch.png");
 		if (random[i].code == 16)
 			random[i].texture = LoadTexture("data/TEXTURE/skill/disappear.png");
 		if (random[i].code == 17)
@@ -118,7 +118,7 @@ HRESULT InitRandom(void)
 		if (random[i].code == 25)
 			random[i].texture = LoadTexture("data/TEXTURE/skill/timestop.png");
 		if (random[i].code == 26)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/warp.png");*/
+			random[i].texture = LoadTexture("data/TEXTURE/skill/warp.png");
 	}
 
 	return S_OK;

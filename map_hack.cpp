@@ -20,7 +20,7 @@ HRESULT InitMapHack(void)
 	map_hack.size = D3DXVECTOR2(SCREEN_WIDTH * 0.375f, SCREEN_HEIGHT * 0.9f);		//1600:900Å®600:850
 	map_hack.texture = LoadTexture("data/TEXTURE/hackingmenu/hackingmenu.png");
 
-	map_hack.frame_pos = D3DXVECTOR2(SCREEN_WIDTH * 0.219f, SCREEN_HEIGHT * 0.278f);	//1600:900Å®350,250
+	map_hack.frame_pos = D3DXVECTOR2(SCREEN_WIDTH * 0.219f, SCREEN_HEIGHT * 0.33f);	//1600:900Å®350,250
 	map_hack.frame_size = D3DXVECTOR2(SCREEN_WIDTH * 0.28125f, SCREEN_HEIGHT * 0.111f);		//1600:900Å®450,100
 	map_hack.frametexture = LoadTexture("data/TEXTURE/bugframe.png");
 
@@ -56,12 +56,12 @@ void UpdateMapHack(void)
 			if (GetKeyboardTrigger(DIK_W) && map_hack.UDcount > 0)
 			{
 				map_hack.UDcount -= 1;
-				map_hack.frame_pos.y -= SCREEN_HEIGHT * 0.128f;		//1600:900Å®115
+				map_hack.frame_pos.y -= SCREEN_HEIGHT * 0.132f;		//1600:900Å®115
 			}
 			if (GetKeyboardTrigger(DIK_S) && map_hack.UDcount < 4)
 			{
 				map_hack.UDcount += 1;
-				map_hack.frame_pos.y += SCREEN_HEIGHT * 0.128f;		//1600:900Å®115
+				map_hack.frame_pos.y += SCREEN_HEIGHT * 0.132f;		//1600:900Å®115
 			}
 		}
 	}
@@ -100,9 +100,9 @@ void DrawMapHack(void)
 	if (map_hack.isUse == true)
 	{
 		DrawSpriteColor(map_hack.texture, map_hack.pos.x, map_hack.pos.y, map_hack.size.x, map_hack.size.y, 0.0f, 0.0f, 1.0f, 1.0f,
-			D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.5f));
+			D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.8f));
 		DrawSpriteColor(map_hack.frametexture, map_hack.frame_pos.x, map_hack.frame_pos.y, map_hack.frame_size.x, map_hack.frame_size.y, 0.0f, 0.0f, 1.0f, 1.0f,
-			D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.5f));
+			D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.8f));
 	}
 }
 

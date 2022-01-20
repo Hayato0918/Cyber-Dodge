@@ -9,10 +9,9 @@ typedef struct
 {
 	D3DXVECTOR2 pos;
 	D3DXVECTOR2 size;
-	int texture;			//メニューのテクスチャ
+	int texture;
 
-	int UDcount;		//今何を選んでいるかを管理する変数
-	bool isUse;			//メニューの開閉を管理する変数
+	int randomcode;
 }MAP_LINE;
 
 //-----プロトタイプ宣言

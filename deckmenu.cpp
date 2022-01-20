@@ -125,6 +125,66 @@ HRESULT InitDeckMenu(void)
 			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/smallplayer.png");
 			deckmenu_card[a][b].drawflag = true;
 		}
+		if (random[i].code == 15)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/autocatch.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		if (random[i].code == 16)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/disappear.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		if (random[i].code == 17)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/doubleattack.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		if (random[i].code == 18)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/enemy_powerdown.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		if (random[i].code == 19)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/landmine.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		if (random[i].code == 20)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/mindhack.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		if (random[i].code == 21)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/otoshiana.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		if (random[i].code == 22)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/player_powerup.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		if (random[i].code == 23)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/player_regen.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		if (random[i].code == 24)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/player_speedup.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		if (random[i].code == 25)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/timestop.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
+		if (random[i].code == 26)
+		{
+			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/warp.png");
+			deckmenu_card[a][b].drawflag = true;
+		}
 		b = b + 1;
 	}
 

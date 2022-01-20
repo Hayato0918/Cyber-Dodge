@@ -336,9 +336,6 @@
     <ClCompile Include="banner_bg.cpp">
       <Filter>ソース ファイル\map\banner</Filter>
     </ClCompile>
-    <ClCompile Include="banner_icon.cpp">
-      <Filter>ソース ファイル\map\banner</Filter>
-    </ClCompile>
     <ClCompile Include="banner_name.cpp">
       <Filter>ソース ファイル\map\banner</Filter>
     </ClCompile>
@@ -672,9 +669,6 @@
       <Filter>ヘッダー ファイル\map\banner</Filter>
     </ClInclude>
     <ClInclude Include="banner_bg.h">
-      <Filter>ヘッダー ファイル\map\banner</Filter>
-    </ClInclude>
-    <ClInclude Include="banner_icon.h">
       <Filter>ヘッダー ファイル\map\banner</Filter>
     </ClInclude>
     <ClInclude Include="banner_name.h">

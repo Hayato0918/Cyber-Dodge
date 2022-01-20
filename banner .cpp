@@ -5,7 +5,6 @@
 #include "sprite.h"
 
 #include "banner_bg.h"
-#include "banner_icon.h"
 #include "banner_name.h"
 #include "banner_hp.h"
 #include "banner_gold.h"
@@ -25,8 +24,6 @@ HRESULT InitBanner(void)
 {
 	//BG
 	InitBannerBG();
-	//icon
-	InitBannerIcon();
 	//name
 	InitBannerName();
 	//hp
@@ -44,8 +41,6 @@ void UninitBanner(void)
 {
 	//BG
 	UninitBannerBG();
-	//icon
-	UninitBannerIcon();
 	//name
 	UninitBannerName();
 	//hp
@@ -61,8 +56,6 @@ void UpdateBanner(void)
 {
 	//BG
 	UpdateBannerBG();
-	//icon
-	UpdateBannerIcon();
 	//name
 	UpdateBannerName();
 	//hp
@@ -78,8 +71,6 @@ void DrawBanner(void)
 {
 	//BG
 	DrawBannerBG();
-	//icon
-	DrawBannerIcon();
 	//name
 	DrawBannerName();
 	//hp

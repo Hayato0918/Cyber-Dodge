@@ -11,6 +11,7 @@ typedef struct
 	D3DXVECTOR2 size;
 	float u, v, uw, vh;
 	int randomcode;
+	bool drawflag;
 }MAP;
 
 typedef struct
