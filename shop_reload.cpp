@@ -73,14 +73,14 @@ void UpdateShopReload()
 				shop_card[i].texture = LoadTexture("data/TEXTURE/skill/speedup.png");
 			if (shop_card[i].code == 2)
 				shop_card[i].texture = LoadTexture("data/TEXTURE/skill/turnaround.png");
-			//if (shop_card[i].code == 3)
-			//	shop_card[i].texture = LoadTexture("data/TEXTURE/skill/barrier.png");
-			//if (shop_card[i].code == 4)
-			//	shop_card[i].texture = LoadTexture("data/TEXTURE/skill/baseball.png");
+			if (shop_card[i].code == 3)
+				shop_card[i].texture = LoadTexture("data/TEXTURE/skill/barrier.png");
+			if (shop_card[i].code == 4)
+				shop_card[i].texture = LoadTexture("data/TEXTURE/skill/baseball.png");
 			if (shop_card[i].code == 5)
 				shop_card[i].texture = LoadTexture("data/TEXTURE/skill/bigball.png");
-			//if (shop_card[i].code == 6)
-			//	shop_card[i].texture = LoadTexture("data/TEXTURE/skill/billiards.png");
+			if (shop_card[i].code == 6)
+				shop_card[i].texture = LoadTexture("data/TEXTURE/skill/billiards.png");
 			if (shop_card[i].code == 7)
 				shop_card[i].texture = LoadTexture("data/TEXTURE/skill/buildup.png");
 			if (shop_card[i].code == 8)
