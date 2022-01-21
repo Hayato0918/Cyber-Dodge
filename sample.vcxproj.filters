@@ -121,6 +121,12 @@
     <Filter Include="ヘッダー ファイル\map\event\system">
       <UniqueIdentifier>{2cde58e5-016d-45dd-8bb6-7ebeece25881}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\enemy\deleter">
+      <UniqueIdentifier>{7e30f3a7-2f17-4b26-9886-583d0c86490d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\enemy\deleter">
+      <UniqueIdentifier>{b03c73c8-fa6e-434d-9cd4-0f42e09a2195}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scene.cpp">
@@ -462,6 +468,18 @@
     <ClCompile Include="kasoukenkyuukuukan.cpp">
       <Filter>ソース ファイル\map\event</Filter>
     </ClCompile>
+    <ClCompile Include="deleter.cpp">
+      <Filter>ソース ファイル\enemy\deleter</Filter>
+    </ClCompile>
+    <ClCompile Include="deleter_animation.cpp">
+      <Filter>ソース ファイル\enemy\deleter</Filter>
+    </ClCompile>
+    <ClCompile Include="deleter_hp.cpp">
+      <Filter>ソース ファイル\enemy\deleter</Filter>
+    </ClCompile>
+    <ClCompile Include="deleterAI.cpp">
+      <Filter>ソース ファイル\enemy\deleter</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -802,6 +820,18 @@
     </ClInclude>
     <ClInclude Include="kasoukenkyuukuukan.h">
       <Filter>ヘッダー ファイル\map\event</Filter>
+    </ClInclude>
+    <ClInclude Include="deleter.h">
+      <Filter>ヘッダー ファイル\enemy\deleter</Filter>
+    </ClInclude>
+    <ClInclude Include="deleter_animation.h">
+      <Filter>ヘッダー ファイル\enemy\deleter</Filter>
+    </ClInclude>
+    <ClInclude Include="deleter_hp.h">
+      <Filter>ヘッダー ファイル\enemy\deleter</Filter>
+    </ClInclude>
+    <ClInclude Include="deleterAI.h">
+      <Filter>ヘッダー ファイル\enemy\deleter</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

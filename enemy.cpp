@@ -8,6 +8,9 @@
 //slime.h
 #include "slime.h"
 #include "slime_hp.h"
+//deleter.h
+#include "deleter.h"
+#include "deleter_hp.h"
 //firewall.h
 #include "firewall.h"
 #include "firewall_hp.h"
@@ -25,6 +28,11 @@ HRESULT InitEnemy(void)
 		InitSlimeHp();
 	}
 	if (map_player->encount == 2)
+	{
+		InitDeleter();
+		InitDeleterHp();
+	}
+	if (map_player->encount == 3)
 	{
 		InitFireWall();
 		InitFireWallHp();
@@ -49,6 +57,11 @@ void UpdateEnemy(void)
 	}
 	if (map_player->encount == 2)
 	{
+		UpdateDeleter();
+		UpdateDeleterHp();
+	}
+	if (map_player->encount == 3)
+	{
 		UpdateFireWall();
 		UpdateFireWallHp();
 	}
@@ -64,6 +77,11 @@ void DrawEnemy(void)
 		DrawSlimeHp();
 	}
 	if (map_player->encount == 2)
+	{
+		DrawDeleter();
+		DrawDeleterHp();
+	}
+	if (map_player->encount == 3)
 	{
 		DrawFireWall();
 		DrawFireWallHp();

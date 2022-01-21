@@ -1744,7 +1744,7 @@ void UpdateMapPlayer(void)
 				if (map[map_player.nowpos - 1].randomcode == 1)	//通常敵マス
 				{
 					map_player.gamecount = map_player.gamecount + 1;	//ゲームシーンに入った回数を記録する
-					map_player.encount = (rand() % 2) + 1;	//ここで出現する敵をランダムに決める
+					map_player.encount = (rand() % 3) + 1;	//ここで出現する敵をランダムに決める
 					map_player.encount = 2;
 					SceneTransition(SCENE_GAME);
 				}
