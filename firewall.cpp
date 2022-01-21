@@ -15,6 +15,7 @@
 #include "firewallAI.h"
 #include "skillrandom.h"
 #include "create.h"
+#include "map_player.h"
 
 //-----ƒ}ƒNƒ’è‹`
 
@@ -86,6 +87,7 @@ void UpdateFireWall(void)
 	FIREWALLHP* firewall_hp = GetFireWallHp();
 	SKILL* skill = GetSkill();
 	BG* bg = GetBG();
+	MAP_PLAYER* map_player = GetMapPlayer();
 
 	if (firewall.drawflag == true)
 		FireWallAI();
@@ -125,6 +127,7 @@ void UpdateFireWall(void)
 			skill->slot = skill->slot + 1;
 			firewall.getskill = true;
 		}
+		map_player->nextflag = true;
 		SceneTransition(SCENE_MAP);
 	}
 

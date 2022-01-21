@@ -8,6 +8,7 @@
 #include "fade.h"
 //
 #include "shop_select.h"
+#include "map_player.h"
 
 SHOP_EXIT shop_exit;
 
@@ -28,9 +29,13 @@ void UninitShopExit()
 void UpdateShopExit()
 {
 	SHOP_SELECT* shop_select = GetShopSelect();
+	MAP_PLAYER* map_player = GetMapPlayer();
 
 	if (GetKeyboardTrigger(DIK_RETURN) && shop_select->ycount == 2)
+	{
+		map_player->nextflag = true;
 		SceneTransition(SCENE_MAP);
+	}
 }
 
 void DrawShopExit()

@@ -29,8 +29,6 @@ HRESULT InitBannerHp(void)
 	//場所、サイズ、uv決め
 	for (int i = 0; i < 3; i++)
 	{
-		banner_hp[i].uw = 0.2f;
-		banner_hp[i].vh = 0.5f;
 		banner_hp[i].size = D3DXVECTOR2(30.0f, 50.0f);
 		banner_hp[i].pos = D3DXVECTOR2(470.f + i * banner_hp[i].size.x, 5.0f);
 		banner_hp[i].drawflag = true;
@@ -50,8 +48,10 @@ void UninitBannerHp(void)
 void UpdateBannerHp(void)
 {
 	PLAYERHP* player_hp = GetPlayerHp();
+	MAP_PLAYER* map_player = GetMapPlayer();
 
 	//playerのHPバーサイズから、実数値を割り出す
+	if(map_player->UDcount > 1)
 	banner_hpnum.hp = player_hp->gaugesize.x * 0.3125f;
 
 	banner_hpnum.a = banner_hpnum.hp * 0.01f;
@@ -109,6 +109,6 @@ void DrawBannerHp(void)
 	{
 		if(banner_hp[i].drawflag == true)
 		DrawSpriteLeftTop(banner_hpnum.texture, banner_hp[i].pos.x, banner_hp[i].pos.y, banner_hp[i].size.x, banner_hp[i].size.y,
-			banner_hp[i].u, banner_hp[i].v, banner_hp[i].uw, banner_hp[i].vh);
+			banner_hp[i].u, banner_hp[i].v, 0.2f, 0.5f);
 	}
 }

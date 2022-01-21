@@ -7,6 +7,7 @@
 #include "fade.h"
 //
 #include "rest_select.h"
+#include "map_player.h"
 
 REST_EXIT rest_exit;
 
@@ -27,6 +28,7 @@ void UninitRestExit(void)
 void UpdateRestExit(void)
 {
 	REST_SELECT* rest_select = GetRestSelect();
+	MAP_PLAYER* map_player = GetMapPlayer();
 
 	//if (PADUSE == 0)
 	//{
@@ -36,7 +38,10 @@ void UpdateRestExit(void)
 	if (PADUSE == 1)
 	{
 		if (GetKeyboardTrigger(DIK_RETURN) && rest_select->count == 2)
+		{
+			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
+		}
 	}
 }
 

@@ -24,6 +24,7 @@ typedef struct
 	bool circletextureflag;
 	int circlenowpos;
 
+	bool nextflag;	//enter連打を防ぐためのやつ
 	int gamecount;	//ゲームシーンに何回移動したかを管理する変数
 	int encount;	//どの敵と戦うかを管理する変数
 }MAP_PLAYER;

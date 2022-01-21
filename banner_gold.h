@@ -9,7 +9,8 @@ typedef struct
 {
 	D3DXVECTOR2 pos;
 	D3DXVECTOR2 size;
-	float u, v, uw, vh;
+	float u, v;
+	bool drawflag;
 }BANNER_GOLD;
 
 typedef struct

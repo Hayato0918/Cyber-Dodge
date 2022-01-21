@@ -44,10 +44,16 @@ HRESULT InitMapPlayer(void)
 
 			map_player.gamecount = 0;
 
+			map_player.nextflag = true;
+
 			if (map_line->randomcode == 1)
 				map_player.mapnum = 21;
 			if (map_line->randomcode == 2)
 				map_player.mapnum = 20;
+			if (map_line->randomcode == 3)
+				map_player.mapnum = 18;
+			if (map_line->randomcode == 4)
+				map_player.mapnum = 24;
 		}
 
 	return S_OK;
@@ -83,6 +89,8 @@ void UpdateMapPlayer(void)
 				map_player.circlepos.y -= 3;
 			}
 
+			if(map_player.nextflag == true)
+			{
 			//-----シート1の場合
 			if (map_line->randomcode == 1)
 			{
@@ -94,6 +102,7 @@ void UpdateMapPlayer(void)
 					{
 						map_player.pos = D3DXVECTOR2(map_sb->bosspos.x, map_sb->bosspos.y);
 						map_player.nowpos = 22;
+						map_player.nextflag = false;
 					}
 				}
 
@@ -110,6 +119,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 19;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//16→19
@@ -124,6 +134,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 19;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//17→20
@@ -138,6 +149,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 21;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 
@@ -153,6 +165,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 16;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//13→16、13→17
@@ -184,6 +197,7 @@ void UpdateMapPlayer(void)
 						}
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//14→17
@@ -197,6 +211,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 18;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 
@@ -230,6 +245,7 @@ void UpdateMapPlayer(void)
 						}
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//13→15
@@ -243,6 +259,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 15;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 
@@ -258,6 +275,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 11;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//8→10、8→11
@@ -289,6 +307,7 @@ void UpdateMapPlayer(void)
 						}
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//10→12、10→13
@@ -320,6 +339,7 @@ void UpdateMapPlayer(void)
 						}
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 
@@ -335,6 +355,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 8;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//6→9
@@ -348,6 +369,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 9;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//7→10
@@ -361,6 +383,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 10;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 
@@ -376,6 +399,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 5;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				if (map_player.nowpos == 3)
@@ -406,6 +430,7 @@ void UpdateMapPlayer(void)
 						}
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//4→7
@@ -419,6 +444,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 7;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 
@@ -448,6 +474,7 @@ void UpdateMapPlayer(void)
 							map_player.circlepos = D3DXVECTOR2(map[6].pos.x, map[6].pos.y);
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 			}
@@ -463,6 +490,7 @@ void UpdateMapPlayer(void)
 					{
 						map_player.pos = D3DXVECTOR2(map_sb->bosspos.x, map_sb->bosspos.y);
 						map_player.nowpos = 21;
+						map_player.nextflag = false;
 					}
 				}
 
@@ -479,6 +507,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 18;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//17→19、17→20
@@ -506,6 +535,7 @@ void UpdateMapPlayer(void)
 							map_player.nowpos = 20;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 
@@ -521,6 +551,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 16;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//14→17
@@ -534,6 +565,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 17;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//15→17
@@ -547,6 +579,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 17;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 
@@ -562,6 +595,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 14;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//12→14、12→15
@@ -593,6 +627,7 @@ void UpdateMapPlayer(void)
 						}
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//13→15
@@ -606,6 +641,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 15;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 
@@ -639,6 +675,7 @@ void UpdateMapPlayer(void)
 						}
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//8→12
@@ -652,6 +689,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 12;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//9→12、9→13
@@ -683,6 +721,7 @@ void UpdateMapPlayer(void)
 						}
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 
@@ -698,6 +737,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 7;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//5→8
@@ -711,6 +751,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 8;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//6→9
@@ -724,6 +765,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 9;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 
@@ -739,6 +781,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 4;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//2→5、2→6
@@ -770,6 +813,7 @@ void UpdateMapPlayer(void)
 						}
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//3→6
@@ -783,6 +827,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 6;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 
@@ -812,6 +857,7 @@ void UpdateMapPlayer(void)
 							map_player.circlepos = D3DXVECTOR2(map[5].pos.x, map[5].pos.y);
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 			}
@@ -826,6 +872,7 @@ void UpdateMapPlayer(void)
 					if (GetKeyboardTrigger(DIK_RETURN))
 					{
 						map_player.pos = D3DXVECTOR2(map_sb->bosspos.x, map_sb->bosspos.y);
+						map_player.nextflag = false;
 						map_player.nowpos = 19;
 					}
 				}
@@ -856,6 +903,7 @@ void UpdateMapPlayer(void)
 							map_player.nowpos = 18;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 
@@ -871,6 +919,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 16;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 
@@ -886,6 +935,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 14;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//13→15
@@ -899,6 +949,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 15;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 
@@ -932,6 +983,7 @@ void UpdateMapPlayer(void)
 						}
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//9→12、8→13
@@ -963,6 +1015,7 @@ void UpdateMapPlayer(void)
 						}
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//10→13
@@ -976,6 +1029,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 13;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 
@@ -991,6 +1045,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 8;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//6→9
@@ -1004,6 +1059,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 9;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//7→10
@@ -1017,6 +1073,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 10;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 
@@ -1032,6 +1089,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 5;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//3→6、3→7
@@ -1063,6 +1121,7 @@ void UpdateMapPlayer(void)
 						}
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//4→7
@@ -1076,6 +1135,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 7;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 
@@ -1108,6 +1168,7 @@ void UpdateMapPlayer(void)
 							map_player.circlepos = D3DXVECTOR2(map[6].pos.x, map[6].pos.y);
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 			}
@@ -1123,6 +1184,7 @@ void UpdateMapPlayer(void)
 					{
 						map_player.pos = D3DXVECTOR2(map_sb->bosspos.x, map_sb->bosspos.y);
 						map_player.nowpos = 25;
+						map_player.nextflag = false;
 					}
 				}
 
@@ -1139,6 +1201,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 22;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//19→23
@@ -1153,6 +1216,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 23;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//20→23、20→24
@@ -1186,6 +1250,7 @@ void UpdateMapPlayer(void)
 						}
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//21→24
@@ -1200,6 +1265,7 @@ void UpdateMapPlayer(void)
 						map_player.nowpos = 24;
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 
@@ -1233,6 +1299,7 @@ void UpdateMapPlayer(void)
 						}
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
+						map_player.nextflag = false;
 					}
 				}
 				//16→19、16→20
@@ -1264,415 +1331,433 @@ void UpdateMapPlayer(void)
 						}
 						map_player.LRcount = 0;
 						map_player.UDcount = map_player.UDcount + 1;
-					}
-				}
-				//17→20、17→21
-				if (map_player.nowpos == 17)
-				{
-					map_player.circlenowpos = map_player.LRcount + 19;
-					if (GetKeyboardTrigger(DIK_A) && map_player.LRcount > 0)	//左
-					{
-						map_player.LRcount = map_player.LRcount - 1;
-						map_player.circlepos.x = map[map_player.LRcount + 19].pos.x;
-					}
-					if (GetKeyboardTrigger(DIK_D) && map_player.LRcount < 1)	//右
-					{
-						map_player.LRcount = map_player.LRcount + 1;
-						map_player.circlepos.x = map[map_player.LRcount + 19].pos.x;
-					}
-					if (GetKeyboardTrigger(DIK_RETURN))
-					{
-						map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 19].pos.x, map[map_player.LRcount + 19].pos.y);
-						if (map_player.LRcount == 0)
-						{
-							map_player.circlepos = D3DXVECTOR2(map[22].pos.x, map[22].pos.y);
-							map_player.nowpos = 20;
+						map_player.nextflag = false;
 						}
-						if (map_player.LRcount == 1)
-						{
-							map_player.circlepos = D3DXVECTOR2(map[23].pos.x, map[23].pos.y);
-							map_player.nowpos = 21;
-						}
-						map_player.LRcount = 0;
-						map_player.UDcount = map_player.UDcount + 1;
 					}
-				}
+					//17→20、17→21
+					if (map_player.nowpos == 17)
+					{
+						map_player.circlenowpos = map_player.LRcount + 19;
+						if (GetKeyboardTrigger(DIK_A) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 19].pos.x;
+						}
+						if (GetKeyboardTrigger(DIK_D) && map_player.LRcount < 1)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 19].pos.x;
+						}
+						if (GetKeyboardTrigger(DIK_RETURN))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 19].pos.x, map[map_player.LRcount + 19].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[22].pos.x, map[22].pos.y);
+								map_player.nowpos = 20;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[23].pos.x, map[23].pos.y);
+								map_player.nowpos = 21;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
 
-				//4段目
-				//11→15
-				if (map_player.nowpos == 11)
-				{
-					map_player.circlenowpos = 14;
-					if (GetKeyboardTrigger(DIK_RETURN))
+					//4段目
+					//11→15
+					if (map_player.nowpos == 11)
 					{
-						map_player.pos = D3DXVECTOR2(map[14].pos.x, map[14].pos.y);
-						map_player.circlepos = D3DXVECTOR2(map[17].pos.x, map[17].pos.y);
-						map_player.nowpos = 15;
-						map_player.LRcount = 0;
-						map_player.UDcount = map_player.UDcount + 1;
-					}
-				}
-				//12→16
-				if (map_player.nowpos == 12)
-				{
-					map_player.circlenowpos = 15;
-					if (GetKeyboardTrigger(DIK_RETURN))
-					{
-						map_player.pos = D3DXVECTOR2(map[15].pos.x, map[15].pos.y);
-						map_player.circlepos = D3DXVECTOR2(map[18].pos.x, map[18].pos.y);
-						map_player.nowpos = 16;
-						map_player.LRcount = 0;
-						map_player.UDcount = map_player.UDcount + 1;
-					}
-				}
-				//13→16、13→17
-				if (map_player.nowpos == 13)
-				{
-					map_player.circlenowpos = map_player.LRcount + 15;
-					if (GetKeyboardTrigger(DIK_A) && map_player.LRcount > 0)	//左
-					{
-						map_player.LRcount = map_player.LRcount - 1;
-						map_player.circlepos.x = map[map_player.LRcount + 15].pos.x;
-					}
-					if (GetKeyboardTrigger(DIK_D) && map_player.LRcount < 1)	//右
-					{
-						map_player.LRcount = map_player.LRcount + 1;
-						map_player.circlepos.x = map[map_player.LRcount + 15].pos.x;
-					}
-					if (GetKeyboardTrigger(DIK_RETURN))
-					{
-						map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 15].pos.x, map[map_player.LRcount + 15].pos.y);
-						if (map_player.LRcount == 0)
+						map_player.circlenowpos = 14;
+						if (GetKeyboardTrigger(DIK_RETURN))
 						{
+							map_player.pos = D3DXVECTOR2(map[14].pos.x, map[14].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[17].pos.x, map[17].pos.y);
+							map_player.nowpos = 15;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//12→16
+					if (map_player.nowpos == 12)
+					{
+						map_player.circlenowpos = 15;
+						if (GetKeyboardTrigger(DIK_RETURN))
+						{
+							map_player.pos = D3DXVECTOR2(map[15].pos.x, map[15].pos.y);
 							map_player.circlepos = D3DXVECTOR2(map[18].pos.x, map[18].pos.y);
 							map_player.nowpos = 16;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
 						}
-						if (map_player.LRcount == 1)
+					}
+					//13→16、13→17
+					if (map_player.nowpos == 13)
+					{
+						map_player.circlenowpos = map_player.LRcount + 15;
+						if (GetKeyboardTrigger(DIK_A) && map_player.LRcount > 0)	//左
 						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 15].pos.x;
+						}
+						if (GetKeyboardTrigger(DIK_D) && map_player.LRcount < 1)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 15].pos.x;
+						}
+						if (GetKeyboardTrigger(DIK_RETURN))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 15].pos.x, map[map_player.LRcount + 15].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[18].pos.x, map[18].pos.y);
+								map_player.nowpos = 16;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[19].pos.x, map[19].pos.y);
+								map_player.nowpos = 17;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//14→17
+					if (map_player.nowpos == 14)
+					{
+						map_player.circlenowpos = 16;
+						if (GetKeyboardTrigger(DIK_RETURN))
+						{
+							map_player.pos = D3DXVECTOR2(map[16].pos.x, map[16].pos.y);
 							map_player.circlepos = D3DXVECTOR2(map[19].pos.x, map[19].pos.y);
 							map_player.nowpos = 17;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
 						}
-						map_player.LRcount = 0;
-						map_player.UDcount = map_player.UDcount + 1;
 					}
-				}
-				//14→17
-				if (map_player.nowpos == 14)
-				{
-					map_player.circlenowpos = 16;
-					if (GetKeyboardTrigger(DIK_RETURN))
-					{
-						map_player.pos = D3DXVECTOR2(map[16].pos.x, map[16].pos.y);
-						map_player.circlepos = D3DXVECTOR2(map[19].pos.x, map[19].pos.y);
-						map_player.nowpos = 17;
-						map_player.LRcount = 0;
-						map_player.UDcount = map_player.UDcount + 1;
-					}
-				}
 
 				//3段目
-				//8→11、8→12
-				if (map_player.nowpos == 8)
-				{
-					map_player.circlenowpos = map_player.LRcount + 10;
-					if (GetKeyboardTrigger(DIK_A) && map_player.LRcount > 0)	//左
+					//8→11、8→12
+					if (map_player.nowpos == 8)
 					{
-						map_player.LRcount = map_player.LRcount - 1;
-						map_player.circlepos.x = map[map_player.LRcount + 10].pos.x;
-					}
-					if (GetKeyboardTrigger(DIK_D) && map_player.LRcount < 1)	//右
-					{
-						map_player.LRcount = map_player.LRcount + 1;
-						map_player.circlepos.x = map[map_player.LRcount + 10].pos.x;
-					}
-					if (GetKeyboardTrigger(DIK_RETURN))
-					{
-						map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 10].pos.x, map[map_player.LRcount + 10].pos.y);
-						if (map_player.LRcount == 0)
+						map_player.circlenowpos = map_player.LRcount + 10;
+						if (GetKeyboardTrigger(DIK_A) && map_player.LRcount > 0)	//左
 						{
-							map_player.circlepos = D3DXVECTOR2(map[14].pos.x, map[14].pos.y);
-							map_player.nowpos = 11;
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 10].pos.x;
 						}
-						if (map_player.LRcount == 1)
+						if (GetKeyboardTrigger(DIK_D) && map_player.LRcount < 1)	//右
 						{
-							map_player.circlepos = D3DXVECTOR2(map[15].pos.x, map[15].pos.y);
-							map_player.nowpos = 12;
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 10].pos.x;
 						}
-						map_player.LRcount = 0;
-						map_player.UDcount = map_player.UDcount + 1;
-					}
-				}
-				//9→13
-				if (map_player.nowpos == 9)
-				{
-					map_player.circlenowpos = 12;
-					if (GetKeyboardTrigger(DIK_RETURN))
-					{
-						map_player.pos = D3DXVECTOR2(map[12].pos.x, map[12].pos.y);
-						map_player.circlepos = D3DXVECTOR2(map[15].pos.x, map[15].pos.y);
-						map_player.nowpos = 13;
-						map_player.LRcount = 0;
-						map_player.UDcount = map_player.UDcount + 1;
-					}
-				}
-				//10→13、10→14
-				if (map_player.nowpos == 10)
-				{
-					map_player.circlenowpos = map_player.LRcount + 12;
-					if (GetKeyboardTrigger(DIK_A) && map_player.LRcount > 0)	//左
-					{
-						map_player.LRcount = map_player.LRcount - 1;
-						map_player.circlepos.x = map[map_player.LRcount + 12].pos.x;
-					}
-					if (GetKeyboardTrigger(DIK_D) && map_player.LRcount < 1)	//右
-					{
-						map_player.LRcount = map_player.LRcount + 1;
-						map_player.circlepos.x = map[map_player.LRcount + 12].pos.x;
-					}
-					if (GetKeyboardTrigger(DIK_RETURN))
-					{
-						map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 12].pos.x, map[map_player.LRcount + 12].pos.y);
-						if (map_player.LRcount == 0)
+						if (GetKeyboardTrigger(DIK_RETURN))
 						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 10].pos.x, map[map_player.LRcount + 10].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[14].pos.x, map[14].pos.y);
+								map_player.nowpos = 11;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[15].pos.x, map[15].pos.y);
+								map_player.nowpos = 12;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//9→13
+					if (map_player.nowpos == 9)
+					{
+						map_player.circlenowpos = 12;
+						if (GetKeyboardTrigger(DIK_RETURN))
+						{
+							map_player.pos = D3DXVECTOR2(map[12].pos.x, map[12].pos.y);
 							map_player.circlepos = D3DXVECTOR2(map[15].pos.x, map[15].pos.y);
 							map_player.nowpos = 13;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
 						}
-						if (map_player.LRcount == 1)
+					}
+					//10→13、10→14
+					if (map_player.nowpos == 10)
+					{
+						map_player.circlenowpos = map_player.LRcount + 12;
+						if (GetKeyboardTrigger(DIK_A) && map_player.LRcount > 0)	//左
 						{
-							map_player.circlepos = D3DXVECTOR2(map[16].pos.x, map[16].pos.y);
-							map_player.nowpos = 14;
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 12].pos.x;
 						}
-						map_player.LRcount = 0;
-						map_player.UDcount = map_player.UDcount + 1;
-					}
-				}
-
-				//2段目
-				//5→8
-				if (map_player.nowpos == 5)
-				{
-					map_player.circlenowpos = 7;
-
-					if (GetKeyboardTrigger(DIK_RETURN))
-					{
-						map_player.pos = D3DXVECTOR2(map[7].pos.x, map[7].pos.y);
-						map_player.circlepos = D3DXVECTOR2(map[10].pos.x, map[10].pos.y);
-						map_player.nowpos = 8;
-						map_player.LRcount = 0;
-						map_player.UDcount = map_player.UDcount + 1;
-					}
-				}
-				//6→8、6→9
-				if (map_player.nowpos == 6)
-				{
-					map_player.circlenowpos = map_player.LRcount + 7;
-					if (GetKeyboardTrigger(DIK_A) && map_player.LRcount > 0)	//左
-					{
-						map_player.LRcount = map_player.LRcount - 1;
-						map_player.circlepos.x = map[map_player.LRcount + 7].pos.x;
-					}
-					if (GetKeyboardTrigger(DIK_D) && map_player.LRcount < 1)	//右
-					{
-						map_player.LRcount = map_player.LRcount + 1;
-						map_player.circlepos.x = map[map_player.LRcount + 7].pos.x;
-					}
-					if (GetKeyboardTrigger(DIK_RETURN))
-					{
-						map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 7].pos.x, map[map_player.LRcount + 7].pos.y);
-						if (map_player.LRcount == 0)
+						if (GetKeyboardTrigger(DIK_D) && map_player.LRcount < 1)	//右
 						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 12].pos.x;
+						}
+						if (GetKeyboardTrigger(DIK_RETURN))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 12].pos.x, map[map_player.LRcount + 12].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[15].pos.x, map[15].pos.y);
+								map_player.nowpos = 13;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[16].pos.x, map[16].pos.y);
+								map_player.nowpos = 14;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+					//2段目
+					//5→8
+					if (map_player.nowpos == 5)
+					{
+						map_player.circlenowpos = 7;
+
+						if (GetKeyboardTrigger(DIK_RETURN))
+						{
+							map_player.pos = D3DXVECTOR2(map[7].pos.x, map[7].pos.y);
 							map_player.circlepos = D3DXVECTOR2(map[10].pos.x, map[10].pos.y);
 							map_player.nowpos = 8;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
 						}
-						if (map_player.LRcount == 1)
-						{
-							map_player.circlepos = D3DXVECTOR2(map[12].pos.x, map[12].pos.y);
-							map_player.nowpos = 9;
-						}
-						map_player.LRcount = 0;
-						map_player.UDcount = map_player.UDcount + 1;
 					}
-				}
-				//7→9、7→10
-				if (map_player.nowpos == 7)
-				{
-					map_player.circlenowpos = map_player.LRcount + 8;
-					if (GetKeyboardTrigger(DIK_A) && map_player.LRcount > 0)	//左
+					//6→8、6→9
+					if (map_player.nowpos == 6)
 					{
-						map_player.LRcount = map_player.LRcount - 1;
-						map_player.circlepos.x = map[map_player.LRcount + 8].pos.x;
-					}
-					if (GetKeyboardTrigger(DIK_D) && map_player.LRcount < 1)	//右
-					{
-						map_player.LRcount = map_player.LRcount + 1;
-						map_player.circlepos.x = map[map_player.LRcount + 8].pos.x;
-					}
-					if (GetKeyboardTrigger(DIK_RETURN))
-					{
-						map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 8].pos.x, map[map_player.LRcount + 8].pos.y);
-						if (map_player.LRcount == 0)
+						map_player.circlenowpos = map_player.LRcount + 7;
+						if (GetKeyboardTrigger(DIK_A) && map_player.LRcount > 0)	//左
 						{
-							map_player.circlepos = D3DXVECTOR2(map[12].pos.x, map[12].pos.y);
-							map_player.nowpos = 9;
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 7].pos.x;
 						}
-						if (map_player.LRcount == 1)
+						if (GetKeyboardTrigger(DIK_D) && map_player.LRcount < 1)	//右
 						{
-							map_player.circlepos = D3DXVECTOR2(map[12].pos.x, map[12].pos.y);
-							map_player.nowpos = 10;
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 7].pos.x;
 						}
-						map_player.LRcount = 0;
-						map_player.UDcount = map_player.UDcount + 1;
+						if (GetKeyboardTrigger(DIK_RETURN))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 7].pos.x, map[map_player.LRcount + 7].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[10].pos.x, map[10].pos.y);
+								map_player.nowpos = 8;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[12].pos.x, map[12].pos.y);
+								map_player.nowpos = 9;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
 					}
-				}
+					//7→9、7→10
+					if (map_player.nowpos == 7)
+					{
+						map_player.circlenowpos = map_player.LRcount + 8;
+						if (GetKeyboardTrigger(DIK_A) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 8].pos.x;
+						}
+						if (GetKeyboardTrigger(DIK_D) && map_player.LRcount < 1)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 8].pos.x;
+						}
+						if (GetKeyboardTrigger(DIK_RETURN))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 8].pos.x, map[map_player.LRcount + 8].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[12].pos.x, map[12].pos.y);
+								map_player.nowpos = 9;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[12].pos.x, map[12].pos.y);
+								map_player.nowpos = 10;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
 
-				//1段目
-				//1→5
-				if (map_player.nowpos == 1)
-				{
-					map_player.circlenowpos = 4;
-					if (GetKeyboardTrigger(DIK_RETURN))
+					//1段目
+					//1→5
+					if (map_player.nowpos == 1)
 					{
-						map_player.pos = D3DXVECTOR2(map[4].pos.x, map[4].pos.y);
-						map_player.circlepos = D3DXVECTOR2(map[7].pos.x, map[7].pos.y);
-						map_player.nowpos = 5;
-						map_player.LRcount = 0;
-						map_player.UDcount = map_player.UDcount + 1;
-					}
-				}
-				//2→5、2→6
-				if (map_player.nowpos == 2)
-				{
-					map_player.circlenowpos = map_player.LRcount + 4;
-					if (GetKeyboardTrigger(DIK_A) && map_player.LRcount > 0)	//左
-					{
-						map_player.LRcount = map_player.LRcount - 1;
-						map_player.circlepos.x = map[map_player.LRcount + 4].pos.x;
-					}
-					if (GetKeyboardTrigger(DIK_D) && map_player.LRcount < 1)	//右
-					{
-						map_player.LRcount = map_player.LRcount + 1;
-						map_player.circlepos.x = map[map_player.LRcount + 4].pos.x;
-					}
-					if (GetKeyboardTrigger(DIK_RETURN))
-					{
-						map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 4].pos.x, map[map_player.LRcount + 4].pos.y);
-						if (map_player.LRcount == 0)
+						map_player.circlenowpos = 4;
+						if (GetKeyboardTrigger(DIK_RETURN))
 						{
+							map_player.pos = D3DXVECTOR2(map[4].pos.x, map[4].pos.y);
 							map_player.circlepos = D3DXVECTOR2(map[7].pos.x, map[7].pos.y);
 							map_player.nowpos = 5;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
 						}
-						if (map_player.LRcount == 1)
+					}
+					//2→5、2→6
+					if (map_player.nowpos == 2)
+					{
+						map_player.circlenowpos = map_player.LRcount + 4;
+						if (GetKeyboardTrigger(DIK_A) && map_player.LRcount > 0)	//左
 						{
-							map_player.circlepos = D3DXVECTOR2(map[7].pos.x, map[7].pos.y);
-							map_player.nowpos = 6;
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 4].pos.x;
 						}
-						map_player.LRcount = 0;
-						map_player.UDcount = map_player.UDcount + 1;
-					}
-				}
-				//3→6、3→7
-				if (map_player.nowpos == 3)
-				{
-					map_player.circlenowpos = map_player.LRcount + 5;
-					if (GetKeyboardTrigger(DIK_A) && map_player.LRcount > 0)	//左
-					{
-						map_player.LRcount = map_player.LRcount - 1;
-						map_player.circlepos.x = map[map_player.LRcount + 5].pos.x;
-					}
-					if (GetKeyboardTrigger(DIK_D) && map_player.LRcount < 1)	//右
-					{
-						map_player.LRcount = map_player.LRcount + 1;
-						map_player.circlepos.x = map[map_player.LRcount + 5].pos.x;
-					}
-					if (GetKeyboardTrigger(DIK_RETURN))
-					{
-						map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 5].pos.x, map[map_player.LRcount + 5].pos.y);
-						if (map_player.LRcount == 0)
+						if (GetKeyboardTrigger(DIK_D) && map_player.LRcount < 1)	//右
 						{
-							map_player.circlepos = D3DXVECTOR2(map[7].pos.x, map[7].pos.y);
-							map_player.nowpos = 6;
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 4].pos.x;
 						}
-						if (map_player.LRcount == 1)
+						if (GetKeyboardTrigger(DIK_RETURN))
 						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 4].pos.x, map[map_player.LRcount + 4].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[7].pos.x, map[7].pos.y);
+								map_player.nowpos = 5;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[7].pos.x, map[7].pos.y);
+								map_player.nowpos = 6;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//3→6、3→7
+					if (map_player.nowpos == 3)
+					{
+						map_player.circlenowpos = map_player.LRcount + 5;
+						if (GetKeyboardTrigger(DIK_A) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 5].pos.x;
+						}
+						if (GetKeyboardTrigger(DIK_D) && map_player.LRcount < 1)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 5].pos.x;
+						}
+						if (GetKeyboardTrigger(DIK_RETURN))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 5].pos.x, map[map_player.LRcount + 5].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[7].pos.x, map[7].pos.y);
+								map_player.nowpos = 6;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[8].pos.x, map[8].pos.y);
+								map_player.nowpos = 7;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//4→7
+					if (map_player.nowpos == 4)
+					{
+						map_player.circlenowpos = 6;
+
+						if (GetKeyboardTrigger(DIK_RETURN))
+						{
+							map_player.pos = D3DXVECTOR2(map[6].pos.x, map[6].pos.y);
 							map_player.circlepos = D3DXVECTOR2(map[8].pos.x, map[8].pos.y);
 							map_player.nowpos = 7;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
 						}
-						map_player.LRcount = 0;
-						map_player.UDcount = map_player.UDcount + 1;
 					}
-				}
-				//4→7
-				if (map_player.nowpos == 4)
-				{
-					map_player.circlenowpos = 6;
 
-					if (GetKeyboardTrigger(DIK_RETURN))
+					//0段目
+					if (map_player.nowpos == 0)
 					{
-						map_player.pos = D3DXVECTOR2(map[6].pos.x, map[6].pos.y);
-						map_player.circlepos = D3DXVECTOR2(map[8].pos.x, map[8].pos.y);
-						map_player.nowpos = 7;
-						map_player.LRcount = 0;
-						map_player.UDcount = map_player.UDcount + 1;
+						if (GetKeyboardTrigger(DIK_A) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount].pos.x;
+							map_player.circlenowpos = map_player.LRcount;
+						}
+						if (GetKeyboardTrigger(DIK_D) && map_player.LRcount < 3)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount].pos.x;
+							map_player.circlenowpos = map_player.LRcount;
+						}
+						if (GetKeyboardTrigger(DIK_RETURN))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount].pos.x, map[map_player.LRcount].pos.y);
+							map_player.nowpos = map_player.LRcount + 1;
+							if (map_player.nowpos == 1)
+								map_player.circlepos = D3DXVECTOR2(map[4].pos.x, map[4].pos.y);
+							if (map_player.nowpos == 2)
+								map_player.circlepos = D3DXVECTOR2(map[4].pos.x, map[4].pos.y);
+							if (map_player.nowpos == 3)
+								map_player.circlepos = D3DXVECTOR2(map[5].pos.x, map[5].pos.y);
+							if (map_player.nowpos == 4)
+								map_player.circlepos = D3DXVECTOR2(map[6].pos.x, map[6].pos.y);
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
 					}
-				}
 
-				//0段目
-				if (map_player.nowpos == 0)
-				{
-					if (GetKeyboardTrigger(DIK_A) && map_player.LRcount > 0)	//左
-					{
-						map_player.LRcount = map_player.LRcount - 1;
-						map_player.circlepos.x = map[map_player.LRcount].pos.x;
-						map_player.circlenowpos = map_player.LRcount;
-					}
-					if (GetKeyboardTrigger(DIK_D) && map_player.LRcount < 3)	//右
-					{
-						map_player.LRcount = map_player.LRcount + 1;
-						map_player.circlepos.x = map[map_player.LRcount].pos.x;
-						map_player.circlenowpos = map_player.LRcount;
-					}
-					if (GetKeyboardTrigger(DIK_RETURN))
-					{
-						map_player.pos = D3DXVECTOR2(map[map_player.LRcount].pos.x, map[map_player.LRcount].pos.y);
-						map_player.nowpos = map_player.LRcount + 1;
-						if (map_player.nowpos == 1)
-							map_player.circlepos = D3DXVECTOR2(map[4].pos.x, map[4].pos.y);
-						if (map_player.nowpos == 2)
-							map_player.circlepos = D3DXVECTOR2(map[4].pos.x, map[4].pos.y);
-						if (map_player.nowpos == 3)
-							map_player.circlepos = D3DXVECTOR2(map[5].pos.x, map[5].pos.y);
-						if (map_player.nowpos == 4)
-							map_player.circlepos = D3DXVECTOR2(map[6].pos.x, map[6].pos.y);
-						map_player.LRcount = 0;
-						map_player.UDcount = map_player.UDcount + 1;
-					}
 				}
-
 			}
 		}
-	}
 
-	//選択したマスに対応したシーンに飛ぶ
-	if (map_player.nowpos < map_player.mapnum + 1)
-	{
-		if (GetKeyboardTrigger(DIK_RETURN))
+		//選択したマスに対応したシーンに飛ぶ
+		if (map_player.nowpos < map_player.mapnum + 1)
 		{
-			if (map[map_player.nowpos - 1].randomcode == 1)	//通常敵マス
+			if (GetKeyboardTrigger(DIK_RETURN))
 			{
-				map_player.gamecount = map_player.gamecount + 1;	//ゲームシーンに入った回数を記録する
-				map_player.encount = (rand() % 2) + 1;	//ここで出現する敵をランダムに決める
-				map_player.encount = 2;
-				SceneTransition(SCENE_GAME);
+				if (map[map_player.nowpos - 1].randomcode == 1)	//通常敵マス
+				{
+					map_player.gamecount = map_player.gamecount + 1;	//ゲームシーンに入った回数を記録する
+					map_player.encount = (rand() % 2) + 1;	//ここで出現する敵をランダムに決める
+					map_player.encount = 2;
+					SceneTransition(SCENE_GAME);
+				}
+				if (map[map_player.nowpos - 1].randomcode == 2)	//強敵マス
+					SceneTransition(SCENE_GAME);
+				if (map[map_player.nowpos - 1].randomcode == 3)	//休憩マス
+					SceneTransition(SCENE_REST);
+				if (map[map_player.nowpos - 1].randomcode == 4)	//イベントマス
+					SceneTransition(SCENE_EVENT);
+				if (map[map_player.nowpos - 1].randomcode == 5)	//商人マス
+					SceneTransition(SCENE_SHOP);
 			}
-			if (map[map_player.nowpos - 1].randomcode == 2)	//強敵マス
-				SceneTransition(SCENE_GAME);
-			if (map[map_player.nowpos - 1].randomcode == 3)	//休憩マス
-				SceneTransition(SCENE_REST);
-			if (map[map_player.nowpos - 1].randomcode == 4)	//イベントマス
-				SceneTransition(SCENE_EVENT);
-			if (map[map_player.nowpos - 1].randomcode == 5)	//商人マス
-				SceneTransition(SCENE_SHOP);
-		}
+		}	
 	}
 
 }

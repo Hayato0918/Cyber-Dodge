@@ -25,6 +25,7 @@
 #include "map.h"
 #include "rest.h"
 #include "shop.h"
+#include "event.h"
 #include "banner.h"
 #include "deckmenu.h"
 //êÌì¨.h
@@ -97,6 +98,7 @@ void InitScene(SCENE index)
 		break;
 
 	case SCENE_EVENT:
+		InitEvent();
 		break;
 
 	case SCENE_GAME:
@@ -156,6 +158,7 @@ void UninitScene(void)
 		break;
 
 	case SCENE_EVENT:
+		UninitEvent();
 		break;
 
 	case SCENE_GAME:
@@ -215,6 +218,7 @@ void UpdateScene(void)
 		break;
 
 	case SCENE_EVENT:
+		UpdateEvent();
 		break;
 
 	case SCENE_GAME:
@@ -276,6 +280,7 @@ void DrawScene(void)
 		break;
 
 	case SCENE_EVENT:
+		DrawEvent();
 		break;
 
 	case SCENE_GAME:
