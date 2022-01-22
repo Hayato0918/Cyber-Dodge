@@ -36,6 +36,7 @@ void _Disappear(void)
 	RANDOM* random = GetRandom();
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
+	SKILL* skill = GetSkill();
 
 	//TƒL[‚ğ‰Ÿ‚µ‚½‚çáŠQ•¨‚ğÁ–Å
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -47,7 +48,7 @@ void _Disappear(void)
 			{
 				if (buggauge[i].drawflag == false && disappear.bugincrease == false)
 				{
-					for (int j = i; disappear.bugdrawnum < 2; j++)
+					for (int j = i; disappear.bugdrawnum < 3; j++)
 					{
 						buggauge[j].drawflag = true;
 						bug->drawnum = bug->drawnum + 1;
@@ -64,4 +65,12 @@ void _Disappear(void)
 	{
 		otosiana->timeflag = false;
 	}
+
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	{
+		disappear.bugincrease = false;
+		disappear.bugdrawnum = 0;
+		disappear.use = false;
+	}
+
 }

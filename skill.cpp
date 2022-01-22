@@ -219,7 +219,7 @@ void DrawSkill(void)
 	DrawGanseki();
 
 	//-----’n—‹
-	//DrawLandMines();
+	DrawLandMines();
 
 	//-----—Ž‚Æ‚µŒŠ
 	//DrawOtosiana();

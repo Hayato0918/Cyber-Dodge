@@ -48,7 +48,7 @@ void _BigBall(void)
 			{
 				if (buggauge[i].drawflag == false && bigball.bugincrease == false)
 				{
-					for (int j = i; bigball.bugdrawnum < 4; j++)
+					for (int j = i; bigball.bugdrawnum < 5; j++)
 					{
 						buggauge[j].drawflag = true;
 						bug->drawnum = bug->drawnum + 1;
@@ -62,6 +62,19 @@ void _BigBall(void)
 			bigball.use = true;
 		}
 	}
+
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	{
+		if (bigball.timeflag == true)
+			ball->size = D3DXVECTOR2(ball->size.x * 0.5f, ball->size.y * 0.5f);
+
+		bigball.timeflag = false;
+		bigball.bugincrease = false;
+		bigball.bugdrawnum = 0;
+		bigball.time = 0.0f;
+		bigball.use = false;
+	}
+
 	//スキル使用3s後にもとの大きさに戻る
 	if (bigball.timeflag == true)
 		bigball.time = bigball.time + 1.0f;
@@ -73,13 +86,6 @@ void _BigBall(void)
 		bigball.bugdrawnum = 0;
 		bigball.time = 0.0f;
 	}
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
-	{
-		bigball.timeflag = false;
-		//ball->size = D3DXVECTOR2(ball->size.x * 0.5f, ball->size.y * 0.5f);
-		bigball.bugincrease = false;
-		bigball.bugdrawnum = 0;
-		bigball.time = 0.0f;
-		bigball.use = false;
-	}
+
+
 }
