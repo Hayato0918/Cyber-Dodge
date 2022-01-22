@@ -128,8 +128,14 @@ void UpdatePlayer(void)
 		player.pos.y = 230.f - player.size.y * 0.5f;
 	if (player.pos.y >= SCREEN_HEIGHT - player.size.y - 15 - 120)	//下
 		player.pos.y = SCREEN_HEIGHT - player.size.y - 15 - 120;
-	if (player.pos.x <= 0 + 15)		//左
-		player.pos.x = 0 + 15;
+	for (int i = 0; i < 100; i++)
+	{
+		if (player.pos.y <= 525 - 4.15f * i)
+		{
+			if (player.pos.x <= 1.55f * i + 10)		//左
+				player.pos.x = 1.55f * i + 10;
+		}
+	}
 
 	if (invade->timeflag == false)		//不法侵入スキルの判別
 	{

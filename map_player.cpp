@@ -11,6 +11,7 @@
 
 #include "map_hack.h"
 #include "map_line.h"
+#include "hackeffect.h"
 
 //-----マクロ定義
 
@@ -72,6 +73,7 @@ void UpdateMapPlayer(void)
 	MAP* map = GetMapPoint();
 	MAP_SB* map_sb = GetMapSB();
 	MAP_LINE* map_line = GetMapLine();
+	HACKEFFECT* hackeffect = GetHackEffect();
 
 	//-----マップスクロール
 	if (map_hack->isUse == false)
@@ -1739,7 +1741,7 @@ void UpdateMapPlayer(void)
 		//選択したマスに対応したシーンに飛ぶ
 		if (map_player.nowpos < map_player.mapnum + 1)
 		{
-			if (GetKeyboardTrigger(DIK_RETURN))
+			if (GetKeyboardTrigger(DIK_RETURN) && hackeffect->drawflag == false)
 			{
 				if (map[map_player.nowpos - 1].randomcode == 1)	//通常敵マス
 				{

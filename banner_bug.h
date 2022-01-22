@@ -9,14 +9,16 @@ typedef struct
 	D3DXVECTOR2 pos;
 	D3DXVECTOR2 size;
 	int texture;
-}BANNER_BUGFRAME;
+	float u, v;
+	bool drawflag;
+}BANNER_BUG;
 
 typedef struct
 {
-	D3DXVECTOR2 pos;
-	D3DXVECTOR2 size;
 	int texture;
-}BANNER_BUGGAUGE;
+	int bugnum;
+	int a, b, c;
+}BANNER_BUGNUM;
 
 //-----プロトタイプ宣言
 HRESULT InitBannerBug(void);

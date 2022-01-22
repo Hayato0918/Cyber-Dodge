@@ -7,6 +7,7 @@
 #include "sound.h"
 #include "texture.h"
 #include "sprite.h"
+#include <time.h>
 //slime.h
 #include "slime.h"
 //deleter.h
@@ -16,26 +17,46 @@
 
 #include "skillrandom.h"
 #include "map_player.h"
+#include "player.h"
 
 ENEMYBREAK enemybreak;
 GETSKILL getskill;
-GETGOLD getgold;
+GETGOLD getgold[4];
+GETGOLDNUM getgoldnum;
 
 
 HRESULT InitEnemyBreak(void)
 {
+	MAP_PLAYER* map_player = GetMapPlayer();
+
+	//-----îwåi
 	enemybreak.pos = D3DXVECTOR2(300.f, 100.f);
 	enemybreak.size = D3DXVECTOR2(1000.f, 700.f);
 	enemybreak.texture = LoadTexture("data/TEXTURE/result.png");
 	enemybreak.drawflag = false;
 
+	//-----ÉXÉLÉã
 	getskill.pos = D3DXVECTOR2(420.f, 380.f);
 	getskill.size = D3DXVECTOR2(200.f, 300.f);
 	getskill.skillcode = 0;
 
-	getgold.pos = D3DXVECTOR2(800.f, 400.f);
-	getgold.size = D3DXVECTOR2(400.f, 100.f);
+	//-----ÉSÅ[ÉãÉh
+	for (int i = 0; i < 4; i++)
+	{
+		getgold[i].pos = D3DXVECTOR2(800.f + i * 100, 400.f);
+		getgold[i].size = D3DXVECTOR2(100.f, 100.f);
+		getgold[i].u = 0.f;
+		getgold[i].v = 0.f;
+		getgold[i].drawflag = true;
+	}
+	getgoldnum.texture = LoadTexture("data/TEXTURE/number.png");
 
+	if (map_player->encount == 1)
+		getgoldnum.gold = 30 + (rand() % 50);
+	if (map_player->encount == 2)
+		getgoldnum.gold = (30 + (rand() % 50)) * 2;
+	if (map_player->encount == 3)
+		getgoldnum.gold = (30 + (rand() % 50)) * 4;
 
 	return S_OK;
 }
@@ -49,10 +70,17 @@ void UpdateEnemyBreak(void)
 {
 	SKILL* skill = GetSkill();
 	RANDOM* random = GetRandom();
+	PLAYER* player = GetPlayer();
+	MAP_PLAYER* map_player = GetMapPlayer();
+
+	srand((unsigned int)time(NULL));
 
 
 	if (GetKeyboardTrigger(DIK_RETURN))
+	{
+		player->gold = player->gold + getgoldnum.gold;
 		SceneTransition(SCENE_MAP);
+	}
 
 	//-----ÉXÉLÉãälìæ
 	if (enemybreak.drawflag == true)
@@ -114,9 +142,67 @@ void UpdateEnemyBreak(void)
 
 
 	//-----ÉSÅ[ÉãÉhälìæ
+	getgoldnum.a = getgoldnum.gold * 0.001f;
+	getgoldnum.b = (getgoldnum.gold - getgoldnum.a * 1000) * 0.01f;
+	getgoldnum.c = (getgoldnum.gold - getgoldnum.a * 1000 - getgoldnum.b * 100) * 0.1f;
+	getgoldnum.d = getgoldnum.gold - getgoldnum.a * 1000 - getgoldnum.b * 100 - getgoldnum.c * 10;
 
-
-
+	//goldÇÃ1000ÇÃà 
+	if (getgoldnum.a < 5)
+	{
+		getgold[0].u = 0.2f * getgoldnum.a;
+		getgold[0].v = 0.f;
+	}
+	if (getgoldnum.a >= 5)
+	{
+		getgold[0].u = 0.2f * getgoldnum.a;
+		getgold[0].v = 0.5f;
+	}
+	if (getgoldnum.a <= 0)
+		getgold[0].drawflag = false;
+	if (getgoldnum.a > 0)
+		getgold[0].drawflag = true;
+	//goldÇÃ100ÇÃà 
+	if (getgoldnum.b < 5)
+	{
+		getgold[1].u = 0.2f * getgoldnum.b;
+		getgold[1].v = 0.f;
+	}
+	if (getgoldnum.b >= 5)
+	{
+		getgold[1].u = 0.2f * getgoldnum.b;
+		getgold[1].v = 0.5f;
+	}
+	if (getgoldnum.b >= 0)
+		getgold[1].drawflag = true;
+	if (getgoldnum.a <= 0 && getgoldnum.b <= 0)
+		getgold[1].drawflag = false;
+	//goldÇÃ10ÇÃà 
+	if (getgoldnum.c < 5)
+	{
+		getgold[2].u = 0.2f * getgoldnum.c;
+		getgold[2].v = 0.f;
+	}
+	if (getgoldnum.c >= 5)
+	{
+		getgold[2].u = 0.2f * getgoldnum.c;
+		getgold[2].v = 0.5f;
+	}
+	if (getgoldnum.c >= 0)
+		getgold[2].drawflag = true;
+	if (getgoldnum.a <= 0 && getgoldnum.b <= 0 && getgoldnum.c <= 0)
+		getgold[2].drawflag = false;
+	//goldÇÃ1ÇÃà 
+	if (getgoldnum.d < 5)
+	{
+		getgold[3].u = 0.2f * getgoldnum.d;
+		getgold[3].v = 0.f;
+	}
+	if (getgoldnum.d >= 5)
+	{
+		getgold[3].u = 0.2f * getgoldnum.d;
+		getgold[3].v = 0.5f;
+	}
 
 
 }
@@ -128,6 +214,12 @@ void DrawEnemyBreak(void)
 		DrawSpriteLeftTop(enemybreak.texture, enemybreak.pos.x, enemybreak.pos.y, enemybreak.size.x, enemybreak.size.y, 0.f, 0.f, 1.f, 1.f);
 
 		DrawSpriteLeftTop(getskill.texture, getskill.pos.x, getskill.pos.y, getskill.size.x, getskill.size.y, 0.f, 0.f, 1.f, 1.f);
+
+		for (int i = 0; i < 4; i++)
+		{
+			if(getgold[i].drawflag == true)
+			DrawSpriteLeftTop(getgoldnum.texture, getgold[i].pos.x, getgold[i].pos.y, getgold[i].size.x, getgold[i].size.y, getgold[i].u, getgold[i].v, 0.2f, 0.5f);
+		}
 	}
 }
 

@@ -11,6 +11,7 @@ typedef struct
 	D3DXVECTOR2 size;
 	float u, v;
 	int texture;
+	float animetime;
 	bool drawflag;
 }HACKEFFECT;
 
@@ -19,3 +20,4 @@ HRESULT InitHackEffect(void);
 void UninitHackEffect(void);
 void UpdateHackEffect(void);
 void DrawHackEffect(void);
+HACKEFFECT* GetHackEffect();

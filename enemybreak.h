@@ -24,8 +24,16 @@ typedef struct
 {
 	D3DXVECTOR2 pos;
 	D3DXVECTOR2 size;
-	int texture;
+	float u, v;
+	bool drawflag;
 }GETGOLD;
+
+typedef struct
+{
+	int texture;
+	int gold;
+	int a, b, c, d;
+}GETGOLDNUM;
 
 //-----プロトタイプ宣言
 HRESULT InitEnemyBreak(void);
