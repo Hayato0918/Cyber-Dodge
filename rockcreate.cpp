@@ -96,7 +96,7 @@ void _Ganseki(void)
 					ball->move.x -= 5.0f;
 				if (ball->move.x < 0)
 					ball->move.x += 5.0f;
-				ball->move.x *= -1.3f;
+				ball->move.x *= -0.3f;
 			}
 		}
 

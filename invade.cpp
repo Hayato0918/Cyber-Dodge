@@ -10,7 +10,7 @@
 #include "skillrandom.h"
 
 //-----マクロ定義
-#define invadetime 180		//3s間
+#define invadetime 420		//3s間
 
 //-----プロトタイプ宣言
 INVADE invade;
