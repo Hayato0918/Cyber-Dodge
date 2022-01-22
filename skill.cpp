@@ -3,7 +3,6 @@
 #include "texture.h"
 #include "sprite.h"
 
-#include "autocatch.h"
 #include "ballspeedup.h"
 #include "ballturnaround.h"
 #include "barrier.h"
@@ -12,14 +11,10 @@
 #include "Billiards.h"
 #include "buildup.h"
 #include "catchjamming.h"
-#include "disappear.h"
-#include "doubleattack.h"
 #include "enemy_powerdown.h"
 #include "invade.h"
 #include "invincible.h"
-#include "landmines.h"
 #include "mindhack.h"
-#include "otoshiana.h"
 #include "penetration.h"
 #include "player_powerup.h"
 #include "player_regen.h"
@@ -28,7 +23,6 @@
 #include "slowarea.h"
 #include "smallplayer.h"
 #include "timestop.h"
-#include "warp.h"
 
 //-----マクロ定義
 
@@ -39,9 +33,6 @@
 //-----初期化処理
 HRESULT InitSkill(void)
 {
-	//-----オートキャッチ
-	InitAuto_c();
-
 	//-----ブーストボール
 	InitBallSpeedUp();
 
@@ -66,12 +57,6 @@ HRESULT InitSkill(void)
 	//-----キャッチ不可
 	InitCatchJamming();
 
-	//-----消滅
-	InitDisappear();
-
-	//-----ダブルアタック
-	InitDouble();
-
 	//-----エネミーパワーダウン
 	InitPowerDown();
 
@@ -81,14 +66,8 @@ HRESULT InitSkill(void)
 	//-----無敵
 	InitInvincible();
 
-	//-----地雷
-	InitLandMines();
-
 	//-----マインドハック
 	InitMindhack();
-
-	//-----落とし穴
-	InitOtosiana();
 
 	//-----貫通
 	InitKantsuu();
@@ -114,17 +93,11 @@ HRESULT InitSkill(void)
 	//-----タイムストップ
 	InitTimestop();
 
-	//-----ワープ
-	InitWarp();
-
 	return S_OK;
 }
 
 void _Skill(void)
 {
-	//-----オートキャッチ
-	_Auto_c();
-
 	//-----ブーストボール
 	_BallSpeedUp();
 
@@ -149,12 +122,6 @@ void _Skill(void)
 	//-----キャッチ不可
 	_CatchJamming();
 
-	//-----消滅
-	_Disappear();
-
-	//-----ダブルアタック
-	_Double();
-
 	//-----エネミーパワーダウン
 	_PowerDown();
 
@@ -164,14 +131,8 @@ void _Skill(void)
 	//-----無敵
 	_Invincible();
 
-	//-----地雷
-	_LandMines();
-
 	//-----マインドハック
 	_Mindhack();
-
-	//-----落とし穴
-	_Otosiana();
 
 	//-----貫通
 	_Kantsuu();
@@ -196,9 +157,6 @@ void _Skill(void)
 
 	//-----タイムストップ
 	_Timestop();
-
-	//-----ワープ
-	_Warp();
 }
 
 void DrawSkill(void)
@@ -218,15 +176,6 @@ void DrawSkill(void)
 	//-----岩石生成
 	DrawGanseki();
 
-	//-----地雷
-	DrawLandMines();
-
-	//-----落とし穴
-	//DrawOtosiana();
-
 	//-----スロウエリア描画
 	DrawSlowArea();
-
-	//-----ワープ
-	DrawWarp();
 }

@@ -486,6 +486,9 @@
     <ClCompile Include="windowsize_bg.cpp">
       <Filter>ソース ファイル\option\windowsize</Filter>
     </ClCompile>
+    <ClCompile Include="server_recovery.cpp">
+      <Filter>ソース ファイル\map\event</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -838,6 +841,9 @@
     </ClInclude>
     <ClInclude Include="windowsize_bg.h">
       <Filter>ヘッダー ファイル\option\windowsize</Filter>
+    </ClInclude>
+    <ClInclude Include="server_recovery.h">
+      <Filter>ヘッダー ファイル\map\event</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
