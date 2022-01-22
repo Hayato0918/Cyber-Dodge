@@ -19,6 +19,8 @@ typedef struct
 	int atk;		//攻撃力
 	int def;		//防御力
 
+	int gold;		//お金
+
 	//テクスチャ
 	int stand_Ltexture;		//立ち右向き
 	int stand_Rtexture;		//立ち右向き

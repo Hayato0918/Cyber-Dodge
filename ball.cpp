@@ -17,15 +17,20 @@
 #include "create.h"
 //
 #include "map_player.h"
+#include "ballturnaround.h"
 
 //-----マクロ定義
 #define auto_ctime_2 60		//1s間
+
+#define RETURNBALLTIME 30
 
 //-----プロトタイプ宣言
 BALL ball;
 
 //-----グローバル変数
 PLAYER* player = GetPlayer();
+
+int g_balltime[2];
 
 //-----初期化処理
 HRESULT InitBall(void)
@@ -49,6 +54,9 @@ HRESULT InitBall(void)
 	ball.rad = 0.0f;
 	ball.plyer_oldposY = 0.0f;
 
+	g_balltime[0] = 0;
+	g_balltime[1] = 0;
+
 	return S_OK;
 }
 
@@ -66,6 +74,7 @@ void UpdateBall(void)
 	FIREWALL* firewall = GetFireWall();
 	SLIME* slime = GetSlime();
 	DELETER* deleter = GetDeleter();
+	BALLTURNAROUND* ballTA = GetBallTurnAround();
 
 	//-----ボールの座標を決める(Player)
 	if (ball.throwflag == false && ball.playerhaveflag == true)		//ボールが飛んでいないとき&&プレイヤーが持ってるとき
@@ -137,34 +146,117 @@ void UpdateBall(void)
 	//-----軌道計算
 	if (ball.throwflag == true)
 	{
-		ball.pos.x += ball.move.x * ball.throwway;
-		ball.pos.y += ball.move.y;
-		ball.move.y += ball.gravity;
+		if (ballTA->use == 1)//方向転換のスキル。発動中は他のボールの動きを制限する。
+		{
+			//y = ax2乗 の a は分かったので、後は当てはめて計算。
+			ballTA->n += 12; // 進む速度。
+			ball.pos.x = ballTA->b_x + ballTA->n;
+			if (ballTA->n_flag)
+			{
+				ball.pos.y = ballTA->a * (ballTA->f_x - ballTA->b_x - ballTA->n) * (ballTA->f_x - ballTA->b_x - ballTA->n) + ballTA->f_y;
+				if (ballTA->f_y + 1.0f > ball.pos.y && ballTA->f_x - 1.0f < ball.pos.x)//目的地に着いた
+				{
+					ballTA->use = 2;
+					SetBallTurnAround_2();
+				}
+			}
+			else
+			{
+				ball.pos.y = -ballTA->a * (ballTA->f_x - ballTA->b_x - ballTA->n) * (ballTA->f_x - ballTA->b_x - ballTA->n) + ballTA->f_y;
+				if (ballTA->f_y - 1.0f < ball.pos.y && ballTA->f_x - 1.0f < ball.pos.x)//目的地に着いた
+				{
+					ballTA->use = 2;
+					SetBallTurnAround_2();
+				}
+			}
+		}
 
-		//-----慣性計算
-		if (ball.move.y < 0)	//上に向かう
+		if (ballTA->use == 2)//記憶座標の更新と軌道計算と更新。
 		{
-			ball.move.y += 0.02f;
-			if (ball.move.y >= 0)
-				ball.move.y = 0;
+			ballTA->n += 12; // 進む速度。
+			ball.pos.x = ballTA->f_x + ballTA->n;
+			if (ballTA->n_flag)
+			{
+				ball.pos.y = ballTA->a * ballTA->n * ballTA->n + ballTA->f_y;
+				if (ballTA->b_y - 1.0f < ball.pos.y && ballTA->b_x - 1.0f < ball.pos.x)//目的地に着いた
+				{
+					ballTA->use = 3;
+					SetBallTurnAround_3();
+				}
+			}
+			else
+			{
+				//下に向かっていく
+				ball.pos.y = -ballTA->a * ballTA->n * ballTA->n + ballTA->f_y;
+				if (ballTA->b_y + 1.0f > ball.pos.y && ballTA->b_x - 1.0f < ball.pos.x)//目的地に着いた
+				{
+					ballTA->use = 3;
+					SetBallTurnAround_3();
+				}
+			}
 		}
-		if (ball.move.y > 0)	//下に向かう
+
+		if (ballTA->use == 3)//方向転換のスキル。発動中は他のボールの動きを制限する。
 		{
-			ball.move.y -= 0.02f;
-			if (ball.move.y <= 0)
-				ball.move.y = 0;
+			//y = ax2乗 の a は分かったので、後は当てはめて計算。
+			ballTA->n -= 8; // 進む速度。
+			ball.pos.x = ballTA->b_x + ballTA->n;
+			if (ballTA->n_flag)
+			{
+				ball.pos.y = ballTA->a * (ballTA->f_x - ballTA->b_x - ballTA->n) * (ballTA->f_x - ballTA->b_x - ballTA->n) + ballTA->f_y;
+				if (ballTA->f_y + 1.0f > ball.pos.y && ballTA->f_x + 1.0f > ball.pos.x)//目的地に着いた
+				{
+					ballTA->use = 4;
+				}
+			}
+			else
+			{
+				ball.pos.y = -ballTA->a * (ballTA->f_x - ballTA->b_x - ballTA->n) * (ballTA->f_x - ballTA->b_x - ballTA->n) + ballTA->f_y;
+				if (ballTA->f_y - 1.0f < ball.pos.y && ballTA->f_x + 1.0f > ball.pos.x)//目的地に着いた
+				{
+					ballTA->use = 4;
+				}
+			}
 		}
-		if (ball.move.x < 0)	//左に向かう
+
+		if (ballTA->use == 4)
 		{
-			ball.move.x += 0.02f;
-			if (ball.move.x >= 0)
-				ball.move.x = 0;
+			ball.move = D3DXVECTOR2(-2.0f, -6.0f);
+			ball.fallpos = ballTA->f_y + firewall->size.y / 2;
+			ballTA->use = 0;
 		}
-		if (ball.move.x > 0)	//右に向かう
+
+		if (ballTA->use == 0)
 		{
-			ball.move.x -= 0.02f;
-			if (ball.move.x <= 0)
-				ball.move.x = 0;
+			ball.pos.x += ball.move.x * ball.throwway;
+			ball.pos.y += ball.move.y;
+			ball.move.y += ball.gravity;
+
+			//-----慣性計算
+			if (ball.move.y < 0)	//上に向かう
+			{
+				ball.move.y += 0.02f;
+				if (ball.move.y >= 0)
+					ball.move.y = 0;
+			}
+			if (ball.move.y > 0)	//下に向かう
+			{
+				ball.move.y -= 0.02f;
+				if (ball.move.y <= 0)
+					ball.move.y = 0;
+			}
+			if (ball.move.x < 0)	//左に向かう
+			{
+				ball.move.x += 0.02f;
+				if (ball.move.x >= 0)
+					ball.move.x = 0;
+			}
+			if (ball.move.x > 0)	//右に向かう
+			{
+				ball.move.x -= 0.02f;
+				if (ball.move.x <= 0)
+					ball.move.x = 0;
+			}
 		}
 
 		//-----反射,ゲームっぽい減速計算
@@ -186,6 +278,8 @@ void UpdateBall(void)
 			ball.enemyhitflag = false;
 			ball.playerhitflag = false;
 			ball.fallflag = true;
+
+			g_balltime[0]++;
 		}
 		if (ball.pos.x + ball.size.x > SCREEN_WIDTH)	//右
 		{
@@ -197,6 +291,27 @@ void UpdateBall(void)
 			ball.enemyhitflag = false;
 			ball.playerhitflag = false;
 			ball.fallflag = true;
+
+			g_balltime[0]++;
+		}
+
+		if (g_balltime[0] != 0)
+		{
+			if (g_balltime[1] == g_balltime[0])
+			{
+				g_balltime[0] = 0;
+				g_balltime[1] = 0;
+			}
+			g_balltime[1] = g_balltime[0];
+		}
+
+		if (g_balltime[0] > RETURNBALLTIME - 1)
+		{
+			ball.pos.x = SCREEN_WIDTH / 2;
+			ball.pos.y = 0.0f;
+
+			ball.move.x = 0;
+			ball.fallpos = SCREEN_HEIGHT / 2;
 		}
 	}
 
@@ -282,6 +397,7 @@ void E_Throw(void)
 void P_Throw(void)
 {
 	AUTO* auto_c = GetAuto();
+	BALLTURNAROUND* ballTA = GetBallTurnAround();
 
 	if (PADUSE == 0)
 	{
@@ -305,6 +421,11 @@ void P_Throw(void)
 				auto_c->auto_catch = true;
 				auto_c->timeflag_2 = false;
 				auto_c->time_2 = 0.0f;
+			}
+
+			if (ballTA->use == 1) // 方向転換のスキル。発動中は他のボールの動きを制限する。
+			{
+				SetBallTurnAround(); // 計算に必要な座標のセット
 			}
 		}
 	}
@@ -333,6 +454,11 @@ void P_Throw(void)
 			auto_c->auto_catch = true;
 			auto_c->timeflag_2 = false;
 			auto_c->time_2 = 0.0f;
+		}
+
+		if (ballTA->use == 1) // 方向転換のスキル。発動中は他のボールの動きを制限する。
+		{
+			SetBallTurnAround(); // 計算に必要な座標のセット
 		}
 	}
 }

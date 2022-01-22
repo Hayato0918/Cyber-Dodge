@@ -14,6 +14,8 @@
 #include "banner.h"
 #include "save.h"
 
+#include "skillrandom.h"
+
 //-----’è”’è‹`
 
 //-----\‘¢‘ÌéŒ¾
@@ -31,6 +33,8 @@ HRESULT InitMap(void)
 	InitMapPoint();
 	InitMapPlayer();
 	InitMapHack();
+
+	InitRandom();
 
 	return S_OK;
 }

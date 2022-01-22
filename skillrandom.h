@@ -23,7 +23,9 @@ typedef struct
 {
 	int slot;		//スキルの所持数
 	int usecount;	//現在の1番前のスキル
-	int num;		//スキルの総数
+	int num;		//スキルの総数:
+
+	bool firstnum;	//スキルの初期枚数を得るかどうかを管理するフラグ
 }SKILL;
 
 //-----宣言

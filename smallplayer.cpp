@@ -5,12 +5,13 @@
 #include "sprite.h"
 
 #include "player.h"
+#include "catch.h"
 #include "bugincrease.h"
 
 #include "skillrandom.h"
 
 //-----マクロ定義
-#define smallplayertime 180		//3s間
+#define smallplayertime 1200		//3s間
 
 //-----プロトタイプ宣言
 SMALLPLAYER smallplayer;
@@ -38,6 +39,8 @@ void _SmallPlayer(void)
 	RANDOM* random = GetRandom();
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
+	CATCH* Catch = GetCatch();
+	SKILL* skill = GetSkill();
 
 	//ランダムで7が選ばれたら、3s間キャラのサイズが0.5倍小さくなるになる
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -59,6 +62,7 @@ void _SmallPlayer(void)
 				}
 			}
 			player->size = D3DXVECTOR2(player->size.x * 0.5f, player->size.y * 0.5f);
+			Catch->playersize = D3DXVECTOR2(Catch->playersize.x / 2, Catch->playersize.y / 2);
 			smallplayer.timeflag = true;
 			smallplayer.use = true;
 		}
@@ -72,4 +76,18 @@ void _SmallPlayer(void)
 		player->size = D3DXVECTOR2(player->size.x * 2, player->size.y * 2);
 		smallplayer.time = 0.0f;
 	}
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	{
+		if (smallplayer.time < smallplayertime && smallplayer.timeflag == true)
+			player->size = D3DXVECTOR2(player->size.x * 2, player->size.y * 2);
+
+		smallplayer.use = false;
+		smallplayer.timeflag = false;
+		smallplayer.time = 0.0f;
+		smallplayer.usegauge = 10;
+
+		smallplayer.bugincrease = false;
+		smallplayer.bugdrawnum = 0;
+	}
+
 }

@@ -82,3 +82,38 @@ PLAYERHP* GetPlayerHp()
 {
 	return &hp;
 }
+
+void AddPlayerHp(int index)
+{
+	hp.gaugesize.x += index / 0.3125f;
+	hp.pos.x = hp.pos.x - index / 0.3125f;
+	if (hp.gaugesize.x >= hp.framesize.x)
+	{
+		hp.gaugesize.x = hp.framesize.x;
+	}
+	if (hp.gaugesize.x < 3.2f)
+	{
+		hp.gaugesize.x = 3.2f;
+	}
+
+	return;
+}
+
+void AddPlayerHpMAX(int index)
+{
+	hp.framesize.x += index / 0.3125f;
+	hp.framepos.x = hp.framepos.x - index / 0.3125f;
+
+	if (hp.framesize.x < hp.gaugesize.x)
+	{
+		hp.pos.x = hp.pos.x + hp.gaugesize.x - hp.framesize.x;
+		hp.gaugesize.x = hp.framesize.x;
+	}
+
+	if (hp.framesize.x < 3.2f)
+	{
+		hp.framesize.x = 3.2f;
+	}
+
+	return;
+}

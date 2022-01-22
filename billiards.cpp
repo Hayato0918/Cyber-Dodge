@@ -11,7 +11,7 @@
 #include "skillrandom.h"
 
 //-----マクロ定義
-#define swingtime	180						//キュースティックの判定時間
+#define swingtime	1200					//キュースティックの判定時間
 #define PI 3.1415926535897932f				//円周率
 
 //-----グローバル変数
@@ -43,6 +43,7 @@ void _Billiards(void)
 	BUG* bug = GetBugIncrease();
 	RANDOM* random = GetRandom();
 	BUGGAUGE* buggauge = GetBugGauge();
+	SKILL* skill = GetSkill();
 
 	//スキルが使えるかの判断
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -75,11 +76,11 @@ void _Billiards(void)
 	{
 		if (player->rotate == 3) // 右向き
 		{
-			billiards.pos = D3DXVECTOR2(player->pos.x, player->pos.y + player->size.y * 0.5f);// キュースティックの描画位置
+			billiards.pos = D3DXVECTOR2(player->pos.x + player->size.x, player->pos.y + player->size.y * 0.5f);// キュースティックの描画位置
 		}
 		if (player->rotate == 2) // 左向き
 		{
-			billiards.pos = D3DXVECTOR2(player->pos.x - billiards.size.x * 0.5f, player->pos.y + player->size.y * 0.5f);// キュースティックの描画位置
+			billiards.pos = D3DXVECTOR2(player->pos.x - billiards.size.x, player->pos.y + player->size.y * 0.5f);// キュースティックの描画位置
 		}
 
 		//当たり判定処理
@@ -89,11 +90,11 @@ void _Billiards(void)
 			{
 				if (player->rotate == 3) // 右向き
 				{
-					AddBallMove(-5.f, PI * 0.05f, player->pos.y, player->size.y);
+					AddBallMove(10.0f, PI * 0.95f, player->pos.y, player->size.y);
 				}
 				if (player->rotate == 2) // 左向き
 				{
-					AddBallMove(-5.f, PI * 0.95f, player->pos.y, player->size.y);
+					AddBallMove(10.0f, PI * 0.05f, player->pos.y, player->size.y);
 				}
 			}
 		}
@@ -106,6 +107,19 @@ void _Billiards(void)
 	{
 		billiards.timeflag = false;
 		billiards.time = 0.0f;
+	}
+
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	{
+		billiards.pos = D3DXVECTOR2(0.0f, 0.0f);
+		billiards.size = D3DXVECTOR2(120.0f, 5.0f);
+		billiards.use = false;
+		billiards.timeflag = false;
+		billiards.time = 0.0f;
+		billiards.usegauge = 20;
+
+		billiards.bugincrease = false;
+		billiards.bugdrawnum = 0;
 	}
 }
 

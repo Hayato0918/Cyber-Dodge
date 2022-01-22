@@ -15,6 +15,7 @@ typedef struct
 
 typedef struct
 {
+	int gold;
 	int texture;
 	int a, b, c, d;	//gold‚Ì1000‚ÌˆÊA100‚ÌˆÊA10‚ÌˆÊA1‚ÌˆÊ
 }BANNER_GOLDNUM;

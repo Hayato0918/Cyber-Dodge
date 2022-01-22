@@ -16,6 +16,8 @@
 //スキル.h
 #include "autocatch.h"
 #include "notCatch.h"
+#include "catchjamming.h"
+#include "ballturnaround.h"
 
 //-----マクロ定義
 #define catchtime 30		//キャッチ判定を出す時間
@@ -119,6 +121,7 @@ void P_Catch(void)
 	BALL* ball = GetBall();
 	AUTO* auto_c = GetAuto();
 	NOTCATCH* notcatch = GetNotCatch();
+	BALLTURNAROUND* ballTA = GetBallTurnAround();
 
 	if (notcatch->use && ball->fallflag == false)
 	{
@@ -165,15 +168,20 @@ void P_Catch(void)
 		//スキル：オートキャッチが機能していない場合
 		if (auto_c->use == false)
 		{
-			if (Catch.playerpos.x + Catch.playersize.x > ball->pos.x && Catch.playerpos.x < ball->pos.x + ball->size.x)
+			if (Catch.playerpos.x + Catch.playersize.x / 2 > ball->pos.x && Catch.playerpos.x - Catch.playersize.x / 2 < ball->pos.x + ball->size.x)
 			{
-				if (Catch.playerpos.y + Catch.playersize.y > ball->pos.y && Catch.playerpos.y - 100.f < ball->pos.y + ball->size.y)
+				if (Catch.playerpos.y + Catch.playersize.y / 2 > ball->pos.y && Catch.playerpos.y - Catch.playersize.y / 2 < ball->pos.y + ball->size.y)
 				{
-					ball->playerhitflag = false;
-					ball->playerthrowflag = false;
-					ball->throwflag = false;
-					ball->playerhaveflag = true;
-					ball->move = D3DXVECTOR2(ball->startmove.x, ball->startmove.y);
+					if (ball->enemyhaveflag == false)
+					{
+						ball->playerhitflag = false;
+						ball->playerthrowflag = false;
+						ball->throwflag = false;
+						ball->playerhaveflag = true;
+						ball->move = D3DXVECTOR2(ball->startmove.x, ball->startmove.y);
+
+						ballTA->use = 0;
+					}
 				}
 			}
 		}
@@ -186,11 +194,16 @@ void P_Catch(void)
 				//スキル：オートキャッチで増えた当たり判定を加算、座標を移動
 				if (Catch.playerpos.y + (Catch.playersize.y * 4) > ball->pos.y && (Catch.playerpos.y - Catch.playersize.y) < ball->pos.y + ball->size.y)
 				{
-					ball->playerhitflag = false;
-					ball->playerthrowflag = false;
-					ball->throwflag = false;
-					ball->playerhaveflag = true;
-					ball->move = D3DXVECTOR2(ball->startmove.x, ball->startmove.y);
+					if (ball->enemyhaveflag == false)
+					{
+						ball->playerhitflag = false;
+						ball->playerthrowflag = false;
+						ball->throwflag = false;
+						ball->playerhaveflag = true;
+						ball->move = D3DXVECTOR2(ball->startmove.x, ball->startmove.y);
+
+						ballTA->use = 0;
+					}
 				}
 			}
 		}
@@ -201,9 +214,11 @@ void P_Catch(void)
 void M_Catch(void)
 {
 	BALL* ball = GetBall();
+	CATCHJAMMING* cj = GetCatchJamming();
 	NOTCATCH* notcatch = GetNotCatch();
+	BALLTURNAROUND* ballTA = GetBallTurnAround();
 
-	if (notcatch->use && ball->fallflag == false)
+	if (notcatch->use && ball->fallflag == false || cj->use && ball->fallflag == false)
 	{
 		return;
 	}
@@ -234,14 +249,18 @@ void M_Catch(void)
 	//-----キャッチモーション中にボールがキャッチ判定内に入ったら
 	if (Catch.enemyflag == 1)
 	{
-		if (Catch.enemypos.x + Catch.enemysize.x > ball->pos.x && Catch.enemypos.x - Catch.enemysize.x < ball->pos.x + ball->size.x)
+		if (Catch.enemypos.x + Catch.enemysize.x > ball->pos.x && Catch.enemypos.x < ball->pos.x + ball->size.x)
 		{
 			if (Catch.enemypos.y + Catch.enemysize.y > ball->pos.y && Catch.enemypos.y < ball->pos.y + ball->size.y)
 			{
-				Catch.enemyintervaltime = 0.0f;
-				ball->throwflag = false;
-				ball->enemyhaveflag = true;
-				ball->move = D3DXVECTOR2(ball->startmove.x, ball->startmove.y);
+				if (ball->playerhaveflag == false)
+				{
+					Catch.enemyintervaltime = 0.0f;
+					ball->throwflag = false;
+					ball->enemyhaveflag = true;
+					ball->move = D3DXVECTOR2(ball->startmove.x, ball->startmove.y);
+					ballTA->use = 0;
+				}
 			}
 		}
 	}

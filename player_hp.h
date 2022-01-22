@@ -30,3 +30,5 @@ void UpdatePlayerHp(void);
 void DrawPlayerHp(void);
 
 PLAYERHP* GetPlayerHp();
+void AddPlayerHp(int index);
+void AddPlayerHpMAX(int index);

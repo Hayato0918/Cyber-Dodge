@@ -16,7 +16,10 @@
 #include "ball.h"
 #include "catch.h"
 
+#include "skill.h"
 #include "skillrandom.h"
+
+#include "enemybreak.h"
 
 //-----íËêîíËã`
 
@@ -39,7 +42,9 @@ void InitGame(void)
 	InitEnemy();
 	InitBall();
 	InitCatch();
+	InitSkill();
 	InitRandom();
+	InitEnemyBreak();
 
 }
 
@@ -47,7 +52,7 @@ void InitGame(void)
 void UninitGame()
 {
 
-
+	UninitEnemyBreak();
 	UninitRandom();
 	InitCatch();
 	UninitBall();
@@ -67,13 +72,13 @@ void UpdateGame(void)
 	UpdateEnemy();
 	UpdateBall();
 	UpdateCatch();
+	_Skill();
 	UpdateRandom();
 	_Bug();
+	UpdateEnemyBreak();
 
 	if (GetKeyboardTrigger(DIK_M))
 		SceneTransition(SCENE_MAP);
-
-
 }
 
 //-----ï`âÊèàóùä÷êî
@@ -89,6 +94,7 @@ void DrawGame(void)
 		DrawBall();
 		DrawCatch();
 		DrawBug();
+		DrawSkill();
 		DrawRandom();
 		DrawBugIncrease();
 		DrawPlayerHp();
@@ -101,10 +107,13 @@ void DrawGame(void)
 		DrawBall();
 		DrawCatch();
 		DrawBug();
+		DrawSkill();
 		DrawRandom();
 		DrawBugIncrease();
 		DrawPlayerHp();
 	}
+
+	DrawEnemyBreak();
 
 }
 

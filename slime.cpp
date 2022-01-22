@@ -17,6 +17,8 @@
 #include "create.h"
 #include "map_player.h"
 
+#include "enemybreak.h"
+
 //-----マクロ定義
 
 //-----プロトタイプ宣言
@@ -41,6 +43,7 @@ HRESULT InitSlime(void)
 	slime.uw = 0.335f;
 	slime.vh = 1.0f;
 	slime.drawflag = true;
+	slime.getskill = false;
 	slime.walktime = 0.0f;
 
 	slime.texture = LoadTexture("data/TEXTURE/enemy/slime.png");
@@ -63,6 +66,8 @@ void UpdateSlime(void)
 	SKILL* skill = GetSkill();
 	BG* bg = GetBG();
 	MAP_PLAYER* map_player = GetMapPlayer();
+	RANDOM* random = GetRandom();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	if (slime.walktime > 2)
 		slime.u = 0.335f;
@@ -111,7 +116,7 @@ void UpdateSlime(void)
 			slime.getskill = true;
 		}
 		map_player->nextflag = true;
-		SceneTransition(SCENE_MAP);
+		enemybreak->drawflag = true;
 	}
 
 

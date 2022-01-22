@@ -10,6 +10,8 @@ typedef struct
 	D3DXVECTOR2 size;
 	float u, v, uw, vh;
 	int texture;
+	float hp_max;
+	float hp;
 }REST_HPUP;
 
 typedef struct
@@ -18,6 +20,8 @@ typedef struct
 	D3DXVECTOR2 size;
 	float u, v, uw, vh;
 	int texture;
+
+	int random;
 }REST_STATUSUP;
 
 //-----プロトタイプ宣言

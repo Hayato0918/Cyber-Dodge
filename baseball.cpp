@@ -10,7 +10,7 @@
 #include "skillrandom.h"
 
 //-----マクロ定義
-#define swingtime	180						//バットの判定時間
+#define swingtime	1200					//バットの判定時間
 #define PI 3.1415926535897932f				//円周率
 
 
@@ -43,6 +43,7 @@ void _Baseball(void)
 	BUG* bug = GetBugIncrease();
 	RANDOM* random = GetRandom();
 	BUGGAUGE* buggauge = GetBugGauge();
+	SKILL* skill = GetSkill();
 
 	//スキルが使えるかの判断
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -87,13 +88,15 @@ void _Baseball(void)
 		{
 			if (baseball.pos.y + baseball.size.y > ball->pos.y && baseball.pos.y < ball->pos.y + ball->size.y)
 			{
+				float n = (rand() % 90 - 45) * 0.01f;//方向をランダムで選出
+
 				if (player->rotate == 3) // 右向き
 				{
-					AddBallMove(-5.f, PI * 0.05f, player->pos.y, player->size.y);
+					AddBallMove(10.0f, PI * (n + 1), player->pos.y, player->size.y);//ボールを打ち出している
 				}
 				if (player->rotate == 2) // 左向き
 				{
-					AddBallMove(-5.f, PI * 0.95f, player->pos.y, player->size.y);
+					AddBallMove(10.0f, PI * n, player->pos.y, player->size.y);
 				}
 			}
 		}
@@ -107,6 +110,21 @@ void _Baseball(void)
 		baseball.timeflag = false;
 		baseball.time = 0.0f;
 	}
+
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	{
+		baseball.pos = D3DXVECTOR2(0.0f, 0.0f);
+		baseball.size = D3DXVECTOR2(20.0f, 120.0f);
+		baseball.use = false;
+		baseball.timeflag = false;
+		baseball.time = 0.0f;
+		baseball.usegauge = 20;
+
+		baseball.bugincrease = false;
+		baseball.bugdrawnum = 0;
+	}
+
+
 }
 
 void DrawBaseball(void)

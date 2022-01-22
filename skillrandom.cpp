@@ -26,10 +26,13 @@ HRESULT InitRandom(void)
 	skill.usecount = 0;	//今選択されてるスキル
 	skill.num = 26;		//作成済みスキルの総数
 
-	if (map_player->gamecount == 1)
-	{
+	if (map_player->UDcount == 0)
+		skill.firstnum = true;
+	if (map_player->UDcount > 0)
+		skill.firstnum = false;
+
+	if (skill.firstnum == true)
 		skill.slot = 3;
-	}
 
 	for (int i = 0; i < skill.num; i++)
 	{
@@ -46,7 +49,7 @@ HRESULT InitRandom(void)
 		random[i].haveflag = true;
 	}
 
-	if (map_player->gamecount == 1)
+	if(skill.slot == 3)
 	{
 		for (int i = 0; i < skill.num; i++)
 		{
@@ -62,6 +65,8 @@ HRESULT InitRandom(void)
 		}
 	}
 
+	random[0].code = 14;
+
 	for (int i = 0; i < skill.slot; i++)
 	{
 		//割り当てられたcodeに対応したテクスチャを表示
@@ -69,14 +74,14 @@ HRESULT InitRandom(void)
 			random[i].texture = LoadTexture("data/TEXTURE/skill/speedup.png");
 		if (random[i].code == 2)
 			random[i].texture = LoadTexture("data/TEXTURE/skill/turnaround.png");
-		//if (random[i].code == 3)
-		//	random[i].texture = LoadTexture("data/TEXTURE/skill/barrier.png");
-		//if (random[i].code == 4)
-		//	random[i].texture = LoadTexture("data/TEXTURE/skill/baseball.png");
+		if (random[i].code == 3)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/barrier.png");
+		if (random[i].code == 4)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/baseball.png");
 		if (random[i].code == 5)
 			random[i].texture = LoadTexture("data/TEXTURE/skill/bigball.png");
-		//if (random[i].code == 6)
-		//	random[i].texture = LoadTexture("data/TEXTURE/skill/billiards.png");
+		if (random[i].code == 6)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/billiards.png");
 		if (random[i].code == 7)
 			random[i].texture = LoadTexture("data/TEXTURE/skill/buildup.png");
 		if (random[i].code == 8)
@@ -151,21 +156,68 @@ void UpdateRandom(void)
 	{
 		for (int i = 0; i < skill.slot; i++)
 		{
-		//	do   //重複チェック
-		//	{
-		//		random[i].code = (rand() % skill.num) + 1;
-		//		for (t = 0; t < i; t++)
-		//		{
-		//			if (random[i].code == random[t].code)	//被りがあったらもう一度codeを割り振る
-		//				break;
-		//		}
-		//	} while (i != t);
-
 			random[i].pos = D3DXVECTOR2(100.0f - i * 10, 120.0f - i * 10);
 			random[i].drawflag = true;
 			random[i].active = false;
 		}
 		skill.usecount = 0;
+	}
+
+	for (int i = 0; i < skill.slot; i++)
+	{
+		//割り当てられたcodeに対応したテクスチャを表示
+		if (random[i].code == 1)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/speedup.png");
+		if (random[i].code == 2)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/turnaround.png");
+		if (random[i].code == 3)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/barrier.png");
+		if (random[i].code == 4)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/baseball.png");
+		if (random[i].code == 5)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/bigball.png");
+		if (random[i].code == 6)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/billiards.png");
+		if (random[i].code == 7)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/buildup.png");
+		if (random[i].code == 8)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/catchjamming.png");
+		if (random[i].code == 9)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/invade.png");
+		if (random[i].code == 10)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/invincible.png");
+		if (random[i].code == 11)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/penetration.png");
+		if (random[i].code == 12)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/rockcreate.png");
+		if (random[i].code == 13)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/slowarea.png");
+		if (random[i].code == 14)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/smallplayer.png");
+		//if (random[i].code == 15)
+		//	random[i].texture = LoadTexture("data/TEXTURE/skill/autocatch.png");
+		if (random[i].code == 16)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/disappear.png");
+		if (random[i].code == 17)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/doubleattack.png");
+		if (random[i].code == 18)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/enemy_powerdown.png");
+		if (random[i].code == 19)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/landmine.png");
+		if (random[i].code == 20)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/mindhack.png");
+		if (random[i].code == 21)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/otoshiana.png");
+		if (random[i].code == 22)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/player_powerup.png");
+		if (random[i].code == 23)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/player_regen.png");
+		if (random[i].code == 24)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/player_speedup.png");
+		if (random[i].code == 25)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/timestop.png");
+		if (random[i].code == 26)
+			random[i].texture = LoadTexture("data/TEXTURE/skill/warp.png");
 	}
 
 }

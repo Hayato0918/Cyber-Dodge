@@ -9,7 +9,7 @@
 #include "skillrandom.h"
 
 //-----マクロ定義
-#define catchjammingtime 180		//3s間
+#define catchjammingtime 240
 
 //-----プロトタイプ宣言
 CATCHJAMMING catchjamming;
@@ -19,7 +19,7 @@ HRESULT InitCatchJamming(void)
 	catchjamming.use = false;
 	catchjamming.timeflag = false;
 	catchjamming.time = 0.0f;
-	catchjamming.usegauge = 100;
+	catchjamming.usegauge = 60;
 
 	catchjamming.bugincrease = false;
 	catchjamming.bugdrawnum = 0;
@@ -32,8 +32,9 @@ void _CatchJamming(void)
 	BUG* bug = GetBugIncrease();;
 	RANDOM* random = GetRandom();
 	BUGGAUGE* buggauge = GetBugGauge();
+	SKILL* skill = GetSkill();
 
-	//Iキーを押したら、3秒間キャッチが出来なくなる。
+	//Iキーを押したら、4秒間キャッチが出来なくなる。
 	for (int i = 0; i < SKILL_NUM; i++)
 	{
 		if (random[i].code == 8 && random[i].active == true && catchjamming.use == false)
@@ -56,7 +57,7 @@ void _CatchJamming(void)
 			catchjamming.use = true;
 		}
 	}
-	//スキル使用3秒後にもとに戻る
+	//スキル使用4秒後にもとに戻る
 	if (catchjamming.timeflag == true)
 		catchjamming.time = catchjamming.time + 1.0f;
 	if (catchjamming.time > catchjammingtime)
@@ -64,6 +65,19 @@ void _CatchJamming(void)
 		catchjamming.timeflag = false;
 		catchjamming.time = 0.0f;
 	}
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	{
+		catchjamming.use = false;
+		catchjamming.timeflag = false;
+		catchjamming.time = 0.0f;
+		catchjamming.usegauge = 60;
+
+		catchjamming.bugincrease = false;
+		catchjamming.bugdrawnum = 0;
+	}
+
+
+
 }
 
 CATCHJAMMING* GetCatchJamming()

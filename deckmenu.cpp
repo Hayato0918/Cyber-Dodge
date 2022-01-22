@@ -127,7 +127,7 @@ HRESULT InitDeckMenu(void)
 		}
 		if (random[i].code == 15)
 		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/autocatch.png");
+			//deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/autocatch.png");
 			deckmenu_card[a][b].drawflag = true;
 		}
 		if (random[i].code == 16)

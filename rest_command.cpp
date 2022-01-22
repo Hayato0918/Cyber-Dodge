@@ -4,24 +4,35 @@
 #include "texture.h"
 #include "sprite.h"
 #include "input.h"
+#include "fade.h"
+#include "scene.h"
+#include <time.h>
 //
 #include "rest_select.h"
 #include "player_hp.h"
+#include "player.h"
+
+#include "map_player.h"
 
 REST_HPUP rest_hpup;
 REST_STATUSUP rest_statusup;
 
 HRESULT InitRestCommand(void)
 {
+	PLAYERHP* player_hp = GetPlayerHp();
+	rest_hpup.hp_max = player_hp->framesize.x;
+	rest_statusup.random = rand() % 3;
+	rest_statusup.random = 1;
+
 	//---------- HP回復 ----------//
 	rest_hpup.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.30625f, SCREEN_HEIGHT * 0.211111f);
 	rest_hpup.size = D3DXVECTOR2(SCREEN_WIDTH * 0.15625f, SCREEN_HEIGHT * 0.277777f);
-	rest_hpup.texture = LoadTexture("data/TEXTURE/test/yellow.png");
+	rest_hpup.texture = LoadTexture("data/TEXTURE/map/rest/hpup.png");
 
 	//---------- ステータス強化 ----------//
 	rest_statusup.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5125f, SCREEN_HEIGHT * 0.211111f);
 	rest_statusup.size = D3DXVECTOR2(SCREEN_WIDTH * 0.15625f, SCREEN_HEIGHT * 0.277777f);
-	rest_statusup.texture = LoadTexture("data/TEXTURE/test/yellow.png");
+	rest_statusup.texture = LoadTexture("data/TEXTURE/map/rest/statusup.png");
 
 	return S_OK;
 }
@@ -35,12 +46,44 @@ void UpdateRestCommand(void)
 {
 	REST_SELECT* rest_select = GetRestSelect();
 	PLAYERHP* player_hp = GetPlayerHp();
+	PLAYER* player = GetPlayer();
+	MAP_PLAYER* map_player = GetMapPlayer();
 
-	if (rest_select->count == 0)
+	srand((unsigned int)time(NULL));
+
+	if (rest_select->count == 0)	//HP回復
 	{
 		if (GetKeyboardTrigger(DIK_RETURN))
 		{
+			player_hp->gaugesize.x = player_hp->gaugesize.x + rest_hpup.hp_max / 3;
+			player_hp->pos.x = player_hp->pos.x - rest_hpup.hp_max / 3;
 
+			if (player_hp->gaugesize.x > rest_hpup.hp_max)
+				player_hp->gaugesize.x = rest_hpup.hp_max;
+
+			map_player->nextflag = true;
+			SceneTransition(SCENE_MAP);
+		}
+	}
+
+	if (rest_select->count == 1)
+	{
+		if (GetKeyboardTrigger(DIK_RETURN))
+		{
+			if (rest_statusup.random == 0)	//最大HP+
+			{
+
+			}
+			if (rest_statusup.random == 1)	//atk+10
+			{
+				player->atk = player->atk + 10;
+			}
+			if (rest_statusup.random == 2)	//def+10
+			{
+				player->def = player->def + 10;
+			}
+			map_player->nextflag = true;
+			SceneTransition(SCENE_MAP);
 		}
 	}
 

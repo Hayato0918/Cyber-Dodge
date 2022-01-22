@@ -38,21 +38,22 @@ HRESULT InitPlayer(void)
 {
 	MAP_PLAYER* map_player = GetMapPlayer();
 
+	player.pos = D3DXVECTOR2(240.0f, 320.0f);
+	player.size = D3DXVECTOR2(200.0f, 240.0f);
+	player.move = D3DXVECTOR2(4.0f, 4.0f);
+	player.rotate = 3;
+	player.drawflag = true;
+
+	player.u = 0.0f;
+	player.v = 0.0f;
+	player.uw = 0.5f;
+	player.vh = 1.0f;
+
 	if (map_player->gamecount == 1)
 	{
-		player.pos = D3DXVECTOR2(240.0f, 320.0f);
-		player.size = D3DXVECTOR2(200.0f, 240.0f);
-		player.move = D3DXVECTOR2(4.0f, 4.0f);
-		player.rotate = 3;
-		player.drawflag = true;
-
 		player.atk = 100;
 		player.def = 0;
-
-		player.u = 0.0f;
-		player.v = 0.0f;
-		player.uw = 0.5f;
-		player.vh = 1.0f;
+		player.gold = 0;
 
 		//立ち状態のテクスチャ設定
 		player.stand_Ltexture = LoadTexture("data/TEXTURE/player/stand/stand_R.png");
@@ -100,8 +101,6 @@ HRESULT InitPlayer(void)
 
 		player.drawdepth = false;
 	}
-
-	InitSkill();
 
 	return S_OK;
 }
@@ -154,6 +153,8 @@ void UpdatePlayer(void)
 	Player_SlimeDamage();
 	if (map_player->encount == 2)
 	Player_FireWallDamage();
+	if (map_player->encount == 3)
+		Player_FireWallDamage();
 
 	//-----死亡判定
 	if (hp->gaugesize.x <= 0)
@@ -164,9 +165,6 @@ void UpdatePlayer(void)
 
 	//-----アニメーション処理
 	player_animation();
-
-	//-----スキル処理
-	_Skill();
 
 	//岩石との当たり判定
 	player.colPos = D3DXVECTOR2(player.pos.x + player.size.x / 2, player.pos.y + player.size.y / 2 + player.size.y / 4); //当たり判定の座標の更新
@@ -297,9 +295,6 @@ void DrawPlayer(void)
 
 	if (player.drawflag == false)	//死亡時
 		DrawSpriteLeftTop(player.deathtexture, player.pos.x, player.pos.y, player.size.x, player.size.y, player.u, player.v, player.uw, player.vh);
-
-	//-----スキル描画
-	DrawSkill();
 }
 
 //-----構造体ポインタ取得処理

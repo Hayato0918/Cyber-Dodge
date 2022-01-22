@@ -159,6 +159,7 @@
     <ClCompile Include="doubleattack.cpp" />
     <ClCompile Include="dougyousyacpp.cpp" />
     <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="enemybreak.cpp" />
     <ClCompile Include="event.cpp" />
     <ClCompile Include="eventrandom.cpp" />
     <ClCompile Include="firewall.cpp" />
@@ -167,6 +168,7 @@
     <ClCompile Include="firewall_hp.cpp" />
     <ClCompile Include="enemy_powerdown.cpp" />
     <ClCompile Include="fade.cpp" />
+    <ClCompile Include="floatingfeeling.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameover.cpp" />
     <ClCompile Include="hujyou.cpp" />
@@ -258,6 +260,8 @@
     <ClInclude Include="deleter_animation.h" />
     <ClInclude Include="deleter_hp.h" />
     <ClInclude Include="dougyousya.h" />
+    <ClInclude Include="enemybreak.h" />
+    <ClInclude Include="floatingfeeling.h" />
     <ClInclude Include="hujyou.h" />
     <ClInclude Include="kasoukenkyuukuukan.h" />
     <ClInclude Include="autocatch.h" />

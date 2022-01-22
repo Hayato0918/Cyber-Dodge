@@ -507,6 +507,12 @@
     <ClCompile Include="yomigaeru.cpp">
       <Filter>ソース ファイル\map\event</Filter>
     </ClCompile>
+    <ClCompile Include="enemybreak.cpp">
+      <Filter>ソース ファイル\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="floatingfeeling.cpp">
+      <Filter>ソース ファイル\map\event</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -879,6 +885,12 @@
       <Filter>ヘッダー ファイル\map\event</Filter>
     </ClInclude>
     <ClInclude Include="yomigaeru.h">
+      <Filter>ヘッダー ファイル\map\event</Filter>
+    </ClInclude>
+    <ClInclude Include="enemybreak.h">
+      <Filter>ヘッダー ファイル\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="floatingfeeling.h">
       <Filter>ヘッダー ファイル\map\event</Filter>
     </ClInclude>
   </ItemGroup>
