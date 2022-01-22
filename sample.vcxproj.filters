@@ -489,6 +489,24 @@
     <ClCompile Include="server_recovery.cpp">
       <Filter>ソース ファイル\map\event</Filter>
     </ClCompile>
+    <ClCompile Include="avatar.cpp">
+      <Filter>ソース ファイル\map\event</Filter>
+    </ClCompile>
+    <ClCompile Include="dougyousyacpp.cpp">
+      <Filter>ソース ファイル\map\event</Filter>
+    </ClCompile>
+    <ClCompile Include="hujyou.cpp">
+      <Filter>ソース ファイル\map\event</Filter>
+    </ClCompile>
+    <ClCompile Include="mined.cpp">
+      <Filter>ソース ファイル\map\event</Filter>
+    </ClCompile>
+    <ClCompile Include="tosyokann.cpp">
+      <Filter>ソース ファイル\map\event</Filter>
+    </ClCompile>
+    <ClCompile Include="yomigaeru.cpp">
+      <Filter>ソース ファイル\map\event</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -843,6 +861,24 @@
       <Filter>ヘッダー ファイル\option\windowsize</Filter>
     </ClInclude>
     <ClInclude Include="server_recovery.h">
+      <Filter>ヘッダー ファイル\map\event</Filter>
+    </ClInclude>
+    <ClInclude Include="avatar.h">
+      <Filter>ヘッダー ファイル\map\event</Filter>
+    </ClInclude>
+    <ClInclude Include="dougyousya.h">
+      <Filter>ヘッダー ファイル\map\event</Filter>
+    </ClInclude>
+    <ClInclude Include="hujyou.h">
+      <Filter>ヘッダー ファイル\map\event</Filter>
+    </ClInclude>
+    <ClInclude Include="mined.h">
+      <Filter>ヘッダー ファイル\map\event</Filter>
+    </ClInclude>
+    <ClInclude Include="tosyokann.h">
+      <Filter>ヘッダー ファイル\map\event</Filter>
+    </ClInclude>
+    <ClInclude Include="yomigaeru.h">
       <Filter>ヘッダー ファイル\map\event</Filter>
     </ClInclude>
   </ItemGroup>

@@ -27,6 +27,7 @@ HRESULT InitPlayerHp(void)
 		hp.frametexture = LoadTexture("data/TEXTURE/player/hp/player_hpframe.png");
 
 		hp.pos = D3DXVECTOR2(100.0f, SCREEN_HEIGHT - 100.0f);
+		hp.saidai_pos = D3DXVECTOR2(100.0f, SCREEN_HEIGHT - 100.0f);
 		hp.gaugesize = D3DXVECTOR2(hp.framesize.x, hp.framesize.y); //Žc‚Á‚Ä‚¢‚éHP‚Ì—Ê
 		hp.gaugeredtexture = LoadTexture("data/TEXTURE/player/hp/player_hpred.png");
 		hp.gaugegreentexture = LoadTexture("data/TEXTURE/player/hp/player_hpgreen.png");

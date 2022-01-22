@@ -127,6 +127,7 @@
     <ClCompile Include="anten.cpp" />
     <ClCompile Include="areaChange.cpp" />
     <ClCompile Include="autocatch.cpp" />
+    <ClCompile Include="avatar.cpp" />
     <ClCompile Include="ball.cpp" />
     <ClCompile Include="ballturnaround.cpp" />
     <ClCompile Include="banner .cpp" />
@@ -156,6 +157,7 @@
     <ClCompile Include="deleter_hp.cpp" />
     <ClCompile Include="disappear.cpp" />
     <ClCompile Include="doubleattack.cpp" />
+    <ClCompile Include="dougyousyacpp.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="event.cpp" />
     <ClCompile Include="eventrandom.cpp" />
@@ -167,6 +169,7 @@
     <ClCompile Include="fade.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameover.cpp" />
+    <ClCompile Include="hujyou.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="invade.cpp" />
     <ClCompile Include="invincible.cpp" />
@@ -180,6 +183,7 @@
     <ClCompile Include="map_point.cpp" />
     <ClCompile Include="map_hack.cpp" />
     <ClCompile Include="mindhack.cpp" />
+    <ClCompile Include="mined.cpp" />
     <ClCompile Include="name.cpp" />
     <ClCompile Include="name_bg.cpp" />
     <ClCompile Include="name_input.cpp" />
@@ -238,18 +242,23 @@
     <ClCompile Include="title_option.cpp" />
     <ClCompile Include="title_select.cpp" />
     <ClCompile Include="title_teamname.cpp" />
+    <ClCompile Include="tosyokann.cpp" />
     <ClCompile Include="warp.cpp" />
     <ClCompile Include="windowsize.cpp" />
     <ClCompile Include="windowsize_bg.cpp" />
     <ClCompile Include="windowsize_select.cpp" />
+    <ClCompile Include="yomigaeru.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="anten.h" />
     <ClInclude Include="areaChange.h" />
+    <ClInclude Include="avatar.h" />
     <ClInclude Include="deleter.h" />
     <ClInclude Include="deleterAI.h" />
     <ClInclude Include="deleter_animation.h" />
     <ClInclude Include="deleter_hp.h" />
+    <ClInclude Include="dougyousya.h" />
+    <ClInclude Include="hujyou.h" />
     <ClInclude Include="kasoukenkyuukuukan.h" />
     <ClInclude Include="autocatch.h" />
     <ClInclude Include="ball.h" />
@@ -300,6 +309,7 @@
     <ClInclude Include="map_point.h" />
     <ClInclude Include="map_hack.h" />
     <ClInclude Include="mindhack.h" />
+    <ClInclude Include="mined.h" />
     <ClInclude Include="name.h" />
     <ClInclude Include="name_bg.h" />
     <ClInclude Include="name_input.h" />
@@ -358,10 +368,12 @@
     <ClInclude Include="title_option.h" />
     <ClInclude Include="title_select.h" />
     <ClInclude Include="title_teamname.h" />
+    <ClInclude Include="tosyokann.h" />
     <ClInclude Include="warp.h" />
     <ClInclude Include="windowsize.h" />
     <ClInclude Include="windowsize_bg.h" />
     <ClInclude Include="windowsize_select.h" />
+    <ClInclude Include="yomigaeru.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

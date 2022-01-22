@@ -14,6 +14,7 @@ typedef struct
 	int frametexture;
 
 	D3DXVECTOR2 pos;
+	D3DXVECTOR2 saidai_pos;		//Å‘åHP‚ª‘‚¦‚Ä‚¢‚éê‡‚ÌŠi”[êŠ
 	D3DXVECTOR2 gaugesize;
 	int gaugeredtexture;
 	int gaugegreentexture;
