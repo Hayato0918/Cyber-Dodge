@@ -25,7 +25,7 @@ HRESULT InitEnemyClone(void)
 {
 	for (int i = 0; i < ENEMYCLONE_MAX; i++)
 	{
-		g_EnemyClone[i].pos = D3DXVECTOR2(firewall->pos.x + 110.0f, firewall->pos.y + 240.0f);
+		g_EnemyClone[i].pos = D3DXVECTOR2(firewall->pos.x + SCREEN_WIDTH * 0.06875f, firewall->pos.y + SCREEN_HEIGHT * 0.26666f);
 		g_EnemyClone[i].size = D3DXVECTOR2(firewall->size.x, firewall->size.y);
 		g_EnemyClone[i].move = D3DXVECTOR2(firewall->move.x, firewall->move.y);
 		g_EnemyClone[i].rotate = firewall->rotate;
@@ -42,7 +42,7 @@ void _EnemyClone(void)
 	BUG* bug = GetBugIncrease();
 	BUGRANDOM* bugrandom = GetBugRandom();
 	
-	if (bugrandom->code == 2 && bug->gaugesize.x >= 100)
+	if (bugrandom->code == 2 && bug->gaugesize.x >= SCREEN_WIDTH * 0.0625f)
 	{
 		for (int i = 0; i < ENEMYCLONE_MAX; i++)
 		{

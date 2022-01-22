@@ -25,8 +25,8 @@ HRESULT InitShopCard()
 
 	for (int i = 0; i < shop_skill; i++)
 	{
-		shop_card[i].pos = D3DXVECTOR2(160.0f + 360.f * i, 90.0f);
-		shop_card[i].size = D3DXVECTOR2(200.0f, 300.0f);
+		shop_card[i].pos = D3DXVECTOR2(SCREEN_WIDTH * 0.1f + SCREEN_WIDTH * 0.225f * i, SCREEN_HEIGHT * 0.1f);
+		shop_card[i].size = D3DXVECTOR2(SCREEN_WIDTH * 0.125f, SCREEN_HEIGHT * 0.33333f);
 		shop_card[i].drawflag = true;
 	}
 

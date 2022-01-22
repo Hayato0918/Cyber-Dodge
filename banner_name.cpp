@@ -21,10 +21,10 @@ HRESULT InitBannerName(void)
 	float bannerwardx = 0.f;
 	for (int i = 0; i < 8; i++)
 	{
-		banner_name[i].pos = D3DXVECTOR2(90.0f + bannerwardx, 0.0f);
-		banner_name[i].size = D3DXVECTOR2(35.0f, 60.0f);
+		banner_name[i].pos = D3DXVECTOR2(SCREEN_WIDTH * 0.056235f + bannerwardx, 0.0f);
+		banner_name[i].size = D3DXVECTOR2(SCREEN_WIDTH * 0.021875f, SCREEN_HEIGHT * 0.066666f);
 		banner_name[i].u = name_inputward[i].u;
-		bannerwardx = bannerwardx + 35.f;
+		bannerwardx = bannerwardx + SCREEN_WIDTH * 0.021875f;
 	}
 
 	banner_nametexture = LoadTexture("data/TEXTURE/name/ward.png");

@@ -16,6 +16,8 @@
 #include "fade.h"
 #include "sprite.h"
 
+#include "windowsize_select.h"
+
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
@@ -50,6 +52,8 @@ char	g_DebugStr[2048] = WINDOW_CAPTION;	// デバッグ文字表示用
 //=============================================================================
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
+	InitWindowSizeSelect();
+
 	UNREFERENCED_PARAMETER(hPrevInstance);	// 無くても良いけど、警告が出る（未使用宣言）
 	UNREFERENCED_PARAMETER(lpCmdLine);		// 無くても良いけど、警告が出る（未使用宣言）
 
@@ -82,14 +86,16 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	// ウィンドウクラスの登録
 	RegisterClassEx(&wcex);
 
+	WINDOWSIZE_SELECT* widnowsize_select = GetWindowSizeSelect();
+
 	// ウィンドウの作成
 	hWnd = CreateWindow(CLASS_NAME,
 						WINDOW_CAPTION,
 						WS_OVERLAPPEDWINDOW,
 						CW_USEDEFAULT,																		// ウィンドウの左座標
 						CW_USEDEFAULT,																		// ウィンドウの上座標
-						SCREEN_WIDTH + GetSystemMetrics(SM_CXDLGFRAME)*2,									// ウィンドウ横幅
-						SCREEN_HEIGHT + GetSystemMetrics(SM_CXDLGFRAME)*2+GetSystemMetrics(SM_CYCAPTION),	// ウィンドウ縦幅
+		widnowsize_select->x + GetSystemMetrics(SM_CXDLGFRAME)*2,									// ウィンドウ横幅
+		widnowsize_select->y + GetSystemMetrics(SM_CXDLGFRAME)*2+GetSystemMetrics(SM_CYCAPTION),	// ウィンドウ縦幅
 						NULL,
 						NULL,
 						hInstance,
@@ -113,6 +119,10 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	// メッセージループ
 	while(1)
 	{
+		//UpdateWindowSizeSelect();
+
+		SetWindowPos(hWnd, NULL, 0, 0, widnowsize_select->x, widnowsize_select->y, SWP_NOMOVE | SWP_NOZORDER);
+
 		if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
 			if(msg.message == WM_QUIT)
@@ -218,7 +228,7 @@ HRESULT Init(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 
 	//シーンの初期化（タイトルからスタート）
 	SetFadeColor(0.0f, 0.0f, 0.0f);
-	SceneFadeIn(SCENE_MAP);
+	SceneFadeIn(SCENE_TITLE);
 
 	return S_OK;
 }

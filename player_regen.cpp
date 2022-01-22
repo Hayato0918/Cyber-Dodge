@@ -40,6 +40,7 @@ void _PlayerRegen(void)
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();
+	SKILL* skill = GetSkill();
 
 	//ランダムで4が出たら、10s間キャラの体力が1sずつに10回復する
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -90,9 +91,18 @@ void _PlayerRegen(void)
 	{
 		regen.timeflag = false;
 		regen.time = 0.0f;
-		regen.use = false;
 		regen.bugincrease = false;
 		regen.bugdrawnum = 0;
 		regen.number = 0;
+	}
+
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	{
+		regen.number = 0;
+		regen.timeflag = false;
+		regen.bugdrawnum = 0;
+		regen.bugincrease = false;
+		regen.time = 0.0f;
+		regen.use = false;
 	}
 }

@@ -14,8 +14,8 @@ SHOP_EXIT shop_exit;
 
 HRESULT InitShopExit()
 {
-	shop_exit.pos = D3DXVECTOR2(1100.0f, 700.0f);
-	shop_exit.size = D3DXVECTOR2(400.0f, 125.0f);
+	shop_exit.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.6875f, SCREEN_HEIGHT * 0.77777f);
+	shop_exit.size = D3DXVECTOR2(SCREEN_WIDTH * 0.25f, SCREEN_HEIGHT * 0.138888f);
 	shop_exit.texture = LoadTexture("data/TEXTURE/test/red.png");
 
 	return S_OK;

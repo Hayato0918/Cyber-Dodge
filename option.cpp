@@ -4,6 +4,8 @@
 #include "option_bg.h"
 #include "option_select.h"
 
+#include "windowsize.h"
+
 //-----マクロ定義
 
 //-----プロトタイプ宣言
@@ -15,6 +17,7 @@ HRESULT InitOption(void)
 {
 	InitOptionBG();
 	InitOptionSelect();
+	InitWindowSize();
 
 	return S_OK;
 }
@@ -24,6 +27,7 @@ void UninitOption(void)
 {
 	UninitOptionBG();
 	UninitOptionSelect();
+	UninitWindowSize();
 
 }
 
@@ -32,6 +36,7 @@ void UpdateOption(void)
 {
 	UpdateOptionBG();
 	UpdateOptionSelect();
+	UpdateWindowSize();
 
 }
 
@@ -40,5 +45,6 @@ void DrawOption(void)
 {
 	DrawOptionBG();
 	DrawOptionSelect();
+	DrawWindowSize();
 
 }

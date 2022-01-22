@@ -29,8 +29,8 @@ HRESULT InitBannerHp(void)
 	//場所、サイズ、uv決め
 	for (int i = 0; i < 3; i++)
 	{
-		banner_hp[i].size = D3DXVECTOR2(30.0f, 50.0f);
-		banner_hp[i].pos = D3DXVECTOR2(470.f + i * banner_hp[i].size.x, 5.0f);
+		banner_hp[i].size = D3DXVECTOR2(SCREEN_WIDTH * 0.01875f, SCREEN_HEIGHT * 0.055555f);
+		banner_hp[i].pos = D3DXVECTOR2(SCREEN_WIDTH * 0.29375f + i * banner_hp[i].size.x, SCREEN_HEIGHT * 0.0055555f);
 		banner_hp[i].drawflag = true;
 	}
 	banner_hpnum.texture = LoadTexture("data/TEXTURE/number.png");

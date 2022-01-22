@@ -15,6 +15,7 @@
 #include "slimeAI.h"
 #include "skillrandom.h"
 #include "create.h"
+#include "map_player.h"
 
 //-----マクロ定義
 
@@ -26,9 +27,9 @@ SLIME slime;
 //-----初期化処理
 HRESULT InitSlime(void)
 {
-	slime.pos = D3DXVECTOR2(800.0f, 320.0f);
-	slime.size = D3DXVECTOR2(128.0f, 128);
-	slime.move = D3DXVECTOR2(2.0f, 2.0f);
+	slime.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.3555f);
+	slime.size = D3DXVECTOR2(SCREEN_WIDTH * 0.08f, SCREEN_HEIGHT * 0.14222f);
+	slime.move = D3DXVECTOR2(SCREEN_WIDTH * 0.00125f, SCREEN_HEIGHT * 0.002222f);
 	slime.colPos = D3DXVECTOR2(slime.pos.x + slime.size.x / 2, slime.pos.y + slime.size.y / 2 + slime.size.y / 4);
 	slime.rotate = 2;
 
@@ -61,6 +62,7 @@ void UpdateSlime(void)
 	SLIMEHP* slime_hp = GetSlimeHp();
 	SKILL* skill = GetSkill();
 	BG* bg = GetBG();
+	MAP_PLAYER* map_player = GetMapPlayer();
 
 	if (slime.walktime > 2)
 		slime.u = 0.335f;
@@ -70,40 +72,11 @@ void UpdateSlime(void)
 		slime.walktime = 0.0f;
 	}
 
-	if (GetKeyboardPress(DIK_LEFTARROW))
-	{
-		slime.pos.x = slime.pos.x - 3.0f;
-		slime.walktime = slime.walktime + 0.1f;
-		if (GetKeyboardPress(DIK_RIGHTARROW))
-			slime.walktime = 0.0f;
-	}
-	if (GetKeyboardPress(DIK_RIGHTARROW))
-	{
-		slime.pos.x = slime.pos.x + 3.0f;
-		slime.walktime = slime.walktime + 0.1f;
-		if (GetKeyboardPress(DIK_LEFTARROW))
-			slime.walktime = 0.0f;
-	}
-	if (GetKeyboardPress(DIK_UPARROW))
-	{
-		slime.pos.y = slime.pos.y - 3.0f;
-		slime.walktime = slime.walktime + 0.1f;
-		if (GetKeyboardPress(DIK_DOWNARROW))
-			slime.walktime = 0.0f;
-	}
-	if (GetKeyboardPress(DIK_DOWNARROW))
-	{
-		slime.pos.y = slime.pos.y + 3.0f;
-		slime.walktime = slime.walktime + 0.1f;
-		if (GetKeyboardPress(DIK_UPARROW))
-			slime.walktime = 0.0f;
-	}
-
 	//-----コート外に出ない処理
-	if (slime.pos.y <= 280.f - slime.size.y * 0.5f)	//上
-		slime.pos.y = 280.f - slime.size.y * 0.5f;
-	if (slime.pos.y >= SCREEN_HEIGHT - slime.size.y - 15 - 120)	//下
-		slime.pos.y = SCREEN_HEIGHT - slime.size.y - 15 - 120;
+	if (slime.pos.y <= SCREEN_HEIGHT * 0.27f - slime.size.y * 0.5f)	//上
+		slime.pos.y = SCREEN_HEIGHT * 0.27f - slime.size.y * 0.5f;
+	if (slime.pos.y >= SCREEN_HEIGHT - slime.size.y - SCREEN_HEIGHT * 0.15f)	//下
+		slime.pos.y = SCREEN_HEIGHT - slime.size.y - SCREEN_HEIGHT * 0.15f;
 	if (slime.pos.x <= bg->clPos.x)								//左
 		slime.pos.x = bg->clPos.x;
 	if (slime.pos.x >= SCREEN_WIDTH - slime.size.x)		//右
@@ -115,9 +88,6 @@ void UpdateSlime(void)
 		SlimeAI();
 	}
 
-	//-----コート外に出ない処理
-
-
 	//-----プレイヤーが投げたボールが、地面,壁に当たらず敵に当たったら敵の描画をやめる(アウト判定)
 	if (ball->enemyhitflag == true)
 	{
@@ -125,7 +95,7 @@ void UpdateSlime(void)
 		{
 			if (slime.pos.y < ball->pos.y + ball->size.y && slime.pos.y + slime.size.y > ball->pos.y)
 			{
-				slime_hp->gaugesize.x = slime_hp->gaugesize.x - (player->atk - slime.def) * 3.2f;
+				slime_hp->gaugesize.x = slime_hp->gaugesize.x - (player->atk - slime.def) * SCREEN_WIDTH * 0.002f;
 				ball->enemyhitflag = false;
 			}
 		}
@@ -140,6 +110,7 @@ void UpdateSlime(void)
 			skill->slot = skill->slot + 1;
 			slime.getskill = true;
 		}
+		map_player->nextflag = true;
 		SceneTransition(SCENE_MAP);
 	}
 
@@ -161,7 +132,7 @@ void UpdateSlime(void)
 				float ax = 0.0f;
 				float ay = 0.0f;
 				float bx = 0.0f;
-				float by = 450.0f;
+				float by = SCREEN_HEIGHT * 0.5f;
 				if (slime.colPos.x < create->pos.x)
 					//岩石の左側
 				{

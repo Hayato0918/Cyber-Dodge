@@ -38,6 +38,7 @@ void _SpeedUp(void)
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();
+	SKILL* skill = GetSkill();
 
 	//ランダムで4が出たら、10s間キャラのスピードが2倍になる
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -71,5 +72,16 @@ void _SpeedUp(void)
 		speedup.timeflag = false;
 		player->move /= 2;
 		speedup.time = 0.0f;
+	}
+
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	{
+		if (speedup.time < speeduptime)
+			player->move /= 2;
+		speedup.timeflag = false;
+		speedup.bugdrawnum = 0;
+		speedup.bugincrease = false;
+		speedup.time = 0.0f;
+		speedup.use = false;
 	}
 }

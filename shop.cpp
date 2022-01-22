@@ -3,7 +3,6 @@
 //商人マス内容.h
 #include "shop_bg.h"
 #include "shop_card.h"
-#include "shop_delete.h"
 #include "shop_gold.h"
 #include "shop_reload.h"
 #include "shop_exit.h"
@@ -13,7 +12,6 @@ HRESULT InitShop(void)
 {
 	InitShopBg();
 	InitShopCard();
-	InitShopDelete();
 	InitShopGold();
 	InitShopReload();
 	InitShopExit();
@@ -26,7 +24,6 @@ void UninitShop(void)
 {
 	UninitShopBg();
 	UninitShopCard();
-	UninitShopDelete();
 	UninitShopGold();
 	UninitShopReload();
 	UninitShopExit();
@@ -37,7 +34,6 @@ void UpdateShop(void)
 {
 	UpdateShopBg();
 	UpdateShopCard();
-	UpdateShopDelete();
 	UpdateShopGold();
 	UpdateShopReload();
 	UpdateShopExit();
@@ -48,7 +44,6 @@ void DrawShop(void)
 {
 	DrawShopBg();
 	DrawShopCard();
-	DrawShopDelete();
 	DrawShopGold();
 	DrawShopReload();
 	DrawShopExit();

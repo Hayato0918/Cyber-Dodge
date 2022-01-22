@@ -32,8 +32,8 @@ HRESULT InitBugIncrease(void)
 	{
 		//フレームの設定
 		bug.gaugeonce = 8;
-		bug.framepos = D3DXVECTOR2(150.0f, 20.0f);
-		bug.framesize = D3DXVECTOR2(150.f * bug.gaugeonce, 220);
+		bug.framepos = D3DXVECTOR2(SCREEN_WIDTH * 0.09375f, SCREEN_HEIGHT * 0.0222f);	//1600:900→150:20
+		bug.framesize = D3DXVECTOR2(SCREEN_WIDTH * 0.09375f * bug.gaugeonce, SCREEN_HEIGHT * 0.2444f);
 		bug.frametexture = LoadTexture("data/TEXTURE/buggauge/gaugeframe.png");
 		bug.breaktexture = LoadTexture("data/TEXTURE/buggauge/gaugebreak.png");
 		bug.breakflag = false;
@@ -48,8 +48,8 @@ HRESULT InitBugIncrease(void)
 		//ゲージの設定
 		for (int i = 0; i < gaugenum; i++)
 		{
-			buggauge[i].pos = D3DXVECTOR2(370.f + i * 40.f, 65.f);
-			buggauge[i].size = D3DXVECTOR2(95.0f, 70);
+			buggauge[i].pos = D3DXVECTOR2(SCREEN_WIDTH * 0.231f + i * SCREEN_WIDTH * 0.025f, SCREEN_HEIGHT * 0.07222f);
+			buggauge[i].size = D3DXVECTOR2(SCREEN_WIDTH * 0.0593f, SCREEN_HEIGHT * 0.07777f);
 			buggauge[i].drawflag = false;
 		}
 		bug.gaugetexture = LoadTexture("data/TEXTURE/buggauge/gaugebar.png");
@@ -57,8 +57,8 @@ HRESULT InitBugIncrease(void)
 		//数字の設定
 		for (int i = 0; i < 3; i++)
 		{
-			bugnumber[i].pos = D3DXVECTOR2(850.f + i * 65.f , 155.f);
-			bugnumber[i].size = D3DXVECTOR2(65.f, 70.f);
+			bugnumber[i].pos = D3DXVECTOR2(SCREEN_WIDTH * 0.53125f + i * SCREEN_WIDTH * 0.040625f , SCREEN_HEIGHT * 0.17222f);
+			bugnumber[i].size = D3DXVECTOR2(SCREEN_WIDTH * 0.040625f, SCREEN_HEIGHT * 0.077777f);
 			bugnumber[i].u = 0.0f;
 			bugnumber[i].v = 0.0f;
 			bugnumber[i].uw = 0.2f;

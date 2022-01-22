@@ -13,8 +13,8 @@ REST_EXIT rest_exit;
 
 HRESULT InitRestExit(void)
 {
-	rest_exit.pos = D3DXVECTOR2(1050.f, 700.0f);
-	rest_exit.size = D3DXVECTOR2(500.0f, 150.0f);
+	rest_exit.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.675f, SCREEN_HEIGHT * 0.722222f);
+	rest_exit.size = D3DXVECTOR2(SCREEN_WIDTH * 0.2875f, SCREEN_HEIGHT * 0.188888f);
 	rest_exit.texture = LoadTexture("data/TEXTURE/test/yellow.png");
 
 	return S_OK;

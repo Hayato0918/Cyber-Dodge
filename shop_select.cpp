@@ -8,7 +8,6 @@
 #include "shop.h"
 #include "shop_card.h"
 #include "shop_gold.h"
-#include "shop_delete.h"
 #include "shop_reload.h"
 #include "shop_exit.h"
 
@@ -36,7 +35,6 @@ void UninitShopSelect()
 void UpdateShopSelect()
 {
 	SHOP_CARD* shop_card = GetShopCard();
-	SHOP_DELETE* shop_delete = GetShopDelete();
 	SHOP_RELOAD* shop_reload = GetShopReload();
 	SHOP_EXIT* shop_exit = GetShopExit();
 
@@ -49,19 +47,6 @@ void UpdateShopSelect()
 			{
 				shop_select.xcount -= 1;
 				shop_select.pos.x = shop_card[shop_select.xcount].pos.x;
-			}
-			if (shop_select.ycount == 1)
-			{
-				shop_select.xcount = 0;
-				shop_select.pos = D3DXVECTOR2(shop_delete->pos.x, shop_delete->pos.y);
-				shop_select.size = D3DXVECTOR2(shop_delete->size.x, shop_delete->size.y);
-			}
-			if (shop_select.ycount == 2)
-			{
-				shop_select.xcount = 0;
-				shop_select.pos = D3DXVECTOR2(shop_delete->pos.x, shop_delete->pos.y);
-				shop_select.size = D3DXVECTOR2(shop_delete->size.x, shop_delete->size.y);
-				shop_select.ycount -= 1;
 			}
 		}
 		if (GetKeyboardTrigger(DIK_D) && shop_select.xcount < shop_skill - 1)	//右移動
@@ -88,12 +73,6 @@ void UpdateShopSelect()
 			}
 			if (shop_select.ycount == 0)
 			{
-				if (shop_select.xcount <= 1)	//選択カードが2番目以内なら、スキル削除コマンドへ移動
-				{
-					shop_select.pos = D3DXVECTOR2(shop_delete->pos.x, shop_delete->pos.y);
-					shop_select.size = D3DXVECTOR2(shop_delete->size.x, shop_delete->size.y);
-					shop_select.ycount += 1;
-				}
 				if (shop_select.xcount > 1)		//選択カードが2番目以降なら、リロードコマンドへ移動
 				{
 					shop_select.pos = D3DXVECTOR2(shop_reload->pos.x, shop_reload->pos.y);

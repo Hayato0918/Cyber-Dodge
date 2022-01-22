@@ -18,8 +18,8 @@ HRESULT InitBannerGold(void)
 	//場所、サイズ、uv決め
 	for (int i = 0; i < 4; i++)
 	{
-		banner_gold[i].size = D3DXVECTOR2(30.0f, 50.0f);
-		banner_gold[i].pos = D3DXVECTOR2(860.f + i * banner_gold[i].size.x, 5.0f);
+		banner_gold[i].size = D3DXVECTOR2(SCREEN_WIDTH * 0.01875f, SCREEN_HEIGHT * 0.055555f);
+		banner_gold[i].pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5375f + i * banner_gold[i].size.x, SCREEN_HEIGHT * 0.0055555f);
 		banner_gold[i].drawflag = true;
 	}
 	banner_goldnum.texture = LoadTexture("data/TEXTURE/number.png");
@@ -36,11 +36,6 @@ void UninitBannerGold(void)
 //-----更新処理
 void UpdateBannerGold(void)
 {
-
-
-
-
-
 
 }
 

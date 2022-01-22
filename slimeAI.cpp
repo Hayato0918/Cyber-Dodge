@@ -31,9 +31,9 @@ void SlimeAI()
 		//-----ƒ{[ƒ‹‚Ì•û‚ðŒü‚­
 	if (ball->enemyhaveflag == false)
 	{
-		if (ball->pos.x > slime->pos.x + 50.0f)
+		if (ball->pos.x > slime->pos.x + SCREEN_WIDTH * 0.03125f)
 			slime->rotate = 3;
-		if (ball->pos.x < slime->pos.x + 50.0f)
+		if (ball->pos.x < slime->pos.x + SCREEN_WIDTH * 0.03125f)
 			slime->rotate = 2;
 	}
 

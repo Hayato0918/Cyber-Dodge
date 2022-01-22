@@ -36,22 +36,22 @@ HRESULT InitMapPoint(void)
 		if (map_line->randomcode == 1)
 		{
 			//-----1段目
-			map[0].pos = D3DXVECTOR2(320.f, 250.f);
-			map[1].pos = D3DXVECTOR2(620.f, 250.f);
-			map[2].pos = D3DXVECTOR2(930.f, 250.f);
-			map[3].pos = D3DXVECTOR2(1245.f, 250.f);
+			map[0].pos = D3DXVECTOR2(SCREEN_WIDTH * 0.2f, 250.f);
+			map[1].pos = D3DXVECTOR2(SCREEN_WIDTH * 0.3875f, 250.f);
+			map[2].pos = D3DXVECTOR2(SCREEN_WIDTH * 0.58125f, 250.f);
+			map[3].pos = D3DXVECTOR2(SCREEN_WIDTH * 0.778125f, 250.f);
 			//-----2段目
-			map[4].pos = D3DXVECTOR2(400.f, 450.f);
-			map[5].pos = D3DXVECTOR2(800.f, 450.f);
-			map[6].pos = D3DXVECTOR2(1200.f, 450.f);
+			map[4].pos = D3DXVECTOR2(SCREEN_WIDTH * 0.25f, 450.f);
+			map[5].pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f, 450.f);
+			map[6].pos = D3DXVECTOR2(SCREEN_WIDTH * 0.75f, 450.f);
 			//-----3段目
-			map[7].pos = D3DXVECTOR2(190.f, 650.f);
-			map[8].pos = D3DXVECTOR2(735.f, 650.f);
-			map[9].pos = D3DXVECTOR2(1065.f, 650.f);
+			map[7].pos = D3DXVECTOR2(SCREEN_WIDTH * 0.11875f, 650.f);
+			map[8].pos = D3DXVECTOR2(SCREEN_WIDTH * 0.459375f, 650.f);
+			map[9].pos = D3DXVECTOR2(SCREEN_WIDTH * 0.665625f, 650.f);
 			//-----4段目
-			map[10].pos = D3DXVECTOR2(410, 860.f);
-			map[11].pos = D3DXVECTOR2(950.f, 860.f);
-			map[12].pos = D3DXVECTOR2(1265.f, 860.f);
+			map[10].pos = D3DXVECTOR2(SCREEN_WIDTH * 0.25625f, 860.f);
+			map[11].pos = D3DXVECTOR2(SCREEN_WIDTH * 0.59375f, 860.f);
+			map[12].pos = D3DXVECTOR2(SCREEN_WIDTH * 0.790625, 860.f);
 			//-----5段目
 			map[13].pos = D3DXVECTOR2(710.f, 1050.f);
 			map[14].pos = D3DXVECTOR2(1115.f, 1060.f);
@@ -265,16 +265,16 @@ void UpdateMapPoint(void)
 		if (GetKeyboardPress(DIK_W))
 		{
 			for (int i = 0; i < map_num; i++)
-				map[i].pos.y += 3.f;
-			map_sb.startpos.y += 3.f;
-			map_sb.bosspos.y += 3.f;
+				map[i].pos.y += SCREEN_HEIGHT * 0.0033333f;
+			map_sb.startpos.y += SCREEN_HEIGHT * 0.0033333f;
+			map_sb.bosspos.y += SCREEN_HEIGHT * 0.0033333f;
 		}
 		if (GetKeyboardPress(DIK_S))
 		{
 			for (int i = 0; i < map_num; i++)
-				map[i].pos.y -= 3.f;
-			map_sb.startpos.y -= 3.f;
-			map_sb.bosspos.y -= 3.f;
+				map[i].pos.y -= SCREEN_HEIGHT * 0.0033333f;
+			map_sb.startpos.y -= SCREEN_HEIGHT * 0.0033333f;
+			map_sb.bosspos.y -= SCREEN_HEIGHT * 0.0033333f;
 		}
 	}
 

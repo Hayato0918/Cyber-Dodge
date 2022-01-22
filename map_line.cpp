@@ -24,13 +24,13 @@ HRESULT InitMapLine(void)
 
 	if (map_player->UDcount == 0)
 	{
-		map_line.pos = D3DXVECTOR2(0.0f, 50.0f);
+		map_line.pos = D3DXVECTOR2(0.0f, SCREEN_HEIGHT * 0.055555f);
 		map_line.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT * 2.f);
 
 		//-----ランダムコードの設定
 		srand((unsigned int)time(NULL));
 		map_line.randomcode = (rand() % 4) + 1;
-		map_line.randomcode = 1;
+		map_line.randomcode = 2;
 
 		if(map_line.randomcode == 1)
 			map_line.texture = LoadTexture("data/TEXTURE/map/mapline_1.png");
@@ -59,9 +59,9 @@ void UpdateMapLine(void)
 	if (map_hack->isUse == false)
 	{
 		if (GetKeyboardPress(DIK_W))
-			map_line.pos.y += 3;
+			map_line.pos.y += SCREEN_HEIGHT * 0.0033333f;
 		if (GetKeyboardPress(DIK_S))
-			map_line.pos.y -= 3;
+			map_line.pos.y -= SCREEN_HEIGHT * 0.0033333f;
 	}
 }
 

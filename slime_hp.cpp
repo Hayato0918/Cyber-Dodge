@@ -15,11 +15,11 @@ HRESULT InitSlimeHp(void)
 {
 	slimehp.gaugeonce = 8;
 
-	slimehp.framepos = D3DXVECTOR2(SCREEN_WIDTH * 0.5 + 60.f, SCREEN_HEIGHT - 100.0f);
-	slimehp.framesize = D3DXVECTOR2(80.f * slimehp.gaugeonce, 60.0f); //slimehpバーフレームサイズ
+	slimehp.framepos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f + SCREEN_WIDTH * 0.0375f, SCREEN_HEIGHT - SCREEN_HEIGHT * 0.11111f);
+	slimehp.framesize = D3DXVECTOR2(SCREEN_WIDTH * 0.05f * slimehp.gaugeonce, SCREEN_HEIGHT * 0.066666f); //slimehpバーフレームサイズ
 	slimehp.frametexture = LoadTexture("data/TEXTURE/enemy/hp/enemy_hpframe.png");
 
-	slimehp.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5 + 60.f, SCREEN_HEIGHT - 100.0f);
+	slimehp.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5 + SCREEN_WIDTH * 0.0375f, SCREEN_HEIGHT - SCREEN_HEIGHT * 0.11111f);
 	slimehp.gaugesize = D3DXVECTOR2(slimehp.framesize.x, slimehp.framesize.y); //残っているslimehpの量
 	slimehp.gaugegreentexture = LoadTexture("data/TEXTURE/enemy/hp/enemy_hpgreen.png");
 	slimehp.gaugeredtexture = LoadTexture("data/TEXTURE/enemy/hp/enemy_hpred.png");
@@ -45,8 +45,8 @@ void UpdateSlimeHp(void)
 		slimehp.colorcangeflag = false;
 
 	//HP上限の設定
-	if (slimehp.gaugesize.x > 640.0f)
-		slimehp.gaugesize.x = 640.0f;
+	if (slimehp.gaugesize.x > SCREEN_WIDTH * 0.4f)
+		slimehp.gaugesize.x = SCREEN_WIDTH * 0.4f;
 }
 
 //-----描画処理

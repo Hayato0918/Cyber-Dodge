@@ -127,6 +127,12 @@
     <Filter Include="ヘッダー ファイル\enemy\deleter">
       <UniqueIdentifier>{b03c73c8-fa6e-434d-9cd4-0f42e09a2195}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\option\windowsize">
+      <UniqueIdentifier>{89d0722f-e189-420b-9c6f-0be4f30babf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\option\windowsize">
+      <UniqueIdentifier>{d1d16142-8bd6-4731-ac53-b50b9d783458}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scene.cpp">
@@ -327,9 +333,6 @@
     <ClCompile Include="shop_gold.cpp">
       <Filter>ソース ファイル\map\shop</Filter>
     </ClCompile>
-    <ClCompile Include="shop_delete.cpp">
-      <Filter>ソース ファイル\map\shop</Filter>
-    </ClCompile>
     <ClCompile Include="shop_reload.cpp">
       <Filter>ソース ファイル\map\shop</Filter>
     </ClCompile>
@@ -357,13 +360,7 @@
     <ClCompile Include="banner_bug.cpp">
       <Filter>ソース ファイル\map\banner</Filter>
     </ClCompile>
-    <ClCompile Include="rest_picture.cpp">
-      <Filter>ソース ファイル\map\rest</Filter>
-    </ClCompile>
     <ClCompile Include="rest_bg.cpp">
-      <Filter>ソース ファイル\map\rest</Filter>
-    </ClCompile>
-    <ClCompile Include="rest_status.cpp">
       <Filter>ソース ファイル\map\rest</Filter>
     </ClCompile>
     <ClCompile Include="rest_command.cpp">
@@ -479,6 +476,15 @@
     </ClCompile>
     <ClCompile Include="deleterAI.cpp">
       <Filter>ソース ファイル\enemy\deleter</Filter>
+    </ClCompile>
+    <ClCompile Include="windowsize_select.cpp">
+      <Filter>ソース ファイル\option\windowsize</Filter>
+    </ClCompile>
+    <ClCompile Include="windowsize.cpp">
+      <Filter>ソース ファイル\option\windowsize</Filter>
+    </ClCompile>
+    <ClCompile Include="windowsize_bg.cpp">
+      <Filter>ソース ファイル\option\windowsize</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -674,9 +680,6 @@
     <ClInclude Include="shop_gold.h">
       <Filter>ヘッダー ファイル\map\shop</Filter>
     </ClInclude>
-    <ClInclude Include="shop_delete.h">
-      <Filter>ヘッダー ファイル\map\shop</Filter>
-    </ClInclude>
     <ClInclude Include="shop_reload.h">
       <Filter>ヘッダー ファイル\map\shop</Filter>
     </ClInclude>
@@ -710,13 +713,7 @@
     <ClInclude Include="banner_bug.h">
       <Filter>ヘッダー ファイル\map\banner</Filter>
     </ClInclude>
-    <ClInclude Include="rest_picture.h">
-      <Filter>ヘッダー ファイル\map\rest</Filter>
-    </ClInclude>
     <ClInclude Include="rest_bg.h">
-      <Filter>ヘッダー ファイル\map\rest</Filter>
-    </ClInclude>
-    <ClInclude Include="rest_status.h">
       <Filter>ヘッダー ファイル\map\rest</Filter>
     </ClInclude>
     <ClInclude Include="rest_command.h">
@@ -832,6 +829,15 @@
     </ClInclude>
     <ClInclude Include="deleterAI.h">
       <Filter>ヘッダー ファイル\enemy\deleter</Filter>
+    </ClInclude>
+    <ClInclude Include="windowsize_select.h">
+      <Filter>ヘッダー ファイル\option\windowsize</Filter>
+    </ClInclude>
+    <ClInclude Include="windowsize.h">
+      <Filter>ヘッダー ファイル\option\windowsize</Filter>
+    </ClInclude>
+    <ClInclude Include="windowsize_bg.h">
+      <Filter>ヘッダー ファイル\option\windowsize</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -38,6 +38,7 @@ void _PowerUp(void)
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();
+	SKILL* skill = GetSkill();
 
 	//ランダムで4が出たら、10s間キャラのパワーが+50になる
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -71,5 +72,16 @@ void _PowerUp(void)
 		powerup.timeflag = false;
 		player->atk -= 50;
 		powerup.time = 0.0f;
+	}
+
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	{
+		if (powerup.time < poweruptime)
+			player->atk -= 50;
+		powerup.timeflag = false;
+		powerup.bugdrawnum = 0;
+		powerup.bugincrease = false;
+		powerup.time = 0.0f;
+		powerup.use = false;
 	}
 }

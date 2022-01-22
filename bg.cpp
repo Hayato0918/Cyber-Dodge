@@ -19,7 +19,7 @@ HRESULT InitBG(void)
 	bg.texture = LoadTexture("data/TEXTURE/gym.jpg");
 
 	bg.clPos = D3DXVECTOR2(bg.size.x / 2, bg.pos.y + bg.size.y / 2);
-	bg.clSize = D3DXVECTOR2(10.0f, bg.size.y);
+	bg.clSize = D3DXVECTOR2(SCREEN_WIDTH * 0.00625f, bg.size.y);
 	//bg.clTexture = LoadTexture("data/TEXTURE/gym_centerline.png");
 
 	return S_OK;

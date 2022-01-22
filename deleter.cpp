@@ -27,9 +27,9 @@ DELETER deleter;
 //-----初期化処理
 HRESULT InitDeleter(void)
 {
-	deleter.pos = D3DXVECTOR2(800.0f, 320.0f);
-	deleter.size = D3DXVECTOR2(256.0f, 256.0f);
-	deleter.move = D3DXVECTOR2(2.0f, 2.0f);
+	deleter.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.355555f);
+	deleter.size = D3DXVECTOR2(SCREEN_WIDTH * 0.16f, SCREEN_HEIGHT * 0.2844444f);
+	deleter.move = D3DXVECTOR2(SCREEN_WIDTH * 0.00125f, SCREEN_HEIGHT * 0.002222f);
 	deleter.colPos = D3DXVECTOR2(deleter.pos.x + deleter.size.x / 2, deleter.pos.y + deleter.size.y / 2 + deleter.size.y / 4);
 	deleter.rotate = 2;
 
@@ -92,16 +92,15 @@ void UpdateDeleter(void)
 	if (deleter.drawflag == true)
 		DeleterAI();
 
-
 	//-----コート外に出ない処理
-	if (deleter.pos.y <= 180 - deleter.size.y * 0.5f)			//上
-		deleter.pos.y = 180 - deleter.size.y * 0.5f;
-	if (deleter.pos.y >= SCREEN_HEIGHT - deleter.size.y - 15 - 120)	//下
-		deleter.pos.y = SCREEN_HEIGHT - deleter.size.y - 15 - 120;
+	if (deleter.pos.y <= SCREEN_HEIGHT * 0.27f - deleter.size.y * 0.5f)			//上
+		deleter.pos.y = SCREEN_HEIGHT * 0.27f - deleter.size.y * 0.5f;
+	if (deleter.pos.y >= SCREEN_HEIGHT - deleter.size.y - SCREEN_HEIGHT * 0.188888f)	//下
+		deleter.pos.y = SCREEN_HEIGHT - deleter.size.y - SCREEN_HEIGHT * 0.188888f;
 	if (deleter.pos.x <= bg->clPos.x)								//左
 		deleter.pos.x = bg->clPos.x;
-	if (deleter.pos.x >= SCREEN_WIDTH - deleter.size.x - 5)								//右
-		deleter.pos.x = SCREEN_WIDTH - deleter.size.x - 5;
+	if (deleter.pos.x >= SCREEN_WIDTH - deleter.size.x - SCREEN_WIDTH * 0.003125f)								//右
+		deleter.pos.x = SCREEN_WIDTH - deleter.size.x - SCREEN_WIDTH * 0.003125f;
 
 
 	//-----プレイヤーが投げたボールが、地面,壁に当たらず敵に当たったら敵にダメージを与える(アウト判定)
@@ -112,7 +111,7 @@ void UpdateDeleter(void)
 			if (deleter.pos.y < ball->pos.y + ball->size.y && deleter.pos.y + deleter.size.y > ball->pos.y)
 			{
 				deleter.damagetextureflag = true;
-				deleter_hp->gaugesize.x = deleter_hp->gaugesize.x - (player->atk - deleter.def) * 3.2f;
+				deleter_hp->gaugesize.x = deleter_hp->gaugesize.x - (player->atk - deleter.def) * SCREEN_WIDTH * 0.002f;
 				ball->enemyhitflag = false;
 			}
 		}
@@ -151,7 +150,7 @@ void UpdateDeleter(void)
 				float ax = 0.0f;
 				float ay = 0.0f;
 				float bx = 0.0f;
-				float by = 450.0f;
+				float by = SCREEN_HEIGHT * 0.5f;
 				if (deleter.colPos.x < create->pos.x)
 					//岩石の左側
 				{

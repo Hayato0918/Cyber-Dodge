@@ -14,8 +14,8 @@ SHOP_RELOAD shop_reload;
 
 HRESULT InitShopReload()
 {
-	shop_reload.pos = D3DXVECTOR2(1100.0f, 525.0f);
-	shop_reload.size = D3DXVECTOR2(400.0f, 125.0f);
+	shop_reload.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.6875f, SCREEN_HEIGHT * 0.5833333f);
+	shop_reload.size = D3DXVECTOR2(SCREEN_WIDTH * 0.25f, SCREEN_HEIGHT * 0.1388888f);
 	shop_reload.reloadflag = false;
 	shop_reload.texture = LoadTexture("data/TEXTURE/test/red.png");
 

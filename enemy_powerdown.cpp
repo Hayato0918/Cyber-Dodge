@@ -3,11 +3,13 @@
 //エネミー.h
 #include "firewall.h"
 #include "slime.h"
+#include "input.h"
 
 #include "bugincrease.h"
 
 #include "skillrandom.h"
 
+#include "map_point.h"
 #include "map_player.h"
 
 //-----マクロ定義
@@ -41,6 +43,7 @@ void _PowerDown(void)
 	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();
 	MAP_PLAYER* map_player = GetMapPlayer();
+	SKILL* skill = GetSkill();
 
 	//ランダムで4が出たら、10s間敵のパワーが-50になる
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -49,8 +52,8 @@ void _PowerDown(void)
 		{
 			if (map_player->encount == 1)
 				slime->atk = slime->atk - 50;
-			if(map_player->encount == 2)
-			firewall->atk = firewall->atk - 50;
+			if (map_player->encount == 2)
+				firewall->atk = firewall->atk - 50;
 			powerdown.timeflag = true;
 			//-----バグゲージの上昇
 			for (int i = 0; i < 20; i++)
@@ -75,7 +78,28 @@ void _PowerDown(void)
 	if (powerdown.time > powerdowntime)
 	{
 		powerdown.timeflag = false;
-		firewall->atk = firewall->atk + 50;
+		if (map_player->encount == 1)
+			slime->atk = slime->atk + 50;
+		if (map_player->encount == 2)
+			firewall->atk = firewall->atk + 50;
 		powerdown.time = 0.0f;
 	}
+
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	{
+		if (powerdown.time < powerdowntime)
+		{
+			if (map_player->encount == 1)
+				slime->atk = slime->atk - 50;
+			if (map_player->encount == 2)
+				firewall->atk = firewall->atk - 50;
+		}
+		powerdown.timeflag = false;
+		powerdown.bugdrawnum = 0;
+		powerdown.bugincrease = false;
+		powerdown.time = 0.0f;
+		powerdown.use = false;
+	}
+
+
 }

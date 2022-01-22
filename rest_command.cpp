@@ -14,13 +14,13 @@ REST_STATUSUP rest_statusup;
 HRESULT InitRestCommand(void)
 {
 	//---------- HP回復 ----------//
-	rest_hpup.pos = D3DXVECTOR2(1050.0f, 100.0f);
-	rest_hpup.size = D3DXVECTOR2(500.f, 150.f);
+	rest_hpup.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.30625f, SCREEN_HEIGHT * 0.211111f);
+	rest_hpup.size = D3DXVECTOR2(SCREEN_WIDTH * 0.15625f, SCREEN_HEIGHT * 0.277777f);
 	rest_hpup.texture = LoadTexture("data/TEXTURE/test/yellow.png");
 
 	//---------- ステータス強化 ----------//
-	rest_statusup.pos = D3DXVECTOR2(1050.0f, 300.0f);
-	rest_statusup.size = D3DXVECTOR2(500.f, 150.f);
+	rest_statusup.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5125f, SCREEN_HEIGHT * 0.211111f);
+	rest_statusup.size = D3DXVECTOR2(SCREEN_WIDTH * 0.15625f, SCREEN_HEIGHT * 0.277777f);
 	rest_statusup.texture = LoadTexture("data/TEXTURE/test/yellow.png");
 
 	return S_OK;

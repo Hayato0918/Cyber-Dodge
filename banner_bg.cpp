@@ -15,7 +15,7 @@ BANNER_BG banner_bg;
 HRESULT InitBannerBG(void)
 {
 	banner_bg.pos = D3DXVECTOR2(0.0f, 0.0f);
-	banner_bg.size = D3DXVECTOR2(SCREEN_WIDTH, 60.0f);
+	banner_bg.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT * 0.066666f);
 	banner_bg.texture = LoadTexture("data/TEXTURE/banner.png");
 	return S_OK;
 }

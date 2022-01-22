@@ -57,9 +57,9 @@ void UpdateRestSelect(void)
 	//}
 	if (PADUSE == 1)
 	{
-		if (GetKeyboardTrigger(DIK_W) && rest_select.count > 0)		//ãˆÚ“®
+		if (GetKeyboardTrigger(DIK_A) && rest_select.count > 0)		//ãˆÚ“®
 			rest_select.count -= 1;
-		if (GetKeyboardTrigger(DIK_S) && rest_select.count < 2)		//‰ºˆÚ“®
+		if (GetKeyboardTrigger(DIK_D) && rest_select.count < 2)		//‰ºˆÚ“®
 			rest_select.count += 1;
 	}
 

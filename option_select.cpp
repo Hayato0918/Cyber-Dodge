@@ -3,6 +3,8 @@
 //システム.h
 #include "texture.h"
 #include "sprite.h"
+#include "fade.h"
+#include "scene.h"
 #include "input.h"
 //
 
@@ -25,28 +27,6 @@ void UninitOptionSelect(void)
 
 void UpdateOptionSelect(void)
 {
-	//if (PADUSE == 0)
-	//{
-	//	//休憩マスの選択
-	//	if (IsButtonTriggered(0, BUTTON_UP) && rest_select.count > 0)
-	//	{
-	//		rest_select.pos.y -= 116;
-	//		rest_select.count -= 1;
-	//	}
-	//	if (IsButtonTriggered(0, BUTTON_DOWN) && rest_select.count < 2)
-	//	{
-	//		rest_select.pos.y += 116;
-	//		rest_select.count += 1;
-	//	}
-	//	//選択した時の効果
-	//	if (IsButtonTriggered(0, BUTTON_X) && rest_select.count == 0)
-	//	{
-	//		player_hp->gaugesize.x = player_hp->gaugesize.x + 100;
-	//		player_hp->pos.x = player_hp->pos.x - 100;
-	//		SceneTransition(SCENE_MAP);
-	//	}
-
-	//}
 	if (PADUSE == 1)
 	{
 		if (GetKeyboardTrigger(DIK_A) && option_select.count > 0)		//左移動
@@ -58,6 +38,10 @@ void UpdateOptionSelect(void)
 		{
 			option_select.pos.x += SCREEN_WIDTH * 0.3f;	//1600:900→500
 			option_select.count += 1;
+		}
+		if (GetKeyboardTrigger(DIK_M))		//右移動
+		{
+			SceneTransition(SCENE_TITLE);
 		}
 	}
 }

@@ -15,11 +15,11 @@ HRESULT InitDeleterHp(void)
 {
 	deleterhp.gaugeonce = 8;
 
-	deleterhp.framepos = D3DXVECTOR2(SCREEN_WIDTH * 0.5 + 60.f, SCREEN_HEIGHT - 100.0f);
-	deleterhp.framesize = D3DXVECTOR2(80.f * deleterhp.gaugeonce, 60.0f); //slimehpバーフレームサイズ
+	deleterhp.framepos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f + SCREEN_WIDTH * 0.0375f, SCREEN_HEIGHT - SCREEN_HEIGHT * 0.11111f);
+	deleterhp.framesize = D3DXVECTOR2(SCREEN_WIDTH * 0.05f * deleterhp.gaugeonce, SCREEN_HEIGHT * 0.066666f); //slimehpバーフレームサイズ
 	deleterhp.frametexture = LoadTexture("data/TEXTURE/enemy/hp/enemy_hpframe.png");
 
-	deleterhp.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5 + 60.f, SCREEN_HEIGHT - 100.0f);
+	deleterhp.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f + SCREEN_WIDTH * 0.0375f, SCREEN_HEIGHT - SCREEN_HEIGHT * 0.11111f);
 	deleterhp.gaugesize = D3DXVECTOR2(deleterhp.framesize.x, deleterhp.framesize.y); //残っているslimehpの量
 	deleterhp.gaugegreentexture = LoadTexture("data/TEXTURE/enemy/hp/enemy_hpgreen.png");
 	deleterhp.gaugeredtexture = LoadTexture("data/TEXTURE/enemy/hp/enemy_hpred.png");
@@ -45,8 +45,8 @@ void UpdateDeleterHp(void)
 		deleterhp.colorcangeflag = false;
 
 	//HP上限の設定
-	if (deleterhp.gaugesize.x > 640.0f)
-		deleterhp.gaugesize.x = 640.0f;
+	if (deleterhp.gaugesize.x > SCREEN_WIDTH * 0.4f)
+		deleterhp.gaugesize.x = SCREEN_WIDTH * 0.4f;
 }
 
 //-----描画処理

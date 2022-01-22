@@ -27,9 +27,9 @@ FIREWALL firewall;
 //-----初期化処理
 HRESULT InitFireWall(void)
 {
-	firewall.pos = D3DXVECTOR2(800.0f, 320.0f);
-	firewall.size = D3DXVECTOR2(256.0f, 256.0f);
-	firewall.move = D3DXVECTOR2(2.0f, 2.0f);
+	firewall.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.3555f);
+	firewall.size = D3DXVECTOR2(SCREEN_WIDTH * 0.16f, SCREEN_HEIGHT * 0.28444f);
+	firewall.move = D3DXVECTOR2(SCREEN_WIDTH * 0.00125f, SCREEN_HEIGHT * 0.0022222f);
 	firewall.colPos = D3DXVECTOR2(firewall.pos.x + firewall.size.x / 2, firewall.pos.y + firewall.size.y / 2 + firewall.size.y / 4);
 	firewall.rotate = 2;
 
@@ -94,14 +94,14 @@ void UpdateFireWall(void)
 
 
 	//-----コート外に出ない処理
-	if (firewall.pos.y <= 180 - firewall.size.y * 0.5f)			//上
-		firewall.pos.y = 180 - firewall.size.y * 0.5f;
-	if (firewall.pos.y >= SCREEN_HEIGHT - firewall.size.y - 15 -120)	//下
-		firewall.pos.y = SCREEN_HEIGHT - firewall.size.y - 15 -120;
+	if (firewall.pos.y <= SCREEN_HEIGHT * 0.27f - firewall.size.y * 0.5f)			//上
+		firewall.pos.y = SCREEN_HEIGHT * 0.27f - firewall.size.y * 0.5f;
+	if (firewall.pos.y >= SCREEN_HEIGHT - firewall.size.y - SCREEN_HEIGHT * 0.15f)	//下
+		firewall.pos.y = SCREEN_HEIGHT - firewall.size.y - SCREEN_HEIGHT * 0.15f;
 	if (firewall.pos.x <= bg->clPos.x)								//左
 		firewall.pos.x = bg->clPos.x;
-	if (firewall.pos.x >= SCREEN_WIDTH - firewall.size.x - 5)								//右
-		firewall.pos.x = SCREEN_WIDTH - firewall.size.x - 5;
+	if (firewall.pos.x >= SCREEN_WIDTH - firewall.size.x - SCREEN_WIDTH * 0.003125f)								//右
+		firewall.pos.x = SCREEN_WIDTH - firewall.size.x - SCREEN_WIDTH * 0.003125f;
 
 
 	//-----プレイヤーが投げたボールが、地面,壁に当たらず敵に当たったら敵にダメージを与える(アウト判定)
@@ -112,7 +112,7 @@ void UpdateFireWall(void)
 			if (firewall.pos.y < ball->pos.y + ball->size.y && firewall.pos.y + firewall.size.y > ball->pos.y)
 			{
 				firewall.damagetextureflag = true;
-				firewall_hp->gaugesize.x = firewall_hp->gaugesize.x - (player->atk - firewall.def) * 3.2f;
+				firewall_hp->gaugesize.x = firewall_hp->gaugesize.x - (player->atk - firewall.def) * SCREEN_WIDTH * 0.002f;
 				ball->enemyhitflag = false;
 			}
 		}
@@ -151,7 +151,7 @@ void UpdateFireWall(void)
 				float ax = 0.0f;
 				float ay = 0.0f;
 				float bx = 0.0f;
-				float by = 450.0f;
+				float by = SCREEN_HEIGHT * 0.5f;
 				if (firewall.colPos.x < create->pos.x)
 					//岩石の左側
 				{
