@@ -513,6 +513,9 @@
     <ClCompile Include="floatingfeeling.cpp">
       <Filter>ソース ファイル\map\event</Filter>
     </ClCompile>
+    <ClCompile Include="hackeffect.cpp">
+      <Filter>ソース ファイル\map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -892,6 +895,9 @@
     </ClInclude>
     <ClInclude Include="floatingfeeling.h">
       <Filter>ヘッダー ファイル\map\event</Filter>
+    </ClInclude>
+    <ClInclude Include="hackeffect.h">
+      <Filter>ヘッダー ファイル\map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

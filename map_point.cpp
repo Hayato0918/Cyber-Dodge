@@ -28,6 +28,8 @@ HRESULT InitMapPoint(void)
 	MAP_PLAYER* map_player = GetMapPlayer();
 	MAP_LINE* map_line = GetMapLine();
 
+	map_sb.hackflag = false;
+
 	if (map_player->UDcount == 0)
 	{
 		map_texture = LoadTexture("data/TEXTURE/map/map_point.png");
@@ -310,6 +312,8 @@ void UpdateMapPoint(void)
 					map[map_player->circlenowpos].randomcode = 5;
 					map[map_player->circlenowpos].u = 0.83f;
 				}
+
+				map_sb.hackflag = true;
 			}
 		}
 	}

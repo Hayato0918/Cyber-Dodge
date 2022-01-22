@@ -4,6 +4,8 @@
 #include "sprite.h"
 #include "input.h"
 
+#include "hackeffect.h"
+
 #include "map.h"
 
 //-----マクロ定義
@@ -27,13 +29,15 @@ HRESULT InitMapHack(void)
 	map_hack.UDcount = 0;
 	map_hack.isUse = false;
 
+	InitHackEffect();
+
 	return S_OK;
 }
 
 //-----終了処理
 void UninitMapHack(void)
 {
-
+	UninitHackEffect();
 }
 
 //-----更新処理
@@ -92,6 +96,8 @@ void UpdateMapHack(void)
 			}
 		}
 	}
+
+	UpdateHackEffect();
 }
 
 //-----描画処理
@@ -104,6 +110,8 @@ void DrawMapHack(void)
 		DrawSpriteColor(map_hack.frametexture, map_hack.frame_pos.x, map_hack.frame_pos.y, map_hack.frame_size.x, map_hack.frame_size.y, 0.0f, 0.0f, 1.0f, 1.0f,
 			D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.8f));
 	}
+
+	DrawHackEffect();
 }
 
 MAP_HACK* GetMapHack()

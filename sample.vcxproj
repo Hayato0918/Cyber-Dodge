@@ -171,6 +171,7 @@
     <ClCompile Include="floatingfeeling.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameover.cpp" />
+    <ClCompile Include="hackeffect.cpp" />
     <ClCompile Include="hujyou.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="invade.cpp" />
@@ -262,6 +263,7 @@
     <ClInclude Include="dougyousya.h" />
     <ClInclude Include="enemybreak.h" />
     <ClInclude Include="floatingfeeling.h" />
+    <ClInclude Include="hackeffect.h" />
     <ClInclude Include="hujyou.h" />
     <ClInclude Include="kasoukenkyuukuukan.h" />
     <ClInclude Include="autocatch.h" />
