@@ -145,6 +145,12 @@
     <Filter Include="ヘッダー ファイル\deckmenu">
       <UniqueIdentifier>{3a1fa3bb-96c6-4405-9bdd-11d3cdf550cf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\map\map_save">
+      <UniqueIdentifier>{200326c1-c005-4821-b58d-3bad030a8aaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\map\map_save">
+      <UniqueIdentifier>{3285fe4c-3a1c-44c5-8d88-aec38d7d28ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scene.cpp">
@@ -537,6 +543,15 @@
     <ClCompile Include="map_floor.cpp">
       <Filter>ソース ファイル\map</Filter>
     </ClCompile>
+    <ClCompile Include="map_save.cpp">
+      <Filter>ソース ファイル\map\map_save</Filter>
+    </ClCompile>
+    <ClCompile Include="map_save_bg.cpp">
+      <Filter>ソース ファイル\map\map_save</Filter>
+    </ClCompile>
+    <ClCompile Include="map_save_select.cpp">
+      <Filter>ソース ファイル\map\map_save</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -928,6 +943,15 @@
     </ClInclude>
     <ClInclude Include="map_floor.h">
       <Filter>ヘッダー ファイル\map</Filter>
+    </ClInclude>
+    <ClInclude Include="map_save.h">
+      <Filter>ヘッダー ファイル\map\map_save</Filter>
+    </ClInclude>
+    <ClInclude Include="map_save_bg.h">
+      <Filter>ヘッダー ファイル\map\map_save</Filter>
+    </ClInclude>
+    <ClInclude Include="map_save_select.h">
+      <Filter>ヘッダー ファイル\map\map_save</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

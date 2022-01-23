@@ -6,6 +6,7 @@
 #include "fade.h"
 
 #include "player_hp.h"
+#include "player.h"
 
 #include "map_point.h"
 
@@ -21,17 +22,16 @@ char* name = "savedata.txt";
 //-----セーブ処理
 void Save(void)
 {
-    /*
-        ここでセーブする内容を更新する(各ステータス、スキルの状況を構造体に書き写す)
-    */
+    PLAYER* player = GetPlayer();
+    PLAYERHP* player_hp = GetPlayerHp();
 
     /*データの内容をファイルにセーブ*/
-    if((fp = fopen(name, "wb")) == NULL) {
+    if((fp = fopen(name, "w")) == NULL) {
         printf("ファイルオープンエラー\n");
     }
     else
     { 
-        fwrite(&save, sizeof(save), 1, fp);
+        fprintf(fp, "攻撃力 = %d\n 所持金 = %d\n", player->atk, player->gold);
         fclose(fp);
     }
 }
@@ -40,7 +40,7 @@ void Save(void)
 void Load(void)
 {
     /*ファイルの内容からデータをロード*/
-    if ((fp = fopen(name, "rb")) == NULL) {
+    if ((fp = fopen(name, "r")) == NULL) {
         printf("ファイルオープンエラー\n");
     }
     else

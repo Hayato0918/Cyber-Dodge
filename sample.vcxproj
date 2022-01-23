@@ -185,6 +185,9 @@
     <ClCompile Include="map_player.cpp" />
     <ClCompile Include="map_point.cpp" />
     <ClCompile Include="map_hack.cpp" />
+    <ClCompile Include="map_save.cpp" />
+    <ClCompile Include="map_save_bg.cpp" />
+    <ClCompile Include="map_save_select.cpp" />
     <ClCompile Include="mindhack.cpp" />
     <ClCompile Include="mined.cpp" />
     <ClCompile Include="name.cpp" />
@@ -317,6 +320,9 @@
     <ClInclude Include="map_player.h" />
     <ClInclude Include="map_point.h" />
     <ClInclude Include="map_hack.h" />
+    <ClInclude Include="map_save.h" />
+    <ClInclude Include="map_save_bg.h" />
+    <ClInclude Include="map_save_select.h" />
     <ClInclude Include="mindhack.h" />
     <ClInclude Include="mined.h" />
     <ClInclude Include="name.h" />

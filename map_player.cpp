@@ -14,6 +14,7 @@
 #include "map_line.h"
 #include "hackeffect.h"
 #include "banner_bug.h"
+#include "map_save_bg.h"
 
 //-----マクロ定義
 
@@ -82,9 +83,10 @@ void UpdateMapPlayer(void)
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
 	BANNER_BUGNUM* banner_bugnum = GetBannerBug();
+	MAPSAVE_BG* map_save = GetMapSaveBG();
 
 	//-----マップスクロール
-	if (map_hack->isUse == false)
+	if (map_hack->isUse == false && map_save->drawflag == false)
 	{
 		if (PADUSE == 1)
 		{

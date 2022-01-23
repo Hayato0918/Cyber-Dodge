@@ -6,6 +6,7 @@
 #include "sound.h"
 
 #include "hackeffect.h"
+#include "map_save_bg.h"
 
 #include "map.h"
 #include "soundvolume_select.h"
@@ -51,58 +52,63 @@ void UninitMapHack(void)
 //-----更新処理
 void UpdateMapHack(void)
 {
-	if (PADUSE == 1)
+	MAPSAVE_BG* map_save = GetMapSaveBG();
+
+	if (map_save->drawflag == false)
 	{
-		//TABキーで表示非表示切り替え
-		if (GetKeyboardTrigger(DIK_TAB))
+		if (PADUSE == 1)
 		{
-			PlaySound(map_hack.sound, 0.5f);
+			//TABキーで表示非表示切り替え
+			if (GetKeyboardTrigger(DIK_TAB))
+			{
+				PlaySound(map_hack.sound, 0.5f);
+				if (map_hack.isUse == true)
+					map_hack.isUse = false;
+				else
+					map_hack.isUse = true;
+			}
+
+			//どのシーンに変えるかを選択する
 			if (map_hack.isUse == true)
-				map_hack.isUse = false;
-			else
-				map_hack.isUse = true;
-		}
-
-		//どのシーンに変えるかを選択する
-		if (map_hack.isUse == true)
-		{
-			if (GetKeyboardTrigger(DIK_W) && map_hack.UDcount > 0)
 			{
-				map_hack.UDcount -= 1;
-				map_hack.frame_pos.y -= SCREEN_HEIGHT * 0.132f;		//1600:900→115
-			}
-			if (GetKeyboardTrigger(DIK_S) && map_hack.UDcount < 4)
-			{
-				map_hack.UDcount += 1;
-				map_hack.frame_pos.y += SCREEN_HEIGHT * 0.132f;		//1600:900→115
+				if (GetKeyboardTrigger(DIK_W) && map_hack.UDcount > 0)
+				{
+					map_hack.UDcount -= 1;
+					map_hack.frame_pos.y -= SCREEN_HEIGHT * 0.132f;		//1600:900→115
+				}
+				if (GetKeyboardTrigger(DIK_S) && map_hack.UDcount < 4)
+				{
+					map_hack.UDcount += 1;
+					map_hack.frame_pos.y += SCREEN_HEIGHT * 0.132f;		//1600:900→115
+				}
 			}
 		}
-	}
 
-	if (PADUSE == 0)
-	{
-		//TABキーで表示非表示切り替え
-		if (IsButtonTriggered(0, BUTTON_L))
+		if (PADUSE == 0)
 		{
-			PlaySound(map_hack.sound, 0.5f);
+			//TABキーで表示非表示切り替え
+			if (IsButtonTriggered(0, BUTTON_L))
+			{
+				PlaySound(map_hack.sound, 0.5f);
+				if (map_hack.isUse == true)
+					map_hack.isUse = false;
+				else
+					map_hack.isUse = true;
+			}
+
+			//どのシーンに変えるかを選択する
 			if (map_hack.isUse == true)
-				map_hack.isUse = false;
-			else
-				map_hack.isUse = true;
-		}
-
-		//どのシーンに変えるかを選択する
-		if (map_hack.isUse == true)
-		{
-			if (IsButtonTriggered(0, BUTTON_UP) && map_hack.UDcount > 0)
 			{
-				map_hack.UDcount -= 1;
-				map_hack.frame_pos.y -= SCREEN_HEIGHT * 0.128f;		//1600:900→115
-			}
-			if (IsButtonTriggered(0, BUTTON_DOWN) && map_hack.UDcount < 4)
-			{
-				map_hack.UDcount += 1;
-				map_hack.frame_pos.y += SCREEN_HEIGHT * 0.128f;		//1600:900→115
+				if (IsButtonTriggered(0, BUTTON_UP) && map_hack.UDcount > 0)
+				{
+					map_hack.UDcount -= 1;
+					map_hack.frame_pos.y -= SCREEN_HEIGHT * 0.128f;		//1600:900→115
+				}
+				if (IsButtonTriggered(0, BUTTON_DOWN) && map_hack.UDcount < 4)
+				{
+					map_hack.UDcount += 1;
+					map_hack.frame_pos.y += SCREEN_HEIGHT * 0.128f;		//1600:900→115
+				}
 			}
 		}
 	}

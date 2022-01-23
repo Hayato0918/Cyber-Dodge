@@ -10,6 +10,7 @@
 #include "bugincrease.h"
 #include "banner_bug.h"
 #include "map_hack.h"
+#include "map_save_bg.h"
 
 //-----ƒ}ƒNƒ’è‹`
 

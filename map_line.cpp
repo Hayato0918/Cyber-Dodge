@@ -9,6 +9,7 @@
 
 #include "map_player.h"
 #include "map_hack.h"
+#include "map_save_bg.h"
 
 //-----ƒ}ƒNƒ’è‹`
 
@@ -57,8 +58,9 @@ void UninitMapLine(void)
 void UpdateMapLine(void)
 {
 	MAP_HACK* map_hack = GetMapHack();
+	MAPSAVE_BG* map_save = GetMapSaveBG();
 
-	if (map_hack->isUse == false)
+	if (map_hack->isUse == false && map_save->drawflag == false)
 	{
 		if (PADUSE == 0)
 		{

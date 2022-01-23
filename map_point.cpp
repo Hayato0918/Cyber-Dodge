@@ -11,6 +11,7 @@
 #include "map_player.h"
 #include "map_hack.h"
 #include "map_line.h"
+#include "map_save_bg.h"
 
 //-----ƒ}ƒNƒ’è‹`
 #define map_num 24
@@ -259,8 +260,9 @@ void UpdateMapPoint(void)
 {
 	MAP_HACK* map_hack = GetMapHack();
 	MAP_PLAYER* map_player = GetMapPlayer();
+	MAPSAVE_BG* map_save = GetMapSaveBG();
 
-	if (map_hack->isUse == false)
+	if (map_hack->isUse == false & map_save->drawflag == false)
 	{
 		if (PADUSE == 0)
 		{

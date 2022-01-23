@@ -11,6 +11,7 @@
 #include "map_player.h"
 #include "map_hack.h"
 #include "map_floor.h"
+#include "map_save.h"
 
 #include "banner.h"
 #include "save.h"
@@ -35,6 +36,7 @@ HRESULT InitMap(void)
 	InitMapPlayer();
 	InitMapHack();
 	InitMapFloor();
+	InitMapSave();
 
 	InitRandom();
 
@@ -44,6 +46,7 @@ HRESULT InitMap(void)
 //-----èIóπèàóùä÷êî
 void UninitMap()
 {
+	UninitMapSave();
 	UninitMapFloor();
 	UninitMapPoint();
 	UninitMapPlayer();
@@ -61,11 +64,7 @@ void UpdateMap(void)
 	UpdateMapPlayer();
 	UpdateMapHack();
 	UpdateMapFloor();
-
-	if (GetKeyboardTrigger(DIK_1))
-		Save();
-	if (GetKeyboardTrigger(DIK_2))
-		Load();
+	UpdateMapSave();
 
 
 	if (GetKeyboardTrigger(DIK_3))
@@ -81,4 +80,5 @@ void DrawMap(void)
 	DrawMapPlayer();
 	DrawMapHack();
 	DrawMapFloor();
+	DrawMapSave();
 }
