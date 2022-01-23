@@ -231,6 +231,11 @@ int LoadSound(char* pFilename)
 	return retIndex;
 }
 
+void SetVolume(int index, float vol)
+{
+	g_apSourceVoice[index]->SetVolume(vol);
+}
+
 /*------------------------------------------------------------------------------
    âπê∫ÇÃçƒê∂
 ------------------------------------------------------------------------------*/

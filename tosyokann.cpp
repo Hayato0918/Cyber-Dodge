@@ -60,7 +60,7 @@ void UpdateTosyokann(void)
 		if (IsButtonTriggered(0, BUTTON_X) && tosyokannpoint.count == 1)
 		{
 			player_hp->gaugesize.x = player_hp->framesize.x;
-			player_hp->pos.x = 100.0f;
+			player_hp->pos.x = player_hp->framepos.x;
 			SceneTransition(SCENE_MAP);
 		}
 	}

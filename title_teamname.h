@@ -13,6 +13,8 @@ typedef struct
 	float a;	//a値
 	float time;	//経過時間
 
+	bool timeflag;
+
 }TITLE_TEAMNAME;
 
 //-----プロトタイプ宣言

@@ -52,10 +52,10 @@ void UpdateAvatar(void)
 		//選択した時の効果
 		if (IsButtonTriggered(0, BUTTON_X) && avatarpoint.count == 0)
 		{
-			player_hp->framesize.x += 50;
-			player_hp->framepos.x -= 50;
-			player_hp->gaugesize.x = player_hp->gaugesize.x + 50;
-			player_hp->pos.x = player_hp->pos.x - 50;
+			player_hp->framesize.x += 30 * 3.2f;
+			player_hp->framepos.x -= 30 * 3.2f;
+			player_hp->gaugesize.x = player_hp->gaugesize.x + 30 * 3.2f;
+			player_hp->pos.x = player_hp->pos.x - 30 * 3.2f;
 			SceneTransition(SCENE_MAP);
 		}
 		if (IsButtonTriggered(0, BUTTON_X) && avatarpoint.count == 1)
@@ -86,11 +86,11 @@ void UpdateAvatar(void)
 		//HP及び最大HPを+50する
 		if (GetKeyboardTrigger(DIK_RETURN) && avatarpoint.count == 0)
 		{
-			player_hp->framesize.x += 50;
-			player_hp->framepos.x -= 50;
-			player_hp->gaugesize.x = player_hp->gaugesize.x + 50;
-			player_hp->pos.x = player_hp->pos.x - 50;
-			player_hp->saidai_pos.x = player_hp->pos.x - 50;
+			player_hp->framesize.x += 30;
+			player_hp->framepos.x -= 30;
+			player_hp->gaugesize.x = player_hp->gaugesize.x + 30;
+			player_hp->pos.x = player_hp->pos.x - 30;
+			player_hp->saidai_pos.x = player_hp->pos.x - 30;
 			SceneTransition(SCENE_MAP);
 		}
 		//プレイヤーの攻撃力を+20する

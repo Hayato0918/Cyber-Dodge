@@ -10,6 +10,7 @@
 
 #include "skillrandom.h"
 
+
 //-----マクロ定義
 #define regentime 60		//1s間
 
@@ -68,6 +69,9 @@ void _PlayerRegen(void)
 	//スキル発動後秒数をカウント
 	if (regen.timeflag == true)
 		regen.time = regen.time + 1.0f;
+
+	if (regen.time > 0.f && regen.time < 10.f && regen.number == 0)
+
 	//1sごとに体力を1回復
 	if (regen.time > regentime)
 	{

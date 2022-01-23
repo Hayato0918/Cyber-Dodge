@@ -45,21 +45,49 @@ void UpdateNameKeyboard(void)
 
 	if (name_inputward[name_keyboard.wardnum].drawflag == false && name_keyboard.wardnum < 8)
 	{
-		if (GetKeyboardTrigger(DIK_RETURN))
+		if (PADUSE == 0)
 		{
-					name_inputward[name_keyboard.wardnum].u = 0.037037037f * name_select->LRcount + 0.333333333f * name_select->UDcount;
-					name_inputward[name_keyboard.wardnum].drawflag = true;
-					name_keyboard.wardnum = name_keyboard.wardnum + 1;
+			if (IsButtonTriggered(0, BUTTON_Y))
+			{
+				name_inputward[name_keyboard.wardnum].u = 0.037037037f * name_select->LRcount + 0.333333333f * name_select->UDcount;
+				name_inputward[name_keyboard.wardnum].drawflag = true;
+				name_keyboard.wardnum = name_keyboard.wardnum + 1;
+			}
+		}
+
+		if (PADUSE == 1)
+		{
+			if (GetKeyboardTrigger(DIK_RETURN))
+			{
+				name_inputward[name_keyboard.wardnum].u = 0.037037037f * name_select->LRcount + 0.333333333f * name_select->UDcount;
+				name_inputward[name_keyboard.wardnum].drawflag = true;
+				name_keyboard.wardnum = name_keyboard.wardnum + 1;
+			}
 		}
 	}
 
 	//Œˆ’èˆ—
-	if (GetKeyboardTrigger(DIK_RETURN))
+	if (PADUSE == 0)
 	{
-		if (name_select->UDcount == 2)
+		if (IsButtonTriggered(0, BUTTON_Y))
 		{
-			if (name_select->LRcount == 8)
-				SceneTransition(SCENE_MAP);
+			if (name_select->UDcount == 2)
+			{
+				if (name_select->LRcount == 8)
+					SceneTransition(SCENE_MAP);
+			}
+		}
+	}
+
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_RETURN))
+		{
+			if (name_select->UDcount == 2)
+			{
+				if (name_select->LRcount == 8)
+					SceneTransition(SCENE_MAP);
+			}
 		}
 	}
 }

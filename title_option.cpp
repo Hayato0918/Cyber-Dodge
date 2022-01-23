@@ -37,8 +37,17 @@ void UpdateTitleOption(void)
 	TITLE_SELECT* title_select = GetTitleSelect();
 	TITLE_BG* title_bg = GetTitleBG();
 
-	if (title_select->count == 2 && GetKeyboardTrigger(DIK_RETURN) && title_bg->drawflag == true)
-		SceneTransition(SCENE_OPTION);
+	if (PADUSE == 0)
+	{
+		if (title_select->count == 2 && IsButtonTriggered(0, BUTTON_Y) && title_bg->drawflag == true)
+			SceneTransition(SCENE_OPTION);
+	}
+
+	if (PADUSE == 1)
+	{
+		if (title_select->count == 2 && GetKeyboardTrigger(DIK_RETURN) && title_bg->drawflag == true)
+			SceneTransition(SCENE_OPTION);
+	}
 }
 
 //-----•`‰æˆ—

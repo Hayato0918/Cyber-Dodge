@@ -16,6 +16,8 @@ typedef struct
 
 	int UDcount;		//今何を選んでいるかを管理する変数
 	bool isUse;			//メニューの開閉を管理する変数
+
+	int sound;
 }MAP_HACK;
 
 //-----プロトタイプ宣言

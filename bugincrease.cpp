@@ -2,11 +2,15 @@
 #include "bugincrease.h"
 #include "texture.h"
 #include "sprite.h"
+#include "sound.h"
 
 #include "player.h"
 #include "ball.h"
 #include "map_player.h"
 #include "skillrandom.h"
+
+#include "enemybreak.h"
+#include "soundvolume_select.h"
 
 //-----マクロ定義
 #define gaugedecrease 0.2f	//ゲージの減少量
@@ -27,6 +31,7 @@ BUGNUMBER bugnumber[3];
 HRESULT InitBugIncrease(void)
 {
 	MAP_PLAYER* map_player = GetMapPlayer();
+	SOUNDVOLUME_SELECT* soundvolume_select = GetSoundVolumeSelect();
 
 	if (map_player->gamecount == 1)
 	{
@@ -72,6 +77,14 @@ HRESULT InitBugIncrease(void)
 		bug.numbertexture = LoadTexture("data/TEXTURE/buggauge/Number.png");
 	}
 
+	bug.sound = LoadSound("data/BGM/bugBGM.wav");
+	bug.soundflag = false;
+	SetVolume(bug.sound, soundvolume_select[0].count * 0.1f + 0.5f);
+
+	bug.sesound = LoadSound("data/SE/Warning-Siren.wav");
+	bug.sesoundflag = false;
+	SetVolume(bug.sesound, soundvolume_select[1].count * 0.1f + 0.5f);
+
 	return S_OK;
 }
 
@@ -87,6 +100,7 @@ void UpdateBugIncrease(void)
 	PLAYER* player = GetPlayer();
 	BALL* ball = GetBall();
 	RANDOM* random = GetRandom();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	if(bug.breakflag == false && bug.drawnum > 16)
 		bug.gaugetexture = LoadTexture("data/TEXTURE/buggauge/gaugebar.png");
@@ -94,87 +108,102 @@ void UpdateBugIncrease(void)
 	if (bug.drawnum > 20)
 		bug.drawnum = 20;
 
-	//-----プレイヤーがボールを持ち続けている時間が一定以上になったら、バグゲージを増やす
-	if (bug.gaugeoverflag == false && bug.breakflag == false)
+	if (enemybreak->drawflag == false)
 	{
-		if (ball->playerhaveflag == true && bug.drawnum < gaugenum)
-		{
-			ball->playerhavetime = ball->playerhavetime + 1.0f;
 
-			if (ball->playerhavetime >= gaugeincreasetime)
-			{
-				buggauge[bug.drawnum].drawflag = true;
-				bug.drawnum = bug.drawnum + 1;
-				ball->playerhavetime = 0.f;
-			}
-		}
-	}
-
-	//-----バグゲージが100に達したら、臨界状態にする
-	if (buggauge[19].drawflag == true)
-		bug.gaugeoverflag = true;
-
-	if (bug.gaugeoverflag == true)
-		bug.gaugeovertime = bug.gaugeovertime + 1.f;
-
-	if (bug.gaugeovertime > 480.f)
-	{
-		buggauge[19].drawflag = false;
-		bug.gaugeoverflag = false;
-		bug.gaugeovertime = 0.f;
-	}
-
-	//-----臨界状態でスキルを使ったら、バグゲージを破壊する
-	if (bug.gaugeoverflag == true && player->skilluseflag == true)
-		bug.breakflag = true;
-
-	if (bug.breakflag == true)
-		bug.breaktime = bug.breaktime + 1.f;
-
-	if (bug.breaktime > 900.f)
-	{
-		bug.breakflag = false;
-		bug.breaktime = 0.f;
-	}
-
-	if (bug.drawnum <= 1)
-	{
-		bugnumber[0].drawflag = false;
-		bugnumber[1].drawflag = false;
-		bugnumber[2].drawflag = true;
-	}
-	if (bug.drawnum >= 2 && bug.drawnum <= 19)
-	{
-		bugnumber[0].drawflag = false;
-		bugnumber[1].drawflag = true;
-		bugnumber[2].drawflag = true;
-	}
-	if (bug.drawnum > 19)
-	{
-		bugnumber[0].drawflag = true;
-		bugnumber[1].drawflag = true;
-		bugnumber[2].drawflag = true;
-	}
-
-	if (bug.drawnum > 0)
-		bug.decreaseflag = true;
-	if (bug.drawnum == 0)
-		bug.decreaseflag = false;
-
-	//-----時間経過によるゲージの減少
-	if (bug.decreaseflag == true)
-	{
+		//-----プレイヤーがボールを持ち続けている時間が一定以上になったら、バグゲージを増やす
 		if (bug.gaugeoverflag == false && bug.breakflag == false)
 		{
-			if (ball->playerhaveflag == false && bug.drawnum >= 0)
+			if (ball->playerhaveflag == true && bug.drawnum < gaugenum)
 			{
-				bug.decreasetime = bug.decreasetime + 1.f;
+				ball->playerhavetime = ball->playerhavetime + 1.0f;
 
-				if (bug.decreasetime > gaugedecreasetime)
+				if (ball->playerhavetime >= gaugeincreasetime)
 				{
-					buggauge[bug.drawnum - 1].drawflag = false;
-					bug.drawnum = bug.drawnum - 1;
-					bug.decreasetime = 0.f;
+					buggauge[bug.drawnum].drawflag = true;
+					bug.drawnum = bug.drawnum + 1;
+					ball->playerhavetime = 0.f;
+				}
+			}
+		}
+
+		//-----バグゲージが100に達したら、臨界状態にする
+		if (buggauge[19].drawflag == true)
+			bug.gaugeoverflag = true;
+
+		if (bug.gaugeoverflag == true)
+			bug.gaugeovertime = bug.gaugeovertime + 1.f;
+
+		if (bug.gaugeovertime > 0.f && bug.gaugeovertime < 10.f)
+		{
+			PlaySound(bug.sesound, 0.5f);
+		}
+
+		if (bug.gaugeovertime > 480.f)
+		{
+			buggauge[19].drawflag = false;
+			bug.gaugeoverflag = false;
+			bug.gaugeovertime = 0.f;
+		}
+
+		//-----臨界状態でスキルを使ったら、バグゲージを破壊する
+		if (bug.gaugeoverflag == true && player->skilluseflag == true)
+			bug.breakflag = true;
+
+		if (bug.breakflag == true)
+			bug.breaktime = bug.breaktime + 1.f;
+
+		if (bug.breaktime > 900.f)
+		{
+			bug.breakflag = false;
+			StopSound(bug.sound);
+			bug.breaktime = 0.f;
+		}
+
+		if (bug.breaktime > 0.f && bug.breaktime < 10.f)
+		{
+			PlaySound(bug.sound, -1);
+		}
+
+		if (bug.drawnum <= 1)
+		{
+			bugnumber[0].drawflag = false;
+			bugnumber[1].drawflag = false;
+			bugnumber[2].drawflag = true;
+		}
+		if (bug.drawnum >= 2 && bug.drawnum <= 19)
+		{
+			bugnumber[0].drawflag = false;
+			bugnumber[1].drawflag = true;
+			bugnumber[2].drawflag = true;
+		}
+		if (bug.drawnum > 19)
+		{
+			bugnumber[0].drawflag = true;
+			bugnumber[1].drawflag = true;
+			bugnumber[2].drawflag = true;
+		}
+
+		if (bug.drawnum > 0)
+			bug.decreaseflag = true;
+		if (bug.drawnum == 0)
+			bug.decreaseflag = false;
+
+		//-----時間経過によるゲージの減少
+		if (bug.decreaseflag == true)
+		{
+			if (bug.gaugeoverflag == false && bug.breakflag == false)
+			{
+				if (ball->playerhaveflag == false && bug.drawnum >= 0)
+				{
+					bug.decreasetime = bug.decreasetime + 1.f;
+
+					if (bug.decreasetime > gaugedecreasetime)
+					{
+						buggauge[bug.drawnum - 1].drawflag = false;
+						bug.drawnum = bug.drawnum - 1;
+						bug.decreasetime = 0.f;
+					}
 				}
 			}
 		}

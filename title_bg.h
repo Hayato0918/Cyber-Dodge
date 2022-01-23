@@ -13,6 +13,10 @@ typedef struct
 	D3DXCOLOR color;
 	float a;	//a値
 	bool drawflag;
+
+	int sound;
+	bool soundflag;
+	bool soundonce;
 }TITLE_BG;
 
 //-----プロトタイプ宣言

@@ -20,7 +20,7 @@ HRESULT InitBugRandom(void)
 
 	bugrandom.code = (rand() % bugrandom.num) + 1;
 
-	bugrandom.code = 1;
+	bugrandom.code = 2;
 
 	return S_OK;
 }

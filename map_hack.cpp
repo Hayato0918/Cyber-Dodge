@@ -3,10 +3,13 @@
 #include "texture.h"
 #include "sprite.h"
 #include "input.h"
+#include "sound.h"
 
 #include "hackeffect.h"
 
 #include "map.h"
+#include "soundvolume_select.h"
+
 
 //-----マクロ定義
 
@@ -18,6 +21,8 @@ MAP_HACK map_hack;
 //-----初期化処理
 HRESULT InitMapHack(void)
 {
+	SOUNDVOLUME_SELECT* soundvolume_select = GetSoundVolumeSelect();
+
 	map_hack.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.203f, SCREEN_HEIGHT * 0.535f);		//1600:900→325:450
 	map_hack.size = D3DXVECTOR2(SCREEN_WIDTH * 0.375f, SCREEN_HEIGHT * 0.9f);		//1600:900→600:850
 	map_hack.texture = LoadTexture("data/TEXTURE/hackingmenu/hackingmenu.png");
@@ -28,6 +33,9 @@ HRESULT InitMapHack(void)
 
 	map_hack.UDcount = 0;
 	map_hack.isUse = false;
+
+	map_hack.sound = LoadSound("data/SE/hackmenu.wav");
+	SetVolume(map_hack.sound, soundvolume_select[1].count * 0.1f + 0.5f);
 
 	InitHackEffect();
 
@@ -48,6 +56,7 @@ void UpdateMapHack(void)
 		//TABキーで表示非表示切り替え
 		if (GetKeyboardTrigger(DIK_TAB))
 		{
+			PlaySound(map_hack.sound, 0.5f);
 			if (map_hack.isUse == true)
 				map_hack.isUse = false;
 			else
@@ -75,6 +84,7 @@ void UpdateMapHack(void)
 		//TABキーで表示非表示切り替え
 		if (IsButtonTriggered(0, BUTTON_L))
 		{
+			PlaySound(map_hack.sound, 0.5f);
 			if (map_hack.isUse == true)
 				map_hack.isUse = false;
 			else

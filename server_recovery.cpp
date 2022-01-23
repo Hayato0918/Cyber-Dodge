@@ -8,6 +8,7 @@
 
 #include "server_recovery.h"
 #include "bugincrease.h"
+#include "banner_bug.h"
 
 SERVER_RECOVERY server_recovery;
 SERVER_POINT server_point;
@@ -15,6 +16,8 @@ SERVER_POINT server_point;
 void InitServerRecovery(void)
 {
 	BUG* bug = GetBugIncrease();
+	BUGGAUGE* buggauge = GetBugGauge();
+	BANNER_BUGNUM* banner_bugnum = GetBannerBug();
 
 	server_recovery.pos = D3DXVECTOR2(0.0f, 0.0f);
 	server_recovery.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -24,7 +27,12 @@ void InitServerRecovery(void)
 	server_point.size = D3DXVECTOR2(260.0f, 80.0f);
 	server_point.texture = LoadTexture("data/TEXTURE/rest_frame.png");
 
-	bug->gaugesize.x = 0.0f; //	バグゲージを0に戻す
+	for (int i = bug->drawnum; i > 0; i--)
+	{
+		buggauge[bug->drawnum].drawflag = false;
+		banner_bugnum->bugnum = banner_bugnum->bugnum - 5;
+		bug->drawnum = bug->drawnum - 1;
+	}
 
 }
 

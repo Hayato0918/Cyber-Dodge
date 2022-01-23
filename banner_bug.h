@@ -25,3 +25,4 @@ HRESULT InitBannerBug(void);
 void UninitBannerBug(void);
 void UpdateBannerBug(void);
 void DrawBannerBug(void);
+BANNER_BUGNUM* GetBannerBug();

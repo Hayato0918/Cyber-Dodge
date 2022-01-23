@@ -4,6 +4,9 @@
 #include "texture.h"
 #include "sprite.h"
 #include "fade.h"
+#include "sound.h"
+
+#include "soundvolume_select.h"
 
 //-----マクロ定義
 
@@ -15,9 +18,15 @@ MAP_BG map_bg;
 //-----初期化処理
 HRESULT InitMapBG(void)
 {
+	SOUNDVOLUME_SELECT* soundvolume_select = GetSoundVolumeSelect();
+
 	map_bg.pos = D3DXVECTOR2(0.0f, 0.0f);
 	map_bg.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
 	map_bg.texture = LoadTexture("data/TEXTURE/map/bg.jpg");
+	map_bg.sound = LoadSound("data/BGM/mapBGM.wav");
+
+	SetVolume(map_bg.sound, soundvolume_select[0].count * 0.1f + 0.5f);
+	PlaySound(map_bg.sound, -1);
 
 	return S_OK;
 }
@@ -25,7 +34,7 @@ HRESULT InitMapBG(void)
 //-----終了処理
 void UninitMapBG(void)
 {
-
+	StopSoundAll();
 }
 
 //-----更新処理

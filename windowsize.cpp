@@ -15,13 +15,8 @@
 //-----‰Šú‰»ˆ—
 HRESULT InitWindowSize(void)
 {
-	OPTION_SELECT* option_select = GetOptionSelect();
-
-	if (option_select->count == 0)
-	{
-		InitWindowSizeBG();
-		InitWindowSizeSelect();
-	}
+	InitWindowSizeBG();
+	InitWindowSizeSelect();
 
 	return S_OK;
 }
@@ -29,13 +24,8 @@ HRESULT InitWindowSize(void)
 //-----I—¹ˆ—
 void UninitWindowSize(void)
 {
-	OPTION_SELECT* option_select = GetOptionSelect();
-
-	if (option_select->count == 0)
-	{
-		UninitWindowSizeBG();
-		UninitWindowSizeSelect();
-	}
+	UninitWindowSizeBG();
+	UninitWindowSizeSelect();
 
 }
 

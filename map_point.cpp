@@ -243,7 +243,6 @@ HRESULT InitMapPoint(void)
 		//ボスマス
 		map_sb.bosssize = D3DXVECTOR2(120, 120);
 		map_sb.bosspos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f - map_sb.bosssize.x, 1700);
-
 	}
 
 	return S_OK;
@@ -263,26 +262,82 @@ void UpdateMapPoint(void)
 
 	if (map_hack->isUse == false)
 	{
-		//-----マップスクロール
-		if (GetKeyboardPress(DIK_W))
+		if (PADUSE == 0)
 		{
-			for (int i = 0; i < map_num; i++)
-				map[i].pos.y += SCREEN_HEIGHT * 0.0033333f;
-			map_sb.startpos.y += SCREEN_HEIGHT * 0.0033333f;
-			map_sb.bosspos.y += SCREEN_HEIGHT * 0.0033333f;
+			//-----マップスクロール
+			if (IsButtonPressed(0, BUTTON_UP))
+			{
+				for (int i = 0; i < map_num; i++)
+					map[i].pos.y += 5;
+				map_sb.startpos.y += 5;
+				map_sb.bosspos.y += 5;
+			}
+			if (IsButtonPressed(0, BUTTON_DOWN))
+			{
+				for (int i = 0; i < map_num; i++)
+					map[i].pos.y -= 5;
+				map_sb.startpos.y -= 5;
+				map_sb.bosspos.y -= 5;
+			}
 		}
-		if (GetKeyboardPress(DIK_S))
+
+		if (PADUSE == 1)
 		{
-			for (int i = 0; i < map_num; i++)
-				map[i].pos.y -= SCREEN_HEIGHT * 0.0033333f;
-			map_sb.startpos.y -= SCREEN_HEIGHT * 0.0033333f;
-			map_sb.bosspos.y -= SCREEN_HEIGHT * 0.0033333f;
+			//-----マップスクロール
+			if (GetKeyboardPress(DIK_W))
+			{
+				for (int i = 0; i < map_num; i++)
+					map[i].pos.y += 5;
+				map_sb.startpos.y += 5;
+				map_sb.bosspos.y += 5;
+			}
+			if (GetKeyboardPress(DIK_S))
+			{
+				for (int i = 0; i < map_num; i++)
+					map[i].pos.y -= 5;
+				map_sb.startpos.y -= 5;
+				map_sb.bosspos.y -= 5;
+			}
 		}
 	}
 
 	//マスをハッキングして、任意のマスに変える
 	if (map_hack->isUse == true && map_player->UDcount < 7)
 	{
+		if (PADUSE == 0)
+		{
+			if (IsButtonTriggered(0, BUTTON_Y))
+			{
+				if (map_hack->UDcount == 0)		//通常敵マス
+				{
+					map[map_player->circlenowpos].randomcode = 1;
+					map[map_player->circlenowpos].u = 0.0f;
+				}
+				if (map_hack->UDcount == 1)		//強敵マス
+				{
+					map[map_player->circlenowpos].randomcode = 2;
+					map[map_player->circlenowpos].u = 0.166f;
+				}
+				if (map_hack->UDcount == 2)		//休憩マス
+				{
+					map[map_player->circlenowpos].randomcode = 3;
+					map[map_player->circlenowpos].u = 0.498f;
+				}
+				if (map_hack->UDcount == 3)		//イベントマス
+				{
+					map[map_player->circlenowpos].randomcode = 4;
+					map[map_player->circlenowpos].u = 0.664f;
+				}
+				if (map_hack->UDcount == 4)		//商人マス
+				{
+					map[map_player->circlenowpos].randomcode = 5;
+					map[map_player->circlenowpos].u = 0.83f;
+				}
+
+				map_sb.hackflag = true;
+			}
+		}
+
 		if (PADUSE == 1)
 		{
 			if (GetKeyboardTrigger(DIK_RETURN))

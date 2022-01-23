@@ -37,8 +37,17 @@ void UpdateTitleExit(void)
 	TITLE_SELECT* title_select = GetTitleSelect();
 	TITLE_BG* title_bg = GetTitleBG();
 
-	if (title_select->count == 3 && GetKeyboardTrigger(DIK_RETURN) && title_bg->drawflag == true)
-		exit(0);
+	if (PADUSE == 0)
+	{
+		if (title_select->count == 3 && IsButtonTriggered(0, BUTTON_Y) && title_bg->drawflag == true)
+			exit(0);
+	}
+
+	if (PADUSE == 1)
+	{
+		if (title_select->count == 3 && GetKeyboardTrigger(DIK_RETURN) && title_bg->drawflag == true)
+			exit(0);
+	}
 }
 
 //-----•`‰æˆ—

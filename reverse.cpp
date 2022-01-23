@@ -26,7 +26,7 @@ void _Reverse(void)
 	BUGRANDOM* bugrandom = GetBugRandom();
 
 	//バグゲージが100以上になったらプレイヤーの操作を反転させる
-	if (bugrandom->code == 3 && bug->gaugesize.x >= 100 && reverse.use == false)
+	if (bugrandom->code == 7 && bug->breakflag == true && reverse.use == false)
 	{
 		reverse.use = true;
 	}

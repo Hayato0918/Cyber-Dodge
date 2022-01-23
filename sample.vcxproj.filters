@@ -133,6 +133,18 @@
     <Filter Include="ヘッダー ファイル\option\windowsize">
       <UniqueIdentifier>{d1d16142-8bd6-4731-ac53-b50b9d783458}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\option\sound">
+      <UniqueIdentifier>{ee2d5a19-d773-4b45-b553-d0270af4c940}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\option\sound">
+      <UniqueIdentifier>{546a10fd-c0da-4136-a0de-c72bd3246f5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\deckmenu">
+      <UniqueIdentifier>{b5e3e2ef-b4f5-42e9-9f17-ac1a277eae8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\deckmenu">
+      <UniqueIdentifier>{3a1fa3bb-96c6-4405-9bdd-11d3cdf550cf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scene.cpp">
@@ -245,9 +257,6 @@
     </ClCompile>
     <ClCompile Include="regen.cpp">
       <Filter>ソース ファイル\bug</Filter>
-    </ClCompile>
-    <ClCompile Include="deckmenu.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="enemy_powerdown.cpp">
       <Filter>ソース ファイル\skill</Filter>
@@ -459,9 +468,6 @@
     <ClCompile Include="event.cpp">
       <Filter>ソース ファイル\map\event\system</Filter>
     </ClCompile>
-    <ClCompile Include="eventrandom.cpp">
-      <Filter>ソース ファイル\map\event\system</Filter>
-    </ClCompile>
     <ClCompile Include="kasoukenkyuukuukan.cpp">
       <Filter>ソース ファイル\map\event</Filter>
     </ClCompile>
@@ -514,6 +520,21 @@
       <Filter>ソース ファイル\map\event</Filter>
     </ClCompile>
     <ClCompile Include="hackeffect.cpp">
+      <Filter>ソース ファイル\map</Filter>
+    </ClCompile>
+    <ClCompile Include="soundvolume_bg.cpp">
+      <Filter>ソース ファイル\option\sound</Filter>
+    </ClCompile>
+    <ClCompile Include="soundvolume_select.cpp">
+      <Filter>ソース ファイル\option\sound</Filter>
+    </ClCompile>
+    <ClCompile Include="soundvolume.cpp">
+      <Filter>ソース ファイル\option\sound</Filter>
+    </ClCompile>
+    <ClCompile Include="deckmenu.cpp">
+      <Filter>ソース ファイル\deckmenu</Filter>
+    </ClCompile>
+    <ClCompile Include="map_floor.cpp">
       <Filter>ソース ファイル\map</Filter>
     </ClCompile>
   </ItemGroup>
@@ -628,9 +649,6 @@
     </ClInclude>
     <ClInclude Include="regen.h">
       <Filter>ヘッダー ファイル\bug</Filter>
-    </ClInclude>
-    <ClInclude Include="deckmenu.h">
-      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="enemy_powerdown.h">
       <Filter>ヘッダー ファイル\skill</Filter>
@@ -842,9 +860,6 @@
     <ClInclude Include="event.h">
       <Filter>ヘッダー ファイル\map\event\system</Filter>
     </ClInclude>
-    <ClInclude Include="eventrandom.h">
-      <Filter>ヘッダー ファイル\map\event\system</Filter>
-    </ClInclude>
     <ClInclude Include="kasoukenkyuukuukan.h">
       <Filter>ヘッダー ファイル\map\event</Filter>
     </ClInclude>
@@ -897,6 +912,21 @@
       <Filter>ヘッダー ファイル\map\event</Filter>
     </ClInclude>
     <ClInclude Include="hackeffect.h">
+      <Filter>ヘッダー ファイル\map</Filter>
+    </ClInclude>
+    <ClInclude Include="soundvolume_bg.h">
+      <Filter>ヘッダー ファイル\option\sound</Filter>
+    </ClInclude>
+    <ClInclude Include="soundvolume_select.h">
+      <Filter>ヘッダー ファイル\option\sound</Filter>
+    </ClInclude>
+    <ClInclude Include="soundvolume.h">
+      <Filter>ヘッダー ファイル\option\sound</Filter>
+    </ClInclude>
+    <ClInclude Include="deckmenu.h">
+      <Filter>ヘッダー ファイル\deckmenu</Filter>
+    </ClInclude>
+    <ClInclude Include="map_floor.h">
       <Filter>ヘッダー ファイル\map</Filter>
     </ClInclude>
   </ItemGroup>

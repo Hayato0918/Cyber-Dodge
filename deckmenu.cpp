@@ -13,8 +13,8 @@
 
 #define CARD_SPACE_WIDTH 300.0f
 #define CARD_SPACE_HIGHT 300.0f
-#define ynum 8
-#define xnum 4
+#define ynum 12
+#define xnum 3
 
 //-----プロトタイプ宣言
 DECKMENUCARD deckmenu_card[ynum][xnum];
@@ -200,10 +200,10 @@ HRESULT InitDeckMenu(void)
 	g_Selection.LRcount = 0;
 	g_Selection.UDcount = 0;
 
-	g_number.pos = D3DXVECTOR2(1320.0f, 140.0f);
-	g_number.size = D3DXVECTOR2(80.0f, 80.0f);
-	g_number.texture = LoadTexture("data/TEXTURE/deckmenu/number.jpg");
-	g_number.u = 0.0f;
+	g_number.pos = D3DXVECTOR2(1415.f, 115.0f);
+	g_number.size = D3DXVECTOR2(60.0f, 60.0f);
+	g_number.texture = LoadTexture("data/TEXTURE/number.png");
+	g_number.u = 0.2f;
 	g_number.v = 0.0f;
 	g_number.uw = 0.2f;
 	g_number.vh = 0.5f;
@@ -221,14 +221,40 @@ void UninitDeckMenu(void)
 void UpdateDeckMenu(void)
 {
 	// ページ数切り替え処理
-	if (g_Selection.UDcount % 2 == 0)
+	if (g_Selection.UDcount == 0)
 	{
-		g_number.u = 0.2f * g_Selection.UDcount * 0.5f;
+		g_number.u = 0.2f;
+		g_number.v = 0.0f;
 	}
-
-	if (g_Selection.UDcount % 2 == 1)
+	if (g_Selection.UDcount == 2)
 	{
-		g_number.u = 0.2f * (g_Selection.UDcount - 1) * 0.5f;
+		g_number.u = 0.4f;
+		g_number.v = 0.0f;
+	}
+	if (g_Selection.UDcount == 4)
+	{
+		g_number.u = 0.6f;
+		g_number.v = 0.0f;
+	}
+	if (g_Selection.UDcount == 6)
+	{
+		g_number.u = 0.8f;
+		g_number.v = 0.0f;
+	}
+	if (g_Selection.UDcount == 8)
+	{
+		g_number.u = 0.0f;
+		g_number.v = 0.5f;
+	}
+	if (g_Selection.UDcount == 10)
+	{
+		g_number.u = 0.2f;
+		g_number.v = 0.5f;
+	}
+	if (g_Selection.UDcount == 12)
+	{
+		g_number.u = 0.4f;
+		g_number.v = 0.5f;
 	}
 
 	//右移動
@@ -250,7 +276,7 @@ void UpdateDeckMenu(void)
 	{
 		g_Selection.UDcount = g_Selection.UDcount + 1;
 		//2段を区切りに、カードの位置を移動
-		if (g_Selection.UDcount == 2 || g_Selection.UDcount == 4 || g_Selection.UDcount == 6)
+		if (g_Selection.UDcount == 2 || g_Selection.UDcount == 4 || g_Selection.UDcount == 6 || g_Selection.UDcount == 8 || g_Selection.UDcount == 10 || g_Selection.UDcount == 12)
 		{
 			for (int y = 0; y < ynum; y++)
 			{
@@ -266,7 +292,8 @@ void UpdateDeckMenu(void)
 	{
 		g_Selection.UDcount = g_Selection.UDcount - 1;
 		//2段を区切りに、カードの位置を移動
-		if (g_Selection.UDcount == 1 || g_Selection.UDcount == 3 || g_Selection.UDcount == 5)
+		if (g_Selection.UDcount == 1 || g_Selection.UDcount == 3 || g_Selection.UDcount == 5 || g_Selection.UDcount == 7
+																								|| g_Selection.UDcount == 9|| g_Selection.UDcount == 11)
 		{
 			for (int y = 0; y < ynum; y++)
 			{
@@ -276,17 +303,6 @@ void UpdateDeckMenu(void)
 		}
 		g_Selection.pos = D3DXVECTOR2(deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.x,
 			deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.y);
-	}
-
-	//Speceキーを押したら、立ち去るコマンドまで飛ぶ
-	if (GetKeyboardTrigger(DIK_SPACE))
-	{
-		deckmenu.use = true;
-		g_Selection.use = false;
-		g_Selection.pos = D3DXVECTOR2(SCREEN_WIDTH - 285.0f, 545.0f);
-		g_Selection.size = D3DXVECTOR2(185.0f, 315.0f);
-		g_Selection.UDcount = 0;
-		g_Selection.LRcount = 0;
 	}
 
 	//「立ち去る」コマンドの場所でEnterキーを押したらMAPに戻る

@@ -9,9 +9,11 @@
 #include "input.h"
 #include "fade.h"
 
+#include "bugincrease.h"
 #include "map_hack.h"
 #include "map_line.h"
 #include "hackeffect.h"
+#include "banner_bug.h"
 
 //-----マクロ定義
 
@@ -30,6 +32,9 @@ HRESULT InitMapPlayer(void)
 		//プレイヤーの初期化
 		if (map_player.UDcount == 0)
 		{
+			if (map_player.gamecount == 0)
+				map_player.floor = 1;
+
 			map_player.size = D3DXVECTOR2(SCREEN_WIDTH * 0.0625f, SCREEN_HEIGHT * 0.11111f);
 			map_player.pos = D3DXVECTOR2(map_sb->startpos.x, map_sb->startpos.y);
 			map_player.texture = LoadTexture("data/TEXTURE/map_player.png");
@@ -74,6 +79,9 @@ void UpdateMapPlayer(void)
 	MAP_SB* map_sb = GetMapSB();
 	MAP_LINE* map_line = GetMapLine();
 	HACKEFFECT* hackeffect = GetHackEffect();
+	BUG* bug = GetBugIncrease();
+	BUGGAUGE* buggauge = GetBugGauge();
+	BANNER_BUGNUM* banner_bugnum = GetBannerBug();
 
 	//-----マップスクロール
 	if (map_hack->isUse == false)
@@ -82,13 +90,13 @@ void UpdateMapPlayer(void)
 		{
 			if (GetKeyboardPress(DIK_W))	//上
 			{
-				map_player.pos.y += SCREEN_HEIGHT * 0.0033333f;
-				map_player.circlepos.y += SCREEN_HEIGHT * 0.0033333f;
+				map_player.pos.y += 5;
+				map_player.circlepos.y += 5;
 			}
 			if (GetKeyboardPress(DIK_S))	//下
 			{
-				map_player.pos.y -= SCREEN_HEIGHT * 0.0033333f;
-				map_player.circlepos.y -= SCREEN_HEIGHT * 0.0033333f;
+				map_player.pos.y -= 5;
+				map_player.circlepos.y -= 5;
 			}
 
 			if(map_player.nextflag == true)
@@ -104,6 +112,8 @@ void UpdateMapPlayer(void)
 					{
 						map_player.pos = D3DXVECTOR2(map_sb->bosspos.x, map_sb->bosspos.y);
 						map_player.nowpos = 22;
+						map_player.encount = 3;
+						SceneTransition(SCENE_GAME);
 						map_player.nextflag = false;
 					}
 				}
@@ -492,6 +502,8 @@ void UpdateMapPlayer(void)
 					{
 						map_player.pos = D3DXVECTOR2(map_sb->bosspos.x, map_sb->bosspos.y);
 						map_player.nowpos = 21;
+						map_player.encount = 3;
+						SceneTransition(SCENE_GAME);
 						map_player.nextflag = false;
 					}
 				}
@@ -874,8 +886,10 @@ void UpdateMapPlayer(void)
 					if (GetKeyboardTrigger(DIK_RETURN))
 					{
 						map_player.pos = D3DXVECTOR2(map_sb->bosspos.x, map_sb->bosspos.y);
-						map_player.nextflag = false;
 						map_player.nowpos = 19;
+						map_player.encount = 3;
+						SceneTransition(SCENE_GAME);
+						map_player.nextflag = false;
 					}
 				}
 
@@ -1186,6 +1200,8 @@ void UpdateMapPlayer(void)
 					{
 						map_player.pos = D3DXVECTOR2(map_sb->bosspos.x, map_sb->bosspos.y);
 						map_player.nowpos = 25;
+						map_player.encount = 3;
+						SceneTransition(SCENE_GAME);
 						map_player.nextflag = false;
 					}
 				}
@@ -1733,7 +1749,6 @@ void UpdateMapPlayer(void)
 							map_player.nextflag = false;
 						}
 					}
-
 				}
 			}
 		}
@@ -1746,8 +1761,7 @@ void UpdateMapPlayer(void)
 				if (map[map_player.nowpos - 1].randomcode == 1)	//通常敵マス
 				{
 					map_player.gamecount = map_player.gamecount + 1;	//ゲームシーンに入った回数を記録する
-					map_player.encount = (rand() % 3) + 1;	//ここで出現する敵をランダムに決める
-					map_player.encount = 1;
+					map_player.encount = (rand() % 2) + 1;	//ここで出現する敵をランダムに決める
 					SceneTransition(SCENE_GAME);
 				}
 				if (map[map_player.nowpos - 1].randomcode == 2)	//強敵マス
@@ -1755,7 +1769,10 @@ void UpdateMapPlayer(void)
 				if (map[map_player.nowpos - 1].randomcode == 3)	//休憩マス
 					SceneTransition(SCENE_REST);
 				if (map[map_player.nowpos - 1].randomcode == 4)	//イベントマス
+				{
+					map_player.eventcode = (rand() % 9) + 1;	//ここでイベントをランダムに決める
 					SceneTransition(SCENE_EVENT);
+				}
 				if (map[map_player.nowpos - 1].randomcode == 5)	//商人マス
 					SceneTransition(SCENE_SHOP);
 			}

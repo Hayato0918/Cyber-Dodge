@@ -28,6 +28,35 @@ void UninitWindowSizeSelect(void)
 
 void UpdateWindowSizeSelect(void)
 {
+	if (PADUSE == 0)
+	{
+		if (IsButtonTriggered(0, BUTTON_UP) && windowsize_select.count > 0)		//è„à⁄ìÆ
+		{
+			windowsize_select.pos.y -= 100;	//1600:900Å®500
+			windowsize_select.count -= 1;
+		}
+		if (IsButtonTriggered(0, BUTTON_DOWN) && windowsize_select.count < 3)		//â∫à⁄ìÆ
+		{
+			windowsize_select.pos.y += 100;	//1600:900Å®500
+			windowsize_select.count += 1;
+		}
+		if (IsButtonTriggered(0, BUTTON_Y) && windowsize_select.count == 1)
+		{
+			windowsize_select.x = 1920;
+			windowsize_select.y = 1080;
+		}
+		if (IsButtonTriggered(0, BUTTON_Y) && windowsize_select.count == 2)
+		{
+			windowsize_select.x = 1600;
+			windowsize_select.y = 900;
+		}
+		if (IsButtonTriggered(0, BUTTON_Y) && windowsize_select.count == 3)
+		{
+			windowsize_select.x = 1280;
+			windowsize_select.y = 720;
+		}
+	}
+
 	if (PADUSE == 1)
 	{
 		if (GetKeyboardTrigger(DIK_W) && windowsize_select.count > 0)		//è„à⁄ìÆ
@@ -56,10 +85,6 @@ void UpdateWindowSizeSelect(void)
 			windowsize_select.y = 720;
 		}
 	}
-
-
-
-
 }
 
 void DrawWindowSizeSelect(void)

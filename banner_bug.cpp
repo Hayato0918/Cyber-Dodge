@@ -52,12 +52,15 @@ void UpdateBannerBug(void)
 	if (map_player->UDcount > 1)
 		banner_bugnum.bugnum = bug->drawnum * 5;
 
+	if (banner_bugnum.bugnum > 100)
+		banner_bugnum.bugnum = 100;
+
 
 	banner_bugnum.a = banner_bugnum.bugnum * 0.01f;
 	banner_bugnum.b = (banner_bugnum.bugnum - banner_bugnum.a * 100) * 0.1f;
 	banner_bugnum.c = banner_bugnum.bugnum - banner_bugnum.a * 100 - banner_bugnum.b * 10;
 
-	//HP‚Ì100‚ÌˆÊ
+	//bug‚Ì100‚ÌˆÊ
 	if (banner_bugnum.a < 5)
 	{
 		banner_bug[0].u = 0.2f * banner_bugnum.a;
@@ -72,7 +75,7 @@ void UpdateBannerBug(void)
 		banner_bug[0].drawflag = false;
 	if (banner_bugnum.a > 0)
 		banner_bug[0].drawflag = true;
-	//HP‚Ì10‚ÌˆÊ
+	//bug‚Ì10‚ÌˆÊ
 	if (banner_bugnum.b < 5)
 	{
 		banner_bug[1].u = 0.2f * banner_bugnum.b;
@@ -87,7 +90,7 @@ void UpdateBannerBug(void)
 		banner_bug[1].drawflag = false;
 	if (banner_bugnum.b > 0)
 		banner_bug[1].drawflag = true;
-	//HP‚Ì1‚ÌˆÊ
+	//bug‚Ì1‚ÌˆÊ
 	if (banner_bugnum.c < 5)
 	{
 		banner_bug[2].u = 0.2f * banner_bugnum.c;
@@ -111,4 +114,9 @@ void DrawBannerBug(void)
 		DrawSpriteLeftTop(banner_bugnum.texture, banner_bug[i].pos.x, banner_bug[i].pos.y, banner_bug[i].size.x, banner_bug[i].size.y,
 			banner_bug[i].u, banner_bug[i].v, 0.2f, 0.5f);
 	}
+}
+
+BANNER_BUGNUM* GetBannerBug()
+{
+	return &banner_bugnum;
 }

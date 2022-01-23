@@ -16,6 +16,8 @@ typedef struct
 
 	bool bugincrease;
 	int bugdrawnum;
+
+	int sound;
 }PLAYERREGEN;
 
 //-----プロトタイプ宣言

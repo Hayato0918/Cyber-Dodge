@@ -19,6 +19,9 @@
 #include "map_player.h"
 #include "ballturnaround.h"
 
+#include "sound.h"
+#include "soundvolume_select.h"
+
 //-----マクロ定義
 #define auto_ctime_2 60		//1s間
 
@@ -35,6 +38,8 @@ int g_balltime[2];
 //-----初期化処理
 HRESULT InitBall(void)
 {
+	SOUNDVOLUME_SELECT* soundvolume_select = GetSoundVolumeSelect();
+
 	ball.pos = D3DXVECTOR2(500.0f, 360.0f);
 	ball.size = D3DXVECTOR2(60.0f, 60.0f);
 	ball.move = D3DXVECTOR2(12.0f, -3.5f);
@@ -56,6 +61,9 @@ HRESULT InitBall(void)
 
 	g_balltime[0] = 0;
 	g_balltime[1] = 0;
+
+	ball.throwSE = LoadSound("data/SE/throw.wav");
+	SetVolume(ball.throwSE, soundvolume_select[1].count * 0.1f + 0.5f);
 
 	return S_OK;
 }
@@ -404,6 +412,8 @@ void P_Throw(void)
 		//-----プレイヤーの投げ動作
 		if (IsButtonTriggered(0, BUTTON_R2) && ball.throwflag == false && ball.playerhaveflag == true)
 		{
+			PlaySound(ball.throwSE, 0.5f);
+
 			ball.playerhavetime = 0.0f;
 			ball.fallpos = player->pos.y + player->size.y;
 			ball.fallflag = false;
@@ -435,6 +445,8 @@ void P_Throw(void)
 		//-----プレイヤーの投げ動作
 		if (GetKeyboardTrigger(DIK_L) && ball.throwflag == false && ball.playerhaveflag == true)
 		{
+			PlaySound(ball.throwSE, 0.5f);
+
 			ball.playerhavetime = 0.0f;
 			ball.fallpos = player->pos.y + player->size.y;
 			ball.fallflag = false;

@@ -13,6 +13,9 @@ typedef struct
 	D3DXVECTOR2 clPos;
 	D3DXVECTOR2 clSize;
 	int clTexture;
+
+	int sound;
+	bool soundflag;
 }BG;
 
 //-----プロトタイプ宣言

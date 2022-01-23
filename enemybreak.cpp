@@ -18,6 +18,7 @@
 #include "skillrandom.h"
 #include "map_player.h"
 #include "player.h"
+#include "bugincrease.h"
 
 ENEMYBREAK enemybreak;
 GETSKILL getskill;
@@ -72,6 +73,7 @@ void UpdateEnemyBreak(void)
 	RANDOM* random = GetRandom();
 	PLAYER* player = GetPlayer();
 	MAP_PLAYER* map_player = GetMapPlayer();
+	BUG* bug = GetBugIncrease();
 
 	srand((unsigned int)time(NULL));
 
@@ -84,7 +86,11 @@ void UpdateEnemyBreak(void)
 
 	//-----スキル獲得
 	if (enemybreak.drawflag == true)
+	{
 		getskill.skillcode = random[skill->slot - 1].code;
+		bug->breakflag = false;
+		StopSoundAll();
+	}
 
 	//割り当てられたcodeに対応したテクスチャを表示
 	if (getskill.skillcode == 1)

@@ -25,6 +25,7 @@ HRESULT InitTitle(void)
 	MAP_PLAYER* map_player = GetMapPlayer();
 
 	map_player->UDcount = 0;
+	map_player->gamecount = 0;
 
 	InitTitleBG();
 	InitTitleTeamName();

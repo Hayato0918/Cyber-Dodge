@@ -27,6 +27,12 @@ typedef struct
 	float gaugeovertime;
 
 	int numbertexture;
+
+	int sound;
+	bool soundflag;
+
+	int sesound;
+	bool sesoundflag;
 }BUG;
 
 typedef struct

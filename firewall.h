@@ -21,6 +21,8 @@ typedef struct
 
 	bool getskill;		//スキルを入手したかを管理するフラグ
 
+	bool floorflag;
+
 	//テクスチャ
 	int stand_Ltexture;		//立ち右向き
 	int stand_Rtexture;		//立ち右向き

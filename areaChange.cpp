@@ -8,6 +8,7 @@
 
 #include "bugincrease.h"
 #include "bg.h"
+#include "bugrandom.h"
 
 //-----マクロ定義
 #define areaChangetime 2400
@@ -35,11 +36,10 @@ void _AreaChange(void)
 {
 	BUG* bug = GetBugIncrease();
 	BG* bg = GetBG();
-
-
+	BUGRANDOM* bugrandom = GetBugRandom();
 
 	//バグゲージが溜まると、40秒間境界線がランダムに動く処理。
-	if (bug->gaugesize.x >= 100)
+	if (bugrandom->code == 2 && bug->breakflag == true && areaChange.use == false)
 	{
 		areaChange.time = 0;
 		if (areaChange.use == false)
@@ -83,7 +83,7 @@ void _AreaChange(void)
 	}
 
 	//40秒後にもとに戻る
-	if (areaChange.time > areaChangetime)
+	if (bug->breakflag == false && areaChange.use == true)
 	{
 		areaChange.timeflag = false;
 		areaChange.time = 0;

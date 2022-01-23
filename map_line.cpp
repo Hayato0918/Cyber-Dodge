@@ -30,7 +30,9 @@ HRESULT InitMapLine(void)
 		//-----ランダムコードの設定
 		srand((unsigned int)time(NULL));
 		map_line.randomcode = (rand() % 4) + 1;
-		map_line.randomcode = 2;
+
+		if(map_player->floor == 0)
+			map_line.randomcode = 1;
 
 		if(map_line.randomcode == 1)
 			map_line.texture = LoadTexture("data/TEXTURE/map/mapline_1.png");
@@ -58,10 +60,21 @@ void UpdateMapLine(void)
 
 	if (map_hack->isUse == false)
 	{
-		if (GetKeyboardPress(DIK_W))
-			map_line.pos.y += SCREEN_HEIGHT * 0.0033333f;
-		if (GetKeyboardPress(DIK_S))
-			map_line.pos.y -= SCREEN_HEIGHT * 0.0033333f;
+		if (PADUSE == 0)
+		{
+			if (IsButtonPressed(0, BUTTON_UP))
+				map_line.pos.y += 5;
+			if (IsButtonPressed(0, BUTTON_DOWN))
+				map_line.pos.y -= 5;
+		}
+
+		if (PADUSE == 1)
+		{
+			if (GetKeyboardPress(DIK_W))
+				map_line.pos.y += 5;
+			if (GetKeyboardPress(DIK_S))
+				map_line.pos.y -= 5;
+		}
 	}
 }
 

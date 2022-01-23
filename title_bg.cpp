@@ -4,8 +4,10 @@
 #include "texture.h"
 #include "sprite.h"
 #include "fade.h"
+#include "sound.h"
 
 #include "title_teamname.h"
+#include "soundvolume_select.h"
 
 //-----マクロ定義
 
@@ -19,6 +21,8 @@ TITLE_BG title_bg_game;
 //-----初期化処理
 HRESULT InitTitleBG(void)
 {
+	SOUNDVOLUME_SELECT* soundvolume_select = GetSoundVolumeSelect();
+
 	title_bg_white.pos = D3DXVECTOR2(0.0f, 0.0f);
 	title_bg_white.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
 	title_bg_white.texture = LoadTexture("data/TEXTURE/fade_white.png");
@@ -34,13 +38,19 @@ HRESULT InitTitleBG(void)
 	title_bg_game.texture = LoadTexture("data/TEXTURE/title/title.png");
 	title_bg_game.drawflag = false;
 
+	title_bg_game.sound = LoadSound("data/BGM/titleBGM.wav");
+	title_bg_game.soundflag = false;
+	title_bg_game.soundonce = false;
+
+	SetVolume(title_bg_game.sound, soundvolume_select[0].count * 0.1f + 0.5f);
+
 	return S_OK;
 }
 
 //-----終了処理
 void UninitTitleBG(void)
 {
-
+	StopSoundAll();
 }
 
 //-----更新処理
@@ -52,7 +62,13 @@ void UpdateTitleBG(void)
 	if (title_teamname->time > 240)
 		title_bg_black.a = title_bg_black.a + 0.016f;
 	if (title_teamname->time > 300)
+	{
 		title_bg_game.drawflag = true;
+		PlaySound(title_bg_game.sound, -1);
+	}
+
+
+
 }
 
 //-----描画処理

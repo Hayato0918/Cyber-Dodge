@@ -4,8 +4,12 @@
 #include "texture.h"
 #include "sprite.h"
 #include "fade.h"
+#include "sound.h"
 
 #include "map_point.h"
+#include "bugincrease.h"
+#include "banner_bug.h"
+#include "map_hack.h"
 
 //-----ƒ}ƒNƒ’è‹`
 
@@ -38,14 +42,16 @@ void UninitHackEffect(void)
 void UpdateHackEffect(void)
 {
 	MAP_SB* map_sb = GetMapSB();
+	BUG* bug = GetBugIncrease();
+	BUGGAUGE* buggauge = GetBugGauge();
+	BANNER_BUGNUM* banner_bugnum = GetBannerBug();
+	MAP_HACK* map_hack = GetMapHack();
 
 	if(map_sb->hackflag == true)
 		hackeffect.drawflag = true;
 
-
 	if (hackeffect.drawflag == true)
 		hackeffect.animetime = hackeffect.animetime + 1.f;
-
 
 	if (hackeffect.animetime > 0.f && hackeffect.animetime <= 5.f)
 	{
@@ -269,8 +275,15 @@ void UpdateHackEffect(void)
 
 	if (hackeffect.animetime > 420.f)
 	{
+		for (int i = 0; i < 6; i++)
+		{
+			buggauge[bug->drawnum].drawflag = true;
+			banner_bugnum->bugnum = banner_bugnum->bugnum + 5;
+			bug->drawnum = bug->drawnum + 1;
+		}
 		map_sb->hackflag = false;
 		hackeffect.drawflag = false;
+		map_hack->isUse = false;
 		hackeffect.animetime = 0.f;
 	}
 }

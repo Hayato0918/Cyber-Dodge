@@ -4,6 +4,7 @@
 #include "input.h"
 #include "texture.h"
 #include "sprite.h"
+#include "sound.h"
 //エネミー.h
 #include "firewall.h"
 #include "slime.h"
@@ -19,6 +20,8 @@
 #include "catchjamming.h"
 #include "ballturnaround.h"
 
+#include "soundvolume_select.h"
+
 //-----マクロ定義
 #define catchtime 30		//キャッチ判定を出す時間
 #define catchinterval 60	//キャッチのインターバル時間
@@ -31,6 +34,8 @@ CATCH Catch;
 //-----初期化処理
 HRESULT InitCatch(void)
 {
+	SOUNDVOLUME_SELECT* soundvolume_select = GetSoundVolumeSelect();
+
 	Catch.playerpos = D3DXVECTOR2(0.0f, 0.0f);
 	Catch.playersize = D3DXVECTOR2(100.0, 240.0);
 	Catch.playerflag = false;
@@ -50,6 +55,9 @@ HRESULT InitCatch(void)
 	Catch.size = D3DXVECTOR2(60.0, 60.0);
 	Catch.texture = LoadTexture("data/TEXTURE/catch.png");
 	Catch.color = D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.5f);
+
+	Catch.sound = LoadSound("data/SE/catch.wav");
+	SetVolume(Catch.sound, soundvolume_select[1].count * 0.1f + 0.5f);
 
 	return S_OK;
 }
@@ -133,6 +141,7 @@ void P_Catch(void)
 		//-----プレイヤーのキャッチ動作
 		if (IsButtonTriggered(0, BUTTON_R) && Catch.playerintervalflag == false && ball->playerhaveflag == false)
 		{
+			PlaySound(Catch.sound, 0.5f);
 			Catch.playerflag = true;
 			Catch.playerintervalflag = true;
 		}
@@ -142,6 +151,7 @@ void P_Catch(void)
 		//-----プレイヤーのキャッチ動作
 		if (GetKeyboardTrigger(DIK_J) && Catch.playerintervalflag == false && ball->playerhaveflag == false)
 		{
+			PlaySound(Catch.sound, 0.5f);
 			Catch.playerflag = true;
 			Catch.playerintervalflag = true;
 		}

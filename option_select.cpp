@@ -7,6 +7,7 @@
 #include "scene.h"
 #include "input.h"
 //
+#include "soundvolume_select.h"
 
 OPTION_SELECT option_select;
 
@@ -27,21 +28,47 @@ void UninitOptionSelect(void)
 
 void UpdateOptionSelect(void)
 {
+	SOUNDVOLUME_SELECT* soundvolume_select = GetSoundVolumeSelect();
+
+	if (PADUSE == 0)
+	{
+		if (soundvolume_select[0].soundchangeflag == false && soundvolume_select[1].soundchangeflag == false)
+		{
+			if (IsButtonTriggered(0, BUTTON_LEFT) && option_select.count > 0)		//左移動
+			{
+				option_select.pos.x -= SCREEN_WIDTH * 0.3f;	//1600:900→500
+				option_select.count -= 1;
+			}
+			if (IsButtonTriggered(0, BUTTON_RIGHT) && option_select.count < 2)		//右移動
+			{
+				option_select.pos.x += SCREEN_WIDTH * 0.3f;	//1600:900→500
+				option_select.count += 1;
+			}
+			if (IsButtonTriggered(0, BUTTON_A))
+			{
+				SceneTransition(SCENE_TITLE);
+			}
+		}
+	}
+
 	if (PADUSE == 1)
 	{
-		if (GetKeyboardTrigger(DIK_A) && option_select.count > 0)		//左移動
+		if (soundvolume_select[0].soundchangeflag == false && soundvolume_select[1].soundchangeflag == false)
 		{
-			option_select.pos.x -= SCREEN_WIDTH * 0.3f;	//1600:900→500
-			option_select.count -= 1;
-		}
-		if (GetKeyboardTrigger(DIK_D) && option_select.count < 2)		//右移動
-		{
-			option_select.pos.x += SCREEN_WIDTH * 0.3f;	//1600:900→500
-			option_select.count += 1;
-		}
-		if (GetKeyboardTrigger(DIK_M))		//右移動
-		{
-			SceneTransition(SCENE_TITLE);
+			if (GetKeyboardTrigger(DIK_A) && option_select.count > 0)		//左移動
+			{
+				option_select.pos.x -= SCREEN_WIDTH * 0.3f;	//1600:900→500
+				option_select.count -= 1;
+			}
+			if (GetKeyboardTrigger(DIK_D) && option_select.count < 2)		//右移動
+			{
+				option_select.pos.x += SCREEN_WIDTH * 0.3f;	//1600:900→500
+				option_select.count += 1;
+			}
+			if (GetKeyboardTrigger(DIK_M))
+			{
+				SceneTransition(SCENE_TITLE);
+			}
 		}
 	}
 }

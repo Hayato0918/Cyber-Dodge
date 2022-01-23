@@ -37,6 +37,7 @@ HRESULT InitFireWall(void)
 	firewall.def = 50;
 
 	firewall.getskill = false;
+	firewall.floorflag = false;
 
 	firewall.u = 0.0f;
 	firewall.v = 0.0f;
@@ -128,6 +129,12 @@ void UpdateFireWall(void)
 			firewall.getskill = true;
 		}
 		map_player->nextflag = true;
+		map_player->UDcount = 0;
+		if (firewall.floorflag == false)
+		{
+			map_player->floor = map_player->floor + 1;
+			firewall.floorflag = true;
+		}
 		SceneTransition(SCENE_MAP);
 	}
 

@@ -66,6 +66,7 @@ void UninitGame()
 //-----XVˆ—‚ğ‚·‚éŠÖ”
 void UpdateGame(void)
 {
+	UpdateBG();
 	UpdatePlayer();
 	UpdatePlayerHp();
 	UpdateBugIncrease();

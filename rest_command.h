@@ -12,6 +12,7 @@ typedef struct
 	int texture;
 	float hp_max;
 	float hp;
+	int sound;
 }REST_HPUP;
 
 typedef struct
@@ -22,6 +23,7 @@ typedef struct
 	int texture;
 
 	int random;
+	int sound;
 }REST_STATUSUP;
 
 //-----プロトタイプ宣言

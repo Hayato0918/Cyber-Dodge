@@ -23,6 +23,7 @@ HRESULT InitTitleTeamName(void)
 	title_teamname.a = 0.0f;
 	title_teamname.color = D3DXCOLOR(1.0f, 1.0f, 1.0f, title_teamname.a);
 	title_teamname.time = 0.0f;
+	title_teamname.timeflag = false;
 
 	return S_OK;
 }
@@ -36,15 +37,22 @@ void UninitTitleTeamName(void)
 //-----更新処理
 void UpdateTitleTeamName(void)
 {
+	if(title_teamname.timeflag == false)
 	title_teamname.time = title_teamname.time + 1.0f;
 
 	title_teamname.color = D3DXCOLOR(1.0f, 1.0f, 1.0f, title_teamname.a);
 
-	if(title_teamname.time < 60 && title_teamname.a < 1.0f)
+	if(title_teamname.time > 0 && title_teamname.time < 60 && title_teamname.a < 1.0f)
 	title_teamname.a = title_teamname.a + 0.016f;	//フェードイン
 
 	if(title_teamname.time > 240 && title_teamname.a > 0.0f)
 		title_teamname.a = title_teamname.a - 0.016f;	//フェードアウト
+
+	if (title_teamname.time > 310)
+	{
+		title_teamname.timeflag = true;
+		title_teamname.time = 0.f;
+	}
 }
 
 //-----描画処理

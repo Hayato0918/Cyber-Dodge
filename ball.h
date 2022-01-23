@@ -28,6 +28,8 @@ typedef struct
 
 	float rad;
 	float plyer_oldposY;
+
+	int throwSE;
 }BALL;
 
 //-----プロトタイプ宣言

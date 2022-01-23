@@ -6,6 +6,7 @@
 #include "input.h"
 #include "fade.h"
 #include "scene.h"
+#include "sound.h"
 #include <time.h>
 //
 #include "rest_select.h"
@@ -13,26 +14,33 @@
 #include "player.h"
 
 #include "map_player.h"
+#include "soundvolume_select.h"
 
 REST_HPUP rest_hpup;
 REST_STATUSUP rest_statusup;
 
 HRESULT InitRestCommand(void)
 {
+	SOUNDVOLUME_SELECT * soundvolume_select = GetSoundVolumeSelect();
 	PLAYERHP* player_hp = GetPlayerHp();
+
 	rest_hpup.hp_max = player_hp->framesize.x;
-	rest_statusup.random = rand() % 3;
+	rest_statusup.random = rand() % 2;
 	rest_statusup.random = 1;
 
 	//---------- HP回復 ----------//
 	rest_hpup.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.30625f, SCREEN_HEIGHT * 0.211111f);
 	rest_hpup.size = D3DXVECTOR2(SCREEN_WIDTH * 0.15625f, SCREEN_HEIGHT * 0.277777f);
 	rest_hpup.texture = LoadTexture("data/TEXTURE/map/rest/hpup.png");
+	rest_hpup.sound = LoadSound("data/SE/heal.wav");
+	SetVolume(rest_hpup.sound, soundvolume_select[1].count * 0.1f + 0.5f);
 
 	//---------- ステータス強化 ----------//
 	rest_statusup.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5125f, SCREEN_HEIGHT * 0.211111f);
 	rest_statusup.size = D3DXVECTOR2(SCREEN_WIDTH * 0.15625f, SCREEN_HEIGHT * 0.277777f);
 	rest_statusup.texture = LoadTexture("data/TEXTURE/map/rest/statusup.png");
+	rest_statusup.sound = LoadSound("data/SE/powerup.wav");
+	SetVolume(rest_statusup.sound, soundvolume_select[1].count * 0.1f + 0.5f);
 
 	return S_OK;
 }
@@ -55,6 +63,7 @@ void UpdateRestCommand(void)
 	{
 		if (GetKeyboardTrigger(DIK_RETURN))
 		{
+			PlaySound(rest_hpup.sound, 0.5f);
 			player_hp->gaugesize.x = player_hp->gaugesize.x + rest_hpup.hp_max / 3;
 			player_hp->pos.x = player_hp->pos.x - rest_hpup.hp_max / 3;
 
@@ -70,18 +79,11 @@ void UpdateRestCommand(void)
 	{
 		if (GetKeyboardTrigger(DIK_RETURN))
 		{
-			if (rest_statusup.random == 0)	//最大HP+
-			{
-
-			}
-			if (rest_statusup.random == 1)	//atk+10
-			{
+			PlaySound(rest_statusup.sound, 0.5f);
+			if (rest_statusup.random == 0)	//atk+10
 				player->atk = player->atk + 10;
-			}
-			if (rest_statusup.random == 2)	//def+10
-			{
+			if (rest_statusup.random == 1)	//def+10
 				player->def = player->def + 10;
-			}
 			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}

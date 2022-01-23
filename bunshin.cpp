@@ -42,14 +42,11 @@ void _EnemyClone(void)
 	BUG* bug = GetBugIncrease();
 	BUGRANDOM* bugrandom = GetBugRandom();
 	
-	if (bugrandom->code == 2 && bug->gaugesize.x >= SCREEN_WIDTH * 0.0625f)
+	if (bugrandom->code == 3 && bug->breakflag == true && g_EnemyClone[0].drawflag == false)
 	{
 		for (int i = 0; i < ENEMYCLONE_MAX; i++)
 		{
-			if (bug->gaugesize.x >= 100)
-			{
-				g_EnemyClone[i].drawflag = firewall->drawflag;
-			}
+			g_EnemyClone[i].drawflag = firewall->drawflag;
 
 			//-----コート外に出ない処理
 			if (g_EnemyClone[i].pos.y <= 180 - g_EnemyClone[i].size.y * 0.5f)			//上

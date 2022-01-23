@@ -161,7 +161,6 @@
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="enemybreak.cpp" />
     <ClCompile Include="event.cpp" />
-    <ClCompile Include="eventrandom.cpp" />
     <ClCompile Include="firewall.cpp" />
     <ClCompile Include="firewallAI.cpp" />
     <ClCompile Include="firewall_animation.cpp" />
@@ -181,6 +180,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map.cpp" />
     <ClCompile Include="map_bg.cpp" />
+    <ClCompile Include="map_floor.cpp" />
     <ClCompile Include="map_line.cpp" />
     <ClCompile Include="map_player.cpp" />
     <ClCompile Include="map_point.cpp" />
@@ -233,6 +233,8 @@
     <ClCompile Include="smallplayer.cpp" />
     <ClCompile Include="sound.cpp" />
     <ClCompile Include="ballspeedup.cpp" />
+    <ClCompile Include="soundvolume.cpp" />
+    <ClCompile Include="soundvolume_bg.cpp" />
     <ClCompile Include="sprite.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="timestop.cpp" />
@@ -246,6 +248,7 @@
     <ClCompile Include="title_select.cpp" />
     <ClCompile Include="title_teamname.cpp" />
     <ClCompile Include="tosyokann.cpp" />
+    <ClCompile Include="soundvolume_select.cpp" />
     <ClCompile Include="warp.cpp" />
     <ClCompile Include="windowsize.cpp" />
     <ClCompile Include="windowsize_bg.cpp" />
@@ -294,7 +297,6 @@
     <ClInclude Include="doubleattack.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="event.h" />
-    <ClInclude Include="eventrandom.h" />
     <ClInclude Include="firewall.h" />
     <ClInclude Include="firewallAI.h" />
     <ClInclude Include="firewall_animation.h" />
@@ -310,6 +312,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="map_bg.h" />
+    <ClInclude Include="map_floor.h" />
     <ClInclude Include="map_line.h" />
     <ClInclude Include="map_player.h" />
     <ClInclude Include="map_point.h" />
@@ -363,6 +366,9 @@
     <ClInclude Include="smallplayer.h" />
     <ClInclude Include="sound.h" />
     <ClInclude Include="ballspeedup.h" />
+    <ClInclude Include="soundvolume.h" />
+    <ClInclude Include="soundvolume_bg.h" />
+    <ClInclude Include="soundvolume_select.h" />
     <ClInclude Include="sprite.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="timestop.h" />
