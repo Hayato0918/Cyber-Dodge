@@ -552,6 +552,9 @@
     <ClCompile Include="map_save_select.cpp">
       <Filter>ソース ファイル\map\map_save</Filter>
     </ClCompile>
+    <ClCompile Include="enemy_aura.cpp">
+      <Filter>ソース ファイル\enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -952,6 +955,9 @@
     </ClInclude>
     <ClInclude Include="map_save_select.h">
       <Filter>ヘッダー ファイル\map\map_save</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy_aura.h">
+      <Filter>ヘッダー ファイル\enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -262,7 +262,7 @@ void UpdateMapPoint(void)
 	MAP_PLAYER* map_player = GetMapPlayer();
 	MAPSAVE_BG* map_save = GetMapSaveBG();
 
-	if (map_hack->isUse == false & map_save->drawflag == false)
+	if (map_hack->isUse == false && map_save->drawflag == false)
 	{
 		if (PADUSE == 0)
 		{

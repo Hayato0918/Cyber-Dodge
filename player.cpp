@@ -8,6 +8,7 @@
 #include "fade.h"
 //エネミー.h
 #include "firewall.h"
+#include "deleter.h"
 #include "slime.h"
 //プレイヤー.h
 #include "player_operate.h"
@@ -156,9 +157,9 @@ void UpdatePlayer(void)
 
 	//-----ダメージ処理
 	if(map_player->encount == 1)
-	Player_SlimeDamage();
+		Player_SlimeDamage();
 	if (map_player->encount == 2)
-	Player_FireWallDamage();
+		Player_DeleterDamage();
 	if (map_player->encount == 3)
 		Player_FireWallDamage();
 

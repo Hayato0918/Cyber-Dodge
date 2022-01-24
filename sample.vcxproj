@@ -209,6 +209,7 @@
     <ClCompile Include="player_powerup.cpp" />
     <ClCompile Include="player_regen.cpp" />
     <ClCompile Include="player_speedup.cpp" />
+    <ClCompile Include="enemy_aura.cpp" />
     <ClCompile Include="regen.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="rest.cpp" />
@@ -268,6 +269,7 @@
     <ClInclude Include="deleter_hp.h" />
     <ClInclude Include="dougyousya.h" />
     <ClInclude Include="enemybreak.h" />
+    <ClInclude Include="enemy_aura.h" />
     <ClInclude Include="floatingfeeling.h" />
     <ClInclude Include="hackeffect.h" />
     <ClInclude Include="hujyou.h" />

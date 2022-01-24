@@ -163,6 +163,11 @@ void player_animation()
 					player->u = 0.58f;
 					player->uw = 0.42f;
 				}
+				if (player->picktexturetime >= 15 && player->picktexturetime < 20)
+				{
+					player->u = 0.58f;
+					player->uw = 0.42f;
+				}
 				if (player->picktexturetime >= 15)
 				{
 					player->picktextureflag = false;

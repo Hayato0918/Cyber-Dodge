@@ -4,4 +4,5 @@
 #include "renderer.h"
 
 void Player_SlimeDamage(void);
+void Player_DeleterDamage(void);
 void Player_FireWallDamage(void);

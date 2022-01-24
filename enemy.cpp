@@ -16,6 +16,7 @@
 #include "firewall_hp.h"
 //
 #include "map_player.h"
+#include "enemy_aura.h"
 
 
 HRESULT InitEnemy(void)
@@ -37,6 +38,8 @@ HRESULT InitEnemy(void)
 		InitFireWall();
 		InitFireWallHp();
 	}
+
+	InitEnemyAura();
 
 	return S_OK;
 }
@@ -65,6 +68,8 @@ void UpdateEnemy(void)
 		UpdateFireWall();
 		UpdateFireWallHp();
 	}
+
+	UpdateEnemyAura();
 }
 
 void DrawEnemy(void)
@@ -86,4 +91,7 @@ void DrawEnemy(void)
 		DrawFireWall();
 		DrawFireWallHp();
 	}
+
+	if(map_player->enemypowerup == true)
+		DrawEnemyAura();
 }
