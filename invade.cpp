@@ -38,6 +38,7 @@ void _Invade(void)
 	RANDOM* random = GetRandom();
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
+	SKILL* skill = GetSkill();
 
 	//ƒ‰ƒ“ƒ_ƒ€‚Å5‚ª‘I‚Î‚ê‚½‚çA3•bŠÔ“G‚Ìw’n‚É“ü‚ê‚é
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -74,6 +75,17 @@ void _Invade(void)
 	{
 		invade.timeflag = false;
 		invade.time = 0.0f;
+	}
+
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && invade.use == true)
+	{
+		invade.use = false;
+		invade.timeflag = false;
+		invade.time = 0.0f;
+		invade.usegauge = 10;
+
+		invade.bugincrease = false;
+		invade.bugdrawnum = 0;
 	}
 }
 

@@ -83,7 +83,7 @@ void _Timestop(void)
 		cattch->enemyintervalflag = 0;
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && timestop.use == true)
 	{
 		timestop.use = false;
 		timestop.timeflag = false;

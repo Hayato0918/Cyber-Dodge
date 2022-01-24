@@ -33,6 +33,7 @@ void _Kantsuu(void)
 	RANDOM* random = GetRandom();
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
+	SKILL* skill = GetSkill();
 
 	//-----発動から3秒間、ボールが障害物の判定を貫通するようになる。
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -66,6 +67,17 @@ void _Kantsuu(void)
 	{
 		kantsuu.timeflag = false;
 		kantsuu.time = 0.0f;
+	}
+
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && kantsuu.use == true)
+	{
+		kantsuu.use = false;
+		kantsuu.timeflag = false;
+		kantsuu.time = 0.0f;
+		kantsuu.usegauge = 10;
+
+		kantsuu.bugincrease = false;
+		kantsuu.bugdrawnum = 0;
 	}
 }
 

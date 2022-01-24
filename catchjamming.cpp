@@ -65,7 +65,7 @@ void _CatchJamming(void)
 		catchjamming.timeflag = false;
 		catchjamming.time = 0.0f;
 	}
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && catchjamming.use == true)
 	{
 		catchjamming.use = false;
 		catchjamming.timeflag = false;

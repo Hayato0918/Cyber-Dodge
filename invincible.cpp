@@ -82,7 +82,7 @@ void _Invincible(void)
 		invincible.time = 0.0f;
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && invincible.use == true)
 	{
 		invincible.use = false;
 		invincible.timeflag = false;

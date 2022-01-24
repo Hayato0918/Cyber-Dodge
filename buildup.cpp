@@ -69,7 +69,7 @@ void _BuildUp(void)
 		}
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && buildup.use == true)
 	{
 		if (buildup.timeflag == true)
 		{

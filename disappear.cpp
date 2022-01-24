@@ -66,7 +66,7 @@ void _Disappear(void)
 		otosiana->timeflag = false;
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && disappear.use == true)
 	{
 		disappear.bugincrease = false;
 		disappear.bugdrawnum = 0;

@@ -160,7 +160,7 @@ void _Mindhack(void)
 		mindhack.timeflag = false;
 		mindhack.time = 0.0f;
 	}
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && mindhack.use == true)
 	{
 		mindhack.use = false;
 		mindhack.timeflag = false;

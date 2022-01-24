@@ -23,7 +23,7 @@ float DeclBulletMove = 0.01f;	//’ÇÕ‚Ì‘¬‚³’²®
 //-----‰Šú‰»ˆ—
 HRESULT InitBallTurnAround(void)
 {
-	ballturnaround.use = 0;
+	ballturnaround.use = false;
 
 	ballturnaround.b_x = 0.0f;
 	ballturnaround.b_y = 0.0f;
@@ -49,13 +49,14 @@ void _BallTurnAround(void)
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();
+	SKILL* skill = GetSkill();
 
 	//-----ƒ{[ƒ‹‚ª“G‚ÖŒü‚©‚Á‚Ä‚¢‚­
 	for (int i = 0; i < SKILL_NUM; i++)
 	{
-		if (random[i].code == 2 && random[i].active == true && ballturnaround.use == 0)
+		if (random[i].code == 2 && random[i].active == true && ballturnaround.use == false)
 		{
-			ballturnaround.use = 1;
+			ballturnaround.use = true;
 			ballturnaround.b_x = 0.0f;
 			ballturnaround.b_y = 0.0f;
 			ballturnaround.f_x = 0.0f;
@@ -96,6 +97,24 @@ void _BallTurnAround(void)
 				}
 			}
 		}
+	}
+
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && ballturnaround.use == true)
+	{
+		ballturnaround.use = false;
+
+		ballturnaround.b_x = 0.0f;
+		ballturnaround.b_y = 0.0f;
+		ballturnaround.f_x = 0.0f;
+		ballturnaround.f_y = 0.0f;
+		ballturnaround.a = 0.0f;
+		ballturnaround.n = 0;
+		ballturnaround.n_flag = false;
+
+		ballturnaround.usegauge = 30;
+
+		ballturnaround.bugincrease = false;
+		ballturnaround.bugdrawnum = 0;
 	}
 }
 

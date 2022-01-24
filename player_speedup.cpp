@@ -74,7 +74,7 @@ void _SpeedUp(void)
 		speedup.time = 0.0f;
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && speedup.use == true)
 	{
 		if (speedup.time < speeduptime)
 			player->move /= 2;

@@ -74,12 +74,16 @@ void _SmallPlayer(void)
 	{
 		smallplayer.timeflag = false;
 		player->size = D3DXVECTOR2(player->size.x * 2, player->size.y * 2);
+		Catch->playersize = D3DXVECTOR2(Catch->playersize.x * 2, Catch->playersize.y * 2);
 		smallplayer.time = 0.0f;
 	}
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && smallplayer.use == true)
 	{
 		if (smallplayer.time < smallplayertime && smallplayer.timeflag == true)
+		{
 			player->size = D3DXVECTOR2(player->size.x * 2, player->size.y * 2);
+			Catch->playersize = D3DXVECTOR2(Catch->playersize.x * 2, Catch->playersize.y * 2);
+		}
 
 		smallplayer.use = false;
 		smallplayer.timeflag = false;

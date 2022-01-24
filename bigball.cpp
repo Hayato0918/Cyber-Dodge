@@ -63,7 +63,7 @@ void _BigBall(void)
 		}
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && bigball.use == true)
 	{
 		if (bigball.timeflag == true)
 			ball->size = D3DXVECTOR2(ball->size.x * 0.5f, ball->size.y * 0.5f);

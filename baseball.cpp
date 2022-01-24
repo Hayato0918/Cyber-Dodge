@@ -111,7 +111,7 @@ void _Baseball(void)
 		baseball.time = 0.0f;
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && baseball.use == true)
 	{
 		baseball.pos = D3DXVECTOR2(0.0f, 0.0f);
 		baseball.size = D3DXVECTOR2(20.0f, 120.0f);

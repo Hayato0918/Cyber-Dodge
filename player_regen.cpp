@@ -100,7 +100,7 @@ void _PlayerRegen(void)
 		regen.number = 0;
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && regen.use == true)
 	{
 		regen.number = 0;
 		regen.timeflag = false;

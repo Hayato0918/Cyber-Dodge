@@ -65,6 +65,10 @@ HRESULT InitRandom(void)
 		}
 	}
 
+	random[0].code = 9;
+	random[1].code = 9;
+	random[2].code = 9;
+
 	for (int i = 0; i < skill.slot; i++)
 	{
 		//割り当てられたcodeに対応したテクスチャを表示

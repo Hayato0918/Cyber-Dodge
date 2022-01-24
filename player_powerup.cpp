@@ -74,7 +74,7 @@ void _PowerUp(void)
 		powerup.time = 0.0f;
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && powerup.use == true)
 	{
 		if (powerup.time < poweruptime)
 			player->atk -= 50;

@@ -109,7 +109,7 @@ void _Billiards(void)
 		billiards.time = 0.0f;
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && billiards.use == true)
 	{
 		billiards.pos = D3DXVECTOR2(0.0f, 0.0f);
 		billiards.size = D3DXVECTOR2(120.0f, 5.0f);

@@ -38,6 +38,7 @@ void _Double(void)
 	BUG* bug = GetBugIncrease();
 	RANDOM* random = GetRandom();
 	BUGGAUGE* buggauge = GetBugGauge();
+	SKILL* skill = GetSkill();
 
 	//ランダムで4が出たら、10s間キャラの攻撃力が2倍になる
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -71,6 +72,19 @@ void _Double(void)
 		dable.timeflag = false;
 		player->atk /= 2;
 		dable.time = 0.0f;
+	}
+
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && dable.use == true)
+	{
+		if(dable.timeflag == true)
+			player->atk /= 2;
+
 		dable.use = false;
+		dable.timeflag = false;
+		dable.time = 0.0f;
+		dable.usegauge = 30;
+
+		dable.bugincrease = false;
+		dable.bugdrawnum = 0;
 	}
 }

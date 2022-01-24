@@ -124,7 +124,7 @@ void _Warp(void)
 		warp.timeflag = false;
 		warp.time = 0.0f;
 	}
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && warp.use == true)
 	{
 		warp.warp_flag = false;
 		warp.use = false;

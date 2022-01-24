@@ -3,8 +3,10 @@
 //システム.h
 #include "Texture.h"
 #include "sprite.h"
+#include "input.h"
 //エネミー.h
 #include "firewall.h"
+#include "deleter.h"
 #include "slime.h"
 #include "map_player.h"
 
@@ -48,9 +50,11 @@ void _Ganseki(void)
 	BUGGAUGE* buggauge = GetBugGauge();
 	BALL* ball = GetBall();
 	FIREWALL* firewall = GetFireWall();
+	DELETER* deleter = GetDeleter();
 	SLIME* slime = GetSlime();
 	MAP_PLAYER* map_player = GetMapPlayer();
 	KANTSUU* kantsuu = GetKantsuu();
+	SKILL* skill = GetSkill();
 
 	//-----発動から30秒間、フィールドに残る障害物として岩石を生成する
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -128,6 +132,19 @@ void _Ganseki(void)
 		}
 		if (map_player->encount == 2)
 		{
+			if (ganseki.pos.x < deleter->pos.x + deleter->size.x && ganseki.pos.x + ganseki.size.x * 0.8f > deleter->pos.x)
+			{
+				if (ganseki.pos.y + ganseki.size.y * 0.2f < deleter->pos.y + deleter->size.y && ganseki.pos.y + ganseki.size.y * 0.8f > deleter->pos.y)
+				{
+					if (deleter->move.x < 0)
+						deleter->pos.x -= 2.0f;
+					if (deleter->move.x > 0)
+						deleter->pos.x += 2.0f;
+				}
+			}
+		}
+		if (map_player->encount == 3)
+		{
 			if (ganseki.pos.x < firewall->pos.x + firewall->size.x && ganseki.pos.x + ganseki.size.x * 0.8f > firewall->pos.x)
 			{
 				if (ganseki.pos.y + ganseki.size.y * 0.2f < firewall->pos.y + firewall->size.y && ganseki.pos.y + ganseki.size.y * 0.8f > firewall->pos.y)
@@ -145,6 +162,16 @@ void _Ganseki(void)
 	{
 		ganseki.timeflag = false;
 		ganseki.time = 0.0f;
+	}
+
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && ganseki.use == true)
+	{
+		ganseki.use = false;
+		ganseki.timeflag = false;
+		ganseki.time = 0.0f;
+		ganseki.usegauge = 10;
+		ganseki.bugincrease = false;
+		ganseki.bugdrawnum = 0;
 	}
 }
 

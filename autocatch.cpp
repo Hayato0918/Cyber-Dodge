@@ -87,10 +87,13 @@ void _Auto_c(void)
 		auto_c.bugincrease = false;
 		auto_c.time = 0.0f;
 	}
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot)
+	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && auto_c.use == true)
 	{
-		Catch->playerpos.y += Catch->playersize.y;
-		Catch->playersize.y /= 4;
+		if (auto_c.timeflag == true)
+		{
+			Catch->playerpos.y += Catch->playersize.y;
+			Catch->playersize.y /= 4;
+		}
 		auto_c.timeflag = false;
 		auto_c.auto_catch = false;
 		auto_c.auto_catchflag = false;
