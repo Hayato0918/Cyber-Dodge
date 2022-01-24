@@ -16,6 +16,7 @@
 #include "skillrandom.h"
 #include "create.h"
 #include "map_player.h"
+#include "enemybreak.h"
 
 //-----マクロ定義
 
@@ -89,6 +90,7 @@ void UpdateFireWall(void)
 	SKILL* skill = GetSkill();
 	BG* bg = GetBG();
 	MAP_PLAYER* map_player = GetMapPlayer();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	if (firewall.drawflag == true)
 		FireWallAI();
@@ -135,7 +137,7 @@ void UpdateFireWall(void)
 			map_player->floor = map_player->floor + 1;
 			firewall.floorflag = true;
 		}
-		SceneTransition(SCENE_MAP);
+		enemybreak->drawflag = true;
 	}
 
 	//-----アニメーション処理

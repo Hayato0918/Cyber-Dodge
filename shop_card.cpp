@@ -9,6 +9,8 @@
 //
 #include "shop.h"
 #include "shop_select.h"
+#include "shop_gold.h"
+#include "player.h"
 #include "skillrandom.h"
 
 SHOP_CARD shop_card[SKILL_NUM];
@@ -116,9 +118,13 @@ void UpdateShopCard()
 	SHOP_SELECT* shop_select = GetShopSelect();
 	RANDOM* random = GetRandom();
 	SKILL * skill = GetSkill();
+	SHOP_GOLD* shop_gold = GetShopGold();
+	PLAYER* player = GetPlayer();
 
-	if (GetKeyboardTrigger(DIK_RETURN) && shop_select->ycount == 0 && shop_card[shop_select->xcount].drawflag == true)
+	if (GetKeyboardTrigger(DIK_RETURN) && shop_select->ycount == 0 && shop_card[shop_select->xcount].drawflag == true
+		&& shop_gold[shop_select->xcount].gold < player->gold)
 	{
+		player->gold = player->gold - shop_gold[shop_select->xcount].gold;
 		random[skill->slot].code = shop_card[shop_select->xcount].code;
 		skill->slot = skill->slot + 1;
 		shop_card[shop_select->xcount].drawflag = false;

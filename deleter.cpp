@@ -16,6 +16,7 @@
 #include "skillrandom.h"
 #include "create.h"
 #include "map_player.h"
+#include "enemybreak.h"
 
 //-----マクロ定義
 
@@ -88,6 +89,7 @@ void UpdateDeleter(void)
 	SKILL* skill = GetSkill();
 	BG* bg = GetBG();
 	MAP_PLAYER* map_player = GetMapPlayer();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	if (deleter.drawflag == true)
 		DeleterAI();
@@ -127,7 +129,7 @@ void UpdateDeleter(void)
 			deleter.getskill = true;
 		}
 		map_player->nextflag = true;
-		SceneTransition(SCENE_MAP);
+		enemybreak->drawflag = true;
 	}
 
 	//-----アニメーション処理

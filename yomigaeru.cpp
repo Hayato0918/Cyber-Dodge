@@ -9,6 +9,7 @@
 #include "yomigaeru.h"
 #include "player_hp.h"
 #include "player.h"
+#include "map_player.h"
 
 YOMIGAERU yomigaeru;
 YOMIGAERUPOINT yomigaerupoint;
@@ -34,6 +35,7 @@ void UninitYomigaeru(void)
 void UpdateYomigaeru(void)
 {
 	PLAYER* player = GetPlayer();
+	MAP_PLAYER* map_player = GetMapPlayer();
 
 	if (PADUSE == 0)
 	{
@@ -52,10 +54,12 @@ void UpdateYomigaeru(void)
 		if (IsButtonTriggered(0, BUTTON_X) && yomigaerupoint.count == 0)
 		{
 			player->atk *= 1.2f;
+			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
 		if (IsButtonTriggered(0, BUTTON_X) && yomigaerupoint.count == 1)
 		{
+			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
 	}
@@ -77,10 +81,12 @@ void UpdateYomigaeru(void)
 		if (GetKeyboardTrigger(DIK_RETURN) && yomigaerupoint.count == 0)
 		{
 			player->atk *= 1.2f;
+			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
 		if (GetKeyboardTrigger(DIK_RETURN) && yomigaerupoint.count == 1)
 		{
+			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
 	}

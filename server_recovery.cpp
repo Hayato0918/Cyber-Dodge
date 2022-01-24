@@ -9,6 +9,7 @@
 #include "server_recovery.h"
 #include "bugincrease.h"
 #include "banner_bug.h"
+#include "map_player.h"
 
 SERVER_RECOVERY server_recovery;
 SERVER_POINT server_point;
@@ -43,10 +44,12 @@ void UninitServerRecovery(void)
 
 void UpdateServerRecovery(void)
 {
+	MAP_PLAYER* map_player = GetMapPlayer();
 
 	//エンターキーでマップへ戻る
 	if (GetKeyboardTrigger(DIK_RETURN))
 	{
+		map_player->nextflag = true;
 		SceneTransition(SCENE_MAP);
 	}
 }

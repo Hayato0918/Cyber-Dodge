@@ -7,6 +7,7 @@
 #include "player.h"
 #include "bugrandom.h"
 #include "bugincrease.h"
+#include "bugrandom.h"
 
 //-----プロトタイプ宣言
 REVERSE reverse;
@@ -32,7 +33,7 @@ void _Reverse(void)
 	}
 
 	//バグゲージが50より小さくなったら操作をもとに戻す
-	if (bug->gaugesize.x <= 80)
+	if (bug->breakflag == false && reverse.use == true)
 		reverse.use = false;
 
 }

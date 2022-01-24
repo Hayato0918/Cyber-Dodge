@@ -5,7 +5,7 @@
 #include "sprite.h"
 #include "input.h"
 #include "fade.h"
-
+#include "map_player.h"
 #include "hujyou.h"
 
 HUJYOU hujyou;
@@ -29,11 +29,14 @@ void UninitHujyou(void)
 
 void UpdateHujyou(void)
 {
+	MAP_PLAYER* map_player = GetMapPlayer();
+
 	if (PADUSE == 0)
 	{
 		//‘I‘ð‚µ‚½Žž‚ÌŒø‰Ê
 		if (IsButtonTriggered(0, BUTTON_X))
 		{
+			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
 	}
@@ -42,6 +45,7 @@ void UpdateHujyou(void)
 
 		if (GetKeyboardTrigger(DIK_RETURN))
 		{
+			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
 	}

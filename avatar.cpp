@@ -10,6 +10,8 @@
 #include "player_hp.h"
 #include "player.h"
 
+#include "map_player.h"
+
 AVATAR avatar;
 AVATARPOINT avatarpoint;
 
@@ -35,6 +37,7 @@ void UpdateAvatar(void)
 {
 	PLAYERHP* player_hp = GetPlayerHp();
 	PLAYER* player = GetPlayer();
+	MAP_PLAYER* map_player = GetMapPlayer();
 
 	if (PADUSE == 0)
 	{
@@ -56,16 +59,19 @@ void UpdateAvatar(void)
 			player_hp->framepos.x -= 30 * 3.2f;
 			player_hp->gaugesize.x = player_hp->gaugesize.x + 30 * 3.2f;
 			player_hp->pos.x = player_hp->pos.x - 30 * 3.2f;
+			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
 		if (IsButtonTriggered(0, BUTTON_X) && avatarpoint.count == 1)
 		{
 			player->atk += 20;
+			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
 		if (IsButtonTriggered(0, BUTTON_X) && avatarpoint.count == 2)
 		{
 			player->def += 10;
+			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
 	}
@@ -91,18 +97,21 @@ void UpdateAvatar(void)
 			player_hp->gaugesize.x = player_hp->gaugesize.x + 30;
 			player_hp->pos.x = player_hp->pos.x - 30;
 			player_hp->saidai_pos.x = player_hp->pos.x - 30;
+			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
 		//プレイヤーの攻撃力を+20する
 		if (GetKeyboardTrigger(DIK_RETURN) && avatarpoint.count == 1)
 		{
 			player->atk += 20;
+			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
 		//プレイヤーの防御力を+10する
 		if (GetKeyboardTrigger(DIK_RETURN) && avatarpoint.count == 2)
 		{
 			player->def += 10;
+			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
 	}

@@ -7,12 +7,14 @@
 #include "player_hp.h"
 //エネミー.h
 #include "slime_hp.h"
+#include "deleter_hp.h"
 #include "firewall_hp.h"
 
 #include "bugincrease.h"
 #include "bugrandom.h"
 
 #include "map_player.h"
+#include "bugrandom.h"
 
 //-----マクロ定義
 #define regentime 600		//10s間
@@ -28,7 +30,7 @@ HRESULT InitRegen(void)
 		regen.heal = 1.0f;
 		regen.timeflag = false;
 		regen.time = 0.0f;
-		regen.use = true;
+		regen.use = false;
 
 	return S_OK;
 }
@@ -38,11 +40,12 @@ void _Regen(void)
 	PLAYERHP* hp = GetPlayerHp();
 	SLIMEHP* slimehp = GetSlimeHp();
 	FIREWALLHP* firewallhp = GetFireWallHp();
+	DELETERHP* deleterhp = GetDeleterHp();
 	BUG* bug = GetBugIncrease();
 	BUGRANDOM* bugrandom = GetBugRandom();
 	MAP_PLAYER* map_player = GetMapPlayer();
 
-	if (bugrandom->code == 4 && bug->gaugesize.x >= 10 && regen.use == true)
+	if (bugrandom->code == 6 && bug->breakflag == true && regen.use == false)
 	{
 		//playerの回復
 		hp->gaugesize.x = hp->gaugesize.x + regen.heal;
@@ -52,6 +55,9 @@ void _Regen(void)
 			slimehp->gaugesize.x = slimehp->gaugesize.x + regen.heal;
 		//firewallの回復
 		if (map_player->encount == 2)
+			deleterhp->gaugesize.x = deleterhp->gaugesize.x + regen.heal;
+		//firewallの回復
+		if (map_player->encount == 3)
 			firewallhp->gaugesize.x = firewallhp->gaugesize.x + regen.heal;
 
 
@@ -63,7 +69,7 @@ void _Regen(void)
 		regen.time = regen.time + 1.0f;
 	}
 
-	if (regen.time > regentime)
+	if (bug->breakflag == false && regen.use == true)
 	{
 		regen.timeflag = false;
 		regen.time = 0.0f;

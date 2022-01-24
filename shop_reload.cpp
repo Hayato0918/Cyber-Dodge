@@ -10,6 +10,8 @@
 #include "shop_card.h"
 #include "skillrandom.h"
 
+#include "player.h"
+
 SHOP_RELOAD shop_reload;
 
 HRESULT InitShopReload()
@@ -34,7 +36,9 @@ void UpdateShopReload()
 	RANDOM* random = GetRandom();
 	SKILL* skill = GetSkill();
 
-	if (GetKeyboardTrigger(DIK_RETURN) && shop_select->xcount > 1 && shop_select->ycount == 1)
+	PLAYER* player = GetPlayer();
+
+	if (GetKeyboardTrigger(DIK_RETURN) && shop_select->xcount > 1 && shop_select->ycount == 1 && player->gold >= 50)
 		shop_reload.reloadflag = true;
 
 	int t = 0;
@@ -123,6 +127,7 @@ void UpdateShopReload()
 				shop_card[i].texture = LoadTexture("data/TEXTURE/skill/warp.png");
 		}
 
+		player->gold = player->gold - 50;
 		shop_reload.reloadflag = false;
 	}
 }

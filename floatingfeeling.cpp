@@ -7,6 +7,7 @@
 #include "sprite.h"
 #include "fade.h"
 #include "player_hp.h"
+#include "map_player.h"
 
 //-----ƒ}ƒNƒ’è‹`
 
@@ -76,6 +77,8 @@ HRESULT Inite_FloatingFeeling()
 
 void _FloatingFeeling(void)
 {
+	MAP_PLAYER* map_player = GetMapPlayer();
+
 	if (EFF_flag == 0)
 	{
 		title.use = true;
@@ -150,6 +153,7 @@ void _FloatingFeeling(void)
 	{
 		if (GetKeyboardTrigger(DIK_RETURN) && EFF_time > 19)
 		{
+			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
 		EFF_time++;

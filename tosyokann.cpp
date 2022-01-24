@@ -9,6 +9,7 @@
 #include "tosyokann.h"
 #include "player_hp.h"
 #include "player.h"
+#include "map_player.h"
 
 TOSYOKANN tosyokann;
 TOSYOKANNPOINT tosyokannpoint;
@@ -35,6 +36,7 @@ void UpdateTosyokann(void)
 {
 	PLAYERHP* player_hp = GetPlayerHp();
 	PLAYER* player = GetPlayer();
+	MAP_PLAYER* map_player = GetMapPlayer();
 
 	if (PADUSE == 0)
 	{
@@ -54,6 +56,7 @@ void UpdateTosyokann(void)
 		if (IsButtonTriggered(0, BUTTON_X) && tosyokannpoint.count == 0)
 		{
 			player->def += 10;
+			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
 		//プレイヤーのHPを初期状態まで回復する
@@ -61,6 +64,7 @@ void UpdateTosyokann(void)
 		{
 			player_hp->gaugesize.x = player_hp->framesize.x;
 			player_hp->pos.x = player_hp->framepos.x;
+			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
 	}
@@ -82,6 +86,7 @@ void UpdateTosyokann(void)
 		if (GetKeyboardTrigger(DIK_RETURN) && tosyokannpoint.count == 0)
 		{
 			player->def += 10;
+			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
 		//プレイヤーのHPを初期状態まで回復する
@@ -89,6 +94,7 @@ void UpdateTosyokann(void)
 		{
 			player_hp->gaugesize.x = player_hp->framesize.x;
 			player_hp->pos.x = player_hp->saidai_pos.x;
+			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
 	}

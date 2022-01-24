@@ -4,6 +4,8 @@
 #include "texture.h"
 #include "sprite.h"
 //エネミー.h
+#include "slime.h"
+#include "deleter.h"
 #include "firewall.h"
 
 #include "ball.h"
@@ -11,6 +13,7 @@
 
 #include "bugincrease.h"
 #include "bugrandom.h"
+#include "map_player.h"
 
 //-----マクロ定義
 
@@ -18,17 +21,38 @@
 
 //-----グローバル変数
 static ENEMYCLONE g_EnemyClone[ENEMYCLONE_MAX];
+SLIME* slime = GetSlime();
+DELETER* deleter = GetDeleter();
 FIREWALL* firewall = GetFireWall();
 
 //-----初期化処理
 HRESULT InitEnemyClone(void)
 {
+	MAP_PLAYER* map_player = GetMapPlayer();
+
 	for (int i = 0; i < ENEMYCLONE_MAX; i++)
 	{
-		g_EnemyClone[i].pos = D3DXVECTOR2(firewall->pos.x + SCREEN_WIDTH * 0.06875f, firewall->pos.y + SCREEN_HEIGHT * 0.26666f);
-		g_EnemyClone[i].size = D3DXVECTOR2(firewall->size.x, firewall->size.y);
-		g_EnemyClone[i].move = D3DXVECTOR2(firewall->move.x, firewall->move.y);
-		g_EnemyClone[i].rotate = firewall->rotate;
+		if (map_player->encount == 1)
+		{
+			g_EnemyClone[i].pos = D3DXVECTOR2(slime->pos.x + SCREEN_WIDTH * 0.06875f, slime->pos.y + SCREEN_HEIGHT * 0.26666f);
+			g_EnemyClone[i].size = D3DXVECTOR2(slime->size.x, slime->size.y);
+			g_EnemyClone[i].move = D3DXVECTOR2(slime->move.x, slime->move.y);
+			g_EnemyClone[i].rotate = slime->rotate;
+		}
+		if (map_player->encount == 2)
+		{
+			g_EnemyClone[i].pos = D3DXVECTOR2(deleter->pos.x + SCREEN_WIDTH * 0.06875f, deleter->pos.y + SCREEN_HEIGHT * 0.26666f);
+			g_EnemyClone[i].size = D3DXVECTOR2(deleter->size.x, deleter->size.y);
+			g_EnemyClone[i].move = D3DXVECTOR2(deleter->move.x, deleter->move.y);
+			g_EnemyClone[i].rotate = deleter->rotate;
+		}
+		if (map_player->encount == 3)
+		{
+			g_EnemyClone[i].pos = D3DXVECTOR2(firewall->pos.x + SCREEN_WIDTH * 0.06875f, firewall->pos.y + SCREEN_HEIGHT * 0.26666f);
+			g_EnemyClone[i].size = D3DXVECTOR2(firewall->size.x, firewall->size.y);
+			g_EnemyClone[i].move = D3DXVECTOR2(firewall->move.x, firewall->move.y);
+			g_EnemyClone[i].rotate = firewall->rotate;
+		}
 
 		g_EnemyClone[i].drawflag = false;
 	}
@@ -41,11 +65,17 @@ void _EnemyClone(void)
 	BALL* ball = GetBall();
 	BUG* bug = GetBugIncrease();
 	BUGRANDOM* bugrandom = GetBugRandom();
+	MAP_PLAYER* map_player = GetMapPlayer();
 	
 	if (bugrandom->code == 3 && bug->breakflag == true && g_EnemyClone[0].drawflag == false)
 	{
 		for (int i = 0; i < ENEMYCLONE_MAX; i++)
 		{
+			if (map_player->encount == 1)
+				g_EnemyClone[i].drawflag = slime->drawflag;
+			if (map_player->encount == 2)
+				g_EnemyClone[i].drawflag = deleter->drawflag;
+			if(map_player->encount == 3)
 			g_EnemyClone[i].drawflag = firewall->drawflag;
 
 			//-----コート外に出ない処理

@@ -7,6 +7,7 @@
 #include "sprite.h"
 
 #include "bugincrease.h"
+#include "bugrandom.h"
 
 //-----マクロ定義
 #define notCatchtime	1800		//バグの効果時間。30秒間。
@@ -27,9 +28,10 @@ HRESULT InitNotCatch(void)
 void _NotCatch(void)
 {
 	BUG* bug = GetBugIncrease();
+	BUGRANDOM* bugrandom = GetBugRandom();
 
 	//バグゲージが溜まると、30秒間キャッチが出来なくなる。
-	if (bug->gaugesize.x >= 100)
+	if (bugrandom->code == 5 && bug->breakflag == true && notCatch.use == false)
 	{
 		notCatch.time = 0.0f;
 		if (notCatch.use == false)
@@ -42,7 +44,7 @@ void _NotCatch(void)
 	//30秒後にもとに戻る
 	if (notCatch.timeflag == true)
 		notCatch.time = notCatch.time + 1.0f;
-	if (notCatch.time > notCatchtime)
+	if (bug->breakflag == false && notCatch.use == true)
 	{
 		notCatch.timeflag = false;
 		notCatch.time = 0.0f;

@@ -7,6 +7,7 @@
 #include "sprite.h"
 
 #include "bugincrease.h"
+#include "bugrandom.h"
 
 //-----マクロ定義
 #define createtime 420		//キャッチ判定を出す時間
@@ -35,11 +36,12 @@ HRESULT InitCreate(void)
 void _Create(void)
 {
 	BUG* bug = GetBugIncrease();
+	BUGRANDOM* bugrandom = GetBugRandom();
 
 	for (int i = 0; i < createnumber; i++)
 	{
 		//バグゲージが溜まると、7秒間キャッチが出来なくなる。
-		if (bug->gaugesize.x >= 100)
+		if (bugrandom->code == 4 && bug->breakflag == true && create[i].use == false)
 		{
 			create[i].time = 0.0f;
 			if (create[i].use == false)
@@ -60,7 +62,7 @@ void _Create(void)
 		}
 
 		//7秒後にもとに戻る
-		if (create[i].time > createtime)
+		if (bug->breakflag == false && create[i].use == true)
 		{
 			create[i].timeflag = false;
 			create[i].time = 0.0f;

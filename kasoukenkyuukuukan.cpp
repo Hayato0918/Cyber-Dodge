@@ -9,6 +9,8 @@
 #include "kasoukenkyuukuukan.h"
 #include "player.h"
 
+#include "map_player.h"
+
 KASOU kasou;
 KASOUPOINT kasoupoint;
 
@@ -31,6 +33,7 @@ void UninitKasou(void)
 
 void UpdateKasou(void)
 {
+	MAP_PLAYER* map_player = GetMapPlayer();
 	PLAYER* player = GetPlayer();
 
 	if (PADUSE == 0)
@@ -51,10 +54,14 @@ void UpdateKasou(void)
 		{
 			player->def = player->def - 20;
 			player->atk = player->atk + 40;
+			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
 		if (IsButtonTriggered(0, BUTTON_X) && kasoupoint.count == 1)
+		{
+			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
+		}
 	}
 	if (PADUSE == 1)
 	{
@@ -75,10 +82,14 @@ void UpdateKasou(void)
 		{
 			player->def = player->def - 20;
 			player->atk = player->atk + 40;
+			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
 		if (GetKeyboardTrigger(DIK_RETURN) && kasoupoint.count == 1)
+		{
+			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
+		}
 	}
 }
 

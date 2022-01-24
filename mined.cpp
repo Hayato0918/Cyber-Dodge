@@ -5,7 +5,7 @@
 #include "sprite.h"
 #include "input.h"
 #include "fade.h"
-
+#include "map_player.h"
 #include "mined.h"
 
 MINED mined;
@@ -29,11 +29,14 @@ void UninitMined(void)
 
 void UpdateMined(void)
 {
+	MAP_PLAYER* map_player = GetMapPlayer();
+
 	if (PADUSE == 0)
 	{
 		//‘I‘ð‚µ‚½Žž‚ÌŒø‰Ê
 		if (IsButtonTriggered(0, BUTTON_X))
 		{
+			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
 	}
@@ -42,6 +45,7 @@ void UpdateMined(void)
 
 		if (GetKeyboardTrigger(DIK_RETURN))
 		{
+			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
 	}
