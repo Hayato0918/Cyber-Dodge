@@ -87,20 +87,43 @@ void _Auto_c(void)
 		auto_c.bugincrease = false;
 		auto_c.time = 0.0f;
 	}
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && auto_c.use == true)
+
+	if (PADUSE == 0)
 	{
-		if (auto_c.timeflag == true)
+		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && auto_c.use == true)
 		{
-			Catch->playerpos.y += Catch->playersize.y;
-			Catch->playersize.y /= 4;
+			if (auto_c.timeflag == true)
+			{
+				Catch->playerpos.y += Catch->playersize.y;
+				Catch->playersize.y /= 4;
+			}
+			auto_c.timeflag = false;
+			auto_c.auto_catch = false;
+			auto_c.auto_catchflag = false;
+			auto_c.bugdrawnum = 0;
+			auto_c.bugincrease = false;
+			auto_c.time = 0.0f;
+			auto_c.use = false;
 		}
-		auto_c.timeflag = false;
-		auto_c.auto_catch = false;
-		auto_c.auto_catchflag = false;
-		auto_c.bugdrawnum = 0;
-		auto_c.bugincrease = false;
-		auto_c.time = 0.0f;
-		auto_c.use = false;
+	}
+
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && auto_c.use == true)
+		{
+			if (auto_c.timeflag == true)
+			{
+				Catch->playerpos.y += Catch->playersize.y;
+				Catch->playersize.y /= 4;
+			}
+			auto_c.timeflag = false;
+			auto_c.auto_catch = false;
+			auto_c.auto_catchflag = false;
+			auto_c.bugdrawnum = 0;
+			auto_c.bugincrease = false;
+			auto_c.time = 0.0f;
+			auto_c.use = false;
+		}
 	}
 }
 

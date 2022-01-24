@@ -111,19 +111,37 @@ void _Baseball(void)
 		baseball.time = 0.0f;
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && baseball.use == true)
+	if (PADUSE == 0)
 	{
-		baseball.pos = D3DXVECTOR2(0.0f, 0.0f);
-		baseball.size = D3DXVECTOR2(20.0f, 120.0f);
-		baseball.use = false;
-		baseball.timeflag = false;
-		baseball.time = 0.0f;
-		baseball.usegauge = 20;
+		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && baseball.use == true)
+		{
+			baseball.pos = D3DXVECTOR2(0.0f, 0.0f);
+			baseball.size = D3DXVECTOR2(20.0f, 120.0f);
+			baseball.use = false;
+			baseball.timeflag = false;
+			baseball.time = 0.0f;
+			baseball.usegauge = 20;
 
-		baseball.bugincrease = false;
-		baseball.bugdrawnum = 0;
+			baseball.bugincrease = false;
+			baseball.bugdrawnum = 0;
+		}
 	}
 
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && baseball.use == true)
+		{
+			baseball.pos = D3DXVECTOR2(0.0f, 0.0f);
+			baseball.size = D3DXVECTOR2(20.0f, 120.0f);
+			baseball.use = false;
+			baseball.timeflag = false;
+			baseball.time = 0.0f;
+			baseball.usegauge = 20;
+
+			baseball.bugincrease = false;
+			baseball.bugdrawnum = 0;
+		}
+	}
 
 }
 

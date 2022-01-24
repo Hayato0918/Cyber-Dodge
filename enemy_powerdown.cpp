@@ -82,16 +82,35 @@ void _PowerDown(void)
 		powerdown.time = 0.0f;
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && powerdown.use == true)
+	if (PADUSE == 0)
 	{
-		if (powerdown.timeflag == true)
-			firewall->atk = firewall->atk + 50;
-		powerdown.use = false;
-		powerdown.timeflag = false;
-		powerdown.time = 0.0f;
-		powerdown.usegauge = 30;
+		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && powerdown.use == true)
+		{
+			if (powerdown.timeflag == true)
+				firewall->atk = firewall->atk + 50;
+			powerdown.use = false;
+			powerdown.timeflag = false;
+			powerdown.time = 0.0f;
+			powerdown.usegauge = 30;
 
-		powerdown.bugincrease = false;
-		powerdown.bugdrawnum = 0;
+			powerdown.bugincrease = false;
+			powerdown.bugdrawnum = 0;
+		}
+	}
+
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && powerdown.use == true)
+		{
+			if (powerdown.timeflag == true)
+				firewall->atk = firewall->atk + 50;
+			powerdown.use = false;
+			powerdown.timeflag = false;
+			powerdown.time = 0.0f;
+			powerdown.usegauge = 30;
+
+			powerdown.bugincrease = false;
+			powerdown.bugdrawnum = 0;
+		}
 	}
 }

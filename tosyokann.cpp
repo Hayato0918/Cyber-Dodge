@@ -53,14 +53,14 @@ void UpdateTosyokann(void)
 		}
 		//選択した時の効果
 		//プレイヤーの防御力を10増やす
-		if (IsButtonTriggered(0, BUTTON_X) && tosyokannpoint.count == 0)
+		if (IsButtonTriggered(0, BUTTON_Y) && tosyokannpoint.count == 0)
 		{
 			player->def += 10;
 			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
 		//プレイヤーのHPを初期状態まで回復する
-		if (IsButtonTriggered(0, BUTTON_X) && tosyokannpoint.count == 1)
+		if (IsButtonTriggered(0, BUTTON_Y) && tosyokannpoint.count == 1)
 		{
 			player_hp->gaugesize.x = player_hp->framesize.x;
 			player_hp->pos.x = player_hp->framepos.x;

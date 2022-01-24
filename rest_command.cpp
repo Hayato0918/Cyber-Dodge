@@ -59,33 +59,70 @@ void UpdateRestCommand(void)
 
 	srand((unsigned int)time(NULL));
 
-	if (rest_select->count == 0)	//HP‰ñ•œ
+	if (PADUSE == 0)
 	{
-		if (GetKeyboardTrigger(DIK_RETURN))
+		if (rest_select->count == 0)	//HP‰ñ•œ
 		{
-			PlaySound(rest_hpup.sound, 0.5f);
-			player_hp->gaugesize.x = player_hp->gaugesize.x + rest_hpup.hp_max / 3;
-			player_hp->pos.x = player_hp->pos.x - rest_hpup.hp_max / 3;
+			if (IsButtonTriggered(0, BUTTON_Y))
+			{
+				PlaySound(rest_hpup.sound, 0.5f);
+				player_hp->gaugesize.x = player_hp->gaugesize.x + rest_hpup.hp_max / 3;
+				player_hp->pos.x = player_hp->pos.x - rest_hpup.hp_max / 3;
 
-			if (player_hp->gaugesize.x > rest_hpup.hp_max)
-				player_hp->gaugesize.x = rest_hpup.hp_max;
+				if (player_hp->gaugesize.x > rest_hpup.hp_max)
+					player_hp->gaugesize.x = rest_hpup.hp_max;
 
-			map_player->nextflag = true;
-			SceneTransition(SCENE_MAP);
+				map_player->nextflag = true;
+				SceneTransition(SCENE_MAP);
+			}
 		}
+
+		if (rest_select->count == 1)
+		{
+			if (IsButtonTriggered(0, BUTTON_Y))
+			{
+				PlaySound(rest_statusup.sound, 0.5f);
+				if (rest_statusup.random == 0)	//atk+10
+					player->atk = player->atk + 10;
+				if (rest_statusup.random == 1)	//def+10
+					player->def = player->def + 10;
+				map_player->nextflag = true;
+				SceneTransition(SCENE_MAP);
+			}
+		}
+
 	}
 
-	if (rest_select->count == 1)
+	if (PADUSE == 1)
 	{
-		if (GetKeyboardTrigger(DIK_RETURN))
+		if (rest_select->count == 0)	//HP‰ñ•œ
 		{
-			PlaySound(rest_statusup.sound, 0.5f);
-			if (rest_statusup.random == 0)	//atk+10
-				player->atk = player->atk + 10;
-			if (rest_statusup.random == 1)	//def+10
-				player->def = player->def + 10;
-			map_player->nextflag = true;
-			SceneTransition(SCENE_MAP);
+			if (GetKeyboardTrigger(DIK_RETURN))
+			{
+				PlaySound(rest_hpup.sound, 0.5f);
+				player_hp->gaugesize.x = player_hp->gaugesize.x + rest_hpup.hp_max / 3;
+				player_hp->pos.x = player_hp->pos.x - rest_hpup.hp_max / 3;
+
+				if (player_hp->gaugesize.x > rest_hpup.hp_max)
+					player_hp->gaugesize.x = rest_hpup.hp_max;
+
+				map_player->nextflag = true;
+				SceneTransition(SCENE_MAP);
+			}
+		}
+
+		if (rest_select->count == 1)
+		{
+			if (GetKeyboardTrigger(DIK_RETURN))
+			{
+				PlaySound(rest_statusup.sound, 0.5f);
+				if (rest_statusup.random == 0)	//atk+10
+					player->atk = player->atk + 10;
+				if (rest_statusup.random == 1)	//def+10
+					player->def = player->def + 10;
+				map_player->nextflag = true;
+				SceneTransition(SCENE_MAP);
+			}
 		}
 	}
 

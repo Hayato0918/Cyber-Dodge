@@ -31,10 +31,23 @@ void UpdateShopExit()
 	SHOP_SELECT* shop_select = GetShopSelect();
 	MAP_PLAYER* map_player = GetMapPlayer();
 
-	if (GetKeyboardTrigger(DIK_RETURN) && shop_select->ycount == 2)
+	if (PADUSE == 0)
 	{
-		map_player->nextflag = true;
-		SceneTransition(SCENE_MAP);
+		if (IsButtonTriggered(0, BUTTON_Y) && shop_select->ycount == 2)
+		{
+			map_player->nextflag = true;
+			SceneTransition(SCENE_MAP);
+		}
+
+	}
+
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_RETURN) && shop_select->ycount == 2)
+		{
+			map_player->nextflag = true;
+			SceneTransition(SCENE_MAP);
+		}
 	}
 }
 

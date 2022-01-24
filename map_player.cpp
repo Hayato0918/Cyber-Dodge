@@ -88,6 +88,1673 @@ void UpdateMapPlayer(void)
 	//-----マップスクロール
 	if (map_hack->isUse == false && map_save->drawflag == false)
 	{
+		if (PADUSE == 0)
+		{
+			if (IsButtonPressed(0, BUTTON_UP))	//上
+			{
+				map_player.pos.y += 5;
+				map_player.circlepos.y += 5;
+			}
+			if (IsButtonPressed(0, BUTTON_DOWN))	//上
+			{
+				map_player.pos.y -= 5;
+				map_player.circlepos.y -= 5;
+			}
+
+			if (map_player.nextflag == true)
+			{
+				//-----シート1の場合
+				if (map_line->randomcode == 1)
+				{
+					//7段目
+					//18→boss
+					if (map_player.nowpos == 19 || map_player.nowpos == 20 || map_player.nowpos == 21)
+					{
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map_sb->bosspos.x, map_sb->bosspos.y);
+							map_player.nowpos = 22;
+							map_player.encount = 3;
+							SceneTransition(SCENE_GAME);
+							map_player.nextflag = false;
+						}
+					}
+
+					//6段目
+					//15→18
+					if (map_player.nowpos == 16)
+					{
+						map_player.circlenowpos = 18;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[18].pos.x, map[18].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map_sb->bosspos.x, map_sb->bosspos.y);
+							map_player.circlesize = D3DXVECTOR2(map_sb->bosssize.x, map_sb->bosssize.y);
+							map_player.nowpos = 19;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//16→19
+					if (map_player.nowpos == 17)
+					{
+						map_player.circlenowpos = 19;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[19].pos.x, map[19].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map_sb->bosspos.x, map_sb->bosspos.y);
+							map_player.circlesize = D3DXVECTOR2(map_sb->bosssize.x, map_sb->bosssize.y);
+							map_player.nowpos = 19;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//17→20
+					if (map_player.nowpos == 18)
+					{
+						map_player.circlenowpos = 20;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[20].pos.x, map[20].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map_sb->bosspos.x, map_sb->bosspos.y);
+							map_player.circlesize = D3DXVECTOR2(map_sb->bosssize.x, map_sb->bosssize.y);
+							map_player.nowpos = 21;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+					//5段目
+					//10→15
+					if (map_player.nowpos == 11)
+					{
+						map_player.circlenowpos = 15;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[15].pos.x, map[15].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[18].pos.x, map[18].pos.y);
+							map_player.nowpos = 16;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//13→16、13→17
+					if (map_player.nowpos == 14)
+					{
+						map_player.circlenowpos = map_player.LRcount + 16;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 16].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 16].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 16].pos.x, map[map_player.LRcount + 16].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[19].pos.x, map[19].pos.y);
+								map_player.nowpos = 17;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[20].pos.x, map[20].pos.y);
+								map_player.nowpos = 18;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//14→17
+					if (map_player.nowpos == 15)
+					{
+						map_player.circlenowpos = 17;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[17].pos.x, map[17].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[20].pos.x, map[20].pos.y);
+							map_player.nowpos = 18;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+					//-----4段目
+					//12→14、12→15
+					if (map_player.nowpos == 12)
+					{
+						map_player.circlenowpos = map_player.LRcount + 13;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 13].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 13].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 13].pos.x, map[map_player.LRcount + 13].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[16].pos.x, map[16].pos.y);
+								map_player.nowpos = 14;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[17].pos.x, map[17].pos.y);
+								map_player.nowpos = 15;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//13→15
+					if (map_player.nowpos == 13)
+					{
+						map_player.circlenowpos = 14;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[14].pos.x, map[14].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[17].pos.x, map[17].pos.y);
+							map_player.nowpos = 15;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+					//-----3段目
+					//7→10
+					if (map_player.nowpos == 8)
+					{
+						map_player.circlenowpos = 10;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[10].pos.x, map[10].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[15].pos.x, map[15].pos.y);
+							map_player.nowpos = 11;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//8→10、8→11
+					if (map_player.nowpos == 9)
+					{
+						map_player.circlenowpos = map_player.LRcount + 10;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 10].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 10].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 10].pos.x, map[map_player.LRcount + 10].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[15].pos.x, map[15].pos.y);
+								map_player.nowpos = 11;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[13].pos.x, map[13].pos.y);
+								map_player.nowpos = 12;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//10→12、10→13
+					if (map_player.nowpos == 10)
+					{
+						map_player.circlenowpos = map_player.LRcount + 11;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 11].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 11].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 11].pos.x, map[map_player.LRcount + 11].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[13].pos.x, map[13].pos.y);
+								map_player.nowpos = 12;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[14].pos.x, map[14].pos.y);
+								map_player.nowpos = 13;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+					//-----2段目
+					//5→8
+					if (map_player.nowpos == 5)
+					{
+						map_player.circlenowpos = 7;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[7].pos.x, map[7].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[10].pos.x, map[10].pos.y);
+							map_player.nowpos = 8;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//6→9
+					if (map_player.nowpos == 6)
+					{
+						map_player.circlenowpos = 8;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[8].pos.x, map[8].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[10].pos.x, map[10].pos.y);
+							map_player.nowpos = 9;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//7→10
+					if (map_player.nowpos == 7)
+					{
+						map_player.circlenowpos = 9;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[9].pos.x, map[9].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[11].pos.x, map[11].pos.y);
+							map_player.nowpos = 10;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+					//-----1段目
+					//0→5、1→5
+					if (map_player.nowpos == 1 || map_player.nowpos == 2)
+					{
+						map_player.circlenowpos = 4;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[4].pos.x, map[4].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[7].pos.x, map[7].pos.y);
+							map_player.nowpos = 5;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					if (map_player.nowpos == 3)
+					{
+						map_player.circlenowpos = map_player.LRcount + 5;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 5].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 5].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 5].pos.x, map[map_player.LRcount + 5].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[8].pos.x, map[8].pos.y);
+								map_player.nowpos = 6;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[9].pos.x, map[9].pos.y);
+								map_player.nowpos = 7;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//4→7
+					if (map_player.nowpos == 4)
+					{
+						map_player.circlenowpos = 6;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[6].pos.x, map[6].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[9].pos.x, map[9].pos.y);
+							map_player.nowpos = 7;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+					//-----0段目
+					if (map_player.nowpos == 0)
+					{
+						map_player.circlenowpos = map_player.LRcount;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 3)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount].pos.x, map[map_player.LRcount].pos.y);
+							map_player.nowpos = map_player.LRcount + 1;
+							if (map_player.nowpos == 1 || map_player.nowpos == 2)
+								map_player.circlepos = D3DXVECTOR2(map[4].pos.x, map[4].pos.y);
+							if (map_player.nowpos == 3)
+								map_player.circlepos = D3DXVECTOR2(map[5].pos.x, map[5].pos.y);
+							if (map_player.nowpos == 4)
+								map_player.circlepos = D3DXVECTOR2(map[6].pos.x, map[6].pos.y);
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+				}
+
+				//-----シート2の場合
+				if (map_line->randomcode == 2)
+				{
+					//7段目
+					//18→boss
+					if (map_player.nowpos == 18 || map_player.nowpos == 19 || map_player.nowpos == 20)
+					{
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map_sb->bosspos.x, map_sb->bosspos.y);
+							map_player.nowpos = 21;
+							map_player.encount = 3;
+							SceneTransition(SCENE_GAME);
+							map_player.nextflag = false;
+						}
+					}
+
+					//6段目
+					//16→18
+					if (map_player.nowpos == 16)
+					{
+						map_player.circlenowpos = 17;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[17].pos.x, map[17].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map_sb->bosspos.x, map_sb->bosspos.y);
+							map_player.circlesize = D3DXVECTOR2(map_sb->bosssize.x, map_sb->bosssize.y);
+							map_player.nowpos = 18;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//17→19、17→20
+					if (map_player.nowpos == 17)
+					{
+						map_player.circlenowpos = map_player.LRcount + 18;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 18].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 18].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 18].pos.x, map[map_player.LRcount + 18].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map_sb->bosspos.x, map_sb->bosspos.y);
+							map_player.circlesize = D3DXVECTOR2(map_sb->bosssize.x, map_sb->bosssize.y);
+							if (map_player.LRcount == 0)
+								map_player.nowpos = 19;
+							if (map_player.LRcount == 1)
+								map_player.nowpos = 20;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+					//5段目
+					//10→16
+					if (map_player.nowpos == 10)
+					{
+						map_player.circlenowpos = 15;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[15].pos.x, map[15].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[17].pos.x, map[17].pos.y);
+							map_player.nowpos = 16;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//14→17
+					if (map_player.nowpos == 14)
+					{
+						map_player.circlenowpos = 16;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[16].pos.x, map[16].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[18].pos.x, map[18].pos.y);
+							map_player.nowpos = 17;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//15→17
+					if (map_player.nowpos == 15)
+					{
+						map_player.circlenowpos = 16;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[16].pos.x, map[16].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[18].pos.x, map[18].pos.y);
+							map_player.nowpos = 17;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+					//4段目
+					//11→14
+					if (map_player.nowpos == 11)
+					{
+						map_player.circlenowpos = 13;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[13].pos.x, map[13].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[16].pos.x, map[16].pos.y);
+							map_player.nowpos = 14;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//12→14、12→15
+					if (map_player.nowpos == 12)
+					{
+						map_player.circlenowpos = map_player.LRcount + 13;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 13].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 13].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 13].pos.x, map[map_player.LRcount + 13].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[16].pos.x, map[16].pos.y);
+								map_player.nowpos = 14;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[16].pos.x, map[16].pos.y);
+								map_player.nowpos = 15;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//13→15
+					if (map_player.nowpos == 13)
+					{
+						map_player.circlenowpos = 14;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[14].pos.x, map[14].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[16].pos.x, map[16].pos.y);
+							map_player.nowpos = 15;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+					//3段目
+					//７→10、7→11
+					if (map_player.nowpos == 7)
+					{
+						map_player.circlenowpos = map_player.LRcount + 9;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 9].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 9].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 9].pos.x, map[map_player.LRcount + 9].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[15].pos.x, map[15].pos.y);
+								map_player.nowpos = 10;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[13].pos.x, map[13].pos.y);
+								map_player.nowpos = 11;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//8→12
+					if (map_player.nowpos == 8)
+					{
+						map_player.circlenowpos = 11;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[11].pos.x, map[11].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[13].pos.x, map[13].pos.y);
+							map_player.nowpos = 12;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//9→12、9→13
+					if (map_player.nowpos == 9)
+					{
+						map_player.circlenowpos = map_player.LRcount + 11;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 11].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 11].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 11].pos.x, map[map_player.LRcount + 11].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[13].pos.x, map[13].pos.y);
+								map_player.nowpos = 12;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[14].pos.x, map[14].pos.y);
+								map_player.nowpos = 13;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+					//2段目
+					//４→7
+					if (map_player.nowpos == 4)
+					{
+						map_player.circlenowpos = 6;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[6].pos.x, map[6].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[9].pos.x, map[9].pos.y);
+							map_player.nowpos = 7;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//5→8
+					if (map_player.nowpos == 5)
+					{
+						map_player.circlenowpos = 7;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[7].pos.x, map[7].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[11].pos.x, map[11].pos.y);
+							map_player.nowpos = 8;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//6→9
+					if (map_player.nowpos == 6)
+					{
+						map_player.circlenowpos = 8;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[8].pos.x, map[8].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[11].pos.x, map[11].pos.y);
+							map_player.nowpos = 9;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+					//1段目
+					//1→4
+					if (map_player.nowpos == 1)
+					{
+						map_player.circlenowpos = 3;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[3].pos.x, map[3].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[6].pos.x, map[6].pos.y);
+							map_player.nowpos = 4;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//2→5、2→6
+					if (map_player.nowpos == 2)
+					{
+						map_player.circlenowpos = map_player.LRcount + 4;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 4].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 4].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 4].pos.x, map[map_player.LRcount + 4].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[7].pos.x, map[7].pos.y);
+								map_player.nowpos = 5;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[8].pos.x, map[8].pos.y);
+								map_player.nowpos = 6;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//3→6
+					if (map_player.nowpos == 3)
+					{
+						map_player.circlenowpos = 5;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[5].pos.x, map[5].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[8].pos.x, map[8].pos.y);
+							map_player.nowpos = 6;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+					//0段目
+					if (map_player.nowpos == 0)
+					{
+						map_player.circlenowpos = map_player.LRcount;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 2)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount].pos.x, map[map_player.LRcount].pos.y);
+							map_player.nowpos = map_player.LRcount + 1;
+							if (map_player.nowpos == 1)
+								map_player.circlepos = D3DXVECTOR2(map[3].pos.x, map[3].pos.y);
+							if (map_player.nowpos == 2)
+								map_player.circlepos = D3DXVECTOR2(map[4].pos.x, map[4].pos.y);
+							if (map_player.nowpos == 3)
+								map_player.circlepos = D3DXVECTOR2(map[5].pos.x, map[5].pos.y);
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+				}
+
+				//-----シート3の場合
+				if (map_line->randomcode == 3)
+				{
+					//7段目
+					//→boss
+					if (map_player.nowpos == 17 || map_player.nowpos == 18)
+					{
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map_sb->bosspos.x, map_sb->bosspos.y);
+							map_player.nowpos = 19;
+							map_player.encount = 3;
+							SceneTransition(SCENE_GAME);
+							map_player.nextflag = false;
+						}
+					}
+
+					//6段目
+					//16→17、16→17
+					if (map_player.nowpos == 16)
+					{
+						map_player.circlenowpos = map_player.LRcount + 16;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 16].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 16].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 16].pos.x, map[map_player.LRcount + 16].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map_sb->bosspos.x, map_sb->bosspos.y);
+							map_player.circlesize = D3DXVECTOR2(map_sb->bosssize.x, map_sb->bosssize.y);
+							if (map_player.LRcount == 0)
+								map_player.nowpos = 17;
+							if (map_player.LRcount == 1)
+								map_player.nowpos = 18;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+					//5段目
+					//14→16、15→16
+					if (map_player.nowpos == 14 || map_player.nowpos == 15)
+					{
+						map_player.circlenowpos = 15;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[15].pos.x, map[15].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[16].pos.x, map[16].pos.y);
+							map_player.nowpos = 16;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+					//4段目
+					//11→14、12→14
+					if (map_player.nowpos == 11 || map_player.nowpos == 12)
+					{
+						map_player.circlenowpos = 13;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[13].pos.x, map[13].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[15].pos.x, map[15].pos.y);
+							map_player.nowpos = 14;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//13→15
+					if (map_player.nowpos == 13)
+					{
+						map_player.circlenowpos = 14;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[14].pos.x, map[14].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[15].pos.x, map[15].pos.y);
+							map_player.nowpos = 15;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+					//3段目
+					//8→11、8→12
+					if (map_player.nowpos == 8)
+					{
+						map_player.circlenowpos = map_player.LRcount + 10;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 10].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 10].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 10].pos.x, map[map_player.LRcount + 10].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[13].pos.x, map[13].pos.y);
+								map_player.nowpos = 11;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[13].pos.x, map[13].pos.y);
+								map_player.nowpos = 12;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//9→12、8→13
+					if (map_player.nowpos == 9)
+					{
+						map_player.circlenowpos = map_player.LRcount + 11;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 11].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 11].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 11].pos.x, map[map_player.LRcount + 11].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[13].pos.x, map[13].pos.y);
+								map_player.nowpos = 12;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[14].pos.x, map[14].pos.y);
+								map_player.nowpos = 13;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//10→13
+					if (map_player.nowpos == 10)
+					{
+						map_player.circlenowpos = 12;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[12].pos.x, map[12].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[14].pos.x, map[14].pos.y);
+							map_player.nowpos = 13;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+					//2段目
+					//5→8
+					if (map_player.nowpos == 5)
+					{
+						map_player.circlenowpos = 7;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[7].pos.x, map[7].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[10].pos.x, map[10].pos.y);
+							map_player.nowpos = 8;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//6→9
+					if (map_player.nowpos == 6)
+					{
+						map_player.circlenowpos = 8;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[8].pos.x, map[8].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[11].pos.x, map[11].pos.y);
+							map_player.nowpos = 9;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//7→10
+					if (map_player.nowpos == 7)
+					{
+						map_player.circlenowpos = 9;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[9].pos.x, map[9].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[12].pos.x, map[12].pos.y);
+							map_player.nowpos = 10;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+					//1段目
+					//1→5
+					if (map_player.nowpos == 1 || map_player.nowpos == 2)
+					{
+						map_player.circlenowpos = 4;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[4].pos.x, map[4].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[7].pos.x, map[7].pos.y);
+							map_player.nowpos = 5;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//3→6、3→7
+					if (map_player.nowpos == 3)
+					{
+						map_player.circlenowpos = map_player.LRcount + 5;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 5].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 5].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 5].pos.x, map[map_player.LRcount + 5].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[8].pos.x, map[8].pos.y);
+								map_player.nowpos = 6;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[9].pos.x, map[9].pos.y);
+								map_player.nowpos = 7;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//4→7
+					if (map_player.nowpos == 4)
+					{
+						map_player.circlenowpos = 6;
+						if(IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[6].pos.x, map[6].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[9].pos.x, map[9].pos.y);
+							map_player.nowpos = 7;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+
+					//0段目
+					if (map_player.nowpos == 0)
+					{
+						map_player.circlenowpos = map_player.LRcount;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 3)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount].pos.x, map[map_player.LRcount].pos.y);
+							map_player.nowpos = map_player.LRcount + 1;
+							if (map_player.nowpos == 1)
+								map_player.circlepos = D3DXVECTOR2(map[4].pos.x, map[4].pos.y);
+							if (map_player.nowpos == 2)
+								map_player.circlepos = D3DXVECTOR2(map[4].pos.x, map[4].pos.y);
+							if (map_player.nowpos == 3)
+								map_player.circlepos = D3DXVECTOR2(map[5].pos.x, map[5].pos.y);
+							if (map_player.nowpos == 4)
+								map_player.circlepos = D3DXVECTOR2(map[6].pos.x, map[6].pos.y);
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+				}
+
+				//-----シート4の場合
+				if (map_line->randomcode == 4)
+				{
+					//7段目
+					//→boss
+					if (map_player.nowpos == 22 || map_player.nowpos == 23 || map_player.nowpos == 24)
+					{
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map_sb->bosspos.x, map_sb->bosspos.y);
+							map_player.nowpos = 25;
+							map_player.encount = 3;
+							SceneTransition(SCENE_GAME);
+							map_player.nextflag = false;
+						}
+					}
+
+					//6段目
+					//18→22
+					if (map_player.nowpos == 18)
+					{
+						map_player.circlenowpos = 21;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[21].pos.x, map[21].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map_sb->bosspos.x, map_sb->bosspos.y);
+							map_player.circlesize = D3DXVECTOR2(map_sb->bosssize.x, map_sb->bosssize.y);
+							map_player.nowpos = 22;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//19→23
+					if (map_player.nowpos == 19)
+					{
+						map_player.circlenowpos = 22;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[22].pos.x, map[22].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map_sb->bosspos.x, map_sb->bosspos.y);
+							map_player.circlesize = D3DXVECTOR2(map_sb->bosssize.x, map_sb->bosssize.y);
+							map_player.nowpos = 23;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//20→23、20→24
+					if (map_player.nowpos == 20)
+					{
+						map_player.circlenowpos = map_player.LRcount + 22;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 22].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 22].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 22].pos.x, map[map_player.LRcount + 22].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map_sb->bosspos.x, map_sb->bosspos.y);
+								map_player.circlesize = D3DXVECTOR2(map_sb->bosssize.x, map_sb->bosssize.y);
+								map_player.nowpos = 23;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map_sb->bosspos.x, map_sb->bosspos.y);
+								map_player.circlesize = D3DXVECTOR2(map_sb->bosssize.x, map_sb->bosssize.y);
+								map_player.nowpos = 24;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//21→24
+					if (map_player.nowpos == 21)
+					{
+						map_player.circlenowpos = 23;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[23].pos.x, map[23].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map_sb->bosspos.x, map_sb->bosspos.y);
+							map_player.circlesize = D3DXVECTOR2(map_sb->bosssize.x, map_sb->bosssize.y);
+							map_player.nowpos = 24;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+					//5段目
+					//15→18、15→19
+					if (map_player.nowpos == 15)
+					{
+						map_player.circlenowpos = map_player.LRcount + 17;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 17].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 17].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 17].pos.x, map[map_player.LRcount + 17].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[21].pos.x, map[21].pos.y);
+								map_player.nowpos = 18;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[22].pos.x, map[22].pos.y);
+								map_player.nowpos = 19;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//16→19、16→20
+					if (map_player.nowpos == 16)
+					{
+						map_player.circlenowpos = map_player.LRcount + 18;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 18].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 18].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 18].pos.x, map[map_player.LRcount + 18].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[22].pos.x, map[22].pos.y);
+								map_player.nowpos = 19;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[22].pos.x, map[22].pos.y);
+								map_player.nowpos = 20;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//17→20、17→21
+					if (map_player.nowpos == 17)
+					{
+						map_player.circlenowpos = map_player.LRcount + 19;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 19].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 19].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 19].pos.x, map[map_player.LRcount + 19].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[22].pos.x, map[22].pos.y);
+								map_player.nowpos = 20;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[23].pos.x, map[23].pos.y);
+								map_player.nowpos = 21;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+					//4段目
+					//11→15
+					if (map_player.nowpos == 11)
+					{
+						map_player.circlenowpos = 14;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[14].pos.x, map[14].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[17].pos.x, map[17].pos.y);
+							map_player.nowpos = 15;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//12→16
+					if (map_player.nowpos == 12)
+					{
+						map_player.circlenowpos = 15;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[15].pos.x, map[15].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[18].pos.x, map[18].pos.y);
+							map_player.nowpos = 16;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//13→16、13→17
+					if (map_player.nowpos == 13)
+					{
+						map_player.circlenowpos = map_player.LRcount + 15;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 15].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 15].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 15].pos.x, map[map_player.LRcount + 15].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[18].pos.x, map[18].pos.y);
+								map_player.nowpos = 16;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[19].pos.x, map[19].pos.y);
+								map_player.nowpos = 17;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//14→17
+					if (map_player.nowpos == 14)
+					{
+						map_player.circlenowpos = 16;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[16].pos.x, map[16].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[19].pos.x, map[19].pos.y);
+							map_player.nowpos = 17;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+					//3段目
+						//8→11、8→12
+					if (map_player.nowpos == 8)
+					{
+						map_player.circlenowpos = map_player.LRcount + 10;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 10].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 10].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 10].pos.x, map[map_player.LRcount + 10].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[14].pos.x, map[14].pos.y);
+								map_player.nowpos = 11;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[15].pos.x, map[15].pos.y);
+								map_player.nowpos = 12;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//9→13
+					if (map_player.nowpos == 9)
+					{
+						map_player.circlenowpos = 12;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[12].pos.x, map[12].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[15].pos.x, map[15].pos.y);
+							map_player.nowpos = 13;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//10→13、10→14
+					if (map_player.nowpos == 10)
+					{
+						map_player.circlenowpos = map_player.LRcount + 12;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 12].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 12].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 12].pos.x, map[map_player.LRcount + 12].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[15].pos.x, map[15].pos.y);
+								map_player.nowpos = 13;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[16].pos.x, map[16].pos.y);
+								map_player.nowpos = 14;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+					//2段目
+					//5→8
+					if (map_player.nowpos == 5)
+					{
+						map_player.circlenowpos = 7;
+
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[7].pos.x, map[7].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[10].pos.x, map[10].pos.y);
+							map_player.nowpos = 8;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//6→8、6→9
+					if (map_player.nowpos == 6)
+					{
+						map_player.circlenowpos = map_player.LRcount + 7;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 7].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 7].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 7].pos.x, map[map_player.LRcount + 7].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[10].pos.x, map[10].pos.y);
+								map_player.nowpos = 8;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[12].pos.x, map[12].pos.y);
+								map_player.nowpos = 9;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//7→9、7→10
+					if (map_player.nowpos == 7)
+					{
+						map_player.circlenowpos = map_player.LRcount + 8;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 8].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 8].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 8].pos.x, map[map_player.LRcount + 8].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[12].pos.x, map[12].pos.y);
+								map_player.nowpos = 9;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[12].pos.x, map[12].pos.y);
+								map_player.nowpos = 10;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+					//1段目
+					//1→5
+					if (map_player.nowpos == 1)
+					{
+						map_player.circlenowpos = 4;
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[4].pos.x, map[4].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[7].pos.x, map[7].pos.y);
+							map_player.nowpos = 5;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//2→5、2→6
+					if (map_player.nowpos == 2)
+					{
+						map_player.circlenowpos = map_player.LRcount + 4;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 4].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 4].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 4].pos.x, map[map_player.LRcount + 4].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[7].pos.x, map[7].pos.y);
+								map_player.nowpos = 5;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[7].pos.x, map[7].pos.y);
+								map_player.nowpos = 6;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//3→6、3→7
+					if (map_player.nowpos == 3)
+					{
+						map_player.circlenowpos = map_player.LRcount + 5;
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount + 5].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount + 5].pos.x;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount + 5].pos.x, map[map_player.LRcount + 5].pos.y);
+							if (map_player.LRcount == 0)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[7].pos.x, map[7].pos.y);
+								map_player.nowpos = 6;
+							}
+							if (map_player.LRcount == 1)
+							{
+								map_player.circlepos = D3DXVECTOR2(map[8].pos.x, map[8].pos.y);
+								map_player.nowpos = 7;
+							}
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+					//4→7
+					if (map_player.nowpos == 4)
+					{
+						map_player.circlenowpos = 6;
+
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[6].pos.x, map[6].pos.y);
+							map_player.circlepos = D3DXVECTOR2(map[8].pos.x, map[8].pos.y);
+							map_player.nowpos = 7;
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+
+					//0段目
+					if (map_player.nowpos == 0)
+					{
+						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
+						{
+							map_player.LRcount = map_player.LRcount - 1;
+							map_player.circlepos.x = map[map_player.LRcount].pos.x;
+							map_player.circlenowpos = map_player.LRcount;
+						}
+						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 3)	//右
+						{
+							map_player.LRcount = map_player.LRcount + 1;
+							map_player.circlepos.x = map[map_player.LRcount].pos.x;
+							map_player.circlenowpos = map_player.LRcount;
+						}
+						if (IsButtonTriggered(0, BUTTON_Y))
+						{
+							map_player.pos = D3DXVECTOR2(map[map_player.LRcount].pos.x, map[map_player.LRcount].pos.y);
+							map_player.nowpos = map_player.LRcount + 1;
+							if (map_player.nowpos == 1)
+								map_player.circlepos = D3DXVECTOR2(map[4].pos.x, map[4].pos.y);
+							if (map_player.nowpos == 2)
+								map_player.circlepos = D3DXVECTOR2(map[4].pos.x, map[4].pos.y);
+							if (map_player.nowpos == 3)
+								map_player.circlepos = D3DXVECTOR2(map[5].pos.x, map[5].pos.y);
+							if (map_player.nowpos == 4)
+								map_player.circlepos = D3DXVECTOR2(map[6].pos.x, map[6].pos.y);
+							map_player.LRcount = 0;
+							map_player.UDcount = map_player.UDcount + 1;
+							map_player.nextflag = false;
+						}
+					}
+				}
+			}
+		}
+
 		if (PADUSE == 1)
 		{
 			if (GetKeyboardPress(DIK_W))	//上
@@ -1758,30 +3425,61 @@ void UpdateMapPlayer(void)
 		//選択したマスに対応したシーンに飛ぶ
 		if (map_player.nowpos < map_player.mapnum + 1)
 		{
-			if (GetKeyboardTrigger(DIK_RETURN) && hackeffect->drawflag == false)
+			if (PADUSE == 0)
 			{
-				if (map[map_player.nowpos - 1].randomcode == 1)	//通常敵マス
+				if (IsButtonTriggered(0, BUTTON_Y) && hackeffect->drawflag == false)
 				{
-					map_player.gamecount = map_player.gamecount + 1;	//ゲームシーンに入った回数を記録する
-					map_player.encount = (rand() % 2) + 1;	//ここで出現する敵をランダムに決める
-					map_player.enemypowerup = false;
-					SceneTransition(SCENE_GAME);
+					if (map[map_player.nowpos - 1].randomcode == 1)	//通常敵マス
+					{
+						map_player.gamecount = map_player.gamecount + 1;	//ゲームシーンに入った回数を記録する
+						map_player.encount = (rand() % 2) + 1;	//ここで出現する敵をランダムに決める
+						map_player.enemypowerup = false;
+						SceneTransition(SCENE_GAME);
+					}
+					if (map[map_player.nowpos - 1].randomcode == 2)	//強敵マス
+					{
+						map_player.encount = (rand() % 2) + 1;	//ここで出現する敵をランダムに決める
+						map_player.enemypowerup = true;
+						SceneTransition(SCENE_GAME);
+					}
+					if (map[map_player.nowpos - 1].randomcode == 3)	//休憩マス
+						SceneTransition(SCENE_REST);
+					if (map[map_player.nowpos - 1].randomcode == 4)	//イベントマス
+					{
+						map_player.eventcode = (rand() % 9) + 1;	//ここでイベントをランダムに決める
+						SceneTransition(SCENE_EVENT);
+					}
+					if (map[map_player.nowpos - 1].randomcode == 5)	//商人マス
+						SceneTransition(SCENE_SHOP);
 				}
-				if (map[map_player.nowpos - 1].randomcode == 2)	//強敵マス
+			}
+			if (PADUSE == 1)
+			{
+				if (GetKeyboardTrigger(DIK_RETURN) && hackeffect->drawflag == false)
 				{
-					map_player.encount = (rand() % 2) + 1;	//ここで出現する敵をランダムに決める
-					map_player.enemypowerup = true;
-					SceneTransition(SCENE_GAME);
+					if (map[map_player.nowpos - 1].randomcode == 1)	//通常敵マス
+					{
+						map_player.gamecount = map_player.gamecount + 1;	//ゲームシーンに入った回数を記録する
+						map_player.encount = (rand() % 2) + 1;	//ここで出現する敵をランダムに決める
+						map_player.enemypowerup = false;
+						SceneTransition(SCENE_GAME);
+					}
+					if (map[map_player.nowpos - 1].randomcode == 2)	//強敵マス
+					{
+						map_player.encount = (rand() % 2) + 1;	//ここで出現する敵をランダムに決める
+						map_player.enemypowerup = true;
+						SceneTransition(SCENE_GAME);
+					}
+					if (map[map_player.nowpos - 1].randomcode == 3)	//休憩マス
+						SceneTransition(SCENE_REST);
+					if (map[map_player.nowpos - 1].randomcode == 4)	//イベントマス
+					{
+						map_player.eventcode = (rand() % 9) + 1;	//ここでイベントをランダムに決める
+						SceneTransition(SCENE_EVENT);
+					}
+					if (map[map_player.nowpos - 1].randomcode == 5)	//商人マス
+						SceneTransition(SCENE_SHOP);
 				}
-				if (map[map_player.nowpos - 1].randomcode == 3)	//休憩マス
-					SceneTransition(SCENE_REST);
-				if (map[map_player.nowpos - 1].randomcode == 4)	//イベントマス
-				{
-					map_player.eventcode = (rand() % 9) + 1;	//ここでイベントをランダムに決める
-					SceneTransition(SCENE_EVENT);
-				}
-				if (map[map_player.nowpos - 1].randomcode == 5)	//商人マス
-					SceneTransition(SCENE_SHOP);
 			}
 		}	
 	}

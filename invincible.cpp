@@ -82,14 +82,30 @@ void _Invincible(void)
 		invincible.time = 0.0f;
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && invincible.use == true)
+	if (PADUSE == 0)
 	{
-		invincible.use = false;
-		invincible.timeflag = false;
-		invincible.time = 0.0f;
+		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && invincible.use == true)
+		{
+			invincible.use = false;
+			invincible.timeflag = false;
+			invincible.time = 0.0f;
 
-		invincible.bugincrease = false;
-		invincible.bugdrawnum = 0;
+			invincible.bugincrease = false;
+			invincible.bugdrawnum = 0;
+		}
+	}
+
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && invincible.use == true)
+		{
+			invincible.use = false;
+			invincible.timeflag = false;
+			invincible.time = 0.0f;
+
+			invincible.bugincrease = false;
+			invincible.bugdrawnum = 0;
+		}
 	}
 }
 

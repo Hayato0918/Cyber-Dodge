@@ -74,14 +74,31 @@ void _SpeedUp(void)
 		speedup.time = 0.0f;
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && speedup.use == true)
+	if (PADUSE == 0)
 	{
-		if (speedup.time < speeduptime)
-			player->move /= 2;
-		speedup.timeflag = false;
-		speedup.bugdrawnum = 0;
-		speedup.bugincrease = false;
-		speedup.time = 0.0f;
-		speedup.use = false;
+		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && speedup.use == true)
+		{
+			if (speedup.time < speeduptime)
+				player->move /= 2;
+			speedup.timeflag = false;
+			speedup.bugdrawnum = 0;
+			speedup.bugincrease = false;
+			speedup.time = 0.0f;
+			speedup.use = false;
+		}
+	}
+
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && speedup.use == true)
+		{
+			if (speedup.time < speeduptime)
+				player->move /= 2;
+			speedup.timeflag = false;
+			speedup.bugdrawnum = 0;
+			speedup.bugincrease = false;
+			speedup.time = 0.0f;
+			speedup.use = false;
+		}
 	}
 }

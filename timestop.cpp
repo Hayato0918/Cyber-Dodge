@@ -83,16 +83,35 @@ void _Timestop(void)
 		cattch->enemyintervalflag = 0;
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && timestop.use == true)
+	if (PADUSE == 0)
 	{
-		timestop.use = false;
-		timestop.timeflag = false;
-		timestop.time = 0.0f;
-		timestop.posnow = D3DXVECTOR2(0.0f, 0.0f);
-		cattch->enemyflag = 0;
-		cattch->enemyintervalflag = 0;
+		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && timestop.use == true)
+		{
+			timestop.use = false;
+			timestop.timeflag = false;
+			timestop.time = 0.0f;
+			timestop.posnow = D3DXVECTOR2(0.0f, 0.0f);
+			cattch->enemyflag = 0;
+			cattch->enemyintervalflag = 0;
 
-		timestop.bugincrease = false;
-		timestop.bugdrawnum = 0;
+			timestop.bugincrease = false;
+			timestop.bugdrawnum = 0;
+		}
+	}
+
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && timestop.use == true)
+		{
+			timestop.use = false;
+			timestop.timeflag = false;
+			timestop.time = 0.0f;
+			timestop.posnow = D3DXVECTOR2(0.0f, 0.0f);
+			cattch->enemyflag = 0;
+			cattch->enemyintervalflag = 0;
+
+			timestop.bugincrease = false;
+			timestop.bugdrawnum = 0;
+		}
 	}
 }

@@ -75,82 +75,168 @@ void _Mindhack(void)
 	if (mindhack.timeflag == true)
 	{
 		mindhack.time = mindhack.time + 1.0f;
-		if (GetKeyboardPress(DIK_W))	//上
+
+		if (PADUSE == 0)
 		{
-			if (map_player->encount == 1)
+			if (IsButtonTriggered(0, BUTTON_UP))	//上
 			{
-				if (reverse->use == false)
-					slime->pos.y -= player->move.y;
-				if (reverse->use == true)
-					slime->pos.y += player->move.y;
+				if (map_player->encount == 1)
+				{
+					if (reverse->use == false)
+						slime->pos.y -= player->move.y;
+					if (reverse->use == true)
+						slime->pos.y += player->move.y;
+				}
+				if (map_player->encount == 2)
+				{
+					if (reverse->use == false)
+						firewall->pos.y -= player->move.y;
+					if (reverse->use == true)
+						firewall->pos.y += player->move.y;
+				}
 			}
-			if (map_player->encount == 2)
+			if (IsButtonTriggered(0, BUTTON_DOWN))	//下
 			{
-				if (reverse->use == false)
-					firewall->pos.y -= player->move.y;
-				if (reverse->use == true)
-					firewall->pos.y += player->move.y;
+				if (map_player->encount == 1)
+				{
+					if (reverse->use == false)
+						slime->pos.y += player->move.y;
+					if (reverse->use == true)
+						slime->pos.y -= player->move.y;
+				}
+				if (map_player->encount == 2)
+				{
+					if (reverse->use == false)
+						firewall->pos.y += player->move.y;
+					if (reverse->use == true)
+						firewall->pos.y -= player->move.y;
+				}
+			}
+			if (IsButtonTriggered(0, BUTTON_LEFT))	//左
+			{
+				if (map_player->encount == 1)
+				{
+					if (reverse->use == false)
+						slime->pos.x -= player->move.x;
+					if (reverse->use == true)
+						slime->pos.x += player->move.x;
+
+					slime->rotate = 2;		//左向きに更新
+				}
+				if (map_player->encount == 2)
+				{
+					if (reverse->use == false)
+						firewall->pos.x -= player->move.x;
+					if (reverse->use == true)
+						firewall->pos.x += player->move.x;
+
+					firewall->rotate = 2;		//左向きに更新
+					firewall->walktextureflag = true;		//テクスチャの切り替え
+				}
+			}
+			if (IsButtonTriggered(0, BUTTON_RIGHT))	//右
+			{
+				if (map_player->encount == 1)
+				{
+					if (reverse->use == false)
+						slime->pos.x += player->move.x;
+					if (reverse->use == true)
+						slime->pos.x -= player->move.x;
+
+					slime->rotate = 3;		//右向きに更新
+				}
+				if (map_player->encount == 2)
+				{
+					if (reverse->use == false)
+						firewall->pos.x += player->move.x;
+					if (reverse->use == true)
+						firewall->pos.x -= player->move.x;
+
+					firewall->rotate = 3;		//右向きに更新
+					firewall->walktextureflag = true;		//テクスチャの切り替え
+				}
 			}
 		}
-		if (GetKeyboardPress(DIK_S))	//下
+
+		if (PADUSE == 1)
 		{
-			if (map_player->encount == 1)
+			if (GetKeyboardPress(DIK_W))	//上
 			{
-				if (reverse->use == false)
-					slime->pos.y += player->move.y;
-				if (reverse->use == true)
-					slime->pos.y -= player->move.y;
+				if (map_player->encount == 1)
+				{
+					if (reverse->use == false)
+						slime->pos.y -= player->move.y;
+					if (reverse->use == true)
+						slime->pos.y += player->move.y;
+				}
+				if (map_player->encount == 2)
+				{
+					if (reverse->use == false)
+						firewall->pos.y -= player->move.y;
+					if (reverse->use == true)
+						firewall->pos.y += player->move.y;
+				}
 			}
-			if (map_player->encount == 2)
+			if (GetKeyboardPress(DIK_S))	//下
 			{
-				if (reverse->use == false)
-					firewall->pos.y += player->move.y;
-				if (reverse->use == true)
-					firewall->pos.y -= player->move.y;
+				if (map_player->encount == 1)
+				{
+					if (reverse->use == false)
+						slime->pos.y += player->move.y;
+					if (reverse->use == true)
+						slime->pos.y -= player->move.y;
+				}
+				if (map_player->encount == 2)
+				{
+					if (reverse->use == false)
+						firewall->pos.y += player->move.y;
+					if (reverse->use == true)
+						firewall->pos.y -= player->move.y;
+				}
 			}
-		}
-		if (GetKeyboardPress(DIK_A))	//左
-		{
-			if (map_player->encount == 1)
+			if (GetKeyboardPress(DIK_A))	//左
 			{
-				if (reverse->use == false)
-					slime->pos.x -= player->move.x;
-				if (reverse->use == true)
-					slime->pos.x += player->move.x;
+				if (map_player->encount == 1)
+				{
+					if (reverse->use == false)
+						slime->pos.x -= player->move.x;
+					if (reverse->use == true)
+						slime->pos.x += player->move.x;
 
-				slime->rotate = 2;		//左向きに更新
-			}
-			if (map_player->encount == 2)
-			{
-				if (reverse->use == false)
-					firewall->pos.x -= player->move.x;
-				if (reverse->use == true)
-					firewall->pos.x += player->move.x;
+					slime->rotate = 2;		//左向きに更新
+				}
+				if (map_player->encount == 2)
+				{
+					if (reverse->use == false)
+						firewall->pos.x -= player->move.x;
+					if (reverse->use == true)
+						firewall->pos.x += player->move.x;
 
-				firewall->rotate = 2;		//左向きに更新
-				firewall->walktextureflag = true;		//テクスチャの切り替え
+					firewall->rotate = 2;		//左向きに更新
+					firewall->walktextureflag = true;		//テクスチャの切り替え
+				}
 			}
-		}
-		if (GetKeyboardPress(DIK_D))	//右
-		{
-			if (map_player->encount == 1)
+			if (GetKeyboardPress(DIK_D))	//右
 			{
-				if (reverse->use == false)
-					slime->pos.x += player->move.x;
-				if (reverse->use == true)
-					slime->pos.x -= player->move.x;
+				if (map_player->encount == 1)
+				{
+					if (reverse->use == false)
+						slime->pos.x += player->move.x;
+					if (reverse->use == true)
+						slime->pos.x -= player->move.x;
 
-				slime->rotate = 3;		//右向きに更新
-			}
-			if (map_player->encount == 2)
-			{
-				if (reverse->use == false)
-					firewall->pos.x += player->move.x;
-				if (reverse->use == true)
-					firewall->pos.x -= player->move.x;
+					slime->rotate = 3;		//右向きに更新
+				}
+				if (map_player->encount == 2)
+				{
+					if (reverse->use == false)
+						firewall->pos.x += player->move.x;
+					if (reverse->use == true)
+						firewall->pos.x -= player->move.x;
 
-				firewall->rotate = 3;		//右向きに更新
-				firewall->walktextureflag = true;		//テクスチャの切り替え
+					firewall->rotate = 3;		//右向きに更新
+					firewall->walktextureflag = true;		//テクスチャの切り替え
+				}
 			}
 		}
 	}
@@ -160,13 +246,30 @@ void _Mindhack(void)
 		mindhack.timeflag = false;
 		mindhack.time = 0.0f;
 	}
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && mindhack.use == true)
-	{
-		mindhack.use = false;
-		mindhack.timeflag = false;
-		mindhack.time = 0.0f;
 
-		mindhack.bugincrease = false;
-		mindhack.bugdrawnum = 0;
+	if (PADUSE == 0)
+	{
+		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && mindhack.use == true)
+		{
+			mindhack.use = false;
+			mindhack.timeflag = false;
+			mindhack.time = 0.0f;
+
+			mindhack.bugincrease = false;
+			mindhack.bugdrawnum = 0;
+		}
+	}
+
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && mindhack.use == true)
+		{
+			mindhack.use = false;
+			mindhack.timeflag = false;
+			mindhack.time = 0.0f;
+
+			mindhack.bugincrease = false;
+			mindhack.bugdrawnum = 0;
+		}
 	}
 }

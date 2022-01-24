@@ -39,8 +39,17 @@ void UpdateShopReload()
 
 	PLAYER* player = GetPlayer();
 
-	if (GetKeyboardTrigger(DIK_RETURN) && shop_select->xcount > 1 && shop_select->ycount == 1 && player->gold >= shop_reload.gold)
-		shop_reload.reloadflag = true;
+	if (PADUSE == 0)
+	{
+		if (IsButtonTriggered(0, BUTTON_Y) && shop_select->xcount > 1 && shop_select->ycount == 1 && player->gold >= shop_reload.gold)
+			shop_reload.reloadflag = true;
+	}
+
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_RETURN) && shop_select->xcount > 1 && shop_select->ycount == 1 && player->gold >= shop_reload.gold)
+			shop_reload.reloadflag = true;
+	}
 
 	int t = 0;
 

@@ -29,14 +29,25 @@ SLIME slime;
 //-----‰Šú‰»ˆ—
 HRESULT InitSlime(void)
 {
+	MAP_PLAYER* map_player = GetMapPlayer();
+
 	slime.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.3555f);
 	slime.size = D3DXVECTOR2(SCREEN_WIDTH * 0.08f, SCREEN_HEIGHT * 0.14222f);
 	slime.move = D3DXVECTOR2(SCREEN_WIDTH * 0.00125f, SCREEN_HEIGHT * 0.002222f);
 	slime.colPos = D3DXVECTOR2(slime.pos.x + slime.size.x / 2, slime.pos.y + slime.size.y / 2 + slime.size.y / 4);
 	slime.rotate = 2;
 
-	slime.atk = 40;
-	slime.def = 0;
+	if (map_player->enemypowerup == false)
+	{
+		slime.atk = 40;
+		slime.def = 0;
+	}
+
+	if (map_player->enemypowerup == true)
+	{
+		slime.atk = 40 * 1.2f;
+		slime.def = 0 * 1.2f;
+	}
 
 	slime.u = 0.0f;
 	slime.v = 1.0f;

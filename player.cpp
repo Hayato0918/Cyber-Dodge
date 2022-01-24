@@ -52,9 +52,9 @@ HRESULT InitPlayer(void)
 
 	if (map_player->gamecount == 1)
 	{
-		player.atk = 100;
-		player.def = -1000;
-		player.gold = 1000;
+		player.atk = 50;
+		player.def = 0;
+		player.gold = 0;
 
 		//立ち状態のテクスチャ設定
 		player.stand_Ltexture = LoadTexture("data/TEXTURE/player/stand/stand_R.png");

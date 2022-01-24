@@ -51,13 +51,13 @@ void UpdateYomigaeru(void)
 			yomigaerupoint.count += 1;
 		}
 		//‘I‘ð‚µ‚½Žž‚ÌŒø‰Ê
-		if (IsButtonTriggered(0, BUTTON_X) && yomigaerupoint.count == 0)
+		if (IsButtonTriggered(0, BUTTON_Y) && yomigaerupoint.count == 0)
 		{
 			player->atk *= 1.2f;
 			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
-		if (IsButtonTriggered(0, BUTTON_X) && yomigaerupoint.count == 1)
+		if (IsButtonTriggered(0, BUTTON_Y) && yomigaerupoint.count == 1)
 		{
 			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);

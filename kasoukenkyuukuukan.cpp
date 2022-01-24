@@ -50,14 +50,14 @@ void UpdateKasou(void)
 			kasoupoint.count += 1;
 		}
 		//‘I‘ð‚µ‚½Žž‚ÌŒø‰Ê
-		if (IsButtonTriggered(0, BUTTON_X) && kasoupoint.count == 0)
+		if (IsButtonTriggered(0, BUTTON_Y) && kasoupoint.count == 0)
 		{
 			player->def = player->def - 20;
 			player->atk = player->atk + 40;
 			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
-		if (IsButtonTriggered(0, BUTTON_X) && kasoupoint.count == 1)
+		if (IsButtonTriggered(0, BUTTON_Y) && kasoupoint.count == 1)
 		{
 			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);

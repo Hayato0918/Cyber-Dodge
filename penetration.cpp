@@ -69,15 +69,32 @@ void _Kantsuu(void)
 		kantsuu.time = 0.0f;
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && kantsuu.use == true)
+	if (PADUSE == 0)
 	{
-		kantsuu.use = false;
-		kantsuu.timeflag = false;
-		kantsuu.time = 0.0f;
-		kantsuu.usegauge = 10;
+		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && kantsuu.use == true)
+		{
+			kantsuu.use = false;
+			kantsuu.timeflag = false;
+			kantsuu.time = 0.0f;
+			kantsuu.usegauge = 10;
 
-		kantsuu.bugincrease = false;
-		kantsuu.bugdrawnum = 0;
+			kantsuu.bugincrease = false;
+			kantsuu.bugdrawnum = 0;
+		}
+	}
+
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && kantsuu.use == true)
+		{
+			kantsuu.use = false;
+			kantsuu.timeflag = false;
+			kantsuu.time = 0.0f;
+			kantsuu.usegauge = 10;
+
+			kantsuu.bugincrease = false;
+			kantsuu.bugdrawnum = 0;
+		}
 	}
 }
 

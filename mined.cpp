@@ -34,7 +34,7 @@ void UpdateMined(void)
 	if (PADUSE == 0)
 	{
 		//‘I‘ð‚µ‚½Žž‚ÌŒø‰Ê
-		if (IsButtonTriggered(0, BUTTON_X))
+		if (IsButtonTriggered(0, BUTTON_Y))
 		{
 			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);

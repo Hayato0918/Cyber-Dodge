@@ -66,11 +66,23 @@ void _Disappear(void)
 		otosiana->timeflag = false;
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && disappear.use == true)
+	if (PADUSE == 0)
 	{
-		disappear.bugincrease = false;
-		disappear.bugdrawnum = 0;
-		disappear.use = false;
+		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && disappear.use == true)
+		{
+			disappear.bugincrease = false;
+			disappear.bugdrawnum = 0;
+			disappear.use = false;
+		}
 	}
 
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && disappear.use == true)
+		{
+			disappear.bugincrease = false;
+			disappear.bugdrawnum = 0;
+			disappear.use = false;
+		}
+	}
 }

@@ -164,14 +164,30 @@ void _Ganseki(void)
 		ganseki.time = 0.0f;
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && ganseki.use == true)
+	if (PADUSE == 0)
 	{
-		ganseki.use = false;
-		ganseki.timeflag = false;
-		ganseki.time = 0.0f;
-		ganseki.usegauge = 10;
-		ganseki.bugincrease = false;
-		ganseki.bugdrawnum = 0;
+		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && ganseki.use == true)
+		{
+			ganseki.use = false;
+			ganseki.timeflag = false;
+			ganseki.time = 0.0f;
+			ganseki.usegauge = 10;
+			ganseki.bugincrease = false;
+			ganseki.bugdrawnum = 0;
+		}
+	}
+
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && ganseki.use == true)
+		{
+			ganseki.use = false;
+			ganseki.timeflag = false;
+			ganseki.time = 0.0f;
+			ganseki.usegauge = 10;
+			ganseki.bugincrease = false;
+			ganseki.bugdrawnum = 0;
+		}
 	}
 }
 

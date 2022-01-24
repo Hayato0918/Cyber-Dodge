@@ -90,48 +90,98 @@ void _FloatingFeeling(void)
 	}
 	if (EFF_flag == 1)
 	{
-		if (GetKeyboardTrigger(DIK_W) && EFF_UDcount > 0)
+		if (PADUSE == 0)
 		{
-			EFF_UDcount -= 1;
-			frame.pos.y -= 50.0f;
-		}
-		if (GetKeyboardTrigger(DIK_S) && EFF_UDcount < 1)
-		{
-			EFF_UDcount += 1;
-			frame.pos.y += 50.0f;
-		}
-		if (GetKeyboardTrigger(DIK_RETURN))
-		{
-			if (EFF_UDcount == 0)
+			if (IsButtonTriggered(0, BUTTON_UP) && EFF_UDcount > 0)
 			{
-				if (rand() % 100 > 19)
-				{
-					EFF_flag = 2;
-					//‰½‚à‚µ‚È‚¢
-				}
-				else
-				{
-					EFF_flag = 3;
-					//‘Ì—Í-30
-					AddPlayerHp(-30);
-				}
+				EFF_UDcount -= 1;
+				frame.pos.y -= 50.0f;
 			}
-			if (EFF_UDcount == 1)
+			if (IsButtonTriggered(0, BUTTON_DOWN) && EFF_UDcount < 1)
 			{
-				EFF_flag = 4;
-				//‘Ì—ÍÅ‘å’l‚ð-50
-				AddPlayerHpMAX(-50);
+				EFF_UDcount += 1;
+				frame.pos.y += 50.0f;
+			}
+			if (IsButtonTriggered(0, BUTTON_Y))
+			{
+				if (EFF_UDcount == 0)
+				{
+					if (rand() % 100 > 19)
+					{
+						EFF_flag = 2;
+						//‰½‚à‚µ‚È‚¢
+					}
+					else
+					{
+						EFF_flag = 3;
+						//‘Ì—Í-30
+						AddPlayerHp(-30);
+					}
+				}
+				if (EFF_UDcount == 1)
+				{
+					EFF_flag = 4;
+					//‘Ì—ÍÅ‘å’l‚ð-50
+					AddPlayerHpMAX(-50);
 
-				//Œ»Ý‚ÌHP‚ð”¼•ª‚É
-				PLAYERHP* player_hp = GetPlayerHp();
-				int n = player_hp->gaugesize.x * 0.3125f;
-				n = n / 2 * -1;
-				AddPlayerHp(n);
+					//Œ»Ý‚ÌHP‚ð”¼•ª‚É
+					PLAYERHP* player_hp = GetPlayerHp();
+					int n = player_hp->gaugesize.x * 0.3125f;
+					n = n / 2 * -1;
+					AddPlayerHp(n);
+				}
+				sentence.use = false;
+				choices_A.use = false;
+				choices_B.use = false;
+				frame.use = false;
 			}
-			sentence.use = false;
-			choices_A.use = false;
-			choices_B.use = false;
-			frame.use = false;
+
+		}
+		if (PADUSE == 1)
+		{
+			if (GetKeyboardTrigger(DIK_W) && EFF_UDcount > 0)
+			{
+				EFF_UDcount -= 1;
+				frame.pos.y -= 50.0f;
+			}
+			if (GetKeyboardTrigger(DIK_S) && EFF_UDcount < 1)
+			{
+				EFF_UDcount += 1;
+				frame.pos.y += 50.0f;
+			}
+			if (GetKeyboardTrigger(DIK_RETURN))
+			{
+				if (EFF_UDcount == 0)
+				{
+					if (rand() % 100 > 19)
+					{
+						EFF_flag = 2;
+						//‰½‚à‚µ‚È‚¢
+					}
+					else
+					{
+						EFF_flag = 3;
+						//‘Ì—Í-30
+						AddPlayerHp(-30);
+					}
+				}
+				if (EFF_UDcount == 1)
+				{
+					EFF_flag = 4;
+					//‘Ì—ÍÅ‘å’l‚ð-50
+					AddPlayerHpMAX(-50);
+
+					//Œ»Ý‚ÌHP‚ð”¼•ª‚É
+					PLAYERHP* player_hp = GetPlayerHp();
+					int n = player_hp->gaugesize.x * 0.3125f;
+					n = n / 2 * -1;
+					AddPlayerHp(n);
+				}
+				sentence.use = false;
+				choices_A.use = false;
+				choices_B.use = false;
+				frame.use = false;
+			}
 		}
 	}
 	if (EFF_flag == 2)
@@ -151,10 +201,22 @@ void _FloatingFeeling(void)
 	}
 	if (EFF_flag == 5)
 	{
-		if (GetKeyboardTrigger(DIK_RETURN) && EFF_time > 19)
+		if (PADUSE == 0)
 		{
-			map_player->nextflag = true;
-			SceneTransition(SCENE_MAP);
+			if (IsButtonTriggered(0, BUTTON_Y) && EFF_time > 19)
+			{
+				map_player->nextflag = true;
+				SceneTransition(SCENE_MAP);
+			}
+		}
+
+		if (PADUSE == 1)
+		{
+			if (GetKeyboardTrigger(DIK_RETURN) && EFF_time > 19)
+			{
+				map_player->nextflag = true;
+				SceneTransition(SCENE_MAP);
+			}
 		}
 		EFF_time++;
 	}

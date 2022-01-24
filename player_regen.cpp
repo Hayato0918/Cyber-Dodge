@@ -100,13 +100,29 @@ void _PlayerRegen(void)
 		regen.number = 0;
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && regen.use == true)
+	if (PADUSE == 0)
 	{
-		regen.number = 0;
-		regen.timeflag = false;
-		regen.bugdrawnum = 0;
-		regen.bugincrease = false;
-		regen.time = 0.0f;
-		regen.use = false;
+		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && regen.use == true)
+		{
+			regen.number = 0;
+			regen.timeflag = false;
+			regen.bugdrawnum = 0;
+			regen.bugincrease = false;
+			regen.time = 0.0f;
+			regen.use = false;
+		}
+	}
+
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && regen.use == true)
+		{
+			regen.number = 0;
+			regen.timeflag = false;
+			regen.bugdrawnum = 0;
+			regen.bugincrease = false;
+			regen.time = 0.0f;
+			regen.use = false;
+		}
 	}
 }

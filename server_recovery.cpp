@@ -47,10 +47,21 @@ void UpdateServerRecovery(void)
 	MAP_PLAYER* map_player = GetMapPlayer();
 
 	//エンターキーでマップへ戻る
-	if (GetKeyboardTrigger(DIK_RETURN))
+	if (PADUSE == 0)
 	{
-		map_player->nextflag = true;
-		SceneTransition(SCENE_MAP);
+		if (IsButtonTriggered(0, BUTTON_Y))
+		{
+			map_player->nextflag = true;
+			SceneTransition(SCENE_MAP);
+		}
+	}
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_RETURN))
+		{
+			map_player->nextflag = true;
+			SceneTransition(SCENE_MAP);
+		}
 	}
 }
 

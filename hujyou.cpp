@@ -34,7 +34,7 @@ void UpdateHujyou(void)
 	if (PADUSE == 0)
 	{
 		//‘I‘ð‚µ‚½Žž‚ÌŒø‰Ê
-		if (IsButtonTriggered(0, BUTTON_X))
+		if (IsButtonTriggered(0, BUTTON_Y))
 		{
 			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
@@ -42,7 +42,6 @@ void UpdateHujyou(void)
 	}
 	if (PADUSE == 1)
 	{
-
 		if (GetKeyboardTrigger(DIK_RETURN))
 		{
 			map_player->nextflag = true;

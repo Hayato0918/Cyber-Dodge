@@ -36,7 +36,7 @@ void UpdateGameOver(void)
 {
 	if (PADUSE == 0)
 	{
-		if (IsButtonTriggered(0, BUTTON_X) && GetFadeState() == FADE_NONE)
+		if (IsButtonTriggered(0, BUTTON_Y) && GetFadeState() == FADE_NONE)
 			SceneTransition(SCENE_TITLE);
 	}
 	if (PADUSE == 1)

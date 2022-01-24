@@ -65,17 +65,34 @@ void _CatchJamming(void)
 		catchjamming.timeflag = false;
 		catchjamming.time = 0.0f;
 	}
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && catchjamming.use == true)
-	{
-		catchjamming.use = false;
-		catchjamming.timeflag = false;
-		catchjamming.time = 0.0f;
-		catchjamming.usegauge = 60;
 
-		catchjamming.bugincrease = false;
-		catchjamming.bugdrawnum = 0;
+	if (PADUSE == 0)
+	{
+		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && catchjamming.use == true)
+		{
+			catchjamming.use = false;
+			catchjamming.timeflag = false;
+			catchjamming.time = 0.0f;
+			catchjamming.usegauge = 60;
+
+			catchjamming.bugincrease = false;
+			catchjamming.bugdrawnum = 0;
+		}
 	}
 
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && catchjamming.use == true)
+		{
+			catchjamming.use = false;
+			catchjamming.timeflag = false;
+			catchjamming.time = 0.0f;
+			catchjamming.usegauge = 60;
+
+			catchjamming.bugincrease = false;
+			catchjamming.bugdrawnum = 0;
+		}
+	}
 
 
 }

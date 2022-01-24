@@ -30,11 +30,14 @@ void UpdateRestExit(void)
 	REST_SELECT* rest_select = GetRestSelect();
 	MAP_PLAYER* map_player = GetMapPlayer();
 
-	//if (PADUSE == 0)
-	//{
-	//	if (IsButtonTriggered(0, BUTTON_X) && 1 < restpoint.count < 2)
-	//		SceneTransition(SCENE_MAP);
-	//}
+	if (PADUSE == 1)
+	{
+		if (IsButtonTriggered(0, BUTTON_Y) && rest_select->count == 2)
+		{
+			map_player->nextflag = true;
+			SceneTransition(SCENE_MAP);
+		}
+	}
 	if (PADUSE == 1)
 	{
 		if (GetKeyboardTrigger(DIK_RETURN) && rest_select->count == 2)

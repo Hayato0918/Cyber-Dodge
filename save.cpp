@@ -7,6 +7,7 @@
 
 #include "player_hp.h"
 #include "player.h"
+#include "map_player.h"
 
 #include "map_point.h"
 
@@ -22,30 +23,51 @@ char* name = "savedata.txt";
 //-----セーブ処理
 void Save(void)
 {
+    FILE* fp;
     PLAYER* player = GetPlayer();
     PLAYERHP* player_hp = GetPlayerHp();
+    MAP_PLAYER* map_player = GetMapPlayer();
 
-    /*データの内容をファイルにセーブ*/
-    if((fp = fopen(name, "w")) == NULL) {
-        printf("ファイルオープンエラー\n");
-    }
-    else
-    { 
-        fprintf(fp, "攻撃力 = %d\n 所持金 = %d\n", player->atk, player->gold);
-        fclose(fp);
-    }
+    fp = fopen(name, "wb");
+    if (fp == NULL) return;
+
+    save.hp = player_hp->gaugesize.x;
+    save.atk = player->atk;
+    save.def = player->def;
+    save.gold = player->gold;
+    save.gamecount = map_player->gamecount;
+    save.UDcount = map_player->UDcount;
+
+    fwrite(&save, sizeof(save), 4, fp);
+
+    fclose(fp);
 }
 
 //-----ロード処理
 void Load(void)
 {
-    /*ファイルの内容からデータをロード*/
-    if ((fp = fopen(name, "r")) == NULL) {
-        printf("ファイルオープンエラー\n");
+    FILE* fp;
+    PLAYER* player = GetPlayer();
+    PLAYERHP* player_hp = GetPlayerHp();
+    MAP_PLAYER* map_player = GetMapPlayer();
+
+    fp = fopen(name, "rb");
+
+    if (fp == NULL)
+    {
+
     }
     else
     {
-        fread(&save, sizeof(save), 1, fp);
+        fread(&save, sizeof(save), 4, fp);
+
+        player_hp->gaugesize.x = save.hp;
+        player->atk = save.atk;
+        player->def = save.def;
+        player->gold = save.gold;
+        map_player->gamecount = save.gamecount;
+        map_player->UDcount = save.UDcount;
+
         fclose(fp);
     }
 }

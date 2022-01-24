@@ -74,14 +74,31 @@ void _PowerUp(void)
 		powerup.time = 0.0f;
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && powerup.use == true)
+	if (PADUSE == 0)
 	{
-		if (powerup.time < poweruptime)
-			player->atk -= 50;
-		powerup.timeflag = false;
-		powerup.bugdrawnum = 0;
-		powerup.bugincrease = false;
-		powerup.time = 0.0f;
-		powerup.use = false;
+		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && powerup.use == true)
+		{
+			if (powerup.time < poweruptime)
+				player->atk -= 50;
+			powerup.timeflag = false;
+			powerup.bugdrawnum = 0;
+			powerup.bugincrease = false;
+			powerup.time = 0.0f;
+			powerup.use = false;
+		}
+	}
+
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && powerup.use == true)
+		{
+			if (powerup.time < poweruptime)
+				player->atk -= 50;
+			powerup.timeflag = false;
+			powerup.bugdrawnum = 0;
+			powerup.bugincrease = false;
+			powerup.time = 0.0f;
+			powerup.use = false;
+		}
 	}
 }

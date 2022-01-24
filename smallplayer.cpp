@@ -77,21 +77,45 @@ void _SmallPlayer(void)
 		Catch->playersize = D3DXVECTOR2(Catch->playersize.x * 2, Catch->playersize.y * 2);
 		smallplayer.time = 0.0f;
 	}
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && smallplayer.use == true)
+
+	if (PADUSE == 0)
 	{
-		if (smallplayer.time < smallplayertime && smallplayer.timeflag == true)
+		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && smallplayer.use == true)
 		{
-			player->size = D3DXVECTOR2(player->size.x * 2, player->size.y * 2);
-			Catch->playersize = D3DXVECTOR2(Catch->playersize.x * 2, Catch->playersize.y * 2);
+			if (smallplayer.time < smallplayertime && smallplayer.timeflag == true)
+			{
+				player->size = D3DXVECTOR2(player->size.x * 2, player->size.y * 2);
+				Catch->playersize = D3DXVECTOR2(Catch->playersize.x * 2, Catch->playersize.y * 2);
+			}
+
+			smallplayer.use = false;
+			smallplayer.timeflag = false;
+			smallplayer.time = 0.0f;
+			smallplayer.usegauge = 10;
+
+			smallplayer.bugincrease = false;
+			smallplayer.bugdrawnum = 0;
 		}
+	}
 
-		smallplayer.use = false;
-		smallplayer.timeflag = false;
-		smallplayer.time = 0.0f;
-		smallplayer.usegauge = 10;
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && smallplayer.use == true)
+		{
+			if (smallplayer.time < smallplayertime && smallplayer.timeflag == true)
+			{
+				player->size = D3DXVECTOR2(player->size.x * 2, player->size.y * 2);
+				Catch->playersize = D3DXVECTOR2(Catch->playersize.x * 2, Catch->playersize.y * 2);
+			}
 
-		smallplayer.bugincrease = false;
-		smallplayer.bugdrawnum = 0;
+			smallplayer.use = false;
+			smallplayer.timeflag = false;
+			smallplayer.time = 0.0f;
+			smallplayer.usegauge = 10;
+
+			smallplayer.bugincrease = false;
+			smallplayer.bugdrawnum = 0;
+		}
 	}
 
 }

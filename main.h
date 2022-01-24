@@ -46,7 +46,7 @@
 #define SCREEN_WIDTH	(1600)				// ウインドウの幅
 #define SCREEN_HEIGHT	(900)				// ウインドウの高さ
 
-#define PADUSE 1                            //0でPad、1でkeyboard
+#define PADUSE 0                            //0でPad、1でkeyboard
 
 //*****************************************************************************
 // プロトタイプ宣言

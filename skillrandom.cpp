@@ -65,10 +65,6 @@ HRESULT InitRandom(void)
 		}
 	}
 
-	random[0].code = 9;
-	random[1].code = 9;
-	random[2].code = 9;
-
 	for (int i = 0; i < skill.slot; i++)
 	{
 		//割り当てられたcodeに対応したテクスチャを表示
@@ -141,28 +137,57 @@ void UpdateRandom(void)
 	PLAYER* player = GetPlayer();
 
 	//「1」をおしたらスキル発動
-	if (GetKeyboardTrigger(DIK_1) && random[skill.usecount].drawflag == true && player->skilltexturetime == 0.0f)
+	if (PADUSE == 0)
 	{
-		for (int i = 0; i < skill.slot; i++)
+		if (IsButtonTriggered(0, BUTTON_L) && random[skill.usecount].drawflag == true && player->skilltexturetime == 0.0f)
 		{
-			random[i].pos.x = random[i].pos.x + 10;
-			random[i].pos.y = random[i].pos.y + 10;
+			for (int i = 0; i < skill.slot; i++)
+			{
+				random[i].pos.x = random[i].pos.x + 10;
+				random[i].pos.y = random[i].pos.y + 10;
+			}
+			random[skill.usecount].active = true;
+			player->skilluseflag = true;
+			random[skill.usecount].drawflag = false;
+			skill.usecount = skill.usecount + 1;
 		}
-		random[skill.usecount].active = true;
-		player->skilluseflag = true;
-		random[skill.usecount].drawflag = false;
-		skill.usecount = skill.usecount + 1;
+		//スキルを全部使い切ったら、「2」をおしてスキル復活
+		if (IsButtonTriggered(0, BUTTON_L2) && skill.usecount == skill.slot)
+		{
+			for (int i = 0; i < skill.slot; i++)
+			{
+				random[i].pos = D3DXVECTOR2(100.0f - i * 10, 120.0f - i * 10);
+				random[i].drawflag = true;
+				random[i].active = false;
+			}
+			skill.usecount = 0;
+		}
 	}
-	//スキルを全部使い切ったら、「2」をおしてスキル復活
-	if (GetKeyboardTrigger(DIK_2) && skill.usecount == skill.slot)
+	if (PADUSE == 1)
 	{
-		for (int i = 0; i < skill.slot; i++)
+		if (GetKeyboardTrigger(DIK_1) && random[skill.usecount].drawflag == true && player->skilltexturetime == 0.0f)
 		{
-			random[i].pos = D3DXVECTOR2(100.0f - i * 10, 120.0f - i * 10);
-			random[i].drawflag = true;
-			random[i].active = false;
+			for (int i = 0; i < skill.slot; i++)
+			{
+				random[i].pos.x = random[i].pos.x + 10;
+				random[i].pos.y = random[i].pos.y + 10;
+			}
+			random[skill.usecount].active = true;
+			player->skilluseflag = true;
+			random[skill.usecount].drawflag = false;
+			skill.usecount = skill.usecount + 1;
 		}
-		skill.usecount = 0;
+		//スキルを全部使い切ったら、「2」をおしてスキル復活
+		if (GetKeyboardTrigger(DIK_2) && skill.usecount == skill.slot)
+		{
+			for (int i = 0; i < skill.slot; i++)
+			{
+				random[i].pos = D3DXVECTOR2(100.0f - i * 10, 120.0f - i * 10);
+				random[i].drawflag = true;
+				random[i].active = false;
+			}
+			skill.usecount = 0;
+		}
 	}
 
 	for (int i = 0; i < skill.slot; i++)

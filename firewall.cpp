@@ -35,7 +35,7 @@ HRESULT InitFireWall(void)
 	firewall.rotate = 2;
 
 	firewall.atk = 150;
-	firewall.def = 50;
+	firewall.def = 49;
 
 	firewall.getskill = false;
 	firewall.floorflag = false;

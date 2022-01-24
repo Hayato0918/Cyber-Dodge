@@ -7,10 +7,14 @@
 //-----構造体
 typedef struct
 {
-	int hp;
+	float hp;
 	int atk;
 	int def;
 	int gold;
+
+	int gamecount;
+	int UDcount;
+
 }SAVE;
 
 //-----プロトタイプ宣言

@@ -63,16 +63,34 @@ void _BigBall(void)
 		}
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && bigball.use == true)
+	if (PADUSE == 0)
 	{
-		if (bigball.timeflag == true)
-			ball->size = D3DXVECTOR2(ball->size.x * 0.5f, ball->size.y * 0.5f);
+		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && bigball.use == true)
+		{
+			if (bigball.timeflag == true)
+				ball->size = D3DXVECTOR2(ball->size.x * 0.5f, ball->size.y * 0.5f);
 
-		bigball.timeflag = false;
-		bigball.bugincrease = false;
-		bigball.bugdrawnum = 0;
-		bigball.time = 0.0f;
-		bigball.use = false;
+			bigball.timeflag = false;
+			bigball.bugincrease = false;
+			bigball.bugdrawnum = 0;
+			bigball.time = 0.0f;
+			bigball.use = false;
+		}
+
+	}
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && bigball.use == true)
+		{
+			if (bigball.timeflag == true)
+				ball->size = D3DXVECTOR2(ball->size.x * 0.5f, ball->size.y * 0.5f);
+
+			bigball.timeflag = false;
+			bigball.bugincrease = false;
+			bigball.bugdrawnum = 0;
+			bigball.time = 0.0f;
+			bigball.use = false;
+		}
 	}
 
 	//スキル使用3s後にもとの大きさに戻る

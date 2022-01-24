@@ -121,13 +121,29 @@ void UpdateShopCard()
 	SHOP_GOLD* shop_gold = GetShopGold();
 	PLAYER* player = GetPlayer();
 
-	if (GetKeyboardTrigger(DIK_RETURN) && shop_select->ycount == 0 && shop_card[shop_select->xcount].drawflag == true
-		&& shop_gold[shop_select->xcount].gold < player->gold)
+	if (PADUSE == 0)
 	{
-		player->gold = player->gold - shop_gold[shop_select->xcount].gold;
-		random[skill->slot].code = shop_card[shop_select->xcount].code;
-		skill->slot = skill->slot + 1;
-		shop_card[shop_select->xcount].drawflag = false;
+		if (IsButtonTriggered(0, BUTTON_Y) && shop_select->ycount == 0 && shop_card[shop_select->xcount].drawflag == true
+			&& shop_gold[shop_select->xcount].gold < player->gold)
+		{
+			player->gold = player->gold - shop_gold[shop_select->xcount].gold;
+			random[skill->slot].code = shop_card[shop_select->xcount].code;
+			skill->slot = skill->slot + 1;
+			shop_card[shop_select->xcount].drawflag = false;
+		}
+	}
+
+
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_RETURN) && shop_select->ycount == 0 && shop_card[shop_select->xcount].drawflag == true
+			&& shop_gold[shop_select->xcount].gold < player->gold)
+		{
+			player->gold = player->gold - shop_gold[shop_select->xcount].gold;
+			random[skill->slot].code = shop_card[shop_select->xcount].code;
+			skill->slot = skill->slot + 1;
+			shop_card[shop_select->xcount].drawflag = false;
+		}
 	}
 }
 

@@ -28,14 +28,24 @@ DELETER deleter;
 //-----‰Šú‰»ˆ—
 HRESULT InitDeleter(void)
 {
+	MAP_PLAYER* map_player = GetMapPlayer();
+
 	deleter.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.355555f);
 	deleter.size = D3DXVECTOR2(SCREEN_WIDTH * 0.16f, SCREEN_HEIGHT * 0.2844444f);
 	deleter.move = D3DXVECTOR2(SCREEN_WIDTH * 0.00125f, SCREEN_HEIGHT * 0.002222f);
 	deleter.colPos = D3DXVECTOR2(deleter.pos.x + deleter.size.x / 2, deleter.pos.y + deleter.size.y / 2 + deleter.size.y / 4);
 	deleter.rotate = 2;
 
-	deleter.atk = 150;
-	deleter.def = 50;
+	if (map_player->enemypowerup == false)
+	{
+		deleter.atk = 50;
+		deleter.def = 40;
+	}
+	if (map_player->enemypowerup == true)
+	{
+		deleter.atk = 150 * 1.2f;
+		deleter.def = 40 * 1.2;
+	}
 
 	deleter.getskill = false;
 

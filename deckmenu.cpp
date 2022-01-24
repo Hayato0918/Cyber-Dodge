@@ -257,59 +257,120 @@ void UpdateDeckMenu(void)
 		g_number.v = 0.5f;
 	}
 
-	//右移動
-	if (GetKeyboardRelease(DIK_D) && g_Selection.LRcount < xnum - 1 && g_Selection.use == true)
+	if (PADUSE == 0)
 	{
-		g_Selection.LRcount = g_Selection.LRcount + 1;
-		g_Selection.pos = D3DXVECTOR2(deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.x, 
-										deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.y);
-	}
-	//左移動
-	if (GetKeyboardRelease(DIK_A) && g_Selection.LRcount > 0 && g_Selection.use == true)
-	{
-		g_Selection.LRcount = g_Selection.LRcount - 1;
-		g_Selection.pos = D3DXVECTOR2(deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.x,
-										deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.y);
-	}
-	//下移動
-	if (GetKeyboardTrigger(DIK_S) && g_Selection.UDcount < ynum - 1 && g_Selection.use == true)
-	{
-		g_Selection.UDcount = g_Selection.UDcount + 1;
-		//2段を区切りに、カードの位置を移動
-		if (g_Selection.UDcount == 2 || g_Selection.UDcount == 4 || g_Selection.UDcount == 6 || g_Selection.UDcount == 8 || g_Selection.UDcount == 10 || g_Selection.UDcount == 12)
+		//右移動
+		if (IsButtonTriggered(0, BUTTON_RIGHT) && g_Selection.LRcount < xnum - 1 && g_Selection.use == true)
 		{
-			for (int y = 0; y < ynum; y++)
-			{
-				for (int x = 0; x < xnum; x++)
-					deckmenu_card[y][x].pos.y = deckmenu_card[y][x].pos.y - 360.0f - CARD_SPACE_HIGHT * 2 + CARD_SPACE_HIGHT * 2 * 0.3f;
-			}
+			g_Selection.LRcount = g_Selection.LRcount + 1;
+			g_Selection.pos = D3DXVECTOR2(deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.x,
+				deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.y);
 		}
-		g_Selection.pos = D3DXVECTOR2(deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.x,
-										deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.y);
+		//左移動
+		if (IsButtonTriggered(0, BUTTON_LEFT) && g_Selection.LRcount > 0 && g_Selection.use == true)
+		{
+			g_Selection.LRcount = g_Selection.LRcount - 1;
+			g_Selection.pos = D3DXVECTOR2(deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.x,
+				deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.y);
+		}
+		//下移動
+		if (IsButtonTriggered(0, BUTTON_DOWN) && g_Selection.UDcount < ynum - 1 && g_Selection.use == true)
+		{
+			g_Selection.UDcount = g_Selection.UDcount + 1;
+			//2段を区切りに、カードの位置を移動
+			if (g_Selection.UDcount == 2 || g_Selection.UDcount == 4 || g_Selection.UDcount == 6 || g_Selection.UDcount == 8 || g_Selection.UDcount == 10 || g_Selection.UDcount == 12)
+			{
+				for (int y = 0; y < ynum; y++)
+				{
+					for (int x = 0; x < xnum; x++)
+						deckmenu_card[y][x].pos.y = deckmenu_card[y][x].pos.y - 360.0f - CARD_SPACE_HIGHT * 2 + CARD_SPACE_HIGHT * 2 * 0.3f;
+				}
+			}
+			g_Selection.pos = D3DXVECTOR2(deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.x,
+				deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.y);
+		}
+
+		if (IsButtonTriggered(0, BUTTON_UP) && g_Selection.UDcount > 0 && g_Selection.use == true)
+		{
+			g_Selection.UDcount = g_Selection.UDcount - 1;
+			//2段を区切りに、カードの位置を移動
+			if (g_Selection.UDcount == 1 || g_Selection.UDcount == 3 || g_Selection.UDcount == 5 || g_Selection.UDcount == 7
+				|| g_Selection.UDcount == 9 || g_Selection.UDcount == 11)
+			{
+				for (int y = 0; y < ynum; y++)
+				{
+					for (int x = 0; x < xnum; x++)
+						deckmenu_card[y][x].pos.y = deckmenu_card[y][x].pos.y + 360.0f + CARD_SPACE_HIGHT * 2 - CARD_SPACE_HIGHT * 2 * 0.3f;
+				}
+			}
+			g_Selection.pos = D3DXVECTOR2(deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.x,
+				deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.y);
+		}
+
+		//「立ち去る」コマンドの場所でEnterキーを押したらMAPに戻る
+		if (IsButtonTriggered(0, BUTTON_Y) && deckmenu.use == true)
+		{
+			SceneTransition(SCENE_MAP);
+			deckmenu.use = false;
+		}
 	}
 
-	if (GetKeyboardTrigger(DIK_W) && g_Selection.UDcount > 0 && g_Selection.use == true)
+	if (PADUSE == 1)
 	{
-		g_Selection.UDcount = g_Selection.UDcount - 1;
-		//2段を区切りに、カードの位置を移動
-		if (g_Selection.UDcount == 1 || g_Selection.UDcount == 3 || g_Selection.UDcount == 5 || g_Selection.UDcount == 7
-																								|| g_Selection.UDcount == 9|| g_Selection.UDcount == 11)
+		//右移動
+		if (GetKeyboardRelease(DIK_D) && g_Selection.LRcount < xnum - 1 && g_Selection.use == true)
 		{
-			for (int y = 0; y < ynum; y++)
-			{
-				for (int x = 0; x < xnum; x++)
-					deckmenu_card[y][x].pos.y = deckmenu_card[y][x].pos.y + 360.0f + CARD_SPACE_HIGHT * 2 - CARD_SPACE_HIGHT * 2 * 0.3f;
-			}
+			g_Selection.LRcount = g_Selection.LRcount + 1;
+			g_Selection.pos = D3DXVECTOR2(deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.x,
+				deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.y);
 		}
-		g_Selection.pos = D3DXVECTOR2(deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.x,
-			deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.y);
-	}
+		//左移動
+		if (GetKeyboardRelease(DIK_A) && g_Selection.LRcount > 0 && g_Selection.use == true)
+		{
+			g_Selection.LRcount = g_Selection.LRcount - 1;
+			g_Selection.pos = D3DXVECTOR2(deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.x,
+				deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.y);
+		}
+		//下移動
+		if (GetKeyboardTrigger(DIK_S) && g_Selection.UDcount < ynum - 1 && g_Selection.use == true)
+		{
+			g_Selection.UDcount = g_Selection.UDcount + 1;
+			//2段を区切りに、カードの位置を移動
+			if (g_Selection.UDcount == 2 || g_Selection.UDcount == 4 || g_Selection.UDcount == 6 || g_Selection.UDcount == 8 || g_Selection.UDcount == 10 || g_Selection.UDcount == 12)
+			{
+				for (int y = 0; y < ynum; y++)
+				{
+					for (int x = 0; x < xnum; x++)
+						deckmenu_card[y][x].pos.y = deckmenu_card[y][x].pos.y - 360.0f - CARD_SPACE_HIGHT * 2 + CARD_SPACE_HIGHT * 2 * 0.3f;
+				}
+			}
+			g_Selection.pos = D3DXVECTOR2(deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.x,
+				deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.y);
+		}
 
-	//「立ち去る」コマンドの場所でEnterキーを押したらMAPに戻る
-	if (GetKeyboardTrigger(DIK_RETURN) && deckmenu.use == true)
-	{
-		SceneTransition(SCENE_MAP);
-		deckmenu.use = false;
+		if (GetKeyboardTrigger(DIK_W) && g_Selection.UDcount > 0 && g_Selection.use == true)
+		{
+			g_Selection.UDcount = g_Selection.UDcount - 1;
+			//2段を区切りに、カードの位置を移動
+			if (g_Selection.UDcount == 1 || g_Selection.UDcount == 3 || g_Selection.UDcount == 5 || g_Selection.UDcount == 7
+				|| g_Selection.UDcount == 9 || g_Selection.UDcount == 11)
+			{
+				for (int y = 0; y < ynum; y++)
+				{
+					for (int x = 0; x < xnum; x++)
+						deckmenu_card[y][x].pos.y = deckmenu_card[y][x].pos.y + 360.0f + CARD_SPACE_HIGHT * 2 - CARD_SPACE_HIGHT * 2 * 0.3f;
+				}
+			}
+			g_Selection.pos = D3DXVECTOR2(deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.x,
+				deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.y);
+		}
+
+		//「立ち去る」コマンドの場所でEnterキーを押したらMAPに戻る
+		if (GetKeyboardTrigger(DIK_RETURN) && deckmenu.use == true)
+		{
+			SceneTransition(SCENE_MAP);
+			deckmenu.use = false;
+		}
 	}
 }
 

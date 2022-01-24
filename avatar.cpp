@@ -53,7 +53,7 @@ void UpdateAvatar(void)
 			avatarpoint.count += 1;
 		}
 		//‘I‘ð‚µ‚½Žž‚ÌŒø‰Ê
-		if (IsButtonTriggered(0, BUTTON_X) && avatarpoint.count == 0)
+		if (IsButtonTriggered(0, BUTTON_Y) && avatarpoint.count == 0)
 		{
 			player_hp->framesize.x += 30 * 3.2f;
 			player_hp->framepos.x -= 30 * 3.2f;
@@ -62,13 +62,13 @@ void UpdateAvatar(void)
 			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
-		if (IsButtonTriggered(0, BUTTON_X) && avatarpoint.count == 1)
+		if (IsButtonTriggered(0, BUTTON_Y) && avatarpoint.count == 1)
 		{
 			player->atk += 20;
 			map_player->nextflag = true;
 			SceneTransition(SCENE_MAP);
 		}
-		if (IsButtonTriggered(0, BUTTON_X) && avatarpoint.count == 2)
+		if (IsButtonTriggered(0, BUTTON_Y) && avatarpoint.count == 2)
 		{
 			player->def += 10;
 			map_player->nextflag = true;

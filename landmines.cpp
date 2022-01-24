@@ -130,16 +130,34 @@ void _LandMines(void)
 		landmines.possesion -= 1;
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && landmines.use == true)
+	if (PADUSE == 0)
 	{
-		landmines.use = false;
-		landmines.timeflag = false;
-		landmines.possesion = 4;
-		landmines.time = 0.0f;
-		landmines.usegauge = 10;
+		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && landmines.use == true)
+		{
+			landmines.use = false;
+			landmines.timeflag = false;
+			landmines.possesion = 4;
+			landmines.time = 0.0f;
+			landmines.usegauge = 10;
 
-		landmines.bugincrease = false;
-		landmines.bugdrawnum = 0;
+			landmines.bugincrease = false;
+			landmines.bugdrawnum = 0;
+		}
+	}
+
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && landmines.use == true)
+		{
+			landmines.use = false;
+			landmines.timeflag = false;
+			landmines.possesion = 4;
+			landmines.time = 0.0f;
+			landmines.usegauge = 10;
+
+			landmines.bugincrease = false;
+			landmines.bugdrawnum = 0;
+		}
 	}
 }
 

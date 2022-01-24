@@ -99,22 +99,46 @@ void _BallTurnAround(void)
 		}
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && ballturnaround.use == true)
+	if (PADUSE == 0)
 	{
-		ballturnaround.use = false;
+		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && ballturnaround.use == true)
+		{
+			ballturnaround.use = false;
 
-		ballturnaround.b_x = 0.0f;
-		ballturnaround.b_y = 0.0f;
-		ballturnaround.f_x = 0.0f;
-		ballturnaround.f_y = 0.0f;
-		ballturnaround.a = 0.0f;
-		ballturnaround.n = 0;
-		ballturnaround.n_flag = false;
+			ballturnaround.b_x = 0.0f;
+			ballturnaround.b_y = 0.0f;
+			ballturnaround.f_x = 0.0f;
+			ballturnaround.f_y = 0.0f;
+			ballturnaround.a = 0.0f;
+			ballturnaround.n = 0;
+			ballturnaround.n_flag = false;
 
-		ballturnaround.usegauge = 30;
+			ballturnaround.usegauge = 30;
 
-		ballturnaround.bugincrease = false;
-		ballturnaround.bugdrawnum = 0;
+			ballturnaround.bugincrease = false;
+			ballturnaround.bugdrawnum = 0;
+		}
+
+	}
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && ballturnaround.use == true)
+		{
+			ballturnaround.use = false;
+
+			ballturnaround.b_x = 0.0f;
+			ballturnaround.b_y = 0.0f;
+			ballturnaround.f_x = 0.0f;
+			ballturnaround.f_y = 0.0f;
+			ballturnaround.a = 0.0f;
+			ballturnaround.n = 0;
+			ballturnaround.n_flag = false;
+
+			ballturnaround.usegauge = 30;
+
+			ballturnaround.bugincrease = false;
+			ballturnaround.bugdrawnum = 0;
+		}
 	}
 }
 

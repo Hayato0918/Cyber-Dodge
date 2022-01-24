@@ -77,15 +77,32 @@ void _Invade(void)
 		invade.time = 0.0f;
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && invade.use == true)
+	if (PADUSE == 0)
 	{
-		invade.use = false;
-		invade.timeflag = false;
-		invade.time = 0.0f;
-		invade.usegauge = 10;
+		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && invade.use == true)
+		{
+			invade.use = false;
+			invade.timeflag = false;
+			invade.time = 0.0f;
+			invade.usegauge = 10;
 
-		invade.bugincrease = false;
-		invade.bugdrawnum = 0;
+			invade.bugincrease = false;
+			invade.bugdrawnum = 0;
+		}
+	}
+
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && invade.use == true)
+		{
+			invade.use = false;
+			invade.timeflag = false;
+			invade.time = 0.0f;
+			invade.usegauge = 10;
+
+			invade.bugincrease = false;
+			invade.bugdrawnum = 0;
+		}
 	}
 }
 

@@ -77,11 +77,22 @@ void UpdateEnemyBreak(void)
 
 	srand((unsigned int)time(NULL));
 
-
-	if (GetKeyboardTrigger(DIK_RETURN))
+	if (PADUSE == 0)
 	{
-		player->gold = player->gold + getgoldnum.gold;
-		SceneTransition(SCENE_MAP);
+		if (IsButtonTriggered(0, BUTTON_Y))
+		{
+			player->gold = player->gold + getgoldnum.gold;
+			SceneTransition(SCENE_MAP);
+		}
+	}
+
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_RETURN))
+		{
+			player->gold = player->gold + getgoldnum.gold;
+			SceneTransition(SCENE_MAP);
+		}
 	}
 
 	//-----ƒXƒLƒ‹Šl“¾

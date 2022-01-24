@@ -69,20 +69,40 @@ void _BuildUp(void)
 		}
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && buildup.use == true)
+	if (PADUSE == 0)
 	{
-		if (buildup.timeflag == true)
+		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && buildup.use == true)
 		{
-			player->size = D3DXVECTOR2(player->size.x * 0.5f, player->size.y * 0.5f);
-			Catch->playersize = D3DXVECTOR2(Catch->playersize.x * 0.5f, Catch->playersize.y * 0.5f);
+			if (buildup.timeflag == true)
+			{
+				player->size = D3DXVECTOR2(player->size.x * 0.5f, player->size.y * 0.5f);
+				Catch->playersize = D3DXVECTOR2(Catch->playersize.x * 0.5f, Catch->playersize.y * 0.5f);
+			}
+
+			buildup.timeflag = false;
+			buildup.bugincrease = false;
+			buildup.bugdrawnum = 0;
+			buildup.time = builduptime;
+			buildup.use = false;
 		}
+	}
 
-		buildup.timeflag = false;
-		buildup.bugincrease = false;
-		buildup.bugdrawnum = 0;
-		buildup.time = builduptime;
-		buildup.use = false;
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && buildup.use == true)
+		{
+			if (buildup.timeflag == true)
+			{
+				player->size = D3DXVECTOR2(player->size.x * 0.5f, player->size.y * 0.5f);
+				Catch->playersize = D3DXVECTOR2(Catch->playersize.x * 0.5f, Catch->playersize.y * 0.5f);
+			}
 
+			buildup.timeflag = false;
+			buildup.bugincrease = false;
+			buildup.bugdrawnum = 0;
+			buildup.time = builduptime;
+			buildup.use = false;
+		}
 	}
 
 	//スキル使用20s後にもとの大きさに戻る

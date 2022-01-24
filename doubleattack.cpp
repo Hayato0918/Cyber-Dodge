@@ -74,17 +74,37 @@ void _Double(void)
 		dable.time = 0.0f;
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && dable.use == true)
+	if (PADUSE == 0)
 	{
-		if(dable.timeflag == true)
-			player->atk /= 2;
+		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && dable.use == true)
+		{
+			if (dable.timeflag == true)
+				player->atk /= 2;
 
-		dable.use = false;
-		dable.timeflag = false;
-		dable.time = 0.0f;
-		dable.usegauge = 30;
+			dable.use = false;
+			dable.timeflag = false;
+			dable.time = 0.0f;
+			dable.usegauge = 30;
 
-		dable.bugincrease = false;
-		dable.bugdrawnum = 0;
+			dable.bugincrease = false;
+			dable.bugdrawnum = 0;
+		}
+	}
+
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && dable.use == true)
+		{
+			if (dable.timeflag == true)
+				player->atk /= 2;
+
+			dable.use = false;
+			dable.timeflag = false;
+			dable.time = 0.0f;
+			dable.usegauge = 30;
+
+			dable.bugincrease = false;
+			dable.bugdrawnum = 0;
+		}
 	}
 }

@@ -124,15 +124,33 @@ void _Warp(void)
 		warp.timeflag = false;
 		warp.time = 0.0f;
 	}
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && warp.use == true)
-	{
-		warp.warp_flag = false;
-		warp.use = false;
-		warp.timeflag = false;
-		warp.time = 0.0f;
 
-		warp.bugincrease = false;
-		warp.bugdrawnum = 0;
+	if (PADUSE == 0)
+	{
+		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && warp.use == true)
+		{
+			warp.warp_flag = false;
+			warp.use = false;
+			warp.timeflag = false;
+			warp.time = 0.0f;
+
+			warp.bugincrease = false;
+			warp.bugdrawnum = 0;
+		}
+	}
+
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && warp.use == true)
+		{
+			warp.warp_flag = false;
+			warp.use = false;
+			warp.timeflag = false;
+			warp.time = 0.0f;
+
+			warp.bugincrease = false;
+			warp.bugdrawnum = 0;
+		}
 	}
 }
 

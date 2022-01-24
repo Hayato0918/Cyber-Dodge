@@ -38,6 +38,68 @@ void UpdateShopSelect()
 	SHOP_RELOAD* shop_reload = GetShopReload();
 	SHOP_EXIT* shop_exit = GetShopExit();
 
+	if (PADUSE == 0)
+	{
+		//選択
+		if (IsButtonTriggered(0, BUTTON_LEFT) && shop_select.xcount > 0)	//左移動
+		{
+			if (shop_select.ycount == 0)
+			{
+				shop_select.xcount -= 1;
+				shop_select.pos.x = shop_card[shop_select.xcount].pos.x;
+			}
+		}
+		if (IsButtonTriggered(0, BUTTON_RIGHT) && shop_select.xcount < shop_skill - 1)	//右移動
+		{
+			if (shop_select.ycount == 0)
+			{
+				shop_select.xcount += 1;
+				shop_select.pos.x = shop_card[shop_select.xcount].pos.x;
+			}
+			if (shop_select.ycount == 1)
+			{
+				shop_select.xcount = 3;
+				shop_select.pos = D3DXVECTOR2(shop_reload->pos.x, shop_reload->pos.y);
+				shop_select.size = D3DXVECTOR2(shop_reload->size.x, shop_reload->size.y);
+			}
+		}
+		if (IsButtonTriggered(0, BUTTON_DOWN))	//下段に移動
+		{
+			if (shop_select.ycount == 1 && shop_select.xcount > 1)	//リロードから立ち去るへ移動
+			{
+				shop_select.pos = D3DXVECTOR2(shop_exit->pos.x, shop_exit->pos.y);
+				shop_select.size = D3DXVECTOR2(shop_exit->size.x, shop_exit->size.y);
+				shop_select.ycount += 1;
+			}
+			if (shop_select.ycount == 0)
+			{
+				if (shop_select.xcount > 1)		//選択カードが2番目以降なら、リロードコマンドへ移動
+				{
+					shop_select.pos = D3DXVECTOR2(shop_reload->pos.x, shop_reload->pos.y);
+					shop_select.size = D3DXVECTOR2(shop_reload->size.x, shop_reload->size.y);
+					shop_select.ycount += 1;
+				}
+			}
+		}
+		if (IsButtonTriggered(0, BUTTON_UP))	//下段から上段に移動
+		{
+			if (shop_select.ycount == 1)
+			{
+				shop_select.pos = D3DXVECTOR2(shop_card[shop_select.xcount].pos.x, shop_card[shop_select.xcount].pos.y);
+				shop_select.size = D3DXVECTOR2(shop_card[shop_select.xcount].size.x, shop_card[shop_select.xcount].size.y);
+				shop_select.ycount -= 1;
+			}
+			if (shop_select.ycount == 2)
+			{
+				shop_select.pos = D3DXVECTOR2(shop_reload->pos.x, shop_reload->pos.y);
+				shop_select.size = D3DXVECTOR2(shop_reload->size.x, shop_reload->size.y);
+				shop_select.ycount -= 1;
+			}
+		}
+
+	}
+
+
 	if (PADUSE == 1)
 	{
 		//選択

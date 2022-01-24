@@ -109,17 +109,36 @@ void _Billiards(void)
 		billiards.time = 0.0f;
 	}
 
-	if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && billiards.use == true)
+	if (PADUSE == 0)
 	{
-		billiards.pos = D3DXVECTOR2(0.0f, 0.0f);
-		billiards.size = D3DXVECTOR2(120.0f, 5.0f);
-		billiards.use = false;
-		billiards.timeflag = false;
-		billiards.time = 0.0f;
-		billiards.usegauge = 20;
+		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && billiards.use == true)
+		{
+			billiards.pos = D3DXVECTOR2(0.0f, 0.0f);
+			billiards.size = D3DXVECTOR2(120.0f, 5.0f);
+			billiards.use = false;
+			billiards.timeflag = false;
+			billiards.time = 0.0f;
+			billiards.usegauge = 20;
 
-		billiards.bugincrease = false;
-		billiards.bugdrawnum = 0;
+			billiards.bugincrease = false;
+			billiards.bugdrawnum = 0;
+		}
+	}
+
+	if (PADUSE == 1)
+	{
+		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && billiards.use == true)
+		{
+			billiards.pos = D3DXVECTOR2(0.0f, 0.0f);
+			billiards.size = D3DXVECTOR2(120.0f, 5.0f);
+			billiards.use = false;
+			billiards.timeflag = false;
+			billiards.time = 0.0f;
+			billiards.usegauge = 20;
+
+			billiards.bugincrease = false;
+			billiards.bugdrawnum = 0;
+		}
 	}
 }
 
