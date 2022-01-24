@@ -19,6 +19,7 @@ HRESULT InitShopReload()
 	shop_reload.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.6875f, SCREEN_HEIGHT * 0.5833333f);
 	shop_reload.size = D3DXVECTOR2(SCREEN_WIDTH * 0.25f, SCREEN_HEIGHT * 0.1388888f);
 	shop_reload.reloadflag = false;
+	shop_reload.gold = 10;
 	shop_reload.texture = LoadTexture("data/TEXTURE/map/shop/reload.png");
 
 	return S_OK;
@@ -38,7 +39,7 @@ void UpdateShopReload()
 
 	PLAYER* player = GetPlayer();
 
-	if (GetKeyboardTrigger(DIK_RETURN) && shop_select->xcount > 1 && shop_select->ycount == 1 && player->gold >= 50)
+	if (GetKeyboardTrigger(DIK_RETURN) && shop_select->xcount > 1 && shop_select->ycount == 1 && player->gold >= shop_reload.gold)
 		shop_reload.reloadflag = true;
 
 	int t = 0;
@@ -127,7 +128,7 @@ void UpdateShopReload()
 				shop_card[i].texture = LoadTexture("data/TEXTURE/skill/warp.png");
 		}
 
-		player->gold = player->gold - 50;
+		player->gold = player->gold - shop_reload.gold;
 		shop_reload.reloadflag = false;
 	}
 }

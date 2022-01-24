@@ -4,6 +4,7 @@
 #include "texture.h"
 #include "sprite.h"
 #include "fade.h"
+#include "gameover_F.h"
 
 //-----マクロ定義
 
@@ -19,13 +20,15 @@ HRESULT InitGameOver(void)
 	gameover.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
 	gameover.texture = LoadTexture("data/TEXTURE/GAMEOVER.png");
 
+	InitGameOverF();
+
 	return S_OK;
 }
 
 //-----終了処理
 void UninitGameOver(void)
 {
-
+	UninitGameOverF();
 }
 
 //-----更新処理
@@ -41,10 +44,14 @@ void UpdateGameOver(void)
 		if (GetKeyboardTrigger(DIK_RETURN) && GetFadeState() == FADE_NONE)
 			SceneTransition(SCENE_TITLE);
 	}
+
+	UpdateGameOverF();
 }
 
 //-----描画処理
 void DrawGameOver(void)
 {
 	DrawSpriteLeftTop(gameover.texture, gameover.pos.x, gameover.pos.y, gameover.size.x, gameover.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+
+	DrawGameOverF();
 }

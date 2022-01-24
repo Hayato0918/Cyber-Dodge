@@ -6,6 +6,7 @@
 #include "fade.h"
 #include "sound.h"
 
+#include "map_hack.h"
 #include "soundvolume_select.h"
 
 //-----マクロ定義
@@ -21,7 +22,7 @@ HRESULT InitMapBG(void)
 	SOUNDVOLUME_SELECT* soundvolume_select = GetSoundVolumeSelect();
 
 	map_bg.pos = D3DXVECTOR2(0.0f, 0.0f);
-	map_bg.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
+	map_bg.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT * 2.f);
 	map_bg.texture = LoadTexture("data/TEXTURE/map/bg.jpg");
 	map_bg.sound = LoadSound("data/BGM/mapBGM.wav");
 
@@ -40,10 +41,15 @@ void UninitMapBG(void)
 //-----更新処理
 void UpdateMapBG(void)
 {
-	//if (GetKeyboardPress(DIK_W))
-	//	map_bg.pos.y += 3;
-	//if (GetKeyboardPress(DIK_S))
-	//	map_bg.pos.y -= 3;
+	MAP_HACK* map_hack = GetMapHack();
+
+	if (map_hack->isUse == false)
+	{
+		if (GetKeyboardPress(DIK_W))
+			map_bg.pos.y += 3;
+		if (GetKeyboardPress(DIK_S))
+			map_bg.pos.y -= 3;
+	}
 }
 
 //-----描画処理

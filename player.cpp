@@ -53,7 +53,7 @@ HRESULT InitPlayer(void)
 	if (map_player->gamecount == 1)
 	{
 		player.atk = 100;
-		player.def = 0;
+		player.def = -1000;
 		player.gold = 1000;
 
 		//立ち状態のテクスチャ設定

@@ -151,6 +151,12 @@
     <Filter Include="ヘッダー ファイル\map\map_save">
       <UniqueIdentifier>{3285fe4c-3a1c-44c5-8d88-aec38d7d28ae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\gameover">
+      <UniqueIdentifier>{cb6c45bb-61f5-481e-bc39-95293ea61ff9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\gameover">
+      <UniqueIdentifier>{badb70e1-2acc-4113-adf4-cd7b88998b27}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scene.cpp">
@@ -235,9 +241,6 @@
       <Filter>ソース ファイル\bug</Filter>
     </ClCompile>
     <ClCompile Include="clear.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="gameover.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="map_hack.cpp">
@@ -555,6 +558,12 @@
     <ClCompile Include="enemy_aura.cpp">
       <Filter>ソース ファイル\enemy</Filter>
     </ClCompile>
+    <ClCompile Include="gameover.cpp">
+      <Filter>ソース ファイル\gameover</Filter>
+    </ClCompile>
+    <ClCompile Include="gameover_F.cpp">
+      <Filter>ソース ファイル\gameover</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -639,9 +648,6 @@
       <Filter>ヘッダー ファイル\bug</Filter>
     </ClInclude>
     <ClInclude Include="clear.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="gameover.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="map_hack.h">
@@ -958,6 +964,12 @@
     </ClInclude>
     <ClInclude Include="enemy_aura.h">
       <Filter>ヘッダー ファイル\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="gameover.h">
+      <Filter>ヘッダー ファイル\gameover</Filter>
+    </ClInclude>
+    <ClInclude Include="gameover_F.h">
+      <Filter>ヘッダー ファイル\gameover</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

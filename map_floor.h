@@ -10,6 +10,7 @@ typedef struct
 	D3DXVECTOR2 pos;
 	D3DXVECTOR2 size;
 	int texture;
+	float u, v;
 
 	int floornum;
 }MAP_FLOORBG;

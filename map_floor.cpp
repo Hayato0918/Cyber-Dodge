@@ -18,10 +18,14 @@ MAP_FLOORBG map_floorbg;
 //-----‰Šú‰»ˆ—
 HRESULT InitMapFloor(void)
 {
+	MAP_PLAYER* map_player = GetMapPlayer();
+	map_floorbg.floornum = map_player->floor;
+
 	map_floorbg.pos = D3DXVECTOR2(1370.0f, 100.0f);
 	map_floorbg.size = D3DXVECTOR2(160.f, 80.f);
 	map_floorbg.texture = LoadTexture("data/TEXTURE/map/floor.png");
-	map_floorbg.floornum = 1;
+	map_floorbg.u = 0.f;
+	map_floorbg.v = 0.f;
 
 	for (int i = 0; i < 2; i++)
 	{
@@ -46,10 +50,7 @@ void UninitMapFloor(void)
 void UpdateMapFloor(void)
 {
 	MAP_PLAYER* map_player = GetMapPlayer();
-
 	map_floorbg.floornum = map_player->floor;
-
-
 
 	if (map_floorbg.floornum < 10)
 	{
@@ -62,34 +63,70 @@ void UpdateMapFloor(void)
 		map_floor[1].drawflag = true;
 	}
 
-	if (map_floorbg.floornum == 1)
+	for (int i = 1; i < 5; i++)
 	{
-		map_floor[1].u = 0.2f;
-		map_floor[1].v = 0.f;
+		if (map_floorbg.floornum == i)
+		{
+			map_floor[1].u = 0.2f * i;
+			map_floor[1].v = 0.f;
+		}
 	}
-	if (map_floorbg.floornum == 2)
+	for (int i = 5; i < 10; i++)
 	{
-		map_floor[1].u = 0.4f;
-		map_floor[1].v = 0.f;
+		if (map_floorbg.floornum == i)
+		{
+			map_floor[1].u = 0.2f * i;
+			map_floor[1].v = 0.5f;
+		}
 	}
-	if (map_floorbg.floornum == 3)
+	for (int i = 10; i < 20; i++)
 	{
-		map_floor[1].u = 0.6f;
-		map_floor[1].v = 0.f;
+		if (map_floorbg.floornum == i)
+		{
+			map_floor[0].u = 0.2f;
+			map_floor[0].v = 0.f;
+		}
 	}
-	if (map_floorbg.floornum == 4)
+	for (int i = 10; i < 15; i++)
 	{
-		map_floor[1].u = 0.8f;
-		map_floor[1].v = 0.f;
+		if (map_floorbg.floornum == i)
+		{
+			map_floor[1].u = 0.2f * i;
+			map_floor[1].v = 0.f;
+		}
 	}
-	if (map_floorbg.floornum == 5)
+	for (int i = 15; i < 20; i++)
 	{
-		map_floor[1].u = 0.0f;
-		map_floor[1].v = 0.5f;
+		if (map_floorbg.floornum == i)
+		{
+			map_floor[1].u = 0.2f * i;
+			map_floor[1].v = 0.5f;
+		}
 	}
-
-
-
+	for (int i = 20; i < 30; i++)
+	{
+		if (map_floorbg.floornum == i)
+		{
+			map_floor[0].u = 0.4f;
+			map_floor[0].v = 0.f;
+		}
+	}
+	for (int i = 20; i < 25; i++)
+	{
+		if (map_floorbg.floornum == i)
+		{
+			map_floor[1].u = 0.2f * i;
+			map_floor[1].v = 0.f;
+		}
+	}
+	for (int i = 25; i < 30; i++)
+	{
+		if (map_floorbg.floornum == i)
+		{
+			map_floor[1].u = 0.2f * i;
+			map_floor[1].v = 0.5f;
+		}
+	}
 
 }
 

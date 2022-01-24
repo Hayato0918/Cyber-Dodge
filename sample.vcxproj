@@ -170,6 +170,7 @@
     <ClCompile Include="floatingfeeling.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameover.cpp" />
+    <ClCompile Include="gameover_F.cpp" />
     <ClCompile Include="hackeffect.cpp" />
     <ClCompile Include="hujyou.cpp" />
     <ClCompile Include="input.cpp" />
@@ -271,6 +272,7 @@
     <ClInclude Include="enemybreak.h" />
     <ClInclude Include="enemy_aura.h" />
     <ClInclude Include="floatingfeeling.h" />
+    <ClInclude Include="gameover_F.h" />
     <ClInclude Include="hackeffect.h" />
     <ClInclude Include="hujyou.h" />
     <ClInclude Include="kasoukenkyuukuukan.h" />

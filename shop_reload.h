@@ -10,6 +10,7 @@ typedef struct
 	D3DXVECTOR2 size;
 	int texture;
 	bool reloadflag;	//スキルの再抽選を実行するかを管理するフラグ
+	int gold;			//リロードにかかる値段
 }SHOP_RELOAD;
 
 HRESULT InitShopReload(void);

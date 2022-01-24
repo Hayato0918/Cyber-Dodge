@@ -286,14 +286,14 @@ void UpdateMapPoint(void)
 		if (PADUSE == 1)
 		{
 			//-----マップスクロール
-			if (GetKeyboardPress(DIK_W))
+			if (GetKeyboardPress(DIK_W) && map_sb.startpos.y < 60.f)
 			{
 				for (int i = 0; i < map_num; i++)
 					map[i].pos.y += 5;
 				map_sb.startpos.y += 5;
 				map_sb.bosspos.y += 5;
 			}
-			if (GetKeyboardPress(DIK_S))
+			if (GetKeyboardPress(DIK_S) && map_sb.bosspos.y > 640.f)
 			{
 				for (int i = 0; i < map_num; i++)
 					map[i].pos.y -= 5;

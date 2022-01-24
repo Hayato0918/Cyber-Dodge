@@ -26,6 +26,7 @@ HRESULT InitTitle(void)
 
 	map_player->UDcount = 0;
 	map_player->gamecount = 0;
+	map_player->floor = 0;
 
 	InitTitleBG();
 	InitTitleTeamName();
@@ -53,6 +54,12 @@ void UninitTitle(void)
 //-----XVˆ—
 void UpdateTitle(void)
 {
+	MAP_PLAYER* map_player = GetMapPlayer();
+
+	map_player->UDcount = 0;
+	map_player->gamecount = 0;
+	map_player->floor = 0;
+
 	UpdateTitleBG();
 	UpdateTitleTeamName();
 	UpdateTitleStart();
