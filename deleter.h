@@ -34,6 +34,13 @@ typedef struct
 	bool walkLRflag;		//どっち向いているかを管理するフラグ
 	float walktexturetime;
 
+	int catch_Ltexture;
+	int catch_Rtexture;
+	bool catchtextureflag;
+	bool catchtextureflag_2;
+	bool catchLRflag;
+	float catchtexturetime;
+
 	int throw_Ltexture;	//投げ右向き
 	int throw_Rtexture;	//投げ左向き
 	bool throwtextureflag;	//描画するかを管理するフラグ

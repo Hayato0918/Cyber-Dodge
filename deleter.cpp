@@ -55,26 +55,33 @@ HRESULT InitDeleter(void)
 	deleter.vh = 1.0f;
 	deleter.drawflag = true;
 
-	deleter.stand_Ltexture = LoadTexture("data/TEXTURE/enemy/firewall/stand/stand_R.png");
-	deleter.stand_Rtexture = LoadTexture("data/TEXTURE/enemy/firewall/stand/stand_L.png");
+	deleter.stand_Ltexture = LoadTexture("data/TEXTURE/enemy/Deleter/stand/stand_R.png");
+	deleter.stand_Rtexture = LoadTexture("data/TEXTURE/enemy/Deleter/stand/stand_L.png");
 	deleter.standtextureflag = true;
 	deleter.standLRflag = false;
 	deleter.standtexturetime = 0.0f;
 
-	deleter.walk_Ltexture = LoadTexture("data/TEXTURE/enemy/firewall/walk/walk_R.png");
-	deleter.walk_Rtexture = LoadTexture("data/TEXTURE/enemy/firewall/walk/walk_L.png");
+	deleter.walk_Ltexture = LoadTexture("data/TEXTURE/enemy/Deleter/walk/walk_R.png");
+	deleter.walk_Rtexture = LoadTexture("data/TEXTURE/enemy/Deleter/walk/walk_L.png");
 	deleter.walktextureflag = false;
 	deleter.walkLRflag = false;
 	deleter.walktexturetime = 0.0f;
 
-	deleter.throw_Ltexture = LoadTexture("data/TEXTURE/enemy/firewall/throw/throw_R.png");
-	deleter.throw_Rtexture = LoadTexture("data/TEXTURE/enemy/firewall/throw/throw_L.png");
+	deleter.throw_Ltexture = LoadTexture("data/TEXTURE/enemy/Deleter/throw/throw_R.png");
+	deleter.throw_Rtexture = LoadTexture("data/TEXTURE/enemy/Deleter/throw/throw_L.png");
 	deleter.throwtextureflag = false;
 	deleter.throwLRflag = false;
 	deleter.throwtexturetime = 0.0f;
 
-	deleter.damage_Ltexture = LoadTexture("data/TEXTURE/enemy/firewall/damage/damage_R.png");
-	deleter.damage_Rtexture = LoadTexture("data/TEXTURE/enemy/firewall/damage/damage_L.png");
+	deleter.catch_Ltexture = LoadTexture("data/TEXTURE/enemy/Deleter/catch/catch_R.png");
+	deleter.catch_Rtexture = LoadTexture("data/TEXTURE/enemy/Deleter/catch/catch_L.png");
+	deleter.catchtextureflag = false;
+	deleter.catchtextureflag_2 = false;
+	deleter.catchLRflag = false;
+	deleter.catchtexturetime = 0.0f;
+
+	deleter.damage_Ltexture = LoadTexture("data/TEXTURE/enemy/Deleter/damage/damage_R.png");
+	deleter.damage_Rtexture = LoadTexture("data/TEXTURE/enemy/Deleter/damage/damage_L.png");
 	deleter.damagetextureflag = false;
 	deleter.damageLRflag = false;
 	deleter.damagetexturetime = 0.0f;
@@ -211,21 +218,48 @@ void DrawDeleter(void)
 {
 	if (deleter.drawflag == true)
 	{
-		//止まってるとき && (右向いてるとき || 左向いてるとき)
-		if (deleter.walktextureflag == false && deleter.standLRflag == false)
-			DrawSpriteLeftTop(deleter.stand_Ltexture, deleter.pos.x, deleter.pos.y,
-				deleter.size.x, deleter.size.y, deleter.u, deleter.v, deleter.uw, deleter.vh);
-		if (deleter.walktextureflag == false && deleter.standLRflag == true)
-			DrawSpriteLeftTop(deleter.stand_Rtexture, deleter.pos.x, deleter.pos.y,
-				deleter.size.x, deleter.size.y, deleter.u, deleter.v, deleter.uw, deleter.vh);
+		if (deleter.throwtextureflag)
+		{
+			//投げているとき && (右向いてるとき || 左向いてるとき)
+			if (deleter.throwtextureflag == true && deleter.throwLRflag == false)
+				DrawSpriteLeftTop(deleter.throw_Ltexture, deleter.pos.x, deleter.pos.y,
+					deleter.size.x, deleter.size.y, deleter.u, deleter.v, deleter.uw, deleter.vh);
+			if (deleter.throwtextureflag == true && deleter.throwLRflag == true)
+				DrawSpriteLeftTop(deleter.throw_Rtexture, deleter.pos.x, deleter.pos.y,
+					deleter.size.x, deleter.size.y, deleter.u, deleter.v, deleter.uw, deleter.vh);
+		}
+		else
+		{
+			if (deleter.catchtextureflag)
+			{
+				//キャッチするとき && (右向いてるとき || 左向いてるとき)
+				if (deleter.catchtextureflag == true && deleter.catchLRflag == false)
+					DrawSpriteLeftTop(deleter.catch_Ltexture, deleter.pos.x, deleter.pos.y,
+						deleter.size.x, deleter.size.y, deleter.u, deleter.v, deleter.uw, deleter.vh);
+				if (deleter.catchtextureflag == true && deleter.catchLRflag == true)
+					DrawSpriteLeftTop(deleter.catch_Rtexture, deleter.pos.x, deleter.pos.y,
+						deleter.size.x, deleter.size.y, deleter.u, deleter.v, deleter.uw, deleter.vh);
+			}
+			else
+			{
+				//止まってるとき && (右向いてるとき || 左向いてるとき)
+				if (deleter.walktextureflag == false && deleter.standLRflag == false)
+					DrawSpriteLeftTop(deleter.stand_Ltexture, deleter.pos.x, deleter.pos.y,
+						deleter.size.x, deleter.size.y, deleter.u, deleter.v, deleter.uw, deleter.vh);
+				if (deleter.walktextureflag == false && deleter.standLRflag == true)
+					DrawSpriteLeftTop(deleter.stand_Rtexture, deleter.pos.x, deleter.pos.y,
+						deleter.size.x, deleter.size.y, deleter.u, deleter.v, deleter.uw, deleter.vh);
 
-		//動いてるとき && (右向いてるとき || 左向いてるとき)
-		if (deleter.walktextureflag == true && deleter.walkLRflag == false)
-			DrawSpriteLeftTop(deleter.walk_Ltexture, deleter.pos.x, deleter.pos.y,
-				deleter.size.x, deleter.size.y, deleter.u, deleter.v, deleter.uw, deleter.vh);
-		if (deleter.walktextureflag == true && deleter.walkLRflag == true)
-			DrawSpriteLeftTop(deleter.walk_Rtexture, deleter.pos.x, deleter.pos.y,
-				deleter.size.x, deleter.size.y, deleter.u, deleter.v, deleter.uw, deleter.vh);
+				//動いてるとき && (右向いてるとき || 左向いてるとき)
+				if (deleter.walktextureflag == true && deleter.walkLRflag == false)
+					DrawSpriteLeftTop(deleter.walk_Ltexture, deleter.pos.x, deleter.pos.y,
+						deleter.size.x, deleter.size.y, deleter.u, deleter.v, deleter.uw, deleter.vh);
+				if (deleter.walktextureflag == true && deleter.walkLRflag == true)
+					DrawSpriteLeftTop(deleter.walk_Rtexture, deleter.pos.x, deleter.pos.y,
+						deleter.size.x, deleter.size.y, deleter.u, deleter.v, deleter.uw, deleter.vh);
+			}
+		}
+
 	}
 
 	//死んだとき

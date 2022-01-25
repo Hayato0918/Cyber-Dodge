@@ -31,6 +31,7 @@ void DeleterAI()
 		//-----ボールの方を向く
 	if (ball->enemyhaveflag == false)
 	{
+		deleter->walktextureflag = false;
 		if (ball->pos.x > deleter->pos.x + SCREEN_WIDTH * 0.03125f)
 			deleter->rotate = 3;
 		if (ball->pos.x < deleter->pos.x + SCREEN_WIDTH * 0.03125f)
@@ -57,6 +58,7 @@ void DeleterAI()
 	//-----ボールが敵陣の地面にある場合、ボールの場所まで行く
 	if (ball->enemyhaveflag == false && ball->pos.x > SCREEN_WIDTH * 0.5f && ball->enemyhitflag == false)
 	{
+		deleter->walktextureflag = true;
 		deleter->pos.x += deleter_x;
 		deleter->pos.y += deleter_y;
 	}
@@ -68,7 +70,12 @@ void DeleterAI()
 		{
 			if (deleter->pos.y < ball->pos.y + ball->size.y && deleter->pos.y + deleter->size.y > ball->pos.y)
 			{
+				deleter->walktextureflag = false;
 				M_Catch();
+				if (ball->enemyhaveflag == true && deleter->catchtextureflag_2 == false)
+				{
+					deleter->catchtextureflag = true;
+				}
 			}
 		}
 	}
@@ -77,6 +84,7 @@ void DeleterAI()
 		//-----プレイヤーの方向を向く
 	if (ball->enemyhaveflag == true)
 	{
+		deleter->walktextureflag = false;
 		if (player->pos.x > deleter->pos.x)
 			deleter->rotate = 3;
 		if (player->pos.x < deleter->pos.x)
@@ -88,8 +96,8 @@ void DeleterAI()
 	{
 		//-----yをプレイヤーとエネミーのy座標の差に変更
 		deleter_y = (player->pos.y - deleter->pos.y) * 0.01f;
-
 		deleter->pos.y += deleter_y;
+		deleter->walktextureflag = true;
 	}
 
 	//-----ボールを1秒持ったら投げる
@@ -97,6 +105,8 @@ void DeleterAI()
 		deleter_throwtime = deleter_throwtime + 1.0f;
 	if (deleter_throwtime > 60)
 	{
+		deleter->walktextureflag = false;
+		deleter->throwtextureflag = true;
 		E_Throw();
 		deleter_throwtime = 0.0f;
 	}
