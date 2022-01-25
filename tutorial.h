@@ -7,8 +7,53 @@
 //-----構造体
 typedef struct
 {
-
+	bool tutorialflag;
 }TUTORIAL;
+
+typedef struct
+{
+	D3DXVECTOR2 pos;
+	D3DXVECTOR2 size;
+	int texture;
+	bool drawflag;
+}TUTORIAL_GAME;
+
+typedef struct
+{
+	D3DXVECTOR2 pos;
+	D3DXVECTOR2 size;
+	int texture;
+	bool drawflag;
+}TUTORIAL_SKILL;
+
+typedef struct
+{
+	D3DXVECTOR2 pos;
+	D3DXVECTOR2 size;
+	int texture;
+	bool drawflag;
+	float time;
+}TUTORIAL_IDOU;
+
+typedef struct
+{
+	D3DXVECTOR2 pos;
+	D3DXVECTOR2 size;
+	int texture;
+	bool drawflag;
+	bool throwflag;
+	bool catchflag;
+}TUTORIAL_NAGE;
+
+typedef struct
+{
+	D3DXVECTOR2 pos;
+	D3DXVECTOR2 size;
+	int texture;
+	bool drawflag;
+	int skillusenum;
+	bool reloadflag;
+}TUTORIAL_SUKILL;
 
 //-----プロトタイプ宣言
 HRESULT InitTutorial(void);

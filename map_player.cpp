@@ -19,6 +19,8 @@
 #include "map_save_bg.h"
 #include "map_bg.h"
 
+#include "tutorial.h"
+
 //-----マクロ定義
 
 //-----プロトタイプ宣言
@@ -92,6 +94,8 @@ void UpdateMapPlayer(void)
 	BANNER_BUGNUM* banner_bugnum = GetBannerBug();
 	MAPSAVE_BG* map_save = GetMapSaveBG();
 	MAP_BG* map_bg = GetMapBG();
+
+	TUTORIAL* tutorial = GetTutorial();
 
 	//-----マップスクロール
 	if (map_hack->isUse == false && map_save->drawflag == false)
@@ -3499,11 +3503,14 @@ void UpdateMapPlayer(void)
 					{
 						map_player.gamecount = map_player.gamecount + 1;	//ゲームシーンに入った回数を記録する
 						map_player.encount = (rand() % 2) + 1;	//ここで出現する敵をランダムに決める
+						if (tutorial->tutorialflag == false)
+							map_player.encount = 1;	//ここで出現する敵をランダムに決める
 						map_player.enemypowerup = false;
 						SceneTransition(SCENE_GAME);
 					}
 					if (map[map_player.nowpos - 1].randomcode == 2)	//強敵マス
 					{
+						map_player.gamecount = map_player.gamecount + 1;	//ゲームシーンに入った回数を記録する
 						map_player.encount = (rand() % 2) + 1;	//ここで出現する敵をランダムに決める
 						map_player.enemypowerup = true;
 						SceneTransition(SCENE_GAME);
@@ -3528,6 +3535,8 @@ void UpdateMapPlayer(void)
 					{
 						map_player.gamecount = map_player.gamecount + 1;	//ゲームシーンに入った回数を記録する
 						map_player.encount = (rand() % 2) + 1;	//ここで出現する敵をランダムに決める
+						if(tutorial->tutorialflag == false)
+							map_player.encount = 1;	//ここで出現する敵をランダムに決める
 						map_player.enemypowerup = false;
 						SceneTransition(SCENE_GAME);
 					}

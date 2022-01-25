@@ -573,6 +573,9 @@
     <ClCompile Include="tutorial.cpp">
       <Filter>ソース ファイル\tutorial</Filter>
     </ClCompile>
+    <ClCompile Include="tutorial_map.cpp">
+      <Filter>ソース ファイル\tutorial</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -981,6 +984,9 @@
       <Filter>ヘッダー ファイル\gameover</Filter>
     </ClInclude>
     <ClInclude Include="tutorial.h">
+      <Filter>ヘッダー ファイル\tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="tutorial_map.h">
       <Filter>ヘッダー ファイル\tutorial</Filter>
     </ClInclude>
   </ItemGroup>

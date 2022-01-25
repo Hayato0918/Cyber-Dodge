@@ -255,6 +255,7 @@
     <ClCompile Include="tosyokann.cpp" />
     <ClCompile Include="soundvolume_select.cpp" />
     <ClCompile Include="tutorial.cpp" />
+    <ClCompile Include="tutorial_map.cpp" />
     <ClCompile Include="warp.cpp" />
     <ClCompile Include="windowsize.cpp" />
     <ClCompile Include="windowsize_bg.cpp" />
@@ -393,6 +394,7 @@
     <ClInclude Include="title_teamname.h" />
     <ClInclude Include="tosyokann.h" />
     <ClInclude Include="tutorial.h" />
+    <ClInclude Include="tutorial_map.h" />
     <ClInclude Include="warp.h" />
     <ClInclude Include="windowsize.h" />
     <ClInclude Include="windowsize_bg.h" />

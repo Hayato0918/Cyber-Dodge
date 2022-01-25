@@ -15,6 +15,7 @@
 #include "player_hp.h"
 #include "ball.h"
 #include "catch.h"
+#include "tutorial.h"
 
 #include "skill.h"
 #include "skillrandom.h"
@@ -45,13 +46,14 @@ void InitGame(void)
 	InitSkill();
 	InitRandom();
 	InitEnemyBreak();
+	InitTutorial();
 
 }
 
 //-----I—¹ˆ—ŠÖ”
 void UninitGame()
 {
-
+	UninitTutorial();
 	UninitEnemyBreak();
 	UninitRandom();
 	InitCatch();
@@ -77,6 +79,7 @@ void UpdateGame(void)
 	UpdateRandom();
 	_Bug();
 	UpdateEnemyBreak();
+	UpdateTutorial();
 }
 
 //-----•`‰æˆ—ŠÖ”
@@ -87,6 +90,7 @@ void DrawGame(void)
 	if (player->drawdepth == true)
 	{
 		DrawBG();
+		DrawTutorial();
 		DrawPlayer();
 		DrawEnemy();
 		DrawBall();
@@ -100,6 +104,7 @@ void DrawGame(void)
 	if (player->drawdepth == false)
 	{
 		DrawBG();
+		DrawTutorial();
 		DrawEnemy();
 		DrawPlayer();
 		DrawBall();
@@ -110,7 +115,6 @@ void DrawGame(void)
 		DrawBugIncrease();
 		DrawPlayerHp();
 	}
-
 	DrawEnemyBreak();
 
 }
