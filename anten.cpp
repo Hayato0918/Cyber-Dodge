@@ -8,6 +8,7 @@
 
 #include "bugincrease.h"
 #include "bugrandom.h"
+#include "screencrack.h"
 
 //-----プロトタイプ宣言
 ANTEN anten;
@@ -30,6 +31,7 @@ void _Anten(void)
 {
 	BUG* bug = GetBugIncrease();
 	BUGRANDOM* bugrandom = GetBugRandom();
+	CRACK* crack = GetCrack();
 
 	//バグゲージが100以上になって、スキルを使うかボールが当たると画面を霧が覆う
 	if (bugrandom->code == 1 && bug->breakflag == true && anten.use == false)

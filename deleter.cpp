@@ -216,9 +216,9 @@ void UpdateDeleter(void)
 //-----•`‰æˆ—
 void DrawDeleter(void)
 {
-	if (deleter.drawflag == true)
+	if (deleter.drawflag == true && deleter.damagetextureflag == false)
 	{
-		if (deleter.throwtextureflag)
+		if (deleter.throwtextureflag == true)
 		{
 			//“Š‚°‚Ä‚¢‚é‚Æ‚« && (‰EŒü‚¢‚Ä‚é‚Æ‚« || ¶Œü‚¢‚Ä‚é‚Æ‚«)
 			if (deleter.throwtextureflag == true && deleter.throwLRflag == false)
@@ -260,6 +260,16 @@ void DrawDeleter(void)
 			}
 		}
 
+	}
+
+	if (deleter.damagetextureflag == true)
+	{
+		if(deleter.damageLRflag == false)
+			DrawSpriteLeftTop(deleter.damage_Ltexture, deleter.pos.x, deleter.pos.y,
+				deleter.size.x, deleter.size.y, deleter.u, deleter.v, deleter.uw, deleter.vh);
+		if (deleter.damageLRflag == true)
+			DrawSpriteLeftTop(deleter.damage_Rtexture, deleter.pos.x, deleter.pos.y,
+				deleter.size.x, deleter.size.y, deleter.u, deleter.v, deleter.uw, deleter.vh);
 	}
 
 	//€‚ñ‚¾‚Æ‚«

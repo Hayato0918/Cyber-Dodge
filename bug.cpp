@@ -10,6 +10,7 @@
 #include "notCatch.h"
 #include "create.h"
 #include "areaChange.h"
+#include "screencrack.h"
 
 //-----É}ÉNÉçíËã`
 
@@ -27,6 +28,7 @@ HRESULT InitBug(void)
 	InitNotCatch();
 	InitCreate();
 	InitAreaChange();
+	InitCrack();
 
 	return S_OK;
 }
@@ -40,6 +42,7 @@ void _Bug(void)
 	_NotCatch();
 	_Create();
 	_AreaChange();
+	_Crack();
 }
 
 void DrawBug(void)
@@ -47,4 +50,5 @@ void DrawBug(void)
 	DrawAnten();
 	DrawEnemyClone();
 	DrawCreate();
+	DrawCrack();
 }

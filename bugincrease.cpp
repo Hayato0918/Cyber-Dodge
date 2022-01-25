@@ -11,6 +11,7 @@
 
 #include "enemybreak.h"
 #include "soundvolume_select.h"
+#include "screencrack.h"
 
 //-----マクロ定義
 #define gaugedecrease 0.2f	//ゲージの減少量
@@ -101,6 +102,7 @@ void UpdateBugIncrease(void)
 	BALL* ball = GetBall();
 	RANDOM* random = GetRandom();
 	ENEMYBREAK* enemybreak = GetEnemyBreak();
+	CRACK* crack = GetCrack();
 
 	if(bug.breakflag == false && bug.drawnum > 16)
 		bug.gaugetexture = LoadTexture("data/TEXTURE/buggauge/gaugebar.png");
@@ -147,8 +149,8 @@ void UpdateBugIncrease(void)
 		}
 
 		//-----臨界状態でスキルを使ったら、バグゲージを破壊する
-		if (bug.gaugeoverflag == true && player->skilluseflag == true)
-			bug.breakflag = true;
+		/*if (bug.gaugeoverflag == true && player->skilluseflag == true && crack->bugflag == true)
+			bug.breakflag = true;*/
 
 		if (bug.breakflag == true)
 			bug.breaktime = bug.breaktime + 1.f;
@@ -203,6 +205,7 @@ void UpdateBugIncrease(void)
 						buggauge[bug.drawnum - 1].drawflag = false;
 						bug.drawnum = bug.drawnum - 1;
 						bug.decreasetime = 0.f;
+						crack->bugflag = false;
 					}
 				}
 			}

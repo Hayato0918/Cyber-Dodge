@@ -292,6 +292,41 @@ void deleter_animation()
 	if (deleter->catchtextureflag == false)
 		deleter->catchtexturetime = 0.0f;
 
+
+	if (deleter->damagetextureflag == true)
+	{
+		deleter->damagetexturetime = deleter->damagetexturetime + 1;
+
+		if (deleter->rotate == 2)
+		{
+			deleter->damageLRflag = true;
+				deleter->u = 0.f;
+				deleter->uw = 1.f;
+			if (deleter->damagetexturetime > 40)
+			{
+				deleter->damagetextureflag = false;
+				deleter->damagetexturetime = 0.f;
+				deleter->u = 0.f;
+				deleter->uw = 0.25f;
+			}
+		}
+		if (deleter->rotate == 3)
+		{
+			deleter->damageLRflag = false;
+				deleter->u = 0.f;
+				deleter->uw = 1.f;
+			if (deleter->damagetexturetime > 40)
+			{
+				deleter->damagetextureflag = false;
+				deleter->damagetexturetime = 0.f;
+				deleter->u = 0.f;
+				deleter->uw = 0.25f;
+			}
+		}
+
+	}
+
+
 	//-----Ž€‚ñ‚¾‚Æ‚«
 	if (deleter->drawflag == false)
 	{

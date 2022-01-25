@@ -576,6 +576,9 @@
     <ClCompile Include="tutorial_map.cpp">
       <Filter>ソース ファイル\tutorial</Filter>
     </ClCompile>
+    <ClCompile Include="screencrack.cpp">
+      <Filter>ソース ファイル\bug\system</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -988,6 +991,9 @@
     </ClInclude>
     <ClInclude Include="tutorial_map.h">
       <Filter>ヘッダー ファイル\tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="screencrack.h">
+      <Filter>ヘッダー ファイル\bug\system</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

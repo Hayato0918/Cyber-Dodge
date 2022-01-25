@@ -222,6 +222,7 @@
     <ClCompile Include="rockcreate.cpp" />
     <ClCompile Include="save.cpp" />
     <ClCompile Include="scene.cpp" />
+    <ClCompile Include="screencrack.cpp" />
     <ClCompile Include="server_recovery.cpp" />
     <ClCompile Include="shop.cpp" />
     <ClCompile Include="shop_bg.cpp" />
@@ -361,6 +362,7 @@
     <ClInclude Include="rockcreate.h" />
     <ClInclude Include="save.h" />
     <ClInclude Include="scene.h" />
+    <ClInclude Include="screencrack.h" />
     <ClInclude Include="server_recovery.h" />
     <ClInclude Include="shop.h" />
     <ClInclude Include="shop_bg.h" />
