@@ -4,6 +4,8 @@
 #include "texture.h"
 #include "sprite.h"
 #include "input.h"
+#include "sound.h"
+#include "soundvolume_select.h" 
 //
 #include "name_keyboard.h"
 
@@ -12,6 +14,10 @@ NAME_SELECT name_select;
 HRESULT InitNameSelect(void)
 {
 	NAME_KEYBOARD* name_keyboard = GetNameKeyboard();
+	SOUNDVOLUME_SELECT* soundvolume_select = GetSoundVolumeSelect();
+
+	name_select.sound = LoadSound("data/SE/cursormove.wav");
+	SetVolume(name_select.sound, soundvolume_select[1].count * 0.1f + 0.5f);
 
 	name_select.pos = D3DXVECTOR2(name_keyboard->pos.x, name_keyboard->pos.y);
 	name_select.size = D3DXVECTOR2(name_keyboard->size.x / 9.f, name_keyboard->size.y / 3.f);
@@ -35,21 +41,25 @@ void UpdateNameSelect(void)
 	{
 		if (IsButtonTriggered(0, BUTTON_UP) && name_select.UDcount > 0)		//è„à⁄ìÆ
 		{
+			PlaySound(name_select.sound, 0.5f);
 			name_select.UDcount -= 1;
 			name_select.pos.y = name_select.pos.y - name_select.size.y;
 		}
 		if (IsButtonTriggered(0, BUTTON_DOWN) && name_select.UDcount < 2)		//â∫à⁄ìÆ
 		{
+			PlaySound(name_select.sound, 0.5f);
 			name_select.UDcount += 1;
 			name_select.pos.y = name_select.pos.y + name_select.size.y;
 		}
 		if (IsButtonTriggered(0, BUTTON_LEFT) && name_select.LRcount > 0)		//ç∂à⁄ìÆ
 		{
+			PlaySound(name_select.sound, 0.5f);
 			name_select.LRcount -= 1;
 			name_select.pos.x = name_select.pos.x - name_select.size.x;
 		}
 		if (IsButtonTriggered(0, BUTTON_RIGHT) && name_select.LRcount < 8)		//âEà⁄ìÆ
 		{
+			PlaySound(name_select.sound, 0.5f);
 			name_select.LRcount += 1;
 			name_select.pos.x = name_select.pos.x + name_select.size.x;
 		}
@@ -59,21 +69,25 @@ void UpdateNameSelect(void)
 	{
 		if (GetKeyboardTrigger(DIK_W) && name_select.UDcount > 0)		//è„à⁄ìÆ
 		{
+			PlaySound(name_select.sound, 0.5f);
 			name_select.UDcount -= 1;
 			name_select.pos.y = name_select.pos.y - name_select.size.y;
 		}
 		if (GetKeyboardTrigger(DIK_S) && name_select.UDcount < 2)		//â∫à⁄ìÆ
 		{
+			PlaySound(name_select.sound, 0.5f);
 			name_select.UDcount += 1;
 			name_select.pos.y = name_select.pos.y + name_select.size.y;
 		}
 		if (GetKeyboardTrigger(DIK_A) && name_select.LRcount > 0)		//ç∂à⁄ìÆ
 		{
+			PlaySound(name_select.sound, 0.5f);
 			name_select.LRcount -= 1;
 			name_select.pos.x = name_select.pos.x - name_select.size.x;
 		}
 		if (GetKeyboardTrigger(DIK_D) && name_select.LRcount < 8)		//âEà⁄ìÆ
 		{
+			PlaySound(name_select.sound, 0.5f);
 			name_select.LRcount += 1;
 			name_select.pos.x = name_select.pos.x + name_select.size.x;
 		}

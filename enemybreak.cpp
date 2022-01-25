@@ -44,7 +44,7 @@ HRESULT InitEnemyBreak(void)
 	//-----ÉSÅ[ÉãÉh
 	for (int i = 0; i < 4; i++)
 	{
-		getgold[i].pos = D3DXVECTOR2(800.f + i * 100, 400.f);
+		getgold[i].pos = D3DXVECTOR2(680.f + i * 100, 360.f);
 		getgold[i].size = D3DXVECTOR2(100.f, 100.f);
 		getgold[i].u = 0.f;
 		getgold[i].v = 0.f;
@@ -79,7 +79,7 @@ void UpdateEnemyBreak(void)
 
 	if (PADUSE == 0)
 	{
-		if (IsButtonTriggered(0, BUTTON_Y))
+		if (IsButtonTriggered(0, BUTTON_Y) && enemybreak.drawflag == true)
 		{
 			player->gold = player->gold + getgoldnum.gold;
 			SceneTransition(SCENE_MAP);
@@ -88,7 +88,7 @@ void UpdateEnemyBreak(void)
 
 	if (PADUSE == 1)
 	{
-		if (GetKeyboardTrigger(DIK_RETURN))
+		if (GetKeyboardTrigger(DIK_RETURN) && enemybreak.drawflag == true)
 		{
 			player->gold = player->gold + getgoldnum.gold;
 			SceneTransition(SCENE_MAP);

@@ -7,12 +7,17 @@
 //
 #include "rest_command.h"
 #include "rest_exit.h"
+#include "sound.h"
+#include "soundvolume_select.h" 
 
 REST_SELECT rest_select;
 
 HRESULT InitRestSelect(void)
 {
 	REST_HPUP* rest_hpup = GetRestCommandHP();
+	SOUNDVOLUME_SELECT* soundvolume_select = GetSoundVolumeSelect();
+	rest_select.sound = LoadSound("data/SE/cursormove.wav");
+	SetVolume(rest_select.sound, soundvolume_select[1].count * 0.1f + 0.5f);
 
 	rest_select.pos = D3DXVECTOR2(rest_hpup->pos.x, rest_hpup->pos.y);
 	rest_select.size = D3DXVECTOR2(rest_hpup->size.x, rest_hpup->size.y);
@@ -36,9 +41,15 @@ void UpdateRestSelect(void)
 	if (PADUSE == 0)
 	{
 		if (IsButtonTriggered(0, BUTTON_LEFT) && rest_select.count > 0)		//ãˆÚ“®
+		{
+			PlaySound(rest_select.sound, 0.5f);
 			rest_select.count -= 1;
+		}
 		if (IsButtonTriggered(0, BUTTON_RIGHT) && rest_select.count < 2)		//‰ºˆÚ“®
+		{
+			PlaySound(rest_select.sound, 0.5f);
 			rest_select.count += 1;
+		}
 	}
 	if (PADUSE == 1)
 	{

@@ -11,6 +11,7 @@ typedef struct
 	int texture;
 	int count;
 	bool drawflag;
+	int sound;
 }MAPSAVE_SELECT;
 
 

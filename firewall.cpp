@@ -28,14 +28,16 @@ FIREWALL firewall;
 //-----‰Šú‰»ˆ—
 HRESULT InitFireWall(void)
 {
+	MAP_PLAYER* map_player = GetMapPlayer();
+
 	firewall.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.3555f);
 	firewall.size = D3DXVECTOR2(SCREEN_WIDTH * 0.16f, SCREEN_HEIGHT * 0.28444f);
 	firewall.move = D3DXVECTOR2(SCREEN_WIDTH * 0.00125f, SCREEN_HEIGHT * 0.0022222f);
 	firewall.colPos = D3DXVECTOR2(firewall.pos.x + firewall.size.x / 2, firewall.pos.y + firewall.size.y / 2 + firewall.size.y / 4);
 	firewall.rotate = 2;
 
-	firewall.atk = 150;
-	firewall.def = 49;
+	firewall.atk = 150 + (150 * map_player->floor * 0.1f);
+	firewall.def = 40; +(40 * map_player->floor * 0.1f);
 
 	firewall.getskill = false;
 	firewall.floorflag = false;

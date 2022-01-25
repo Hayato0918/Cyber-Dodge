@@ -157,6 +157,12 @@
     <Filter Include="ヘッダー ファイル\gameover">
       <UniqueIdentifier>{badb70e1-2acc-4113-adf4-cd7b88998b27}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\tutorial">
+      <UniqueIdentifier>{f0f3e9c5-dd18-406d-a8d2-c10bdf1f36df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\tutorial">
+      <UniqueIdentifier>{9db888e0-5b43-46f5-a8c5-5f8ad09c7d4f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scene.cpp">
@@ -564,6 +570,9 @@
     <ClCompile Include="gameover_F.cpp">
       <Filter>ソース ファイル\gameover</Filter>
     </ClCompile>
+    <ClCompile Include="tutorial.cpp">
+      <Filter>ソース ファイル\tutorial</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -970,6 +979,9 @@
     </ClInclude>
     <ClInclude Include="gameover_F.h">
       <Filter>ヘッダー ファイル\gameover</Filter>
+    </ClInclude>
+    <ClInclude Include="tutorial.h">
+      <Filter>ヘッダー ファイル\tutorial</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -4,11 +4,13 @@
 #include "texture.h"
 #include "sprite.h"
 #include "input.h"
+#include "sound.h"
 //
 #include "shop.h"
 #include "shop_select.h"
 #include "shop_card.h"
 #include "skillrandom.h"
+#include "soundvolume_select.h"
 
 #include "player.h"
 
@@ -16,11 +18,15 @@ SHOP_RELOAD shop_reload;
 
 HRESULT InitShopReload()
 {
+	SOUNDVOLUME_SELECT* soundvolume_select = GetSoundVolumeSelect();
+
 	shop_reload.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.6875f, SCREEN_HEIGHT * 0.5833333f);
 	shop_reload.size = D3DXVECTOR2(SCREEN_WIDTH * 0.25f, SCREEN_HEIGHT * 0.1388888f);
 	shop_reload.reloadflag = false;
 	shop_reload.gold = 10;
 	shop_reload.texture = LoadTexture("data/TEXTURE/map/shop/reload.png");
+	shop_reload.sound = LoadSound("data/SE/reload.wav");
+	SetVolume(shop_reload.sound, soundvolume_select[1].count * 0.1f + 0.5f);
 
 	return S_OK;
 }
@@ -42,13 +48,19 @@ void UpdateShopReload()
 	if (PADUSE == 0)
 	{
 		if (IsButtonTriggered(0, BUTTON_Y) && shop_select->xcount > 1 && shop_select->ycount == 1 && player->gold >= shop_reload.gold)
+		{
+			PlaySound(shop_reload.sound, 0.5f);
 			shop_reload.reloadflag = true;
+		}
 	}
 
 	if (PADUSE == 1)
 	{
 		if (GetKeyboardTrigger(DIK_RETURN) && shop_select->xcount > 1 && shop_select->ycount == 1 && player->gold >= shop_reload.gold)
+		{
+			PlaySound(shop_reload.sound, 0.5f);
 			shop_reload.reloadflag = true;
+		}
 	}
 
 	int t = 0;

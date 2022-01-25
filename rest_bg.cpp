@@ -3,11 +3,19 @@
 //ƒVƒXƒeƒ€.h
 #include "texture.h"
 #include "sprite.h"
+#include "sound.h"
+#include "soundvolume_select.h" 
 
 REST_BG rest_bg;
 
 HRESULT InitRestBG(void)
 {
+	SOUNDVOLUME_SELECT* soundvolume_select = GetSoundVolumeSelect();
+
+	rest_bg.sound = LoadSound("data/BGM/restBGM.wav");
+	SetVolume(rest_bg.sound, soundvolume_select[0].count * 0.1f + 0.5f);
+	PlaySound(rest_bg.sound, -1);
+
 	rest_bg.pos = D3DXVECTOR2(0.0f, 0.0f);
 	rest_bg.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
 	rest_bg.texture = LoadTexture("data/TEXTURE/test/black.png");
@@ -17,7 +25,7 @@ HRESULT InitRestBG(void)
 
 void UninitRestBG(void)
 {
-
+	StopSoundAll();
 }
 
 void UpdateRestBG(void)

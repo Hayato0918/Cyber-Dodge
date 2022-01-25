@@ -12,6 +12,7 @@
 #include "map_hack.h"
 #include "map_line.h"
 #include "map_save_bg.h"
+#include "map_bg.h"
 
 //-----マクロ定義
 #define map_num 24
@@ -261,20 +262,21 @@ void UpdateMapPoint(void)
 	MAP_HACK* map_hack = GetMapHack();
 	MAP_PLAYER* map_player = GetMapPlayer();
 	MAPSAVE_BG* map_save = GetMapSaveBG();
+	MAP_BG* map_bg = GetMapBG();
 
 	if (map_hack->isUse == false && map_save->drawflag == false)
 	{
 		if (PADUSE == 0)
 		{
 			//-----マップスクロール
-			if (IsButtonPressed(0, BUTTON_UP))
+			if (IsButtonPressed(0, BUTTON_UP) && map_bg->pos.y < 60)
 			{
 				for (int i = 0; i < map_num; i++)
 					map[i].pos.y += 5;
 				map_sb.startpos.y += 5;
 				map_sb.bosspos.y += 5;
 			}
-			if (IsButtonPressed(0, BUTTON_DOWN))
+			if (IsButtonPressed(0, BUTTON_DOWN) && map_bg->pos.y > -580)
 			{
 				for (int i = 0; i < map_num; i++)
 					map[i].pos.y -= 5;
@@ -286,14 +288,14 @@ void UpdateMapPoint(void)
 		if (PADUSE == 1)
 		{
 			//-----マップスクロール
-			if (GetKeyboardPress(DIK_W) && map_sb.startpos.y < 60.f)
+			if (GetKeyboardPress(DIK_W) && map_bg->pos.y < 60)
 			{
 				for (int i = 0; i < map_num; i++)
 					map[i].pos.y += 5;
 				map_sb.startpos.y += 5;
 				map_sb.bosspos.y += 5;
 			}
-			if (GetKeyboardPress(DIK_S) && map_sb.bosspos.y > 640.f)
+			if (GetKeyboardPress(DIK_S) && map_bg->pos.y > -580)
 			{
 				for (int i = 0; i < map_num; i++)
 					map[i].pos.y -= 5;

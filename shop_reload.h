@@ -11,6 +11,7 @@ typedef struct
 	int texture;
 	bool reloadflag;	//スキルの再抽選を実行するかを管理するフラグ
 	int gold;			//リロードにかかる値段
+	int sound;
 }SHOP_RELOAD;
 
 HRESULT InitShopReload(void);

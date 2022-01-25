@@ -6,6 +6,8 @@
 #include "input.h"
 #include "scene.h"
 #include "fade.h"
+#include "sound.h"
+#include "soundvolume_select.h" 
 //
 #include "map_save_bg.h"
 #include "save.h"
@@ -14,6 +16,10 @@ MAPSAVE_SELECT map_save_select;
 
 HRESULT InitMapSaveSelect(void)
 {
+	SOUNDVOLUME_SELECT* soundvolume_select = GetSoundVolumeSelect();
+	map_save_select.sound = LoadSound("data/SE/cursormove.wav");
+	SetVolume(map_save_select.sound, soundvolume_select[1].count * 0.1f + 0.5f);
+
 	map_save_select.pos = D3DXVECTOR2(600.f, 390.f);
 	map_save_select.size = D3DXVECTOR2(80.f, 80.f);
 	map_save_select.count = 0;
@@ -39,11 +45,13 @@ void UpdateMapSaveSelect(void)
 		{
 			if (IsButtonTriggered(0, BUTTON_UP) && map_save_select.count > 0)		//ãˆÚ“®
 			{
+				PlaySound(map_save_select.sound, 0.5f);
 				map_save_select.pos.y -= 100.f;
 				map_save_select.count -= 1;
 			}
 			if (IsButtonTriggered(0, BUTTON_DOWN) && map_save_select.count < 1)		//‰ºˆÚ“®
 			{
+				PlaySound(map_save_select.sound, 0.5f);
 				map_save_select.pos.y += 100.f;
 				map_save_select.count += 1;
 			}

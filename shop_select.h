@@ -11,6 +11,7 @@ typedef struct
 	int texture;
 	int xcount;
 	int ycount;
+	int sound;
 }SHOP_SELECT;
 
 HRESULT InitShopSelect(void);

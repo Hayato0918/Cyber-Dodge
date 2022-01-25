@@ -58,6 +58,8 @@ HRESULT InitBall(void)
 	ball.fallflag = true;
 	ball.rad = 0.0f;
 	ball.plyer_oldposY = 0.0f;
+	ball.oldpos = 0.f;
+	ball.oldtime = 0.f;
 
 	g_balltime[0] = 0;
 	g_balltime[1] = 0;
@@ -83,6 +85,18 @@ void UpdateBall(void)
 	SLIME* slime = GetSlime();
 	DELETER* deleter = GetDeleter();
 	BALLTURNAROUND* ballTA = GetBallTurnAround();
+
+	if (ball.oldpos == ball.pos.x)
+		ball.oldtime = ball.oldtime + 1.f;
+	if (ball.oldtime > 180.f)
+	{
+		ball.pos = D3DXVECTOR2(500.0f, 360.0f);
+		ball.oldtime = 0.f;
+	}
+
+
+	ball.oldpos = ball.pos.x;
+
 
 	//-----ボールの座標を決める(Player)
 	if (ball.throwflag == false && ball.playerhaveflag == true)		//ボールが飛んでいないとき&&プレイヤーが持ってるとき

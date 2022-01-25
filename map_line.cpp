@@ -10,6 +10,7 @@
 #include "map_player.h"
 #include "map_hack.h"
 #include "map_save_bg.h"
+#include "map_bg.h"
 
 //-----ƒ}ƒNƒ’è‹`
 
@@ -59,22 +60,23 @@ void UpdateMapLine(void)
 {
 	MAP_HACK* map_hack = GetMapHack();
 	MAPSAVE_BG* map_save = GetMapSaveBG();
+	MAP_BG* map_bg = GetMapBG();
 
 	if (map_hack->isUse == false && map_save->drawflag == false)
 	{
 		if (PADUSE == 0)
 		{
-			if (IsButtonPressed(0, BUTTON_UP))
+			if (IsButtonPressed(0, BUTTON_UP) && map_bg->pos.y < 60)
 				map_line.pos.y += 5;
-			if (IsButtonPressed(0, BUTTON_DOWN))
+			if (IsButtonPressed(0, BUTTON_DOWN) && map_bg->pos.y > -580)
 				map_line.pos.y -= 5;
 		}
 
 		if (PADUSE == 1)
 		{
-			if (GetKeyboardPress(DIK_W))
+			if (GetKeyboardPress(DIK_W) && map_bg->pos.y < 60)
 				map_line.pos.y += 5;
-			if (GetKeyboardPress(DIK_S))
+			if (GetKeyboardPress(DIK_S) && map_bg->pos.y > -580)
 				map_line.pos.y -= 5;
 		}
 	}

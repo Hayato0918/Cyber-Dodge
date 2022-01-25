@@ -4,18 +4,24 @@
 #include "texture.h"
 #include "sprite.h"
 #include "input.h"
+#include "sound.h"
 //
 #include "title_bg.h"
 #include "title_gamestart.h"
 #include "title_continue.h"
 #include "title_option.h"
 #include "title_exit.h"
+#include "soundvolume_select.h"
 
 TITLE_SELECT title_select;
 
 HRESULT InitTitleSelect(void)
 {
+	SOUNDVOLUME_SELECT* soundvolume_select = GetSoundVolumeSelect();
 	TITLE_START* title_start = GetTitleStart();
+
+	title_select.sound = LoadSound("data/SE/cursormove.wav");
+	SetVolume(title_select.sound, soundvolume_select[1].count * 0.1f + 0.5f);
 
 	title_select.pos = D3DXVECTOR2(title_start->pos.x, title_start->pos.y);
 	title_select.size = D3DXVECTOR2(title_start->size.x, title_start->size.y);
@@ -42,10 +48,12 @@ void UpdateTitleSelect(void)
 		//ãxåeÉ}ÉXÇÃëIë
 		if (IsButtonTriggered(0, BUTTON_UP) && title_select.count > 0)
 		{
+			PlaySound(title_select.sound, 0.5f);
 			title_select.count -= 1;
 		}
 		if (IsButtonTriggered(0, BUTTON_DOWN) && title_select.count < 3)
 		{
+			PlaySound(title_select.sound, 0.5f);
 			title_select.count += 1;
 		}
 	}
@@ -53,9 +61,15 @@ void UpdateTitleSelect(void)
 	if (PADUSE == 1)
 	{
 		if (GetKeyboardTrigger(DIK_W) && title_select.count > 0)		//è„à⁄ìÆ
+		{
+			PlaySound(title_select.sound, 0.5f);
 			title_select.count -= 1;
+		}
 		if (GetKeyboardTrigger(DIK_S) && title_select.count < 3)		//â∫à⁄ìÆ
+		{
+			PlaySound(title_select.sound, 0.5f);
 			title_select.count += 1;
+		}
 	}
 
 

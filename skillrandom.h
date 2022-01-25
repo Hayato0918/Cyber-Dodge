@@ -26,6 +26,7 @@ typedef struct
 	int num;		//スキルの総数:
 
 	bool firstnum;	//スキルの初期枚数を得るかどうかを管理するフラグ
+	int sound;
 }SKILL;
 
 //-----宣言

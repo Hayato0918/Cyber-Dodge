@@ -38,13 +38,13 @@ HRESULT InitDeleter(void)
 
 	if (map_player->enemypowerup == false)
 	{
-		deleter.atk = 50;
-		deleter.def = 40;
+		deleter.atk = 50 + (50 * map_player->floor * 0.1f);
+		deleter.def = 30 + (30 * map_player->floor * 0.1f);
 	}
 	if (map_player->enemypowerup == true)
 	{
-		deleter.atk = 150 * 1.2f;
-		deleter.def = 40 * 1.2;
+		deleter.atk = (50 * 1.2f) + (50 * map_player->floor * 0.1f);
+		deleter.def = (30 * 1.2f) + (30 * map_player->floor * 0.1f);
 	}
 
 	deleter.getskill = false;

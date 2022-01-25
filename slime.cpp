@@ -16,6 +16,7 @@
 #include "skillrandom.h"
 #include "create.h"
 #include "map_player.h"
+#include "map_floor.h"
 
 #include "enemybreak.h"
 
@@ -39,13 +40,13 @@ HRESULT InitSlime(void)
 
 	if (map_player->enemypowerup == false)
 	{
-		slime.atk = 40;
+		slime.atk = 40 + (40 * map_player->floor * 0.1f);
 		slime.def = 0;
 	}
 
 	if (map_player->enemypowerup == true)
 	{
-		slime.atk = 40 * 1.2f;
+		slime.atk = 40 * 1.2f + (40 * map_player->floor * 0.1f);
 		slime.def = 0 * 1.2f;
 	}
 

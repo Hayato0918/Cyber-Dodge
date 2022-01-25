@@ -6,6 +6,7 @@
 #include "fade.h"
 #include "scene.h"
 #include "input.h"
+#include "sound.h"
 //
 #include "soundvolume_select.h"
 
@@ -13,6 +14,10 @@ OPTION_SELECT option_select;
 
 HRESULT InitOptionSelect(void)
 {
+	SOUNDVOLUME_SELECT* soundvolume_select = GetSoundVolumeSelect();
+	option_select.sound = LoadSound("data/SE/cursormove.wav");
+	SetVolume(option_select.sound, soundvolume_select[1].count * 0.1f + 0.5f);
+
 	option_select.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.093f, SCREEN_HEIGHT * 0.111f);		//1600:900Å®150:100
 	option_select.size = D3DXVECTOR2(SCREEN_WIDTH * 0.056f, SCREEN_HEIGHT * 0.1f);		//1600:900Å®90:90
 	option_select.count = 0;
@@ -36,11 +41,13 @@ void UpdateOptionSelect(void)
 		{
 			if (IsButtonTriggered(0, BUTTON_LEFT) && option_select.count > 0)		//ç∂à⁄ìÆ
 			{
+				PlaySound(option_select.sound, 0.5f);
 				option_select.pos.x -= SCREEN_WIDTH * 0.3f;	//1600:900Å®500
 				option_select.count -= 1;
 			}
 			if (IsButtonTriggered(0, BUTTON_RIGHT) && option_select.count < 2)		//âEà⁄ìÆ
 			{
+				PlaySound(option_select.sound, 0.5f);
 				option_select.pos.x += SCREEN_WIDTH * 0.3f;	//1600:900Å®500
 				option_select.count += 1;
 			}
@@ -57,11 +64,13 @@ void UpdateOptionSelect(void)
 		{
 			if (GetKeyboardTrigger(DIK_A) && option_select.count > 0)		//ç∂à⁄ìÆ
 			{
+				PlaySound(option_select.sound, 0.5f);
 				option_select.pos.x -= SCREEN_WIDTH * 0.3f;	//1600:900Å®500
 				option_select.count -= 1;
 			}
 			if (GetKeyboardTrigger(DIK_D) && option_select.count < 2)		//âEà⁄ìÆ
 			{
+				PlaySound(option_select.sound, 0.5f);
 				option_select.pos.x += SCREEN_WIDTH * 0.3f;	//1600:900Å®500
 				option_select.count += 1;
 			}

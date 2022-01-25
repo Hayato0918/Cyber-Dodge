@@ -4,6 +4,9 @@
 #include "texture.h"
 #include "sprite.h"
 #include "fade.h"
+#include "sound.h"
+
+#include "soundvolume_select.h"
 
 #include "title_bg.h"
 #include "title_select.h"
@@ -18,6 +21,11 @@ TITLE_OPTION title_option;
 //-----‰Šú‰»ˆ—
 HRESULT InitTitleOption(void)
 {
+	SOUNDVOLUME_SELECT* soundvolume_select = GetSoundVolumeSelect();
+
+	title_option.sound = LoadSound("data/SE/titleselect.wav");
+	SetVolume(title_option.sound, soundvolume_select[1].count * 0.1f + 0.5f);
+
 	title_option.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.775f, SCREEN_HEIGHT * 0.822f);	//1600:900¨1240,740
 	title_option.size = D3DXVECTOR2(SCREEN_WIDTH * 0.238f, SCREEN_HEIGHT * 0.078f);	//1600:900¨380,70
 	title_option.texture = LoadTexture("data/TEXTURE/title/option.png");
@@ -40,13 +48,19 @@ void UpdateTitleOption(void)
 	if (PADUSE == 0)
 	{
 		if (title_select->count == 2 && IsButtonTriggered(0, BUTTON_Y) && title_bg->drawflag == true)
+		{
+			PlaySound(title_option.sound, 0.5f);
 			SceneTransition(SCENE_OPTION);
+		}
 	}
 
 	if (PADUSE == 1)
 	{
 		if (title_select->count == 2 && GetKeyboardTrigger(DIK_RETURN) && title_bg->drawflag == true)
+		{
+			PlaySound(title_option.sound, 0.5f);
 			SceneTransition(SCENE_OPTION);
+		}
 	}
 }
 

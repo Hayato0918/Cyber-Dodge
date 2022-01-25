@@ -11,6 +11,7 @@ typedef struct
 	D3DXVECTOR2 size;
 	D3DXVECTOR2 num;
 	int texture;
+	int sound;
 
 	int nowpos;
 	int UDcount;

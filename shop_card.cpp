@@ -6,18 +6,25 @@
 #include "input.h"
 #include <stdlib.h>
 #include <time.h>
+#include "sound.h"
 //
 #include "shop.h"
 #include "shop_select.h"
 #include "shop_gold.h"
 #include "player.h"
 #include "skillrandom.h"
+#include "soundvolume_select.h"
 
 SHOP_CARD shop_card[SKILL_NUM];
 int notexture;
+int shopsound;
 
 HRESULT InitShopCard()
-{
+{	
+	SOUNDVOLUME_SELECT* soundvolume_select = GetSoundVolumeSelect();
+	shopsound = LoadSound("data/SE/buy.wav");
+	SetVolume(shopsound, soundvolume_select[1].count * 0.1f + 0.5f);
+
 	notexture = LoadTexture("data/TEXTURE/test/yellow.png");
 
 	int t = 0;
@@ -126,6 +133,7 @@ void UpdateShopCard()
 		if (IsButtonTriggered(0, BUTTON_Y) && shop_select->ycount == 0 && shop_card[shop_select->xcount].drawflag == true
 			&& shop_gold[shop_select->xcount].gold < player->gold)
 		{
+			PlaySound(shopsound, 0.5f);
 			player->gold = player->gold - shop_gold[shop_select->xcount].gold;
 			random[skill->slot].code = shop_card[shop_select->xcount].code;
 			skill->slot = skill->slot + 1;
@@ -139,6 +147,7 @@ void UpdateShopCard()
 		if (GetKeyboardTrigger(DIK_RETURN) && shop_select->ycount == 0 && shop_card[shop_select->xcount].drawflag == true
 			&& shop_gold[shop_select->xcount].gold < player->gold)
 		{
+			PlaySound(shopsound, 0.5f);
 			player->gold = player->gold - shop_gold[shop_select->xcount].gold;
 			random[skill->slot].code = shop_card[shop_select->xcount].code;
 			skill->slot = skill->slot + 1;

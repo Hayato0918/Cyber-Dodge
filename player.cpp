@@ -54,7 +54,7 @@ HRESULT InitPlayer(void)
 	{
 		player.atk = 50;
 		player.def = 0;
-		player.gold = 0;
+		player.gold = 1000;
 
 		//立ち状態のテクスチャ設定
 		player.stand_Ltexture = LoadTexture("data/TEXTURE/player/stand/stand_R.png");
@@ -164,11 +164,11 @@ void UpdatePlayer(void)
 		Player_FireWallDamage();
 
 	//-----死亡判定
-	if (hp->gaugesize.x <= 0)
-	{
-		player.drawflag = false;
-		SceneTransition(SCENE_GAMEOVER);
-	}
+	//if (hp->gaugesize.x <= 0)
+	//{
+	//	player.drawflag = false;
+	//	SceneTransition(SCENE_GAMEOVER);
+	//}
 
 	//-----アニメーション処理
 	player_animation();

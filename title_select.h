@@ -10,6 +10,7 @@ typedef struct
 	D3DXVECTOR2 size;
 	int texture;
 	int count;
+	int sound;
 }TITLE_SELECT;
 
 

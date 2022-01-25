@@ -67,8 +67,8 @@ void UninitGame()
 void UpdateGame(void)
 {
 	UpdateBG();
-	UpdatePlayer();
 	UpdatePlayerHp();
+	UpdatePlayer();
 	UpdateBugIncrease();
 	UpdateEnemy();
 	UpdateBall();
@@ -77,9 +77,6 @@ void UpdateGame(void)
 	UpdateRandom();
 	_Bug();
 	UpdateEnemyBreak();
-
-	if (GetKeyboardTrigger(DIK_M))
-		SceneTransition(SCENE_MAP);
 }
 
 //-----•`‰æˆ—ŠÖ”

@@ -51,7 +51,7 @@ void UpdateBannerHp(void)
 	MAP_PLAYER* map_player = GetMapPlayer();
 
 	//playerのHPバーサイズから、実数値を割り出す
-	if(map_player->UDcount > 1)
+	if(map_player->UDcount > 0)
 	banner_hpnum.hp = player_hp->gaugesize.x * 0.3125f;
 
 	banner_hpnum.a = banner_hpnum.hp * 0.01f;

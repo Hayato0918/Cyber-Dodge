@@ -11,6 +11,7 @@ typedef struct
 	float u, v, uw, vh;
 	int texture;
 	int count;
+	int sound;
 }REST_SELECT;
 
 

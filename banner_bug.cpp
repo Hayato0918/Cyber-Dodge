@@ -49,7 +49,7 @@ void UpdateBannerBug(void)
 	BUG* bug = GetBugIncrease();
 	MAP_PLAYER* map_player = GetMapPlayer();
 	
-	if (map_player->UDcount > 1)
+	if (map_player->UDcount > 0)
 		banner_bugnum.bugnum = bug->drawnum * 5;
 
 	if (banner_bugnum.bugnum > 100)

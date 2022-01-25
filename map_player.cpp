@@ -8,6 +8,8 @@
 #include "sprite.h"
 #include "input.h"
 #include "fade.h"
+#include "sound.h"
+#include "soundvolume_select.h" 
 
 #include "bugincrease.h"
 #include "map_hack.h"
@@ -15,6 +17,7 @@
 #include "hackeffect.h"
 #include "banner_bug.h"
 #include "map_save_bg.h"
+#include "map_bg.h"
 
 //-----マクロ定義
 
@@ -29,6 +32,10 @@ HRESULT InitMapPlayer(void)
 		MAP* map = GetMapPoint();
 		MAP_SB* map_sb = GetMapSB();
 		MAP_LINE* map_line = GetMapLine();
+		SOUNDVOLUME_SELECT* soundvolume_select = GetSoundVolumeSelect();
+
+		map_player.sound = LoadSound("data/SE/cursormove.wav");
+		SetVolume(map_player.sound, soundvolume_select[1].count * 0.1f + 0.5f);
 
 		//プレイヤーの初期化
 		if (map_player.UDcount == 0)
@@ -84,18 +91,19 @@ void UpdateMapPlayer(void)
 	BUGGAUGE* buggauge = GetBugGauge();
 	BANNER_BUGNUM* banner_bugnum = GetBannerBug();
 	MAPSAVE_BG* map_save = GetMapSaveBG();
+	MAP_BG* map_bg = GetMapBG();
 
 	//-----マップスクロール
 	if (map_hack->isUse == false && map_save->drawflag == false)
 	{
 		if (PADUSE == 0)
 		{
-			if (IsButtonPressed(0, BUTTON_UP))	//上
+			if (IsButtonPressed(0, BUTTON_UP) && map_bg->pos.y < 60)	//上
 			{
 				map_player.pos.y += 5;
 				map_player.circlepos.y += 5;
 			}
-			if (IsButtonPressed(0, BUTTON_DOWN))	//上
+			if (IsButtonPressed(0, BUTTON_DOWN) && map_bg->pos.y > -580)	//上
 			{
 				map_player.pos.y -= 5;
 				map_player.circlepos.y -= 5;
@@ -188,11 +196,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 16;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 16].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 16].pos.x;
 						}
@@ -236,11 +246,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 13;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 13].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 13].pos.x;
 						}
@@ -298,11 +310,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 10;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 10].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 10].pos.x;
 						}
@@ -330,11 +344,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 11;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 11].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 11].pos.x;
 						}
@@ -421,11 +437,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 5;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 5].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 5].pos.x;
 						}
@@ -468,11 +486,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 3)	//右
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount].pos.x;
 						}
@@ -532,11 +552,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 18;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 18].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 18].pos.x;
 						}
@@ -620,11 +642,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 13;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 13].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 13].pos.x;
 						}
@@ -668,11 +692,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 9;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 9].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 9].pos.x;
 						}
@@ -714,11 +740,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 11;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 11].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 11].pos.x;
 						}
@@ -806,11 +834,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 4;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 4].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 4].pos.x;
 						}
@@ -853,11 +883,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 2)	//右
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount].pos.x;
 						}
@@ -902,11 +934,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 16;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 16].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 16].pos.x;
 						}
@@ -978,11 +1012,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 10;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 10].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 10].pos.x;
 						}
@@ -1010,11 +1046,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 11;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 11].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 11].pos.x;
 						}
@@ -1116,11 +1154,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 5;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 5].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 5].pos.x;
 						}
@@ -1164,11 +1204,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 3)	//右
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount].pos.x;
 						}
@@ -1245,11 +1287,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 22;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 22].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 22].pos.x;
 						}
@@ -1296,11 +1340,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 17;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 17].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 17].pos.x;
 						}
@@ -1328,11 +1374,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 18;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 18].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 18].pos.x;
 						}
@@ -1360,11 +1408,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 19;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 19].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 19].pos.x;
 						}
@@ -1422,11 +1472,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 15;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 15].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 15].pos.x;
 						}
@@ -1470,11 +1522,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 10;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 10].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 10].pos.x;
 						}
@@ -1516,11 +1570,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 12;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 12].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 12].pos.x;
 						}
@@ -1565,11 +1621,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 7;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 7].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 7].pos.x;
 						}
@@ -1597,11 +1655,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 8;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 8].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 8].pos.x;
 						}
@@ -1645,11 +1705,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 4;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 4].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 4].pos.x;
 						}
@@ -1677,11 +1739,13 @@ void UpdateMapPlayer(void)
 						map_player.circlenowpos = map_player.LRcount + 5;
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount + 5].pos.x;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 1)	//右
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount + 5].pos.x;
 						}
@@ -1724,12 +1788,14 @@ void UpdateMapPlayer(void)
 					{
 						if (IsButtonTriggered(0, BUTTON_LEFT) && map_player.LRcount > 0)	//左
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount - 1;
 							map_player.circlepos.x = map[map_player.LRcount].pos.x;
 							map_player.circlenowpos = map_player.LRcount;
 						}
 						if (IsButtonTriggered(0, BUTTON_RIGHT) && map_player.LRcount < 3)	//右
 						{
+							PlaySound(map_player.sound, 0.5f);
 							map_player.LRcount = map_player.LRcount + 1;
 							map_player.circlepos.x = map[map_player.LRcount].pos.x;
 							map_player.circlenowpos = map_player.LRcount;
@@ -1757,12 +1823,12 @@ void UpdateMapPlayer(void)
 
 		if (PADUSE == 1)
 		{
-			if (GetKeyboardPress(DIK_W))	//上
+			if (GetKeyboardPress(DIK_W) && map_bg->pos.y < 60)	//上
 			{
 				map_player.pos.y += 5;
 				map_player.circlepos.y += 5;
 			}
-			if (GetKeyboardPress(DIK_S))	//下
+			if (GetKeyboardPress(DIK_S) && map_bg->pos.y > -580)	//下
 			{
 				map_player.pos.y -= 5;
 				map_player.circlepos.y -= 5;
@@ -3447,6 +3513,7 @@ void UpdateMapPlayer(void)
 					if (map[map_player.nowpos - 1].randomcode == 4)	//イベントマス
 					{
 						map_player.eventcode = (rand() % 9) + 1;	//ここでイベントをランダムに決める
+						map_player.eventcode = 7;	//ここでイベントをランダムに決める
 						SceneTransition(SCENE_EVENT);
 					}
 					if (map[map_player.nowpos - 1].randomcode == 5)	//商人マス

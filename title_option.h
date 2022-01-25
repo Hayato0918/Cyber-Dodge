@@ -9,6 +9,7 @@ typedef struct
 	D3DXVECTOR2 pos;
 	D3DXVECTOR2 size;
 	int texture;
+	int sound;
 }TITLE_OPTION;
 
 //-----プロトタイプ宣言

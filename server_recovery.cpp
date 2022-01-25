@@ -24,8 +24,8 @@ void InitServerRecovery(void)
 	server_recovery.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
 	server_recovery.texture = LoadTexture("data/TEXTURE/server_recovery_bg.png");
 
-	server_point.pos = D3DXVECTOR2(900.0f, 800.0f);
-	server_point.size = D3DXVECTOR2(260.0f, 80.0f);
+	server_point.pos = D3DXVECTOR2(825.0f, 766.0f);
+	server_point.size = D3DXVECTOR2(690.0f, 90.0f);
 	server_point.texture = LoadTexture("data/TEXTURE/rest_frame.png");
 
 	for (int i = bug->drawnum; i > 0; i--)

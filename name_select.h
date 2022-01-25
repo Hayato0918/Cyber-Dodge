@@ -11,6 +11,7 @@ typedef struct
 	int texture;
 	int LRcount;
 	int UDcount;
+	int sound;
 }NAME_SELECT;
 
 

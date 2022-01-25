@@ -4,6 +4,8 @@
 #include "texture.h"
 #include "sprite.h"
 #include "input.h"
+#include "sound.h"
+#include "soundvolume_select.h" 
 //
 
 WINDOWSIZE_SELECT windowsize_select;

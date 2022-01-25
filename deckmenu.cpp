@@ -259,6 +259,12 @@ void UpdateDeckMenu(void)
 
 	if (PADUSE == 0)
 	{
+		if (IsButtonTriggered(0, BUTTON_RIGHT) && g_Selection.LRcount >= xnum - 1 && g_Selection.use == true)
+		{
+			g_Selection.pos = D3DXVECTOR2(1100.f, 690.f);
+			g_Selection.size = D3DXVECTOR2(460.f, 170.f);
+		}
+
 		//右移動
 		if (IsButtonTriggered(0, BUTTON_RIGHT) && g_Selection.LRcount < xnum - 1 && g_Selection.use == true)
 		{
@@ -272,6 +278,8 @@ void UpdateDeckMenu(void)
 			g_Selection.LRcount = g_Selection.LRcount - 1;
 			g_Selection.pos = D3DXVECTOR2(deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.x,
 				deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.y);
+			g_Selection.size = D3DXVECTOR2(deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].size.x,
+				deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].size.y);
 		}
 		//下移動
 		if (IsButtonTriggered(0, BUTTON_DOWN) && g_Selection.UDcount < ynum - 1 && g_Selection.use == true)
@@ -308,7 +316,7 @@ void UpdateDeckMenu(void)
 		}
 
 		//「立ち去る」コマンドの場所でEnterキーを押したらMAPに戻る
-		if (IsButtonTriggered(0, BUTTON_Y) && deckmenu.use == true)
+		if (IsButtonTriggered(0, BUTTON_Y) && g_Selection.pos == D3DXVECTOR2(1100.f, 690.f))
 		{
 			SceneTransition(SCENE_MAP);
 			deckmenu.use = false;

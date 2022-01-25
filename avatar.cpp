@@ -5,6 +5,8 @@
 #include "sprite.h"
 #include "input.h"
 #include "fade.h"
+#include "sound.h"
+#include "soundvolume_select.h" 
 
 #include "avatar.h"
 #include "player_hp.h"
@@ -17,6 +19,10 @@ AVATARPOINT avatarpoint;
 
 void InitAvatar(void)
 {
+	SOUNDVOLUME_SELECT* soundvolume_select = GetSoundVolumeSelect();
+	avatar.sound = LoadSound("data/SE/cursormove.wav");
+	SetVolume(avatar.sound, soundvolume_select[1].count * 0.1f + 0.5f);
+
 	avatar.pos = D3DXVECTOR2(0.0f, 0.0f);
 	avatar.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
 	avatar.texture = LoadTexture("data/TEXTURE/event_bg/avatar_bg.png");
@@ -44,11 +50,13 @@ void UpdateAvatar(void)
 		//‘I‘ðŽˆ‚Ì‘I‘ð
 		if (IsButtonTriggered(0, BUTTON_UP) && avatarpoint.count > 0)
 		{
+			PlaySound(avatar.sound, 0.5f);
 			avatarpoint.pos.y -= avatarpoint.minus;
 			avatarpoint.count -= 1;
 		}
 		if (IsButtonTriggered(0, BUTTON_DOWN) && avatarpoint.count < 2)
 		{
+			PlaySound(avatar.sound, 0.5f);
 			avatarpoint.pos.y += avatarpoint.minus;
 			avatarpoint.count += 1;
 		}

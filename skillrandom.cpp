@@ -5,6 +5,9 @@
 #include "sprite.h"
 #include "player.h"
 #include "map_player.h"
+#include "sound.h"
+#include "soundvolume_select.h"
+
 
 #include <stdlib.h>
 #include <time.h>
@@ -22,6 +25,10 @@ int t;
 HRESULT InitRandom(void)
 {
 	MAP_PLAYER* map_player = GetMapPlayer();
+	SOUNDVOLUME_SELECT* soundvolume_select = GetSoundVolumeSelect();
+
+	skill.sound = LoadSound("data/SE/useskill.wav");
+	SetVolume(skill.sound, soundvolume_select[1].count * 0.1f + 0.5f);
 
 	skill.usecount = 0;	//今選択されてるスキル
 	skill.num = 26;		//作成済みスキルの総数
@@ -146,6 +153,7 @@ void UpdateRandom(void)
 				random[i].pos.x = random[i].pos.x + 10;
 				random[i].pos.y = random[i].pos.y + 10;
 			}
+			PlaySound(skill.sound, 0.5f);
 			random[skill.usecount].active = true;
 			player->skilluseflag = true;
 			random[skill.usecount].drawflag = false;
@@ -172,6 +180,7 @@ void UpdateRandom(void)
 				random[i].pos.x = random[i].pos.x + 10;
 				random[i].pos.y = random[i].pos.y + 10;
 			}
+			PlaySound(skill.sound, 0.5f);
 			random[skill.usecount].active = true;
 			player->skilluseflag = true;
 			random[skill.usecount].drawflag = false;

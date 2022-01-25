@@ -18,3 +18,4 @@ HRESULT InitMapBG(void);
 void UninitMapBG(void);
 void UpdateMapBG(void);
 void DrawMapBG(void);
+MAP_BG* GetMapBG();

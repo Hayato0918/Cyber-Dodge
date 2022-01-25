@@ -10,6 +10,7 @@ typedef struct
 	D3DXVECTOR2 size;
 	float u, v, uw, vh;
 	int texture;
+	int sound;
 }REST_BG;
 
 //-----プロトタイプ宣言

@@ -49,16 +49,16 @@ void UpdateMapBG(void)
 	{
 		if (PADUSE == 0)
 		{
-			if (IsButtonPressed(0, BUTTON_UP))
+			if (IsButtonPressed(0, BUTTON_UP) && map_bg.pos.y < 60)
 				map_bg.pos.y += 3;
-			if (IsButtonPressed(0, BUTTON_DOWN))
+			if (IsButtonPressed(0, BUTTON_DOWN) && map_bg.pos.y > -580)
 				map_bg.pos.y -= 3;
 		}
 		if (PADUSE == 1)
 		{
-			if (GetKeyboardPress(DIK_W))
+			if (GetKeyboardPress(DIK_W) && map_bg.pos.y < 60)
 				map_bg.pos.y += 3;
-			if (GetKeyboardPress(DIK_S))
+			if (GetKeyboardPress(DIK_S) && map_bg.pos.y > -580)
 				map_bg.pos.y -= 3;
 		}
 	}
@@ -69,4 +69,9 @@ void DrawMapBG(void)
 {
 	DrawSpriteLeftTop(map_bg.texture, map_bg.pos.x, map_bg.pos.y, map_bg.size.x, map_bg.size.y,
 		0.0f, 0.0f, 1.0f, 1.0f);
+}
+
+MAP_BG* GetMapBG()
+{
+	return &map_bg;
 }

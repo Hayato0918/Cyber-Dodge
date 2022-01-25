@@ -18,6 +18,9 @@ typedef struct
 	float fallpos;		//落下時にプレイヤーの座標を参照する変数
 	float playerhavetime;  //プレイヤーがボールを持ってる時間を計測する変数
 
+	float oldpos;
+	float oldtime;
+
 	bool playerhaveflag;		//プレイヤーがボールを持っているかを判定するフラグ
 	bool playerhitflag;		//プレイヤーのアウト判定を管理するフラグ
 	bool playerthrowflag;	//プレイヤーがボールを投げたかを管理するフラグ

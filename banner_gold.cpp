@@ -50,7 +50,7 @@ void UpdateBannerGold(void)
 	PLAYER* player = GetPlayer();
 	MAP_PLAYER* map_player = GetMapPlayer();
 
-	if(map_player->UDcount > 1)
+	if(map_player->UDcount > 0)
 	banner_goldnum.gold = player->gold;
 
 	banner_goldnum.a = banner_goldnum.gold * 0.001f;

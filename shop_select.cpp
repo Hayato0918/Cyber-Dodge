@@ -10,12 +10,17 @@
 #include "shop_gold.h"
 #include "shop_reload.h"
 #include "shop_exit.h"
+#include "sound.h"
+#include "soundvolume_select.h" 
 
 SHOP_SELECT shop_select;
 
 HRESULT InitShopSelect()
 {
 	SHOP_CARD* shop_card = GetShopCard();
+	SOUNDVOLUME_SELECT* soundvolume_select = GetSoundVolumeSelect();
+	shop_select.sound = LoadSound("data/SE/cursormove.wav");
+	SetVolume(shop_select.sound, soundvolume_select[1].count * 0.1f + 0.5f);
 
 	shop_select.pos = D3DXVECTOR2(shop_card[0].pos.x, shop_card[0].pos.y);
 	shop_select.size = D3DXVECTOR2(shop_card[0].size.x, shop_card[0].size.y);
@@ -43,6 +48,7 @@ void UpdateShopSelect()
 		//選択
 		if (IsButtonTriggered(0, BUTTON_LEFT) && shop_select.xcount > 0)	//左移動
 		{
+			PlaySound(shop_select.sound, 0.5f);
 			if (shop_select.ycount == 0)
 			{
 				shop_select.xcount -= 1;
@@ -51,6 +57,7 @@ void UpdateShopSelect()
 		}
 		if (IsButtonTriggered(0, BUTTON_RIGHT) && shop_select.xcount < shop_skill - 1)	//右移動
 		{
+			PlaySound(shop_select.sound, 0.5f);
 			if (shop_select.ycount == 0)
 			{
 				shop_select.xcount += 1;
@@ -65,6 +72,7 @@ void UpdateShopSelect()
 		}
 		if (IsButtonTriggered(0, BUTTON_DOWN))	//下段に移動
 		{
+			PlaySound(shop_select.sound, 0.5f);
 			if (shop_select.ycount == 1 && shop_select.xcount > 1)	//リロードから立ち去るへ移動
 			{
 				shop_select.pos = D3DXVECTOR2(shop_exit->pos.x, shop_exit->pos.y);
@@ -83,6 +91,7 @@ void UpdateShopSelect()
 		}
 		if (IsButtonTriggered(0, BUTTON_UP))	//下段から上段に移動
 		{
+			PlaySound(shop_select.sound, 0.5f);
 			if (shop_select.ycount == 1)
 			{
 				shop_select.pos = D3DXVECTOR2(shop_card[shop_select.xcount].pos.x, shop_card[shop_select.xcount].pos.y);

@@ -4,9 +4,11 @@
 #include "texture.h"
 #include "sprite.h"
 #include "fade.h"
+#include "sound.h"
 
 #include "title_bg.h"
 #include "title_select.h"
+#include "soundvolume_select.h"
 
 //-----マクロ定義
 
@@ -18,6 +20,10 @@ TITLE_START title_start;
 //-----初期化処理
 HRESULT InitTitleStart(void)
 {
+	SOUNDVOLUME_SELECT* soundvolume_select = GetSoundVolumeSelect();
+	title_start.sound = LoadSound("data/SE/gamestart.wav");
+	SetVolume(title_start.sound, soundvolume_select[1].count * 0.1f + 0.5f);
+
 	title_start.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.738f, SCREEN_HEIGHT * 0.667f);	//1600:900→1180,600
 	title_start.size = D3DXVECTOR2(SCREEN_WIDTH * 0.238f, SCREEN_HEIGHT * 0.078f);	//1600:900→380,70
 	title_start.texture = LoadTexture("data/TEXTURE/title/gamestart.png");
@@ -28,7 +34,7 @@ HRESULT InitTitleStart(void)
 //-----終了処理
 void UninitTitleStart(void)
 {
-
+	StopSoundAll();
 }
 
 //-----更新処理
@@ -40,13 +46,19 @@ void UpdateTitleStart(void)
 	if (PADUSE == 0)
 	{
 		if (title_select->count == 0 && IsButtonTriggered(0, BUTTON_Y) && title_bg->drawflag == true)
+		{
+			PlaySound(title_start.sound, 0.5f);
 			SceneTransition(SCENE_NAME);
+		}
 	}
 
 	if (PADUSE == 1)
 	{
 		if (title_select->count == 0 && GetKeyboardTrigger(DIK_RETURN) && title_bg->drawflag == true)
+		{
+			PlaySound(title_start.sound, 0.5f);
 			SceneTransition(SCENE_NAME);
+		}
 	}
 }
 

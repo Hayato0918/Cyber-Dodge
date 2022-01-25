@@ -30,7 +30,7 @@ void UpdateRestExit(void)
 	REST_SELECT* rest_select = GetRestSelect();
 	MAP_PLAYER* map_player = GetMapPlayer();
 
-	if (PADUSE == 1)
+	if (PADUSE == 0)
 	{
 		if (IsButtonTriggered(0, BUTTON_Y) && rest_select->count == 2)
 		{
