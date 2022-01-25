@@ -22,7 +22,7 @@ HRESULT InitNameBG(void)
 {
 	name_bg.pos = D3DXVECTOR2(0.f, 0.f);
 	name_bg.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
-	name_bg.texture = LoadTexture("data/TEXTURE/fade_white.png");
+	name_bg.texture = LoadTexture("data/TEXTURE/name/bg.png");
 
 	return S_OK;
 }
