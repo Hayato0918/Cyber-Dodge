@@ -11,7 +11,7 @@
 #include "skillrandom.h"
 
 //-----マクロ定義
-#define smallplayertime 1200		//3s間
+#define smallplayertime 420		//3s間
 
 //-----プロトタイプ宣言
 SMALLPLAYER smallplayer;

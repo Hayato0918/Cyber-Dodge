@@ -46,6 +46,8 @@ HRESULT InitOtosiana(void)
 //-----’n—‹ˆ—
 void _Otosiana(void)
 {
+	srand((unsigned int)time(NULL));
+
 	FIREWALL* firewall = GetFireWall();
 	SLIME* slime = GetSlime();
 	BUG* bug = GetBugIncrease();

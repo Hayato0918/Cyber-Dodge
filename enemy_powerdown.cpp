@@ -2,6 +2,7 @@
 #include "enemy_powerdown.h"
 //エネミー.h
 #include "firewall.h"
+#include "deleter.h"
 #include "slime.h"
 #include "input.h"
 
@@ -38,6 +39,7 @@ HRESULT InitPowerDown(void)
 void _PowerDown(void)
 {
 	FIREWALL* firewall = GetFireWall();
+	DELETER* deleter = GetDeleter();
 	SLIME* slime = GetSlime();
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
@@ -51,9 +53,11 @@ void _PowerDown(void)
 		if (random[i].code == 18 && random[i].active == true && powerdown.use == false)
 		{
 			if (map_player->encount == 1)
-				slime->atk = slime->atk - 50;
-			if(map_player->encount == 2)
-			firewall->atk = firewall->atk - 50;
+				slime->atk = slime->atk - 30;
+			if (map_player->encount == 2)
+				deleter->atk = deleter->atk - 30;
+			if(map_player->encount == 3)
+				firewall->atk = firewall->atk - 30;
 			powerdown.timeflag = true;
 			//-----バグゲージの上昇
 			for (int i = 0; i < 20; i++)
@@ -78,7 +82,13 @@ void _PowerDown(void)
 	if (powerdown.time > powerdowntime)
 	{
 		powerdown.timeflag = false;
-		firewall->atk = firewall->atk + 50;
+		if (map_player->encount == 1)
+			slime->atk = slime->atk + 30;
+		if (map_player->encount == 2)
+			deleter->atk = deleter->atk + 30;
+		if (map_player->encount == 3)
+			firewall->atk = firewall->atk + 30;
+		powerdown.timeflag = true;
 		powerdown.time = 0.0f;
 	}
 
@@ -87,7 +97,14 @@ void _PowerDown(void)
 		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && powerdown.use == true)
 		{
 			if (powerdown.timeflag == true)
-				firewall->atk = firewall->atk + 50;
+			{
+				if (map_player->encount == 1)
+					slime->atk = slime->atk + 30;
+				if (map_player->encount == 2)
+					deleter->atk = deleter->atk + 30;
+				if (map_player->encount == 3)
+					firewall->atk = firewall->atk + 30;
+			}
 			powerdown.use = false;
 			powerdown.timeflag = false;
 			powerdown.time = 0.0f;
@@ -103,7 +120,14 @@ void _PowerDown(void)
 		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && powerdown.use == true)
 		{
 			if (powerdown.timeflag == true)
-				firewall->atk = firewall->atk + 50;
+			{
+				if (map_player->encount == 1)
+					slime->atk = slime->atk + 30;
+				if (map_player->encount == 2)
+					deleter->atk = deleter->atk + 30;
+				if (map_player->encount == 3)
+					firewall->atk = firewall->atk + 30;
+			}
 			powerdown.use = false;
 			powerdown.timeflag = false;
 			powerdown.time = 0.0f;

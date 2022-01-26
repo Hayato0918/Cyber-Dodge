@@ -9,6 +9,7 @@
 #include "catch.h"
 #include "ball.h"
 #include "player.h"
+#include "catchjamming.h"
 
 //-----ƒ}ƒNƒ’è‹`
 

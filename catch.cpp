@@ -257,7 +257,7 @@ void M_Catch(void)
 		Catch.enemycoltime = 0.0f;
 	}
 	//-----キャッチモーション中にボールがキャッチ判定内に入ったら
-	if (Catch.enemyflag == 1)
+	if (Catch.enemyflag == 1 && cj->timeflag == false)
 	{
 		if (Catch.enemypos.x + Catch.enemysize.x > ball->pos.x && Catch.enemypos.x < ball->pos.x + ball->size.x)
 		{

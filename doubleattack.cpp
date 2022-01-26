@@ -45,7 +45,7 @@ void _Double(void)
 	{
 		if (random[i].code == 17 && random[i].active == true && dable.use == false)
 		{
-			player->atk *= 2;
+			player->atk = player->atk * 2;
 			dable.timeflag = true;
 			//-----バグゲージの上昇
 			for (int i = 0; i < 20; i++)
@@ -79,7 +79,7 @@ void _Double(void)
 		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && dable.use == true)
 		{
 			if (dable.timeflag == true)
-				player->atk /= 2;
+				player->atk = player->atk / 2;
 
 			dable.use = false;
 			dable.timeflag = false;
@@ -96,7 +96,7 @@ void _Double(void)
 		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && dable.use == true)
 		{
 			if (dable.timeflag == true)
-				player->atk /= 2;
+				player->atk = player->atk / 2;
 
 			dable.use = false;
 			dable.timeflag = false;

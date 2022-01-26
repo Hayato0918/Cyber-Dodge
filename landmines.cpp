@@ -163,7 +163,7 @@ void _LandMines(void)
 
 void DrawLandMines(void)
 {
-	if (landmines.use == true)
+	if (landmines.timeflag == true)
 		DrawSpriteLeftTop(landmines.texture, landmines.pos.x, landmines.pos.y, landmines.size.x, landmines.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
 }
 

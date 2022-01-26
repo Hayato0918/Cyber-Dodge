@@ -78,14 +78,18 @@ void _Invincible(void)
 		invincible.time = invincible.time + 1.0f;
 	if (invincible.time > invincibletime)
 	{
+		ball->playerhitflag = true;
 		invincible.timeflag = false;
 		invincible.time = 0.0f;
+		invincible.bugincrease = false;
+		invincible.bugdrawnum = 0;
 	}
 
 	if (PADUSE == 0)
 	{
 		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && invincible.use == true)
 		{
+			ball->playerhitflag = true;
 			invincible.use = false;
 			invincible.timeflag = false;
 			invincible.time = 0.0f;
@@ -99,6 +103,7 @@ void _Invincible(void)
 	{
 		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && invincible.use == true)
 		{
+			ball->playerhitflag = true;
 			invincible.use = false;
 			invincible.timeflag = false;
 			invincible.time = 0.0f;

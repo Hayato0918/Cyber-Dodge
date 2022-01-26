@@ -3,6 +3,7 @@
 #include "texture.h"
 #include "sprite.h"
 
+#include "autocatch.h"
 #include "ballspeedup.h"
 #include "ballturnaround.h"
 #include "barrier.h"
@@ -12,9 +13,13 @@
 #include "buildup.h"
 #include "catchjamming.h"
 #include "enemy_powerdown.h"
+#include "disappear.h"
+#include "doubleattack.h"
 #include "invade.h"
 #include "invincible.h"
+#include "landmines.h"
 #include "mindhack.h"
+#include "otoshiana.h"
 #include "penetration.h"
 #include "player_powerup.h"
 #include "player_regen.h"
@@ -23,6 +28,7 @@
 #include "slowarea.h"
 #include "smallplayer.h"
 #include "timestop.h"
+#include "warp.h"
 
 //-----マクロ定義
 
@@ -33,6 +39,18 @@
 //-----初期化処理
 HRESULT InitSkill(void)
 {
+	InitWarp();
+
+	InitOtosiana();
+
+	InitDouble();
+
+	InitDisappear();
+
+	InitAuto_c();
+
+	InitLandMines();
+
 	//-----ブーストボール
 	InitBallSpeedUp();
 
@@ -98,6 +116,18 @@ HRESULT InitSkill(void)
 
 void _Skill(void)
 {
+	_Warp();
+
+	_Otosiana();
+
+	_LandMines();
+
+	_Double();
+
+	_Disappear();
+
+	_Auto_c();
+
 	//-----ブーストボール
 	_BallSpeedUp();
 
@@ -161,6 +191,12 @@ void _Skill(void)
 
 void DrawSkill(void)
 {
+	DrawWarp();
+
+	DrawOtosiana();
+
+	DrawLandMines();
+
 	//-----バリア
 	DrawBarrier();
 

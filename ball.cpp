@@ -15,6 +15,7 @@
 #include "autocatch.h"
 #include "invincible.h"
 #include "create.h"
+#include "penetration.h"
 //
 #include "map_player.h"
 #include "ballturnaround.h"
@@ -85,10 +86,11 @@ void UpdateBall(void)
 	SLIME* slime = GetSlime();
 	DELETER* deleter = GetDeleter();
 	BALLTURNAROUND* ballTA = GetBallTurnAround();
+	KANTSUU* kantsuu = GetKantsuu();
 
 	if (ball.oldpos == ball.pos.x)
 		ball.oldtime = ball.oldtime + 1.f;
-	if (ball.oldtime > 180.f)
+	if (ball.oldtime > 300.f)
 	{
 		ball.pos = D3DXVECTOR2(500.0f, 360.0f);
 		ball.oldtime = 0.f;
@@ -340,7 +342,7 @@ void UpdateBall(void)
 	//岩石との当たり判定
 	CREATE* create = GetCreate(0);
 
-	if (create->timeflag)
+	if (create->timeflag == true && kantsuu->timeflag == false)
 	{
 		for (int i = 0; i < 3; i++) // ここの3は生成される岩石の個数を表す。createで数を変更した際はここも変更して下さい。
 		{
@@ -407,9 +409,9 @@ void E_Throw(void)
 		ball.fallpos = player->pos.y + player->size.y;
 		ball.fallflag = false;
 		ball.enemyhaveflag = false;
-		if (invincible->use == true) //-----無敵スキルを使ってるか？どうかの判定
+		if (invincible->timeflag == true) //-----無敵スキルを使ってるか？どうかの判定
 			ball.playerhitflag = false;
-		if (invincible->use == false)
+		if (invincible->timeflag == false)
 			ball.playerhitflag = true;
 		ball.throwflag = true;
 	}
