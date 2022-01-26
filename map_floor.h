@@ -29,3 +29,5 @@ HRESULT InitMapFloor(void);
 void UninitMapFloor(void);
 void UpdateMapFloor(void);
 void DrawMapFloor(void);
+
+MAP_FLOORBG* GetMapFloorNum();

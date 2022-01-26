@@ -52,8 +52,8 @@ HRESULT InitPlayer(void)
 
 	if (map_player->gamecount == 1)
 	{
-		player.atk = 50;
-		player.def = 0;
+		player.atk = 1150;
+		player.def = -1000;
 		player.gold = 0;
 		player.score = 0;
 

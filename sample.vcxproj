@@ -213,6 +213,11 @@
     <ClCompile Include="player_regen.cpp" />
     <ClCompile Include="player_speedup.cpp" />
     <ClCompile Include="enemy_aura.cpp" />
+    <ClCompile Include="ranking.cpp" />
+    <ClCompile Include="ranking_bg.cpp" />
+    <ClCompile Include="ranking_floor.cpp" />
+    <ClCompile Include="ranking_name.cpp" />
+    <ClCompile Include="ranking_score.cpp" />
     <ClCompile Include="regen.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="rest.cpp" />
@@ -236,6 +241,7 @@
     <ClCompile Include="skillrandom.cpp" />
     <ClCompile Include="slime.cpp" />
     <ClCompile Include="slimeAI.cpp" />
+    <ClCompile Include="slime_animation.cpp" />
     <ClCompile Include="slime_hp.cpp" />
     <ClCompile Include="slowarea.cpp" />
     <ClCompile Include="smallplayer.cpp" />
@@ -355,6 +361,11 @@
     <ClInclude Include="player_powerup.h" />
     <ClInclude Include="player_regen.h" />
     <ClInclude Include="player_speedup.h" />
+    <ClInclude Include="ranking.h" />
+    <ClInclude Include="ranking_bg.h" />
+    <ClInclude Include="ranking_floor.h" />
+    <ClInclude Include="ranking_name.h" />
+    <ClInclude Include="ranking_score.h" />
     <ClInclude Include="regen.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="rest.h" />
@@ -379,6 +390,7 @@
     <ClInclude Include="skillrandom.h" />
     <ClInclude Include="slime.h" />
     <ClInclude Include="slimeAI.h" />
+    <ClInclude Include="slime_animation.h" />
     <ClInclude Include="slime_hp.h" />
     <ClInclude Include="slowarea.h" />
     <ClInclude Include="smallplayer.h" />

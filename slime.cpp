@@ -19,6 +19,7 @@
 #include "map_floor.h"
 
 #include "enemybreak.h"
+#include "slime_animation.h"
 
 //-----マクロ定義
 
@@ -33,7 +34,7 @@ HRESULT InitSlime(void)
 	MAP_PLAYER* map_player = GetMapPlayer();
 
 	slime.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.3555f);
-	slime.size = D3DXVECTOR2(SCREEN_WIDTH * 0.08f, SCREEN_HEIGHT * 0.14222f);
+	slime.size = D3DXVECTOR2(SCREEN_WIDTH * 0.08f * 2, SCREEN_HEIGHT * 0.14222f * 2);
 	slime.move = D3DXVECTOR2(SCREEN_WIDTH * 0.00125f, SCREEN_HEIGHT * 0.002222f);
 	slime.colPos = D3DXVECTOR2(slime.pos.x + slime.size.x / 2, slime.pos.y + slime.size.y / 2 + slime.size.y / 4);
 	slime.rotate = 2;
@@ -51,14 +52,39 @@ HRESULT InitSlime(void)
 	}
 
 	slime.u = 0.0f;
-	slime.v = 1.0f;
-	slime.uw = 0.335f;
+	slime.v = 0.0f;
+	slime.uw = 1.0f;
 	slime.vh = 1.0f;
 	slime.drawflag = true;
 	slime.getskill = false;
 	slime.walktime = 0.0f;
 
-	slime.texture = LoadTexture("data/TEXTURE/enemy/slime.png");
+	slime.stand_Ltexture = LoadTexture("data/TEXTURE/enemy/slime/stand/stand_R.png");
+	slime.stand_Rtexture = LoadTexture("data/TEXTURE/enemy/slime/stand/stand_L.png");
+	slime.standtextureflag = true;
+	slime.standLRflag = false;
+	slime.standtexturetime = 0.0f;
+
+	slime.walk_Rtexture = LoadTexture("data/TEXTURE/enemy/slime/walk/walk_R.png");
+	slime.walk_Ltexture = LoadTexture("data/TEXTURE/enemy/slime/walk/walk_L.png");
+	slime.walktextureflag = false;
+	slime.walkLRflag = false;
+	slime.walktexturetime = 0.0f;
+
+	slime.throw_Ltexture = LoadTexture("data/TEXTURE/enemy/slime/throw/throw_R.png");
+	slime.throw_Rtexture = LoadTexture("data/TEXTURE/enemy/slime/throw/throw_L.png");
+	slime.throwtextureflag = false;
+	slime.throwLRflag = false;
+	slime.throwtexturetime = 0.0f;
+
+	slime.damage_Ltexture = LoadTexture("data/TEXTURE/enemy/slime/damage/damage_R.png");
+	slime.damage_Rtexture = LoadTexture("data/TEXTURE/enemy/slime/damage/damage_L.png");
+	slime.damagetextureflag = false;
+	slime.damageLRflag = false;
+	slime.damagetexturetime = 0.0f;
+
+	/*slime.deathtexture = LoadTexture("data/TEXTURE/enemy/slime/death/death.png");*/
+
 
 	return S_OK;
 }
@@ -104,6 +130,9 @@ void UpdateSlime(void)
 	{
 		SlimeAI();
 	}
+
+	//-----アニメーション処理
+	slime_animation();
 
 	//-----プレイヤーが投げたボールが、地面,壁に当たらず敵に当たったら敵の描画をやめる(アウト判定)
 	if (ball->enemyhitflag == true)
@@ -197,7 +226,40 @@ void UpdateSlime(void)
 void DrawSlime(void)
 {
 	if (slime.drawflag == true)
-		DrawSpriteLeftTop(slime.texture, slime.pos.x, slime.pos.y, slime.size.x, slime.size.y, slime.u, slime.v, slime.uw, slime.vh);
+	{
+		//止まってるとき && (右向いてるとき || 左向いてるとき)
+		if (slime.walktextureflag == false && slime.standLRflag == false)
+			DrawSpriteLeftTop(slime.stand_Ltexture, slime.pos.x, slime.pos.y,
+				slime.size.x, slime.size.y, slime.u, slime.v, slime.uw, slime.vh);
+		if (slime.walktextureflag == false && slime.standLRflag == true)
+			DrawSpriteLeftTop(slime.stand_Rtexture, slime.pos.x, slime.pos.y,
+				slime.size.x, slime.size.y, slime.u, slime.v, slime.uw, slime.vh);
+
+		//動いてるとき && (右向いてるとき || 左向いてるとき)
+		if (slime.walktextureflag == true && slime.walkLRflag == false)
+			DrawSpriteLeftTop(slime.walk_Ltexture, slime.pos.x, slime.pos.y,
+				slime.size.x, slime.size.y, slime.u, slime.v, slime.uw, slime.vh);
+		if (slime.walktextureflag == true && slime.walkLRflag == true)
+			DrawSpriteLeftTop(slime.walk_Rtexture, slime.pos.x, slime.pos.y,
+				slime.size.x, slime.size.y, slime.u, slime.v, slime.uw, slime.vh);
+
+		//投げたとき && ((右向いてるとき || 左向いてるとき))
+		if (slime.throwtextureflag == true && slime.throwLRflag == false)
+			DrawSpriteLeftTop(slime.damage_Ltexture, slime.pos.x, slime.pos.y, slime.size.x, slime.size.y, slime.u, slime.v, slime.uw, slime.vh);
+		if (slime.throwtextureflag == true && slime.throwLRflag == true)
+			DrawSpriteLeftTop(slime.damage_Rtexture, slime.pos.x, slime.pos.y, slime.size.x, slime.size.y, slime.u, slime.v, slime.uw, slime.vh);
+
+		//投げたとき && ((右向いてるとき || 左向いてるとき))
+		if (slime.damagetextureflag == true && slime.damageLRflag == false)
+			DrawSpriteLeftTop(slime.damage_Ltexture, slime.pos.x, slime.pos.y, slime.size.x, slime.size.y, slime.u, slime.v, slime.uw, slime.vh);
+		if (slime.damagetextureflag == true && slime.damageLRflag == true)
+			DrawSpriteLeftTop(slime.damage_Rtexture, slime.pos.x, slime.pos.y, slime.size.x, slime.size.y, slime.u, slime.v, slime.uw, slime.vh);
+	}
+
+
+
+	//ダメージを受けたとき
+
 }
 
 //-----構造体ポインタ取得処理

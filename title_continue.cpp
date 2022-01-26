@@ -36,6 +36,22 @@ void UpdateTitleContinue(void)
 {
 	TITLE_BG* title_bg = GetTitleBG();
 	TITLE_SELECT* title_select = GetTitleSelect();
+
+	if (PADUSE == 0)
+	{
+		if (title_select->count == 1 && IsButtonTriggered(0, BUTTON_Y) && title_bg->drawflag == true)
+		{
+			SceneTransition(SCENE_RANKING);
+		}
+	}
+
+	if (PADUSE == 1)
+	{
+		if (title_select->count == 1 && GetKeyboardTrigger(DIK_RETURN) && title_bg->drawflag == true)
+		{
+			SceneTransition(SCENE_RANKING);
+		}
+	}
 }
 
 //-----•`‰æˆ—

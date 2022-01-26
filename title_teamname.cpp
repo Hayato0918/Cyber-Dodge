@@ -23,7 +23,9 @@ HRESULT InitTitleTeamName(void)
 	title_teamname.a = 0.0f;
 	title_teamname.color = D3DXCOLOR(1.0f, 1.0f, 1.0f, title_teamname.a);
 	title_teamname.time = 0.0f;
+
 	title_teamname.timeflag = false;
+
 
 	return S_OK;
 }

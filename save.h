@@ -7,6 +7,24 @@
 //-----構造体
 typedef struct
 {
+	float nameu;
+	bool drawflag;
+}SAVE_NAME;
+
+typedef struct
+{
+	int floornum;
+}SAVE_FLOOR;
+
+typedef struct
+{
+	int scorenum;
+}SAVE_SCORE;
+
+typedef struct
+{
+	float nameu;
+
 	float hp;
 	int atk;
 	int def;
@@ -18,5 +36,13 @@ typedef struct
 }SAVE;
 
 //-----プロトタイプ宣言
+void NameSave(void);
+void NameLoad();
+void FloorSave();
+void FloorLoad();
+void ScoreSave();
+void ScoreLoad();
+SAVE_SCORE* GetSaveScore();
+
 void Save(void);
 void Load(void);

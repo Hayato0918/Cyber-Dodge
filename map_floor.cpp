@@ -142,3 +142,8 @@ void DrawMapFloor(void)
 			map_floor[i].u, map_floor[i].v, 0.2f, 0.5f);
 	}
 }
+
+MAP_FLOORBG* GetMapFloorNum()
+{
+	return &map_floorbg;
+}

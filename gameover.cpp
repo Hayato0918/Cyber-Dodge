@@ -7,6 +7,8 @@
 #include "gameover_F.h"
 #include "gameover_score.h"
 
+#include "save.h"
+
 //-----マクロ定義
 
 //-----プロトタイプ宣言
@@ -23,6 +25,10 @@ HRESULT InitGameOver(void)
 
 	InitGameOverF();
 	InitGameOverScore();
+
+	NameSave();
+	FloorSave();
+	ScoreSave();
 
 	return S_OK;
 }

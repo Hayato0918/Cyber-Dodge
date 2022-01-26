@@ -21,10 +21,7 @@ HRESULT InitBannerScore(void)
 	PLAYER* player = GetPlayer();
 	MAP_PLAYER* map_player = GetMapPlayer();
 
-	banner_scorenum.gold = player->gold;
-
-	if (map_player->UDcount == 0)	//初期値は0
-		banner_scorenum.gold = 1000;
+	banner_scorenum.gold = player->score;
 
 	//場所、サイズ、uv決め
 	for (int i = 0; i < 4; i++)

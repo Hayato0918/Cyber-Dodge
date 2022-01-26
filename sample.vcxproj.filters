@@ -163,6 +163,12 @@
     <Filter Include="ヘッダー ファイル\tutorial">
       <UniqueIdentifier>{9db888e0-5b43-46f5-a8c5-5f8ad09c7d4f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\ranking">
+      <UniqueIdentifier>{68febe89-2a47-462e-882d-14a350ade5cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ranking">
+      <UniqueIdentifier>{19c397ab-393b-40db-a3c6-7005a984c954}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scene.cpp">
@@ -585,6 +591,24 @@
     <ClCompile Include="gameover_score.cpp">
       <Filter>ソース ファイル\gameover</Filter>
     </ClCompile>
+    <ClCompile Include="slime_animation.cpp">
+      <Filter>ソース ファイル\enemy\slime</Filter>
+    </ClCompile>
+    <ClCompile Include="ranking.cpp">
+      <Filter>ソース ファイル\ranking</Filter>
+    </ClCompile>
+    <ClCompile Include="ranking_bg.cpp">
+      <Filter>ソース ファイル\ranking</Filter>
+    </ClCompile>
+    <ClCompile Include="ranking_name.cpp">
+      <Filter>ソース ファイル\ranking</Filter>
+    </ClCompile>
+    <ClCompile Include="ranking_floor.cpp">
+      <Filter>ソース ファイル\ranking</Filter>
+    </ClCompile>
+    <ClCompile Include="ranking_score.cpp">
+      <Filter>ソース ファイル\ranking</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -1006,6 +1030,24 @@
     </ClInclude>
     <ClInclude Include="gameover_score.h">
       <Filter>ヘッダー ファイル\gameover</Filter>
+    </ClInclude>
+    <ClInclude Include="slime_animation.h">
+      <Filter>ヘッダー ファイル\enemy\slime</Filter>
+    </ClInclude>
+    <ClInclude Include="ranking.h">
+      <Filter>ヘッダー ファイル\ranking</Filter>
+    </ClInclude>
+    <ClInclude Include="ranking_bg.h">
+      <Filter>ヘッダー ファイル\ranking</Filter>
+    </ClInclude>
+    <ClInclude Include="ranking_name.h">
+      <Filter>ヘッダー ファイル\ranking</Filter>
+    </ClInclude>
+    <ClInclude Include="ranking_floor.h">
+      <Filter>ヘッダー ファイル\ranking</Filter>
+    </ClInclude>
+    <ClInclude Include="ranking_score.h">
+      <Filter>ヘッダー ファイル\ranking</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -17,6 +17,8 @@
 
 //タイトル.h
 #include "title.h"
+
+#include "ranking.h"
 //設定.h
 #include "option.h"
 //名前決め.h
@@ -70,6 +72,10 @@ void InitScene(SCENE index)
 
 	case SCENE_TITLE:
 		InitTitle();
+		break;
+
+	case SCENE_RANKING:
+		InitRanking();
 		break;
 
 	case SCENE_OPTION:
@@ -127,6 +133,10 @@ void UninitScene(void)
 
 	case SCENE_TITLE:
 		UninitTitle();
+		break;
+
+	case SCENE_RANKING:
+		UninitRanking();
 		break;
 
 	case SCENE_OPTION:
@@ -189,6 +199,10 @@ void UpdateScene(void)
 		UpdateTitle();
 		break;
 
+	case SCENE_RANKING:
+		UpdateRanking();
+		break;
+
 	case SCENE_OPTION:
 		UpdateOption();
 		break;
@@ -249,6 +263,10 @@ void DrawScene(void)
 
 	case SCENE_TITLE:
 		DrawTitle();
+		break;
+
+	case SCENE_RANKING:
+		DrawRanking();
 		break;
 
 	case SCENE_OPTION:
