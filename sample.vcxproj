@@ -136,6 +136,7 @@
     <ClCompile Include="banner_gold.cpp" />
     <ClCompile Include="banner_hp.cpp" />
     <ClCompile Include="banner_name.cpp" />
+    <ClCompile Include="banner_score.cpp" />
     <ClCompile Include="barrier.cpp" />
     <ClCompile Include="baseball.cpp" />
     <ClCompile Include="bg.cpp" />
@@ -171,6 +172,7 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameover.cpp" />
     <ClCompile Include="gameover_F.cpp" />
+    <ClCompile Include="gameover_score.cpp" />
     <ClCompile Include="hackeffect.cpp" />
     <ClCompile Include="hujyou.cpp" />
     <ClCompile Include="input.cpp" />
@@ -267,6 +269,7 @@
     <ClInclude Include="anten.h" />
     <ClInclude Include="areaChange.h" />
     <ClInclude Include="avatar.h" />
+    <ClInclude Include="banner_score.h" />
     <ClInclude Include="deleter.h" />
     <ClInclude Include="deleterAI.h" />
     <ClInclude Include="deleter_animation.h" />
@@ -276,6 +279,7 @@
     <ClInclude Include="enemy_aura.h" />
     <ClInclude Include="floatingfeeling.h" />
     <ClInclude Include="gameover_F.h" />
+    <ClInclude Include="gameover_score.h" />
     <ClInclude Include="hackeffect.h" />
     <ClInclude Include="hujyou.h" />
     <ClInclude Include="kasoukenkyuukuukan.h" />

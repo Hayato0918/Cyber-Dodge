@@ -24,6 +24,7 @@ ENEMYBREAK enemybreak;
 GETSKILL getskill;
 GETGOLD getgold[4];
 GETGOLDNUM getgoldnum;
+GETSCORE getscore;
 
 
 HRESULT InitEnemyBreak(void)
@@ -53,12 +54,20 @@ HRESULT InitEnemyBreak(void)
 	getgoldnum.texture = LoadTexture("data/TEXTURE/number.png");
 
 	if (map_player->encount == 1)
+	{
 		getgoldnum.gold = 30 + (rand() % 50);
+		getscore.score = 30 + (rand() % 50);
+	}
 	if (map_player->encount == 2)
+	{
 		getgoldnum.gold = (30 + (rand() % 50)) * 2;
+		getscore.score = (30 + (rand() % 50)) * 2;
+	}
 	if (map_player->encount == 3)
+	{
 		getgoldnum.gold = (30 + (rand() % 50)) * 4;
-
+		getscore.score = (30 + (rand() % 50)) * 4;
+	}
 	return S_OK;
 }
 
@@ -82,6 +91,7 @@ void UpdateEnemyBreak(void)
 		if (IsButtonTriggered(0, BUTTON_Y) && enemybreak.drawflag == true)
 		{
 			player->gold = player->gold + getgoldnum.gold;
+			player->score = player->score + getscore.score;
 			SceneTransition(SCENE_MAP);
 		}
 	}
@@ -91,6 +101,7 @@ void UpdateEnemyBreak(void)
 		if (GetKeyboardTrigger(DIK_RETURN) && enemybreak.drawflag == true)
 		{
 			player->gold = player->gold + getgoldnum.gold;
+			player->score = player->score + getscore.score;
 			SceneTransition(SCENE_MAP);
 		}
 	}

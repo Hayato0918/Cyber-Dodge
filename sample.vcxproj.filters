@@ -579,6 +579,12 @@
     <ClCompile Include="screencrack.cpp">
       <Filter>ソース ファイル\bug\system</Filter>
     </ClCompile>
+    <ClCompile Include="banner_score.cpp">
+      <Filter>ソース ファイル\map\banner</Filter>
+    </ClCompile>
+    <ClCompile Include="gameover_score.cpp">
+      <Filter>ソース ファイル\gameover</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -994,6 +1000,12 @@
     </ClInclude>
     <ClInclude Include="screencrack.h">
       <Filter>ヘッダー ファイル\bug\system</Filter>
+    </ClInclude>
+    <ClInclude Include="banner_score.h">
+      <Filter>ヘッダー ファイル\map\banner</Filter>
+    </ClInclude>
+    <ClInclude Include="gameover_score.h">
+      <Filter>ヘッダー ファイル\gameover</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

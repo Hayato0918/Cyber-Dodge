@@ -297,9 +297,9 @@ void DrawScene(void)
 	}
 
 	//テスト用
-	//int masstexture;
-	//masstexture = LoadTexture("data/TEXTURE/test/mass.png");
-	//DrawSpriteLeftTop(masstexture, 0.f, 0.f, 1600.f, 900.f, 0.f, 0.f, 1.f, 1.f);
+	int masstexture;
+	masstexture = LoadTexture("data/TEXTURE/test/mass.png");
+	DrawSpriteLeftTop(masstexture, 0.f, 0.f, 1600.f, 900.f, 0.f, 0.f, 1.f, 1.f);
 
 	DrawFade();
 }

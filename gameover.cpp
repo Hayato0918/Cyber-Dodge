@@ -5,6 +5,7 @@
 #include "sprite.h"
 #include "fade.h"
 #include "gameover_F.h"
+#include "gameover_score.h"
 
 //-----マクロ定義
 
@@ -21,6 +22,7 @@ HRESULT InitGameOver(void)
 	gameover.texture = LoadTexture("data/TEXTURE/GAMEOVER.png");
 
 	InitGameOverF();
+	InitGameOverScore();
 
 	return S_OK;
 }
@@ -29,6 +31,7 @@ HRESULT InitGameOver(void)
 void UninitGameOver(void)
 {
 	UninitGameOverF();
+	UninitGameOverScore();
 }
 
 //-----更新処理
@@ -46,6 +49,7 @@ void UpdateGameOver(void)
 	}
 
 	UpdateGameOverF();
+	UpdateGameOverScore();
 }
 
 //-----描画処理
@@ -54,4 +58,5 @@ void DrawGameOver(void)
 	DrawSpriteLeftTop(gameover.texture, gameover.pos.x, gameover.pos.y, gameover.size.x, gameover.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
 
 	DrawGameOverF();
+	DrawGameOverScore();
 }

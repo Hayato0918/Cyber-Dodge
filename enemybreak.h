@@ -35,6 +35,11 @@ typedef struct
 	int a, b, c, d;
 }GETGOLDNUM;
 
+typedef struct
+{
+	int score;
+}GETSCORE;
+
 //-----プロトタイプ宣言
 HRESULT InitEnemyBreak(void);
 void UninitEnemyBreak(void);

@@ -9,6 +9,7 @@
 #include "banner_hp.h"
 #include "banner_gold.h"
 #include "banner_bug.h"
+#include "banner_score.h"
 
 #include "map_point.h"
 #include "bugincrease.h"
@@ -32,6 +33,8 @@ HRESULT InitBanner(void)
 	InitBannerGold();
 	//bug
 	InitBannerBug();
+	//score
+	InitBannerScore();
 
 	return S_OK;
 }
@@ -49,6 +52,8 @@ void UninitBanner(void)
 	UninitBannerGold();
 	//bug
 	UninitBannerBug();
+	//score
+	UninitBannerScore();
 }
 
 //-----XVˆ—
@@ -64,6 +69,8 @@ void UpdateBanner(void)
 	UpdateBannerGold();
 	//bug
 	UpdateBannerBug();
+	//score
+	UpdateBannerScore();
 }
 
 //-----•`‰æˆ—
@@ -79,4 +86,6 @@ void DrawBanner(void)
 	DrawBannerGold();
 	//bug
 	DrawBannerBug();
+	//score
+	DrawBannerScore();
 }
