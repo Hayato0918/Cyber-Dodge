@@ -23,10 +23,10 @@ HRESULT InitTitleSelect(void)
 	title_select.sound = LoadSound("data/SE/cursormove.wav");
 	SetVolume(title_select.sound, soundvolume_select[1].count * 0.1f + 0.5f);
 
-	title_select.pos = D3DXVECTOR2(title_start->pos.x, title_start->pos.y);
-	title_select.size = D3DXVECTOR2(title_start->size.x, title_start->size.y);
+	title_select.pos = D3DXVECTOR2(title_start->pos.x - 15.f, title_start->pos.y - 15.f);
+	title_select.size = D3DXVECTOR2(title_start->size.x + 30.f, title_start->size.y + 30.f);
 	title_select.count = 0;
-	title_select.texture = LoadTexture("data/TEXTURE/rest_frame.png");
+	title_select.texture = LoadTexture("data/TEXTURE/title/select.png");
 
 	return S_OK;
 }
@@ -75,23 +75,23 @@ void UpdateTitleSelect(void)
 
 	if (title_select.count == 0)
 	{
-		title_select.pos = D3DXVECTOR2(title_start->pos.x, title_start->pos.y);
-		title_select.size = D3DXVECTOR2(title_start->size.x, title_start->size.y);
+		title_select.pos = D3DXVECTOR2(title_start->pos.x - 5, title_start->pos.y - 5);
+		title_select.size = D3DXVECTOR2(title_start->size.x + 10, title_start->size.y + 10);
 	}
 	if (title_select.count == 1)
 	{
-		title_select.pos = D3DXVECTOR2(title_continue->pos.x, title_continue->pos.y);
-		title_select.size = D3DXVECTOR2(title_continue->size.x, title_continue->size.y);
+		title_select.pos = D3DXVECTOR2(title_continue->pos.x + 25, title_continue->pos.y - 5);
+		title_select.size = D3DXVECTOR2(title_continue->size.x - 50, title_continue->size.y + 10);
 	}
 	if (title_select.count == 2)
 	{
-		title_select.pos = D3DXVECTOR2(title_option->pos.x, title_option->pos.y);
-		title_select.size = D3DXVECTOR2(title_option->size.x, title_option->size.y);
+		title_select.pos = D3DXVECTOR2(title_option->pos.x + 50, title_option->pos.y - 5);
+		title_select.size = D3DXVECTOR2(title_option->size.x - 105, title_option->size.y + 10);
 	}
 	if (title_select.count == 3)
 	{
-		title_select.pos = D3DXVECTOR2(title_exit->pos.x, title_exit->pos.y);
-		title_select.size = D3DXVECTOR2(title_exit->size.x, title_exit->size.y);
+		title_select.pos = D3DXVECTOR2(title_exit->pos.x + 90, title_exit->pos.y - 5);
+		title_select.size = D3DXVECTOR2(title_exit->size.x - 175, title_exit->size.y + 10);
 	}
 }
 

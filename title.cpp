@@ -68,9 +68,10 @@ void DrawTitle(void)
 {
 	DrawTitleBG();
 	DrawTitleTeamName();
+	DrawTitleSelect();
 	DrawTitleStart();
 	DrawTitleContinue();
 	DrawTitleOption();
 	DrawTitleExit();
-	DrawTitleSelect();
+
 }

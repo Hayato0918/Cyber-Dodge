@@ -165,7 +165,7 @@ void UpdatePlayer(void)
 		Player_FireWallDamage();
 
 	//-----Ž€–S”»’è
-	if (hp->gaugesize.x <= 0 || IsButtonTriggered(0,BUTTON_R))
+	if (hp->gaugesize.x < 0)
 	{
 		player.drawflag = false;
 		SceneTransition(SCENE_GAMEOVER);
