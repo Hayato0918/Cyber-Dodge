@@ -21,7 +21,7 @@ SLOWAREA slowarea;
 //-----初期化処理
 HRESULT InitSlowArea(void)
 {
-	slowarea.size = D3DXVECTOR2(60.0f, 60.0f);
+	slowarea.size = D3DXVECTOR2(160.0f, 160.0f);
 	srand((unsigned int)time(NULL));
 	slowarea.xrand = rand() % 10 + 1;
 	srand((unsigned int)time(NULL) + 1);
@@ -31,6 +31,8 @@ HRESULT InitSlowArea(void)
 	slowarea.timeflag = false;
 	slowarea.time = 0.0f;
 	slowarea.usegauge = 30;
+
+	slowarea.u = 0.f;
 
 	slowarea.bugincrease = false;
 	slowarea.bugdrawnum = 0;
@@ -123,11 +125,20 @@ void _SlowArea(void)
 			slowarea.bugdrawnum = 0;
 		}
 	}
+
+
+
+	//アニメーション
+	for (int i = 0; i < 20; i++)
+	{
+		if (slowarea.time >= i * 9.f && slowarea.time < 9.f + i * 9.f)
+			slowarea.u = 0.05f * i;
+	}
 }
 
 //-----描画処理
 void DrawSlowArea(void)
 {
 	if (slowarea.timeflag == true)
-		DrawSpriteLeftTop(slowarea.texture, slowarea.pos.x, slowarea.pos.y, slowarea.size.x, slowarea.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+		DrawSpriteLeftTop(slowarea.texture, slowarea.pos.x, slowarea.pos.y, slowarea.size.x, slowarea.size.y, slowarea.u, 0.f, 0.05f, 1.0f);
 }

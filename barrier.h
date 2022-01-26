@@ -19,6 +19,9 @@ typedef struct
 	int usegauge;	//バグゲージの上昇量
 	bool bugincrease;
 	int bugdrawnum;
+
+	float u;
+
 }BARRIER;
 
 //-----プロトタイプ宣言

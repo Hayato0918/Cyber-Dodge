@@ -22,7 +22,8 @@ HRESULT InitBarrier(void)
 {
 	PLAYER* player = GetPlayer();
 	barrier.pos = D3DXVECTOR2(player->pos.x, player->pos.y);
-	barrier.size = D3DXVECTOR2(player->size.y, player->size.y);
+	barrier.size = D3DXVECTOR2(player->size.y + 100.f, player->size.y + 100.f);
+	barrier.u = 0.f;
 	barrier.drawflag = false;
 	barrier.texture = LoadTexture("data/TEXTURE/barrier.png");
 
@@ -44,9 +45,10 @@ void _Barrier(void)
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();	
+	SKILL* skill = GetSkill();
 
-	barrier.pos = D3DXVECTOR2(player->pos.x, player->pos.y);
-	barrier.size = D3DXVECTOR2(player->size.y, player->size.y);
+	barrier.pos = D3DXVECTOR2(player->pos.x - 25.f, player->pos.y - 100.f);
+	barrier.size = D3DXVECTOR2(player->size.y + 100.f, player->size.y + 200.f);
 
 	//-----3s間バリアを張る
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -82,12 +84,36 @@ void _Barrier(void)
 		barrier.drawflag = false;
 		barrier.time = 0.0f;
 	}
+
+
+	if (PADUSE == 0)
+	{
+		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && barrier.use == true)
+		{
+			barrier.use = false;
+			barrier.timeflag = false;
+			barrier.time = 0.0f;
+			barrier.usegauge = 20;
+
+			barrier.bugincrease = false;
+			barrier.bugdrawnum = 0;
+			barrier.drawflag = false;
+		}
+	}
+
+
+	//バリアアニメーション
+	for (int i = 0; i < 21; i++)
+	{
+		if (barrier.time >= i * 8.571f && barrier.time < 8.571f + i * 8.571f)
+				barrier.u = 0.0476190476f * i;
+	}
 }
 
 void DrawBarrier(void)
 {
 	if (barrier.drawflag == true)
-		DrawSpriteLeftTop(barrier.texture, barrier.pos.x, barrier.pos.y, barrier.size.x, barrier.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+		DrawSpriteLeftTop(barrier.texture, barrier.pos.x, barrier.pos.y, barrier.size.x, barrier.size.y, barrier.u, 0.0f, 0.0476190476f, 1.0f);
 }
 
 BARRIER* GetBarrier(void)

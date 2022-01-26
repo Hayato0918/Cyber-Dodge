@@ -214,4 +214,6 @@ void DrawSkill(void)
 
 	//-----スロウエリア描画
 	DrawSlowArea();
+
+	DrawTimestop();
 }

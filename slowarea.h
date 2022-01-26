@@ -19,6 +19,8 @@ typedef struct
 
 	bool bugincrease;
 	int bugdrawnum;
+
+	float u;
 }SLOWAREA;
 
 //-----プロトタイプ宣言

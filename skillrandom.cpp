@@ -72,9 +72,7 @@ HRESULT InitRandom(void)
 		}
 	}
 
-	random[0].code = 17;
-	random[1].code = 18;
-	//random[2].code = 19;
+	random[0].code = 25;
 
 	for (int i = 0; i < skill.slot; i++)
 	{

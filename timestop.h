@@ -15,8 +15,14 @@ typedef struct
 
 	bool bugincrease;
 	int bugdrawnum;
+
+	D3DXVECTOR2 pos;
+	D3DXVECTOR2 size;
+	int texture;
+	int u;
 }TIMESTOP;
 
 //-----プロトタイプ宣言
 HRESULT InitTimestop(void);
 void _Timestop(void);
+void DrawTimestop(void);
