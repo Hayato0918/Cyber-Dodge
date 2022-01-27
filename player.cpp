@@ -62,6 +62,7 @@ HRESULT InitPlayer(void)
 		player.stand_Rtexture = LoadTexture("data/TEXTURE/player/stand/stand_L.png");
 		player.standtextureflag = true;
 		player.standLRflag = false;
+		player.standtexturetime = 0.0f;
 		//歩き状態のテクスチャ設定
 		player.walk_Ltexture = LoadTexture("data/TEXTURE/player/walk/walk_R.png");
 		player.walk_Rtexture = LoadTexture("data/TEXTURE/player/walk/walk_L.png");

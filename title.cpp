@@ -7,6 +7,7 @@
 #include "title_teamname.h"
 #include "title_gamestart.h"
 #include "title_continue.h"
+#include "title_ranking.h"
 #include "title_option.h"
 #include "title_exit.h"
 #include "title_select.h"
@@ -32,6 +33,7 @@ HRESULT InitTitle(void)
 	InitTitleTeamName();
 	InitTitleStart();
 	InitTitleContinue();
+	InitTitleRanking();
 	InitTitleOption();
 	InitTitleExit();
 	InitTitleSelect();
@@ -46,6 +48,7 @@ void UninitTitle(void)
 	UninitTitleTeamName();
 	UninitTitleStart();
 	UninitTitleContinue();
+	UninitTitleRanking();
 	UninitTitleOption();
 	UninitTitleExit();
 	UninitTitleSelect();
@@ -58,6 +61,7 @@ void UpdateTitle(void)
 	UpdateTitleTeamName();
 	UpdateTitleStart();
 	UpdateTitleContinue();
+	UpdateTitleRanking();
 	UpdateTitleOption();
 	UpdateTitleExit();
 	UpdateTitleSelect();
@@ -71,6 +75,7 @@ void DrawTitle(void)
 	DrawTitleSelect();
 	DrawTitleStart();
 	DrawTitleContinue();
+	DrawTitleRanking();
 	DrawTitleOption();
 	DrawTitleExit();
 

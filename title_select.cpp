@@ -9,6 +9,7 @@
 #include "title_bg.h"
 #include "title_gamestart.h"
 #include "title_continue.h"
+#include "title_ranking.h"
 #include "title_option.h"
 #include "title_exit.h"
 #include "soundvolume_select.h"
@@ -40,6 +41,7 @@ void UpdateTitleSelect(void)
 {
 	TITLE_START* title_start = GetTitleStart();
 	TITLE_CONTINUE* title_continue = GetTitleContinue();
+	TITLE_RANKING* title_ranking = GetTitleRanking();
 	TITLE_OPTION* title_option = GetTitleOption();
 	TITLE_EXIT* title_exit = GetTitleExit();
 
@@ -51,7 +53,7 @@ void UpdateTitleSelect(void)
 			PlaySound(title_select.sound, 0.5f);
 			title_select.count -= 1;
 		}
-		if (IsButtonTriggered(0, BUTTON_DOWN) && title_select.count < 3)
+		if (IsButtonTriggered(0, BUTTON_DOWN) && title_select.count < 4)
 		{
 			PlaySound(title_select.sound, 0.5f);
 			title_select.count += 1;
@@ -65,7 +67,7 @@ void UpdateTitleSelect(void)
 			PlaySound(title_select.sound, 0.5f);
 			title_select.count -= 1;
 		}
-		if (GetKeyboardTrigger(DIK_S) && title_select.count < 3)		//‰ºˆÚ“®
+		if (GetKeyboardTrigger(DIK_S) && title_select.count < 4)		//‰ºˆÚ“®
 		{
 			PlaySound(title_select.sound, 0.5f);
 			title_select.count += 1;
@@ -80,18 +82,23 @@ void UpdateTitleSelect(void)
 	}
 	if (title_select.count == 1)
 	{
-		title_select.pos = D3DXVECTOR2(title_continue->pos.x + 25, title_continue->pos.y - 5);
-		title_select.size = D3DXVECTOR2(title_continue->size.x - 50, title_continue->size.y + 10);
+		title_select.pos = D3DXVECTOR2(title_continue->pos.x - 5, title_continue->pos.y - 5);
+		title_select.size = D3DXVECTOR2(title_continue->size.x + 10, title_continue->size.y + 10);
 	}
 	if (title_select.count == 2)
 	{
-		title_select.pos = D3DXVECTOR2(title_option->pos.x + 50, title_option->pos.y - 5);
-		title_select.size = D3DXVECTOR2(title_option->size.x - 105, title_option->size.y + 10);
+		title_select.pos = D3DXVECTOR2(title_ranking->pos.x - 5, title_ranking->pos.y - 5);
+		title_select.size = D3DXVECTOR2(title_ranking->size.x + 10, title_ranking->size.y + 10);
 	}
 	if (title_select.count == 3)
 	{
-		title_select.pos = D3DXVECTOR2(title_exit->pos.x + 90, title_exit->pos.y - 5);
-		title_select.size = D3DXVECTOR2(title_exit->size.x - 175, title_exit->size.y + 10);
+		title_select.pos = D3DXVECTOR2(title_option->pos.x - 5, title_option->pos.y - 5);
+		title_select.size = D3DXVECTOR2(title_option->size.x + 10, title_option->size.y + 10);
+	}
+	if (title_select.count == 4)
+	{
+		title_select.pos = D3DXVECTOR2(title_exit->pos.x - 5, title_exit->pos.y - 5);
+		title_select.size = D3DXVECTOR2(title_exit->size.x + 10, title_exit->size.y + 10);
 	}
 }
 

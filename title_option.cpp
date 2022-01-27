@@ -26,8 +26,8 @@ HRESULT InitTitleOption(void)
 	title_option.sound = LoadSound("data/SE/titleselect.wav");
 	SetVolume(title_option.sound, soundvolume_select[1].count * 0.1f + 0.5f);
 
-	title_option.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.775f, SCREEN_HEIGHT * 0.822f);	//1600:900¨1240,740
-	title_option.size = D3DXVECTOR2(SCREEN_WIDTH * 0.238f, SCREEN_HEIGHT * 0.078f);	//1600:900¨380,70
+	title_option.pos = D3DXVECTOR2(1300.f, 740.f);	//1600:900¨1240,740
+	title_option.size = D3DXVECTOR2(260.f, 70.f);	//1600:900¨380,70
 	title_option.texture = LoadTexture("data/TEXTURE/title/option.png");
 
 	return S_OK;
@@ -47,7 +47,7 @@ void UpdateTitleOption(void)
 
 	if (PADUSE == 0)
 	{
-		if (title_select->count == 2 && IsButtonTriggered(0, BUTTON_Y) && title_bg->drawflag == true)
+		if (title_select->count == 3 && IsButtonTriggered(0, BUTTON_Y) && title_bg->drawflag == true)
 		{
 			PlaySound(title_option.sound, 0.5f);
 			SceneTransition(SCENE_OPTION);
@@ -56,7 +56,7 @@ void UpdateTitleOption(void)
 
 	if (PADUSE == 1)
 	{
-		if (title_select->count == 2 && GetKeyboardTrigger(DIK_RETURN) && title_bg->drawflag == true)
+		if (title_select->count == 3 && GetKeyboardTrigger(DIK_RETURN) && title_bg->drawflag == true)
 		{
 			PlaySound(title_option.sound, 0.5f);
 			SceneTransition(SCENE_OPTION);

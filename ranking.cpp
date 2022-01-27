@@ -47,7 +47,7 @@ void UpdateRanking(void)
 	UpdateRankingFloor();
 	UpdateRankingScore();
 
-	if (IsButtonTriggered(0, BUTTON_L))
+	if (IsButtonTriggered(0, BUTTON_Y))
 		SceneTransition(SCENE_TITLE);
 }
 

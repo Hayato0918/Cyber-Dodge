@@ -216,4 +216,10 @@ void DrawSkill(void)
 	DrawSlowArea();
 
 	DrawTimestop();
+
+	DrawRegen();
+
+	DrawSpeedup();
+
+	DrawPowerup();
 }

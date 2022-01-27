@@ -14,6 +14,7 @@
 
 //-----プロトタイプ宣言
 SPEEDUP speedup;
+SPEEDUP_ANIME sppedup_anime;
 
 //-----グローバル変数
 
@@ -27,6 +28,9 @@ HRESULT InitSpeedUp(void)
 
 	speedup.bugincrease = false;
 	speedup.bugdrawnum = 0;
+
+	sppedup_anime.time = 0.f;
+	sppedup_anime.texture = LoadTexture("data/TEXTURE/skill/effect/Speedup.png");
 
 	return S_OK;
 }
@@ -64,6 +68,23 @@ void _SpeedUp(void)
 			speedup.use = true;
 		}
 	}
+
+	//-----アニメーション
+	if (speedup.timeflag == true)
+	{
+		sppedup_anime.pos = D3DXVECTOR2(player->pos.x, player->pos.y - 50);
+		sppedup_anime.size = D3DXVECTOR2(player->size.x, player->size.y + 50);
+		sppedup_anime.time = sppedup_anime.time + 1.f;
+
+		for (int i = 0; i < 22; i++)
+		{
+			if (sppedup_anime.time > 2.727f * i && sppedup_anime.time <= 2.727f + 2.727f * i)
+				sppedup_anime.u = 0.045454545f * i;
+		}
+	}
+
+
+
 	//スキル使用10s後にもとのスピードに戻る
 	if (speedup.timeflag == true)
 		speedup.time = speedup.time + 1.0f;
@@ -101,4 +122,10 @@ void _SpeedUp(void)
 			speedup.use = false;
 		}
 	}
+}
+
+void DrawSpeedup()
+{
+	if (speedup.timeflag == true)
+		DrawSpriteLeftTop(sppedup_anime.texture, sppedup_anime.pos.x, sppedup_anime.pos.y, sppedup_anime.size.x, sppedup_anime.size.y, sppedup_anime.u, 0.f, 0.045454545f, 1.f);
 }

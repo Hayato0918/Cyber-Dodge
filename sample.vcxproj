@@ -259,6 +259,7 @@
     <ClCompile Include="title_exit.cpp" />
     <ClCompile Include="title_gamestart.cpp" />
     <ClCompile Include="title_option.cpp" />
+    <ClCompile Include="title_ranking.cpp" />
     <ClCompile Include="title_select.cpp" />
     <ClCompile Include="title_teamname.cpp" />
     <ClCompile Include="tosyokann.cpp" />
@@ -408,6 +409,7 @@
     <ClInclude Include="title_exit.h" />
     <ClInclude Include="title_gamestart.h" />
     <ClInclude Include="title_option.h" />
+    <ClInclude Include="title_ranking.h" />
     <ClInclude Include="title_select.h" />
     <ClInclude Include="title_teamname.h" />
     <ClInclude Include="tosyokann.h" />

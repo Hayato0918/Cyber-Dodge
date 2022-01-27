@@ -20,6 +20,16 @@ typedef struct
 	int sound;
 }PLAYERREGEN;
 
+typedef struct
+{
+	D3DXVECTOR2 pos;
+	D3DXVECTOR2 size;
+	float u;
+	int texture;
+	float time;
+}REGEN_ANIME;
+
 //-----プロトタイプ宣言
 HRESULT InitPlayerRegen(void);
 void _PlayerRegen(void);
+void DrawRegen();

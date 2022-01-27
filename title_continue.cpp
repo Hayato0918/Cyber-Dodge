@@ -18,8 +18,8 @@ TITLE_CONTINUE title_continue;
 //-----èâä˙âªèàóù
 HRESULT InitTitleContinue(void)
 {
-	title_continue.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.7563f, SCREEN_HEIGHT * 0.745f);	//1600:900Å®1210,670
-	title_continue.size = D3DXVECTOR2(SCREEN_WIDTH * 0.238f, SCREEN_HEIGHT * 0.078f);	//1600:900Å®380,70
+	title_continue.pos = D3DXVECTOR2(1250.f, 600.f);	//1600:900Å®1210,670
+	title_continue.size = D3DXVECTOR2(310.f, 70.f);	//1600:900Å®380,70
 	title_continue.texture = LoadTexture("data/TEXTURE/title/continue.png");
 
 	return S_OK;

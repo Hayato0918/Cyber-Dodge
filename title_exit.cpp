@@ -18,8 +18,8 @@ TITLE_EXIT title_exit;
 //-----‰Šú‰»ˆ—
 HRESULT InitTitleExit(void)
 {
-	title_exit.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.794f, SCREEN_HEIGHT * 0.9f);	//1600:900¨1270,810
-	title_exit.size = D3DXVECTOR2(SCREEN_WIDTH * 0.238f, SCREEN_HEIGHT * 0.078f);	//1600:900¨380,70
+	title_exit.pos = D3DXVECTOR2(1370.f, 810.f);	//1600:900¨1270,810
+	title_exit.size = D3DXVECTOR2(190.f, 70.f);	//1600:900¨380,70
 	title_exit.texture = LoadTexture("data/TEXTURE/title/exit.png");
 
 	return S_OK;
@@ -39,13 +39,13 @@ void UpdateTitleExit(void)
 
 	if (PADUSE == 0)
 	{
-		if (title_select->count == 3 && IsButtonTriggered(0, BUTTON_Y) && title_bg->drawflag == true)
+		if (title_select->count == 4 && IsButtonTriggered(0, BUTTON_Y) && title_bg->drawflag == true)
 			exit(0);
 	}
 
 	if (PADUSE == 1)
 	{
-		if (title_select->count == 3 && GetKeyboardTrigger(DIK_RETURN) && title_bg->drawflag == true)
+		if (title_select->count == 4 && GetKeyboardTrigger(DIK_RETURN) && title_bg->drawflag == true)
 			exit(0);
 	}
 }

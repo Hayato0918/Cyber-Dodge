@@ -609,6 +609,9 @@
     <ClCompile Include="ranking_score.cpp">
       <Filter>ソース ファイル\ranking</Filter>
     </ClCompile>
+    <ClCompile Include="title_ranking.cpp">
+      <Filter>ソース ファイル\title</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -1048,6 +1051,9 @@
     </ClInclude>
     <ClInclude Include="ranking_score.h">
       <Filter>ヘッダー ファイル\ranking</Filter>
+    </ClInclude>
+    <ClInclude Include="title_ranking.h">
+      <Filter>ヘッダー ファイル\title</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

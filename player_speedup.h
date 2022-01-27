@@ -16,6 +16,16 @@ typedef struct
 	int bugdrawnum;
 }SPEEDUP;
 
+typedef struct
+{
+	D3DXVECTOR2 pos;
+	D3DXVECTOR2 size;
+	float u;
+	int texture;
+	float time;
+}SPEEDUP_ANIME;
+
 //-----プロトタイプ宣言
 HRESULT InitSpeedUp(void);
 void _SpeedUp(void);
+void DrawSpeedup();

@@ -76,6 +76,8 @@ HRESULT InitRandom(void)
 		}
 	}
 
+	random[0].code = 22;
+
 	for (int i = 0; i < skill.slot; i++)
 	{
 		for (int j = 1; j < 27; j++)

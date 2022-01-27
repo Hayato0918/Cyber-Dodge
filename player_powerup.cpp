@@ -14,6 +14,7 @@
 
 //-----プロトタイプ宣言
 POWERUP powerup;
+POWERUP_ANIME powerup_anime;
 
 //-----グローバル変数
 
@@ -27,6 +28,9 @@ HRESULT InitPowerUp(void)
 
 	powerup.bugincrease = false;
 	powerup.bugdrawnum = 0;
+
+	powerup_anime.time = 0.f;
+	powerup_anime.texture = LoadTexture("data/TEXTURE/skill/effect/Powerup.png");
 
 	return S_OK;
 }
@@ -64,6 +68,22 @@ void _PowerUp(void)
 			powerup.use = true;
 		}
 	}
+
+	//-----アニメーション
+	if (powerup.timeflag == true)
+	{
+		powerup_anime.pos = D3DXVECTOR2(player->pos.x, player->pos.y - 50);
+		powerup_anime.size = D3DXVECTOR2(player->size.x, player->size.y + 50);
+		powerup_anime.time = powerup_anime.time + 1.f;
+
+		for (int i = 0; i < 22; i++)
+		{
+			if (powerup_anime.time > 2.727f * i && powerup_anime.time <= 2.727f + 2.727f * i)
+				powerup_anime.u = 0.045454545f * i;
+		}
+	}
+
+
 	//スキル使用10s後にもとの強さに戻る
 	if (powerup.timeflag == true)
 		powerup.time = powerup.time + 1.0f;
@@ -101,4 +121,10 @@ void _PowerUp(void)
 			powerup.use = false;
 		}
 	}
+}
+
+void DrawPowerup()
+{
+	if (powerup.timeflag == true)
+		DrawSpriteLeftTop(powerup_anime.texture, powerup_anime.pos.x, powerup_anime.pos.y, powerup_anime.size.x, powerup_anime.size.y, powerup_anime.u, 0.f, 0.045454545f, 1.f);
 }

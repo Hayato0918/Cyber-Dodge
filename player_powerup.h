@@ -16,6 +16,16 @@ typedef struct
 	int bugdrawnum;
 }POWERUP;
 
+typedef struct
+{
+	D3DXVECTOR2 pos;
+	D3DXVECTOR2 size;
+	float u;
+	int texture;
+	float time;
+}POWERUP_ANIME;
+
 //-----プロトタイプ宣言
 HRESULT InitPowerUp(void);
 void _PowerUp(void);
+void DrawPowerup();

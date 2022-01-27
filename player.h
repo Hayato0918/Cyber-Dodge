@@ -27,6 +27,7 @@ typedef struct
 	int stand_Rtexture;		//立ち右向き
 	bool standtextureflag;	//描画するかを管理するフラグ
 	bool standLRflag;		//どっち向いているかを管理するフラグ
+	float standtexturetime;
 
 	int walk_Ltexture;		//歩き右向き
 	int walk_Rtexture;		//歩き左向き

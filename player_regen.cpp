@@ -16,6 +16,7 @@
 
 //-----プロトタイプ宣言
 PLAYERREGEN regen;
+REGEN_ANIME regen_anime;
 
 //-----グローバル変数
 
@@ -31,6 +32,9 @@ HRESULT InitPlayerRegen(void)
 	regen.bugincrease = false;
 	regen.bugdrawnum = 0;
 
+	regen_anime.time = 0.f;
+	regen_anime.texture = LoadTexture("data/TEXTURE/skill/effect/Regen.png");
+
 	return S_OK;
 }
 
@@ -42,6 +46,8 @@ void _PlayerRegen(void)
 	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();
 	SKILL* skill = GetSkill();
+	PLAYER* player = GetPlayer();
+
 
 	//ランダムで4が出たら、10s間キャラの体力が1sずつに10回復する
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -66,11 +72,26 @@ void _PlayerRegen(void)
 			regen.use = true;
 		}
 	}
+
+	//-----アニメーション
+	if (regen.timeflag == true)
+	{
+		regen_anime.pos = D3DXVECTOR2(player->pos.x, player->pos.y - 50);
+		regen_anime.size = D3DXVECTOR2(player->size.x, player->size.y + 50);
+		regen_anime.time = regen_anime.time + 1.f;
+
+		for (int i = 0; i < 22; i++)
+		{
+			if (regen_anime.time > 2.727f * i && regen_anime.time <= 2.727f + 2.727f * i)
+				regen_anime.u = 0.045454545f * i;
+		}
+	}
+
+
+
 	//スキル発動後秒数をカウント
 	if (regen.timeflag == true)
 		regen.time = regen.time + 1.0f;
-
-	if (regen.time > 0.f && regen.time < 10.f && regen.number == 0)
 
 	//1sごとに体力を1回復
 	if (regen.time > regentime)
@@ -125,4 +146,10 @@ void _PlayerRegen(void)
 			regen.use = false;
 		}
 	}
+}
+
+void DrawRegen()
+{
+	if(regen.timeflag == true)
+	DrawSpriteLeftTop(regen_anime.texture, regen_anime.pos.x, regen_anime.pos.y, regen_anime.size.x, regen_anime.size.y, regen_anime.u, 0.f, 0.045454545f, 1.f);
 }
