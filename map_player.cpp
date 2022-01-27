@@ -3535,7 +3535,8 @@ void UpdateMapPlayer(void)
 						map_player.gamecount = map_player.gamecount + 1;	//ゲームシーンに入った回数を記録する
 						map_player.encount = (rand() % 2) + 1;	//ここで出現する敵をランダムに決める
 						if(tutorial->tutorialflag == false)
-							map_player.encount = 1;	//ここで出現する敵をランダムに決める
+							map_player.encount = 2;	//ここで出現する敵をランダムに決める
+						map_player.encount = 2;	//ここで出現する敵をランダムに決める
 						map_player.enemypowerup = false;
 						SceneTransition(SCENE_GAME);
 					}
