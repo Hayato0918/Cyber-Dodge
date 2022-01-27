@@ -20,10 +20,13 @@ RANDOM random[SKILL_NUM];
 
 //-----グローバル変数
 int t;
+int skillrandomtexture;
 
 //-----初期化処理
 HRESULT InitRandom(void)
 {
+	skillrandomtexture = LoadTexture("data/TEXTURE/skill/skill.png");
+
 	MAP_PLAYER* map_player = GetMapPlayer();
 	SOUNDVOLUME_SELECT* soundvolume_select = GetSoundVolumeSelect();
 
@@ -51,6 +54,7 @@ HRESULT InitRandom(void)
 	{
 		random[i].pos = D3DXVECTOR2(100.0f - i * 10, 120.0f - i * 10);
 		random[i].size = D3DXVECTOR2(90.0f, 130.0f);
+		random[i].u = 0.f;
 		random[i].drawflag = true;
 		random[i].active = false;
 		random[i].haveflag = true;
@@ -72,63 +76,16 @@ HRESULT InitRandom(void)
 		}
 	}
 
-	random[0].code = 24;
-
 	for (int i = 0; i < skill.slot; i++)
 	{
-		//割り当てられたcodeに対応したテクスチャを表示
-		if (random[i].code == 1)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/speedup.png");
-		if (random[i].code == 2)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/turnaround.png");
-		if (random[i].code == 3)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/barrier.png");
-		if (random[i].code == 4)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/baseball.png");
-		if (random[i].code == 5)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/bigball.png");
-		if (random[i].code == 6)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/billiards.png");
-		if (random[i].code == 7)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/buildup.png");
-		if (random[i].code == 8)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/catchjamming.png");
-		if (random[i].code == 9)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/invade.png");
-		if (random[i].code == 10)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/invincible.png");
-		if (random[i].code == 11)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/penetration.png");
-		if (random[i].code == 12)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/rockcreate.png");
-		if (random[i].code == 13)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/slowarea.png");
-		if (random[i].code == 14)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/smallplayer.png");
-		//if (random[i].code == 15)
-		//	random[i].texture = LoadTexture("data/TEXTURE/skill/autocatch.png");
-		if (random[i].code == 16)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/disappear.png");
-		if (random[i].code == 17)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/doubleattack.png");
-		if (random[i].code == 18)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/enemy_powerdown.png");
-		if (random[i].code == 19)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/landmine.png");
-		if (random[i].code == 20)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/mindhack.png");
-		if (random[i].code == 21)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/otoshiana.png");
-		if (random[i].code == 22)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/player_powerup.png");
-		if (random[i].code == 23)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/player_regen.png");
-		if (random[i].code == 24)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/player_speedup.png");
-		if (random[i].code == 25)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/timestop.png");
-		if (random[i].code == 26)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/warp.png");
+		for (int j = 1; j < 27; j++)
+		{
+			if (random[i].code == j)
+			{
+				random[i].u = 0.0384615385f * (j - 1);
+				random[i].drawflag = true;
+			}
+		}
 	}
 
 	return S_OK;
@@ -201,62 +158,7 @@ void UpdateRandom(void)
 		}
 	}
 
-	for (int i = 0; i < skill.slot; i++)
-	{
-		//割り当てられたcodeに対応したテクスチャを表示
-		if (random[i].code == 1)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/speedup.png");
-		if (random[i].code == 2)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/turnaround.png");
-		if (random[i].code == 3)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/barrier.png");
-		if (random[i].code == 4)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/baseball.png");
-		if (random[i].code == 5)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/bigball.png");
-		if (random[i].code == 6)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/billiards.png");
-		if (random[i].code == 7)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/buildup.png");
-		if (random[i].code == 8)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/catchjamming.png");
-		if (random[i].code == 9)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/invade.png");
-		if (random[i].code == 10)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/invincible.png");
-		if (random[i].code == 11)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/penetration.png");
-		if (random[i].code == 12)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/rockcreate.png");
-		if (random[i].code == 13)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/slowarea.png");
-		if (random[i].code == 14)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/smallplayer.png");
-		//if (random[i].code == 15)
-		//	random[i].texture = LoadTexture("data/TEXTURE/skill/autocatch.png");
-		if (random[i].code == 16)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/disappear.png");
-		if (random[i].code == 17)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/doubleattack.png");
-		if (random[i].code == 18)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/enemy_powerdown.png");
-		if (random[i].code == 19)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/landmine.png");
-		if (random[i].code == 20)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/mindhack.png");
-		if (random[i].code == 21)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/otoshiana.png");
-		if (random[i].code == 22)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/player_powerup.png");
-		if (random[i].code == 23)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/player_regen.png");
-		if (random[i].code == 24)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/player_speedup.png");
-		if (random[i].code == 25)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/timestop.png");
-		if (random[i].code == 26)
-			random[i].texture = LoadTexture("data/TEXTURE/skill/warp.png");
-	}
+
 
 }
 
@@ -265,7 +167,7 @@ void DrawRandom(void)
 	for (int i = skill.slot - 1; i >= 0; i--)
 	{
 		if (random[i].drawflag == true)
-			DrawSpriteLeftTop(random[i].texture, random[i].pos.x, random[i].pos.y, random[i].size.x, random[i].size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+			DrawSpriteLeftTop(skillrandomtexture, random[i].pos.x, random[i].pos.y, random[i].size.x, random[i].size.y, random[i].u, 0.0f, 0.0384615385f, 1.0f);
 	}
 }
 

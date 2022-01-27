@@ -18,6 +18,7 @@ typedef struct
 	D3DXVECTOR2 size;
 	int texture;
 	int skillcode;
+	float u;
 }GETSKILL;
 
 typedef struct

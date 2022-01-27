@@ -26,9 +26,12 @@ GETGOLD getgold[4];
 GETGOLDNUM getgoldnum;
 GETSCORE getscore;
 
+int enemybreaktexture;
 
 HRESULT InitEnemyBreak(void)
 {
+	enemybreaktexture = LoadTexture("data/TEXTURE/skill/skill.png");
+
 	MAP_PLAYER* map_player = GetMapPlayer();
 
 	//-----”wŒi
@@ -115,58 +118,11 @@ void UpdateEnemyBreak(void)
 	}
 
 	//Š„‚è“–‚Ä‚ç‚ê‚½code‚É‘Î‰ž‚µ‚½ƒeƒNƒXƒ`ƒƒ‚ð•\Ž¦
-	if (getskill.skillcode == 1)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/speedup.png");
-	if (getskill.skillcode == 2)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/turnaround.png");
-	if (getskill.skillcode == 3)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/barrier.png");
-	if (getskill.skillcode == 4)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/baseball.png");
-	if (getskill.skillcode == 5)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/bigball.png");
-	if (getskill.skillcode == 6)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/billiards.png");
-	if (getskill.skillcode == 7)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/buildup.png");
-	if (getskill.skillcode == 8)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/catchjamming.png");
-	if (getskill.skillcode == 9)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/invade.png");
-	if (getskill.skillcode == 10)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/invincible.png");
-	if (getskill.skillcode == 11)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/penetration.png");
-	if (getskill.skillcode == 12)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/rockcreate.png");
-	if (getskill.skillcode == 13)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/slowarea.png");
-	if (getskill.skillcode == 14)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/smallplayer.png");
-	//if (getskill.skillcode == 15)
-	//	getskill.texture = LoadTexture("data/TEXTURE/skill/autocatch.png");
-	if (getskill.skillcode == 16)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/disappear.png");
-	if (getskill.skillcode == 17)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/doubleattack.png");
-	if (getskill.skillcode == 18)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/enemy_powerdown.png");
-	if (getskill.skillcode == 19)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/landmine.png");
-	if (getskill.skillcode == 20)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/mindhack.png");
-	if (getskill.skillcode == 21)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/otoshiana.png");
-	if (getskill.skillcode == 22)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/player_powerup.png");
-	if (getskill.skillcode == 23)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/player_regen.png");
-	if (getskill.skillcode == 24)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/player_speedup.png");
-	if (getskill.skillcode == 25)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/timestop.png");
-	if (getskill.skillcode == 26)
-		getskill.texture = LoadTexture("data/TEXTURE/skill/warp.png");
+	for (int j = 1; j < 27; j++)
+	{
+		if (getskill.skillcode == j)
+				getskill.u = 0.0384615385f * (j - 1);
+	}
 
 
 	//-----ƒS[ƒ‹ƒhŠl“¾
@@ -241,7 +197,7 @@ void DrawEnemyBreak(void)
 	{
 		DrawSpriteLeftTop(enemybreak.texture, enemybreak.pos.x, enemybreak.pos.y, enemybreak.size.x, enemybreak.size.y, 0.f, 0.f, 1.f, 1.f);
 
-		DrawSpriteLeftTop(getskill.texture, getskill.pos.x, getskill.pos.y, getskill.size.x, getskill.size.y, 0.f, 0.f, 1.f, 1.f);
+		DrawSpriteLeftTop(enemybreaktexture, getskill.pos.x, getskill.pos.y, getskill.size.x, getskill.size.y, getskill.u, 0.f, 0.0384615385f, 1.f);
 
 		for (int i = 0; i < 4; i++)
 		{

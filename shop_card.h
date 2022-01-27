@@ -11,6 +11,7 @@ typedef struct
 	int texture;
 	int code;
 	bool drawflag;
+	float u;
 }SHOP_CARD;
 
 HRESULT InitShopCard(void);

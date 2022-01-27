@@ -24,10 +24,13 @@ NUMBER g_number;
 
 //-----グローバル変数
 int a, b;
+int deckmenutexture;
 
 //-----初期化処理
 HRESULT InitDeckMenu(void)
 {
+	deckmenutexture = LoadTexture("data/TEXTURE/skill/skill.png");
+
 	a = 0;
 	b = 0;
 
@@ -55,136 +58,17 @@ HRESULT InitDeckMenu(void)
 			b = 0;
 		}
 
-		if (random[i].code == 1)
+
+		//割り当てられたcodeに対応したテクスチャを表示
+		for (int j = 1; j < 27; j++)
 		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/speedup.png");
-			deckmenu_card[a][b].drawflag = true;
+			if (random[i].code == j)
+			{
+				deckmenu_card[a][b].u = 0.0384615385f * (j - 1);
+				deckmenu_card[a][b].drawflag = true;
+			}
 		}
-		if (random[i].code == 2)
-		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/turnaround.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
-		if (random[i].code == 3)
-		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/barrier.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
-		if (random[i].code == 4)
-		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/baseball.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
-		if (random[i].code == 5)
-		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/bigball.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
-		if (random[i].code == 6)
-		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/billiards.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
-		if (random[i].code == 7)
-		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/buildup.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
-		if (random[i].code == 8)
-		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/catchjamming.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
-		if (random[i].code == 9)
-		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/invade.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
-		if (random[i].code == 10)
-		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/invincible.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
-		if (random[i].code == 11)
-		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/penetration.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
-		if (random[i].code == 12)
-		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/rockcreate.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
-		if (random[i].code == 13)
-		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/slowarea.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
-		if (random[i].code == 14)
-		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/smallplayer.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
-		if (random[i].code == 15)
-		{
-			//deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/autocatch.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
-		if (random[i].code == 16)
-		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/disappear.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
-		if (random[i].code == 17)
-		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/doubleattack.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
-		if (random[i].code == 18)
-		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/enemy_powerdown.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
-		if (random[i].code == 19)
-		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/landmine.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
-		if (random[i].code == 20)
-		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/mindhack.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
-		if (random[i].code == 21)
-		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/otoshiana.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
-		if (random[i].code == 22)
-		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/player_powerup.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
-		if (random[i].code == 23)
-		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/player_regen.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
-		if (random[i].code == 24)
-		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/player_speedup.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
-		if (random[i].code == 25)
-		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/timestop.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
-		if (random[i].code == 26)
-		{
-			deckmenu_card[a][b].texture = LoadTexture("data/TEXTURE/skill/warp.png");
-			deckmenu_card[a][b].drawflag = true;
-		}
+
 		b = b + 1;
 	}
 
@@ -393,8 +277,8 @@ void DrawDeckMenu(void)
 		for (int x = 0; x < xnum; x++)
 		{
 			if(deckmenu_card[y][x].drawflag == true)
-			DrawSpriteLeftTop(deckmenu_card[y][x].texture, deckmenu_card[y][x].pos.x, deckmenu_card[y][x].pos.y,
-				deckmenu_card[y][x].size.x, deckmenu_card[x][y].size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+			DrawSpriteLeftTop(deckmenutexture, deckmenu_card[y][x].pos.x, deckmenu_card[y][x].pos.y,
+				deckmenu_card[y][x].size.x, deckmenu_card[x][y].size.y, deckmenu_card[x][y].u, 0.0f, 0.0384615385f, 1.0f);
 
 			if (deckmenu_card[y][x].drawflag == false)
 				DrawSpriteLeftTop(deckmenu_card[y][x].nottexture, deckmenu_card[y][x].pos.x, deckmenu_card[y][x].pos.y,

@@ -4,7 +4,7 @@
 #include "main.h"
 #include "renderer.h"
 
-#define SKILL_NUM 36
+#define SKILL_NUM 26
 
 //-----構造体
 typedef struct
@@ -17,6 +17,7 @@ typedef struct
 	bool active;	//スキルを使うかどうかを管理するフラグ
 	float usetime;
 	bool haveflag;	//スキルを所持しているかを管理するフラグ
+	float u;
 }RANDOM;
 
 typedef struct

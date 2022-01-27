@@ -21,6 +21,7 @@ typedef struct
 	int nottexture;
 	int code;	//登録するテクスチャを管理する変数
 	bool drawflag;	//描画するかを管理するフラグ
+	float u;
 }DECKMENUCARD;
 
 
