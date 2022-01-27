@@ -275,8 +275,6 @@ void player_animation()
 	//キャッチしたとき
 	if (ball->playerhaveflag == true)	//プレイヤーがボールをキャッチしたら
 	{
-		if (ball->fallflag == false)
-		{
 			player->catchtexturetime = player->catchtexturetime + 1.0f;
 			if (player->rotate == 3)		//右を向いていたら
 			{
@@ -302,7 +300,10 @@ void player_animation()
 					player->uw = 0.315f;
 				}
 				if (player->catchtexturetime >= 20)
+				{
 					player->catchtextureflag = false;
+					player->uw = 0.5f;
+				}
 			}
 			if (player->rotate == 2)
 			{
@@ -327,9 +328,11 @@ void player_animation()
 					player->uw = 0.315f;
 				}
 				if (player->catchtexturetime >= 20)
+				{
 					player->catchtextureflag = false;
+					player->uw = 0.5f;
+				}
 			}
-		}
 	}
 	if (ball->playerhaveflag == false)
 	{
@@ -338,170 +341,170 @@ void player_animation()
 	}
 
 	//落ちているボールを拾ったとき
-	if (ball->playerhaveflag == true)
-	{
-		if (ball->fallflag == true)
-		{
-			player->picktexturetime = player->picktexturetime + 1.0f;
-			if (player->rotate == 3)		//右を向いていたら
-			{
-				player->v = 0.f;
-				player->vh = 1.f;
-				player->picktextureflag = true;
-				player->pickLRflag = false;
-				if (player->picktexturetime < 5)	//
-				{
-					player->u = 0.0f;
-					player->uw = 0.083f;
-				}
-				if (player->picktexturetime > 5 && player->picktexturetime <= 10)	//
-				{
-					player->u = 0.083f;
-					player->uw = 0.09f;
-				}
-				if (player->picktexturetime > 10 && player->picktexturetime <= 15)	//
-				{
-					player->u = 0.173f;
-					player->uw = 0.092f;
-				}
-				if (player->picktexturetime > 15 && player->picktexturetime <= 20)	//
-				{
-					player->u = 0.265f;
-					player->uw = 0.092f;
-				}
-				if (player->picktexturetime > 20 && player->picktexturetime <= 25)	//
-				{
-					player->u = 0.357f;
-					player->uw = 0.093f;
-				}
-				if (player->picktexturetime > 25 && player->picktexturetime <= 30)	//
-				{
-					player->u = 0.45f;
-					player->uw = 0.094f;
-				}
-				if (player->picktexturetime > 30 && player->picktexturetime <= 35)	//
-				{
-					player->u = 0.545f;
-					player->uw = 0.067f;
-				}
-				if (player->picktexturetime > 35 && player->picktexturetime <= 40)	//
-				{
-					player->u = 0.612f;
-					player->uw = 0.067f;
-				}
-				if (player->picktexturetime > 40 && player->picktexturetime <= 45)	//
-				{
-					player->u = 0.679f;
-					player->uw = 0.064f;
-				}
-				if (player->picktexturetime > 45 && player->picktexturetime <= 50)	//
-				{
-					player->u = 0.743f;
-					player->uw = 0.064f;
-				}
-				if (player->picktexturetime > 50 && player->picktexturetime <= 55)	//
-				{
-					player->u = 0.807f;
-					player->uw = 0.064f;
-				}
-				if (player->picktexturetime > 55 && player->picktexturetime <= 60)	//
-				{
-					player->u = 0.871f;
-					player->uw = 0.064f;
-				}
-				if (player->picktexturetime > 60 && player->picktexturetime <= 65)	//
-				{
-					player->u = 0.935f;
-					player->uw = 0.064f;
-				}
-				if (player->picktexturetime > 65)
-				{
-					player->picktextureflag = false;
-				}
-			}
-			if (player->rotate == 2)
-			{
-				player->v = 0.f;
-				player->vh = 1.f;
-				player->picktextureflag = true;
-				player->pickLRflag = true;
-				if (player->picktexturetime < 5)	//
-				{
-					player->u = 0.917f;
-					player->uw = 0.083f;
-				}
-				if (player->picktexturetime > 5 && player->picktexturetime <= 10)	//
-				{
-					player->u = 0.827f;
-					player->uw = 0.09f;
-				}
-				if (player->picktexturetime > 10 && player->picktexturetime <= 15)	//
-				{
-					player->u = 0.735f;
-					player->uw = 0.092f;
-				}
-				if (player->picktexturetime > 15 && player->picktexturetime <= 20)	//
-				{
-					player->u = 0.643f;
-					player->uw = 0.092f;
-				}
-				if (player->picktexturetime > 20 && player->picktexturetime <= 25)	//
-				{
-					player->u = 0.55f;
-					player->uw = 0.093f;
-				}
-				if (player->picktexturetime > 25 && player->picktexturetime <= 30)	//
-				{
-					player->u = 0.456f;
-					player->uw = 0.094f;
-				}
-				if (player->picktexturetime > 30 && player->picktexturetime <= 35)	//
-				{
-					player->u = 0.389f;
-					player->uw = 0.067f;
-				}
-				if (player->picktexturetime > 35 && player->picktexturetime <= 40)	//
-				{
-					player->u = 0.322f;
-					player->uw = 0.067f;
-				}
-				if (player->picktexturetime > 40 && player->picktexturetime <= 45)	//
-				{
-					player->u = 0.255f;
-					player->uw = 0.067f;
-				}
-				if (player->picktexturetime > 45 && player->picktexturetime <= 50)	//
-				{
-					player->u = 0.188f;
-					player->uw = 0.065f;
-				}
-				if (player->picktexturetime > 50 && player->picktexturetime <= 55)	//
-				{
-					player->u = 0.126f;
-					player->uw = 0.065f;
-				}
-				if (player->picktexturetime > 55 && player->picktexturetime <= 60)	//
-				{
-					player->u = 0.061f;
-					player->uw = 0.065f;
-				}
-				if (player->picktexturetime > 60 && player->picktexturetime <= 65)	//
-				{
-					player->u = 0.0f;
-					player->uw = 0.061f;
-				}
-				if (player->picktexturetime > 65)
-				{
-					player->picktextureflag = false;
-				}
-			}
-		}
-	}
-	if (ball->playerhaveflag == false)
-	{
-		player->picktexturetime = 0.0f;
-		player->picktextureflag = false;
-	}
+	//if (ball->playerhaveflag == true)
+	//{
+	//	if (ball->fallflag == true)
+	//	{
+	//		player->picktexturetime = player->picktexturetime + 1.0f;
+	//		if (player->rotate == 3)		//右を向いていたら
+	//		{
+	//			player->v = 0.f;
+	//			player->vh = 1.f;
+	//			player->picktextureflag = true;
+	//			player->pickLRflag = false;
+	//			if (player->picktexturetime < 5)	//
+	//			{
+	//				player->u = 0.0f;
+	//				player->uw = 0.083f;
+	//			}
+	//			if (player->picktexturetime > 5 && player->picktexturetime <= 10)	//
+	//			{
+	//				player->u = 0.083f;
+	//				player->uw = 0.09f;
+	//			}
+	//			if (player->picktexturetime > 10 && player->picktexturetime <= 15)	//
+	//			{
+	//				player->u = 0.173f;
+	//				player->uw = 0.092f;
+	//			}
+	//			if (player->picktexturetime > 15 && player->picktexturetime <= 20)	//
+	//			{
+	//				player->u = 0.265f;
+	//				player->uw = 0.092f;
+	//			}
+	//			if (player->picktexturetime > 20 && player->picktexturetime <= 25)	//
+	//			{
+	//				player->u = 0.357f;
+	//				player->uw = 0.093f;
+	//			}
+	//			if (player->picktexturetime > 25 && player->picktexturetime <= 30)	//
+	//			{
+	//				player->u = 0.45f;
+	//				player->uw = 0.094f;
+	//			}
+	//			if (player->picktexturetime > 30 && player->picktexturetime <= 35)	//
+	//			{
+	//				player->u = 0.545f;
+	//				player->uw = 0.067f;
+	//			}
+	//			if (player->picktexturetime > 35 && player->picktexturetime <= 40)	//
+	//			{
+	//				player->u = 0.612f;
+	//				player->uw = 0.067f;
+	//			}
+	//			if (player->picktexturetime > 40 && player->picktexturetime <= 45)	//
+	//			{
+	//				player->u = 0.679f;
+	//				player->uw = 0.064f;
+	//			}
+	//			if (player->picktexturetime > 45 && player->picktexturetime <= 50)	//
+	//			{
+	//				player->u = 0.743f;
+	//				player->uw = 0.064f;
+	//			}
+	//			if (player->picktexturetime > 50 && player->picktexturetime <= 55)	//
+	//			{
+	//				player->u = 0.807f;
+	//				player->uw = 0.064f;
+	//			}
+	//			if (player->picktexturetime > 55 && player->picktexturetime <= 60)	//
+	//			{
+	//				player->u = 0.871f;
+	//				player->uw = 0.064f;
+	//			}
+	//			if (player->picktexturetime > 60 && player->picktexturetime <= 65)	//
+	//			{
+	//				player->u = 0.935f;
+	//				player->uw = 0.064f;
+	//			}
+	//			if (player->picktexturetime > 65)
+	//			{
+	//				player->picktextureflag = false;
+	//			}
+	//		}
+	//		if (player->rotate == 2)
+	//		{
+	//			player->v = 0.f;
+	//			player->vh = 1.f;
+	//			player->picktextureflag = true;
+	//			player->pickLRflag = true;
+	//			if (player->picktexturetime < 5)	//
+	//			{
+	//				player->u = 0.917f;
+	//				player->uw = 0.083f;
+	//			}
+	//			if (player->picktexturetime > 5 && player->picktexturetime <= 10)	//
+	//			{
+	//				player->u = 0.827f;
+	//				player->uw = 0.09f;
+	//			}
+	//			if (player->picktexturetime > 10 && player->picktexturetime <= 15)	//
+	//			{
+	//				player->u = 0.735f;
+	//				player->uw = 0.092f;
+	//			}
+	//			if (player->picktexturetime > 15 && player->picktexturetime <= 20)	//
+	//			{
+	//				player->u = 0.643f;
+	//				player->uw = 0.092f;
+	//			}
+	//			if (player->picktexturetime > 20 && player->picktexturetime <= 25)	//
+	//			{
+	//				player->u = 0.55f;
+	//				player->uw = 0.093f;
+	//			}
+	//			if (player->picktexturetime > 25 && player->picktexturetime <= 30)	//
+	//			{
+	//				player->u = 0.456f;
+	//				player->uw = 0.094f;
+	//			}
+	//			if (player->picktexturetime > 30 && player->picktexturetime <= 35)	//
+	//			{
+	//				player->u = 0.389f;
+	//				player->uw = 0.067f;
+	//			}
+	//			if (player->picktexturetime > 35 && player->picktexturetime <= 40)	//
+	//			{
+	//				player->u = 0.322f;
+	//				player->uw = 0.067f;
+	//			}
+	//			if (player->picktexturetime > 40 && player->picktexturetime <= 45)	//
+	//			{
+	//				player->u = 0.255f;
+	//				player->uw = 0.067f;
+	//			}
+	//			if (player->picktexturetime > 45 && player->picktexturetime <= 50)	//
+	//			{
+	//				player->u = 0.188f;
+	//				player->uw = 0.065f;
+	//			}
+	//			if (player->picktexturetime > 50 && player->picktexturetime <= 55)	//
+	//			{
+	//				player->u = 0.126f;
+	//				player->uw = 0.065f;
+	//			}
+	//			if (player->picktexturetime > 55 && player->picktexturetime <= 60)	//
+	//			{
+	//				player->u = 0.061f;
+	//				player->uw = 0.065f;
+	//			}
+	//			if (player->picktexturetime > 60 && player->picktexturetime <= 65)	//
+	//			{
+	//				player->u = 0.0f;
+	//				player->uw = 0.061f;
+	//			}
+	//			if (player->picktexturetime > 65)
+	//			{
+	//				player->picktextureflag = false;
+	//			}
+	//		}
+	//	}
+	//}
+	//if (ball->playerhaveflag == false)
+	//{
+	//	player->picktexturetime = 0.0f;
+	//	player->picktextureflag = false;
+	//}
 
 	//投げたとき
 	if (ball->playerthrowflag == true)

@@ -107,7 +107,60 @@ void firewall_animation()
 		firewall->walktexturetime = 0.0f;
 
 	//-----キャッチしたとき
-	//if()
+	if (firewall->catchtextureflag == true)
+	{
+		firewall->catchtexturetime = firewall->catchtexturetime + 1.0f;
+		if (firewall->rotate == 3)		//右を向いてたら
+		{
+			firewall->catchLRflag = false;
+			if (firewall->catchtexturetime < 10)
+			{
+				firewall->u = 0.59f;
+				firewall->uw = 0.41f;
+			}
+			if (firewall->catchtexturetime >= 10 && firewall->catchtexturetime < 20)
+			{
+				firewall->u = 0.28f;
+				firewall->uw = 0.3f;
+			}
+			if (firewall->catchtexturetime >= 20 && firewall->catchtexturetime < 30)
+			{
+				firewall->u = 0.f;
+				firewall->uw = 0.28f;
+			}
+			if (firewall->catchtexturetime >= 30)
+			{
+				firewall->catchtextureflag = false;
+				firewall->catchtexturetime = 0.0f;
+			}
+		}
+		if (firewall->rotate == 2)		//左を向いてたら
+		{
+			firewall->catchLRflag = true;
+			if (firewall->catchtexturetime < 10)
+			{
+				firewall->u = 0.0f;
+				firewall->uw = 0.28f;
+			}
+			if (firewall->catchtexturetime >= 10 && firewall->catchtexturetime < 20)
+			{
+				firewall->u = 0.28f;
+				firewall->uw = 0.3f;
+			}
+			if (firewall->catchtexturetime >= 20 && firewall->catchtexturetime < 30)
+			{
+				firewall->u = 0.59f;
+				firewall->uw = 0.41f;
+			}
+			if (firewall->catchtexturetime >= 30)
+			{
+				firewall->catchtextureflag = false;
+				firewall->catchtexturetime = 0.0f;
+			}
+		}
+	}
+	if (firewall->catchtextureflag == false)
+		firewall->catchtexturetime = 0.0f;
 
 	//-----死んだとき
 	if (firewall->drawflag == false)

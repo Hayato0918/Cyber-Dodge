@@ -71,6 +71,7 @@ void FireWallAI()
 			if (firewall->pos.y < ball->pos.y + ball->size.y && firewall->pos.y + firewall->size.y > ball->pos.y)
 			{
 				M_Catch();
+				
 			}
 		}
 	}
@@ -85,6 +86,7 @@ void FireWallAI()
 				ball->throwflag = false;
 				ball->enemyhaveflag = true;
 				ball->move = D3DXVECTOR2(ball->startmove.x, ball->startmove.y);
+				firewall->catchtextureflag = true;
 			}
 		}
 	}

@@ -42,7 +42,7 @@ HRESULT InitSlime(void)
 	if (map_player->enemypowerup == false)
 	{
 		slime.atk = 40 + (40 * map_player->floor * 0.1f);
-		slime.def = 0;
+		slime.def = 100000;
 	}
 
 	if (map_player->enemypowerup == true)
@@ -131,6 +131,13 @@ void UpdateSlime(void)
 		SlimeAI();
 	}
 
+
+	if (ball->playerhitflag == true)
+		slime.throwtextureflag = true;
+
+	if (slime.damagetextureflag == false)
+		slime.standtextureflag = true;
+
 	//-----アニメーション処理
 	slime_animation();
 
@@ -141,6 +148,7 @@ void UpdateSlime(void)
 		{
 			if (slime.pos.y < ball->pos.y + ball->size.y && slime.pos.y + slime.size.y > ball->pos.y)
 			{
+				slime.damagetextureflag = true;
 				slime_hp->gaugesize.x = slime_hp->gaugesize.x - (player->atk - slime.def) * SCREEN_WIDTH * 0.002f;
 				ball->enemyhitflag = false;
 			}
@@ -227,33 +235,39 @@ void DrawSlime(void)
 {
 	if (slime.drawflag == true)
 	{
-		//止まってるとき && (右向いてるとき || 左向いてるとき)
-		if (slime.walktextureflag == false && slime.standLRflag == false)
-			DrawSpriteLeftTop(slime.stand_Ltexture, slime.pos.x, slime.pos.y,
-				slime.size.x, slime.size.y, slime.u, slime.v, slime.uw, slime.vh);
-		if (slime.walktextureflag == false && slime.standLRflag == true)
-			DrawSpriteLeftTop(slime.stand_Rtexture, slime.pos.x, slime.pos.y,
-				slime.size.x, slime.size.y, slime.u, slime.v, slime.uw, slime.vh);
-
-		//動いてるとき && (右向いてるとき || 左向いてるとき)
-		if (slime.walktextureflag == true && slime.walkLRflag == false)
-			DrawSpriteLeftTop(slime.walk_Ltexture, slime.pos.x, slime.pos.y,
-				slime.size.x, slime.size.y, slime.u, slime.v, slime.uw, slime.vh);
-		if (slime.walktextureflag == true && slime.walkLRflag == true)
-			DrawSpriteLeftTop(slime.walk_Rtexture, slime.pos.x, slime.pos.y,
-				slime.size.x, slime.size.y, slime.u, slime.v, slime.uw, slime.vh);
-
-		//投げたとき && ((右向いてるとき || 左向いてるとき))
-		if (slime.throwtextureflag == true && slime.throwLRflag == false)
-			DrawSpriteLeftTop(slime.damage_Ltexture, slime.pos.x, slime.pos.y, slime.size.x, slime.size.y, slime.u, slime.v, slime.uw, slime.vh);
-		if (slime.throwtextureflag == true && slime.throwLRflag == true)
-			DrawSpriteLeftTop(slime.damage_Rtexture, slime.pos.x, slime.pos.y, slime.size.x, slime.size.y, slime.u, slime.v, slime.uw, slime.vh);
-
-		//投げたとき && ((右向いてるとき || 左向いてるとき))
+		//ダメージとき && ((右向いてるとき || 左向いてるとき))
 		if (slime.damagetextureflag == true && slime.damageLRflag == false)
 			DrawSpriteLeftTop(slime.damage_Ltexture, slime.pos.x, slime.pos.y, slime.size.x, slime.size.y, slime.u, slime.v, slime.uw, slime.vh);
 		if (slime.damagetextureflag == true && slime.damageLRflag == true)
 			DrawSpriteLeftTop(slime.damage_Rtexture, slime.pos.x, slime.pos.y, slime.size.x, slime.size.y, slime.u, slime.v, slime.uw, slime.vh);
+
+		if (slime.damagetextureflag == false)
+		{
+			//投げたとき && ((右向いてるとき || 左向いてるとき))
+			if (slime.throwtextureflag == true && slime.throwLRflag == false)
+				DrawSpriteLeftTop(slime.throw_Ltexture, slime.pos.x, slime.pos.y, slime.size.x, slime.size.y, slime.u, slime.v, slime.uw, slime.vh);
+			if (slime.throwtextureflag == true && slime.throwLRflag == true)
+				DrawSpriteLeftTop(slime.throw_Rtexture, slime.pos.x, slime.pos.y, slime.size.x, slime.size.y, slime.u, slime.v, slime.uw, slime.vh);
+
+			if (slime.throwtextureflag == false)
+			{
+				//止まってるとき && (右向いてるとき || 左向いてるとき)
+				if (slime.walktextureflag == false && slime.standLRflag == false)
+					DrawSpriteLeftTop(slime.stand_Ltexture, slime.pos.x, slime.pos.y,
+						slime.size.x, slime.size.y, slime.u, slime.v, slime.uw, slime.vh);
+				if (slime.walktextureflag == false && slime.standLRflag == true)
+					DrawSpriteLeftTop(slime.stand_Rtexture, slime.pos.x, slime.pos.y,
+						slime.size.x, slime.size.y, slime.u, slime.v, slime.uw, slime.vh);
+
+				//動いてるとき && (右向いてるとき || 左向いてるとき)
+				if (slime.walktextureflag == true && slime.walkLRflag == false)
+					DrawSpriteLeftTop(slime.walk_Ltexture, slime.pos.x, slime.pos.y,
+						slime.size.x, slime.size.y, slime.u, slime.v, slime.uw, slime.vh);
+				if (slime.walktextureflag == true && slime.walkLRflag == true)
+					DrawSpriteLeftTop(slime.walk_Rtexture, slime.pos.x, slime.pos.y,
+						slime.size.x, slime.size.y, slime.u, slime.v, slime.uw, slime.vh);
+			}
+		}
 	}
 
 

@@ -3505,7 +3505,6 @@ void UpdateMapPlayer(void)
 						map_player.encount = (rand() % 2) + 1;	//ここで出現する敵をランダムに決める
 						if (tutorial->tutorialflag == false)
 							map_player.encount = 1;	//ここで出現する敵をランダムに決める
-						map_player.encount = 1;	//ここで出現する敵をランダムに決める
 						map_player.enemypowerup = false;
 						SceneTransition(SCENE_GAME);
 					}
@@ -3521,7 +3520,6 @@ void UpdateMapPlayer(void)
 					if (map[map_player.nowpos - 1].randomcode == 4)	//イベントマス
 					{
 						map_player.eventcode = (rand() % 9) + 1;	//ここでイベントをランダムに決める
-						map_player.eventcode = 7;	//ここでイベントをランダムに決める
 						SceneTransition(SCENE_EVENT);
 					}
 					if (map[map_player.nowpos - 1].randomcode == 5)	//商人マス

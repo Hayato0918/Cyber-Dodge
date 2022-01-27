@@ -437,6 +437,7 @@ void P_Throw(void)
 			ball.playerthrowflag = true;
 			ball.enemyhitflag = true;
 			ball.throwflag = true;
+			player->catchtextureflag = true;
 
 			//プレイヤーがスキル：オートキャッチ使用中に投げた場合の吸い寄せ防止
 			if (auto_c->timeflag_2 == true)
@@ -470,6 +471,7 @@ void P_Throw(void)
 			ball.playerthrowflag = true;
 			ball.enemyhitflag = true;
 			ball.throwflag = true;
+			player->catchtextureflag = true;
 		}
 
 

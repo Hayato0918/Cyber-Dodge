@@ -60,6 +60,12 @@ HRESULT InitFireWall(void)
 	firewall.walkLRflag = false;
 	firewall.walktexturetime = 0.0f;
 
+	firewall.catch_Ltexture = LoadTexture("data/TEXTURE/enemy/firewall/catch/catch_R.png");
+	firewall.catch_Rtexture = LoadTexture("data/TEXTURE/enemy/firewall/catch/catch_L.png");
+	firewall.catchtextureflag = false;
+	firewall.catchLRflag = false;
+	firewall.catchtexturetime = 0.0f;
+
 	firewall.throw_Ltexture = LoadTexture("data/TEXTURE/enemy/firewall/throw/throw_R.png");
 	firewall.throw_Rtexture = LoadTexture("data/TEXTURE/enemy/firewall/throw/throw_L.png");
 	firewall.throwtextureflag = false;
@@ -211,21 +217,32 @@ void DrawFireWall(void)
 {
 	if (firewall.drawflag == true)
 	{
-		//止まってるとき && (右向いてるとき || 左向いてるとき)
-		if (firewall.walktextureflag == false && firewall.standLRflag == false)
-			DrawSpriteLeftTop(firewall.stand_Ltexture, firewall.pos.x, firewall.pos.y, 
-								firewall.size.x, firewall.size.y, firewall.u, firewall.v, firewall.uw, firewall.vh);
-		if (firewall.walktextureflag == false && firewall.standLRflag == true)
-			DrawSpriteLeftTop(firewall.stand_Rtexture, firewall.pos.x, firewall.pos.y, 
-								firewall.size.x, firewall.size.y, firewall.u, firewall.v, firewall.uw, firewall.vh);
+		if (firewall.catchtextureflag == false)
+		{
+			//止まってるとき && (右向いてるとき || 左向いてるとき)
+			if (firewall.walktextureflag == false && firewall.standLRflag == false)
+				DrawSpriteLeftTop(firewall.stand_Ltexture, firewall.pos.x, firewall.pos.y,
+					firewall.size.x, firewall.size.y, firewall.u, firewall.v, firewall.uw, firewall.vh);
+			if (firewall.walktextureflag == false && firewall.standLRflag == true)
+				DrawSpriteLeftTop(firewall.stand_Rtexture, firewall.pos.x, firewall.pos.y,
+					firewall.size.x, firewall.size.y, firewall.u, firewall.v, firewall.uw, firewall.vh);
 
-		//動いてるとき && (右向いてるとき || 左向いてるとき)
-		if (firewall.walktextureflag == true && firewall.walkLRflag == false)
-			DrawSpriteLeftTop(firewall.walk_Ltexture, firewall.pos.x, firewall.pos.y, 
-								firewall.size.x, firewall.size.y, firewall.u, firewall.v, firewall.uw, firewall.vh);
-		if (firewall.walktextureflag == true && firewall.walkLRflag == true)
-			DrawSpriteLeftTop(firewall.walk_Rtexture, firewall.pos.x, firewall.pos.y, 
-								firewall.size.x, firewall.size.y, firewall.u, firewall.v, firewall.uw, firewall.vh);
+			//動いてるとき && (右向いてるとき || 左向いてるとき)
+			if (firewall.walktextureflag == true && firewall.walkLRflag == false)
+				DrawSpriteLeftTop(firewall.walk_Ltexture, firewall.pos.x, firewall.pos.y,
+					firewall.size.x, firewall.size.y, firewall.u, firewall.v, firewall.uw, firewall.vh);
+			if (firewall.walktextureflag == true && firewall.walkLRflag == true)
+				DrawSpriteLeftTop(firewall.walk_Rtexture, firewall.pos.x, firewall.pos.y,
+					firewall.size.x, firewall.size.y, firewall.u, firewall.v, firewall.uw, firewall.vh);
+		}
+
+		//キャッチしたとき && (右向いてるとき || 左向いてるとき)
+		if (firewall.catchtextureflag == true && firewall.catchLRflag == false)
+			DrawSpriteLeftTop(firewall.catch_Ltexture, firewall.pos.x, firewall.pos.y,
+				firewall.size.x, firewall.size.y, firewall.u, firewall.v, firewall.uw, firewall.vh);
+		if (firewall.catchtextureflag == true && firewall.catchLRflag == true)
+			DrawSpriteLeftTop(firewall.catch_Rtexture, firewall.pos.x, firewall.pos.y,
+				firewall.size.x, firewall.size.y, firewall.u, firewall.v, firewall.uw, firewall.vh);
 	}
 
 	//死んだとき

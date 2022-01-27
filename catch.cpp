@@ -117,10 +117,10 @@ void UpdateCatch(void)
 //-----描画処理
 void DrawCatch(void)
 {
-	if(Catch.playerflag == true)
-		DrawSpriteColor(Catch.texture, Catch.playerpos.x, Catch.playerpos.y, Catch.playersize.x, Catch.playersize.y, 0.0f, 0.0f, 1.0f, 1.0f, Catch.color);
-	if(Catch.enemyflag == 1)
-		DrawSpriteColor(Catch.texture, Catch.enemypos.x, Catch.enemypos.y, Catch.enemysize.x, Catch.enemysize.y, 0.0f, 0.0f, 1.0f, 1.0f, Catch.color);
+	//if(Catch.playerflag == true)
+	//	DrawSpriteColor(Catch.texture, Catch.playerpos.x, Catch.playerpos.y, Catch.playersize.x, Catch.playersize.y, 0.0f, 0.0f, 1.0f, 1.0f, Catch.color);
+	//if(Catch.enemyflag == 1)
+	//	DrawSpriteColor(Catch.texture, Catch.enemypos.x, Catch.enemypos.y, Catch.enemysize.x, Catch.enemysize.y, 0.0f, 0.0f, 1.0f, 1.0f, Catch.color);
 }
 
 //-----プレイヤーのキャッチ処理
