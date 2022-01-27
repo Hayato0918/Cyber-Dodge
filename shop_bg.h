@@ -9,6 +9,7 @@ typedef struct
 	D3DXVECTOR2 pos;
 	D3DXVECTOR2 size;
 	int texture;
+	int sound;
 }SHOP_BG;
 
 HRESULT InitShopBg(void);

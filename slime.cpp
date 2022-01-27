@@ -42,7 +42,7 @@ HRESULT InitSlime(void)
 	if (map_player->enemypowerup == false)
 	{
 		slime.atk = 40 + (40 * map_player->floor * 0.1f);
-		slime.def = 100000;
+		slime.def = 0;
 	}
 
 	if (map_player->enemypowerup == true)

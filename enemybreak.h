@@ -10,6 +10,8 @@ typedef struct
 	int texture;
 
 	bool drawflag;
+	int sound;
+	bool soundonce;
 }ENEMYBREAK;
 
 typedef struct

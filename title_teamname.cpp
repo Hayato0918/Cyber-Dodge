@@ -4,6 +4,8 @@
 #include "texture.h"
 #include "sprite.h"
 #include "fade.h"
+#include <time.h>
+#include "sound.h"
 
 #include "map_point.h"
 
@@ -26,6 +28,23 @@ HRESULT InitTitleTeamName(void)
 
 	title_teamname.timeflag = false;
 
+	title_teamname.callrandom = (rand() % 6) + 1;
+
+	if (title_teamname.callrandom == 1)
+		title_teamname.call = LoadSound("data/titlecall/benadasu.wav");
+	if (title_teamname.callrandom == 2)
+		title_teamname.call = LoadSound("data/titlecall/koyanagi.wav");
+	if (title_teamname.callrandom == 3)
+		title_teamname.call = LoadSound("data/titlecall/matsubara.wav");
+	if (title_teamname.callrandom == 4)
+		title_teamname.call = LoadSound("data/titlecall/tominaga.wav");
+	if (title_teamname.callrandom == 5)
+		title_teamname.call = LoadSound("data/titlecall/yanagi.wav");
+	if (title_teamname.callrandom == 6)
+		title_teamname.call = LoadSound("data/titlecall/hodono.wav");
+
+
+	PlaySound(title_teamname.call, 0.5f);
 
 	return S_OK;
 }
@@ -39,6 +58,8 @@ void UninitTitleTeamName(void)
 //-----çXêVèàóù
 void UpdateTitleTeamName(void)
 {
+	srand((unsigned int)time(NULL));
+
 	if(title_teamname.timeflag == false)
 	title_teamname.time = title_teamname.time + 1.0f;
 

@@ -48,7 +48,7 @@ void _NotCatch(void)
 	{
 		notCatch.timeflag = false;
 		notCatch.time = 0.0f;
-
+		bugrandom->code = (rand() % bugrandom->num) + 1;
 		notCatch.use = false;
 	}
 }

@@ -7,7 +7,7 @@
 //-----構造体
 typedef struct
 {
-	bool use;	//スキルを使用したかを管理するフラグ
+	int use;	//スキルを使用したかを管理するフラグ
 
 	//作業用変数
 	float b_x;//出発点
@@ -17,6 +17,7 @@ typedef struct
 	float a;
 	int n;
 	bool n_flag;
+	bool n_flag_2;
 
 	int usegauge;	//バグゲージの上昇量
 	bool bugincrease;

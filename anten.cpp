@@ -45,6 +45,7 @@ void _Anten(void)
 	{
 		anten.use = false;
 		anten.drawflag = false;
+		bugrandom->code = (rand() % bugrandom->num) + 1;
 	}
 }
 

@@ -5,6 +5,7 @@
 #include "sprite.h"
 #include "input.h"
 #include "fade.h"
+#include "sound.h"
 
 SHOP_BG shop_bg;
 
@@ -13,13 +14,16 @@ HRESULT InitShopBg()
 	shop_bg.pos = D3DXVECTOR2(0.0f, 0.0f);
 	shop_bg.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
 	shop_bg.texture = LoadTexture("data/TEXTURE/test/black.png");
+	shop_bg.sound = LoadSound("data/BGM/shopBGM.wav");
+
+	PlaySound(shop_bg.sound, -1);
 
 	return S_OK;
 }
 
 void UninitShopBg()
 {
-
+	StopSoundAll();
 }
 
 void UpdateShopBg()

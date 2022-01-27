@@ -7,7 +7,7 @@
 
 ==============================================================================*/
 #include "renderer.h"
-
+#include "windowsize_select.h"
 
 
 //*********************************************************
@@ -234,7 +234,7 @@ void SetMaterial( MATERIAL Material )
 }
 
 
-
+DXGI_SWAP_CHAIN_DESC sd;
 //=============================================================================
 // 初期化処理
 //=============================================================================
@@ -243,7 +243,6 @@ HRESULT InitRenderer(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 	HRESULT hr = S_OK;
 
 	// デバイス、スワップチェーン、コンテキスト生成
-	DXGI_SWAP_CHAIN_DESC sd;
 	ZeroMemory( &sd, sizeof( sd ) );
 	sd.BufferCount = 1;
 	sd.BufferDesc.Width = SCREEN_WIDTH;
@@ -256,6 +255,8 @@ HRESULT InitRenderer(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 	sd.SampleDesc.Count = 1;
 	sd.SampleDesc.Quality = 0;
 	sd.Windowed = TRUE;
+
+
 
 	hr = D3D11CreateDeviceAndSwapChain( NULL,
 										D3D_DRIVER_TYPE_HARDWARE,
@@ -568,3 +569,7 @@ void Present(void)
 	g_SwapChain->Present( 0, 0 );
 }
 
+DXGI_SWAP_CHAIN_DESC* GetFullScreen()
+{
+	return &sd;
+}

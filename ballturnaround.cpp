@@ -23,7 +23,7 @@ float DeclBulletMove = 0.01f;	//’ÇÕ‚Ì‘¬‚³’²®
 //-----‰Šú‰»ˆ—
 HRESULT InitBallTurnAround(void)
 {
-	ballturnaround.use = false;
+	ballturnaround.use = 0;
 
 	ballturnaround.b_x = 0.0f;
 	ballturnaround.b_y = 0.0f;
@@ -32,6 +32,7 @@ HRESULT InitBallTurnAround(void)
 	ballturnaround.a = 0.0f;
 	ballturnaround.n = 0;
 	ballturnaround.n_flag = false;
+	ballturnaround.n_flag_2 = false;
 
 	ballturnaround.usegauge = 30;
 
@@ -49,14 +50,13 @@ void _BallTurnAround(void)
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();
-	SKILL* skill = GetSkill();
 
 	//-----ƒ{[ƒ‹‚ª“G‚ÖŒü‚©‚Á‚Ä‚¢‚­
 	for (int i = 0; i < SKILL_NUM; i++)
 	{
-		if (random[i].code == 2 && random[i].active == true && ballturnaround.use == false)
+		if (random[i].code == 2 && random[i].active == true && ballturnaround.use == 0)
 		{
-			ballturnaround.use = true;
+			ballturnaround.use = 1;
 			ballturnaround.b_x = 0.0f;
 			ballturnaround.b_y = 0.0f;
 			ballturnaround.f_x = 0.0f;
@@ -64,6 +64,7 @@ void _BallTurnAround(void)
 			ballturnaround.a = 0.0f;
 			ballturnaround.n = 0;
 			ballturnaround.n_flag = false;
+			ballturnaround.n_flag_2 = false;
 
 			random[i].active = false;
 
@@ -98,48 +99,6 @@ void _BallTurnAround(void)
 			}
 		}
 	}
-
-	if (PADUSE == 0)
-	{
-		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && ballturnaround.use == true)
-		{
-			ballturnaround.use = false;
-
-			ballturnaround.b_x = 0.0f;
-			ballturnaround.b_y = 0.0f;
-			ballturnaround.f_x = 0.0f;
-			ballturnaround.f_y = 0.0f;
-			ballturnaround.a = 0.0f;
-			ballturnaround.n = 0;
-			ballturnaround.n_flag = false;
-
-			ballturnaround.usegauge = 30;
-
-			ballturnaround.bugincrease = false;
-			ballturnaround.bugdrawnum = 0;
-		}
-
-	}
-	if (PADUSE == 1)
-	{
-		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && ballturnaround.use == true)
-		{
-			ballturnaround.use = false;
-
-			ballturnaround.b_x = 0.0f;
-			ballturnaround.b_y = 0.0f;
-			ballturnaround.f_x = 0.0f;
-			ballturnaround.f_y = 0.0f;
-			ballturnaround.a = 0.0f;
-			ballturnaround.n = 0;
-			ballturnaround.n_flag = false;
-
-			ballturnaround.usegauge = 30;
-
-			ballturnaround.bugincrease = false;
-			ballturnaround.bugdrawnum = 0;
-		}
-	}
 }
 
 BALLTURNAROUND* GetBallTurnAround(void)
@@ -162,6 +121,7 @@ void SetBallTurnAround(void)
 	ballturnaround.f_y = fw->pos.y + fw->size.y / 2;
 	if (ballturnaround.b_y - ballturnaround.f_y < 0)
 	{
+		ballturnaround.n_flag_2 = true;
 		ballturnaround.f_y -= 100.0f + fw->size.y / 2;
 	}
 	else
@@ -189,7 +149,7 @@ void SetBallTurnAround_2(void)
 	FIREWALL* fw = GetFireWall();
 
 	ballturnaround.b_x = ballturnaround.f_x + 250.0f;
-	if (ballturnaround.n_flag)
+	if (ballturnaround.n_flag_2)
 	{
 		ballturnaround.b_y = ballturnaround.f_y + 50.0f;
 	}

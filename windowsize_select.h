@@ -14,6 +14,8 @@ typedef struct
 
 	int x;
 	int y;
+
+	bool fullscreenflag;
 }WINDOWSIZE_SELECT;
 
 //-----プロトタイプ宣言

@@ -34,7 +34,10 @@ void _Reverse(void)
 
 	//バグゲージが50より小さくなったら操作をもとに戻す
 	if (bug->breakflag == false && reverse.use == true)
+	{
 		reverse.use = false;
+		bugrandom->code = (rand() % bugrandom->num) + 1;
+	}
 
 }
 

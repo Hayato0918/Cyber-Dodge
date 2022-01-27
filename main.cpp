@@ -115,13 +115,11 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	// ウインドウの表示(Init()の後に呼ばないと駄目)
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
-	
+
 	// メッセージループ
 	while(1)
 	{
-		//UpdateWindowSizeSelect();
-
-		SetWindowPos(hWnd, NULL, 0, 0, widnowsize_select->x, widnowsize_select->y, SWP_NOMOVE | SWP_NOZORDER);
+		SetWindowPos(hWnd, NULL, 0, 0, widnowsize_select->x, widnowsize_select->y, SWP_NOMOVE | SWP_NOZORDER | SWP_FRAMECHANGED | SWP_SHOWWINDOW);
 
 		if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
@@ -228,7 +226,7 @@ HRESULT Init(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 
 	//シーンの初期化（タイトルからスタート）
 	SetFadeColor(0.0f, 0.0f, 0.0f);
-	SceneFadeIn(SCENE_MAP);
+	SceneFadeIn(SCENE_TITLE);
 
 	return S_OK;
 }

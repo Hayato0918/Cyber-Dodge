@@ -15,6 +15,8 @@ typedef struct
 
 	bool timeflag;
 
+	int call;
+	int callrandom;
 }TITLE_TEAMNAME;
 
 //-----プロトタイプ宣言

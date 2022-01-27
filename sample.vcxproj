@@ -266,6 +266,7 @@
     <ClCompile Include="soundvolume_select.cpp" />
     <ClCompile Include="tutorial.cpp" />
     <ClCompile Include="tutorial_map.cpp" />
+    <ClCompile Include="venom.cpp" />
     <ClCompile Include="warp.cpp" />
     <ClCompile Include="windowsize.cpp" />
     <ClCompile Include="windowsize_bg.cpp" />
@@ -285,6 +286,7 @@
     <ClInclude Include="enemybreak.h" />
     <ClInclude Include="enemy_aura.h" />
     <ClInclude Include="floatingfeeling.h" />
+    <ClInclude Include="fullscreen.h" />
     <ClInclude Include="gameover_F.h" />
     <ClInclude Include="gameover_score.h" />
     <ClInclude Include="hackeffect.h" />
@@ -415,6 +417,7 @@
     <ClInclude Include="tosyokann.h" />
     <ClInclude Include="tutorial.h" />
     <ClInclude Include="tutorial_map.h" />
+    <ClInclude Include="venom.h" />
     <ClInclude Include="warp.h" />
     <ClInclude Include="windowsize.h" />
     <ClInclude Include="windowsize_bg.h" />

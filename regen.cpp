@@ -71,6 +71,7 @@ void _Regen(void)
 
 	if (bug->breakflag == false && regen.use == true)
 	{
+		bugrandom->code = (rand() % bugrandom->num) + 1;
 		regen.timeflag = false;
 		regen.time = 0.0f;
 		regen.use = false;

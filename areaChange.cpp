@@ -85,6 +85,7 @@ void _AreaChange(void)
 	//40•bŒã‚É‚à‚Æ‚É–ß‚é
 	if (bug->breakflag == false && areaChange.use == true)
 	{
+		bugrandom->code = (rand() % bugrandom->num) + 1;
 		areaChange.timeflag = false;
 		areaChange.time = 0;
 		areaChange.counttime = 0;

@@ -10,7 +10,6 @@
 
 #include "main.h"
 
-
 //*********************************************************
 // É}ÉNÉçíËã`
 //*********************************************************
@@ -101,3 +100,5 @@ void SetWorldMatrix( D3DXMATRIX *WorldMatrix );
 void SetViewMatrix( D3DXMATRIX *ViewMatrix );
 void SetProjectionMatrix( D3DXMATRIX *ProjectionMatrix );
 void SetMaterial(MATERIAL Material);
+
+DXGI_SWAP_CHAIN_DESC* GetFullScreen();

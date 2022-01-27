@@ -31,6 +31,8 @@ int enemybreaktexture;
 HRESULT InitEnemyBreak(void)
 {
 	enemybreaktexture = LoadTexture("data/TEXTURE/skill/skill.png");
+	enemybreak.sound = LoadSound("data/SE/win.wav");
+	enemybreak.soundonce = false;
 
 	MAP_PLAYER* map_player = GetMapPlayer();
 
@@ -88,6 +90,7 @@ void UpdateEnemyBreak(void)
 	BUG* bug = GetBugIncrease();
 
 	srand((unsigned int)time(NULL));
+
 
 	if (PADUSE == 0)
 	{

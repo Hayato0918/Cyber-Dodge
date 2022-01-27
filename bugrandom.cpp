@@ -16,11 +16,9 @@ BUGRANDOM bugrandom;
 //-----初期化処理
 HRESULT InitBugRandom(void)
 {
-	bugrandom.num = 7;		//スキルの総数
+	bugrandom.num = 8;		//スキルの総数
 
 	bugrandom.code = (rand() % bugrandom.num) + 1;
-
-	bugrandom.code = 1;
 
 	return S_OK;
 }

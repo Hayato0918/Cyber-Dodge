@@ -2,6 +2,7 @@
 #include "windowsize_select.h"
 //ÉVÉXÉeÉÄ.h
 #include "texture.h"
+#include "renderer.h"
 #include "sprite.h"
 #include "input.h"
 #include "sound.h"
@@ -19,6 +20,7 @@ HRESULT InitWindowSizeSelect(void)
 
 	windowsize_select.x = 1600;
 	windowsize_select.y = 900;
+	windowsize_select.fullscreenflag = false;
 
 	return S_OK;
 }
@@ -41,6 +43,10 @@ void UpdateWindowSizeSelect(void)
 		{
 			windowsize_select.pos.y += 100;	//1600:900Å®500
 			windowsize_select.count += 1;
+		}
+		if (IsButtonTriggered(0, BUTTON_Y) && windowsize_select.count == 0)
+		{
+			windowsize_select.fullscreenflag = false;
 		}
 		if (IsButtonTriggered(0, BUTTON_Y) && windowsize_select.count == 1)
 		{

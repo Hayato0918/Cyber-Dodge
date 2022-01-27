@@ -66,7 +66,7 @@ void _Create(void)
 		{
 			create[i].timeflag = false;
 			create[i].time = 0.0f;
-
+			bugrandom->code = (rand() % bugrandom->num) + 1;
 			create[i].use = false;
 		}
 	}
