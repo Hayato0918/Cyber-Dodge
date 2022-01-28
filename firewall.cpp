@@ -18,7 +18,7 @@
 #include "map_player.h"
 #include "enemybreak.h"
 #include "enemy_explosion_animation.h"
-
+#include "enemy_aura.h"
 //-----マクロ定義
 
 //-----プロトタイプ宣言
@@ -93,6 +93,7 @@ void UpdateFireWall(void)
 	MAP_PLAYER* map_player = GetMapPlayer();
 	ENEMYBREAK* enemybreak = GetEnemyBreak();
 	ENEMY_EXPLOSION* enemy_explosion = GetEnemyExplosion();
+	ENEMY_AURA* enemy_aura = GetEnemyAura();
 
 	if (firewall.drawflag == true)
 		FireWallAI();
@@ -131,6 +132,7 @@ void UpdateFireWall(void)
 	//HPが0になったらmapへ移動する
 	if (firewall_hp->gaugesize.x <= 0)
 	{
+		enemy_aura->drawflag = false;
 		//enemy_explosion
 		enemy_explosion->drawflag = true;
 

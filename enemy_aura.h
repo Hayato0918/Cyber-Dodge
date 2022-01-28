@@ -10,6 +10,7 @@ typedef struct
 	int texture;
 	float u;
 	float animetime;
+	bool  drawflag;
 }ENEMY_AURA;
 
 //-----プロトタイプ宣言
@@ -17,3 +18,5 @@ HRESULT InitEnemyAura(void);
 void UninitEnemyAura(void);
 void UpdateEnemyAura(void);
 void DrawEnemyAura(void);
+
+ENEMY_AURA* GetEnemyAura();

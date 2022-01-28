@@ -18,7 +18,7 @@
 #include "map_player.h"
 #include "enemybreak.h"
 #include "enemy_explosion_animation.h"
-
+#include "enemy_aura.h"
 //-----マクロ定義
 
 //-----プロトタイプ宣言
@@ -102,6 +102,7 @@ void UpdateDeleter(void)
 	MAP_PLAYER* map_player = GetMapPlayer();
 	ENEMYBREAK* enemybreak = GetEnemyBreak();
 	ENEMY_EXPLOSION* enemy_explosion = GetEnemyExplosion();
+	ENEMY_AURA* enemy_aura = GetEnemyAura();
 
 	if (deleter.drawflag == true)
 		DeleterAI();
@@ -139,6 +140,7 @@ void UpdateDeleter(void)
 	//HPが0になったらmapへ移動する
 	if (deleter_hp->gaugesize.x <= 0)
 	{
+		enemy_aura->drawflag = false;
 		enemy_explosion->drawflag = true;
 
 		if (enemy_explosion->animeflag == true)
