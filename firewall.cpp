@@ -123,14 +123,22 @@ void UpdateFireWall(void)
 		}
 	}
 
-	if (GetKeyboardPress(DIK_Z))
+	/*if (GetKeyboardPress(DIK_Z))
 	{
 		firewall_hp->gaugesize.x = 0.0f;
-	}
+	}*/
 
 	//HPが0になったらmapへ移動する
 	if (firewall_hp->gaugesize.x <= 0)
 	{
+		//enemy_explosion
+		enemy_explosion->drawflag = true;
+
+		if (enemy_explosion->animeflag == true)
+		{
+			enemybreak->drawflag = true;
+		}
+
 		firewall.drawflag = false;
 		if (firewall.getskill == false)
 		{
@@ -145,12 +153,7 @@ void UpdateFireWall(void)
 			firewall.floorflag = true;
 		}
 
-		enemy_explosion->drawflag = true;
-
-		if (enemy_explosion->animeflag == true)
-		{
-			enemybreak->drawflag = true;
-		}
+		
 	}
 
 	//-----アニメーション処理

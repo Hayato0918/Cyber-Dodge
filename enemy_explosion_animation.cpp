@@ -49,17 +49,17 @@ void UpdateEnemyExplosion(void)
 
 		if (map_player->encount == 1)
 		{
-			enemy_explosion.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.355555f);
+			enemy_explosion.pos = D3DXVECTOR2(slime->pos.x - 25.f, slime->pos.y - 25.f);
 			enemy_explosion.size = D3DXVECTOR2(300.0f, 300.0f);
 		}
 		if (map_player->encount == 2)
 		{
-			enemy_explosion.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.355555f);
+			enemy_explosion.pos = D3DXVECTOR2(deleter->pos.x - 25.f, deleter->pos.y - 25.f);
 			enemy_explosion.size = D3DXVECTOR2(300.0f, 300.0f);
 		}
 		if (map_player->encount == 3)
 		{
-			enemy_explosion.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.355555f);
+			enemy_explosion.pos = D3DXVECTOR2(firewall->pos.x - 25.f, firewall->pos.y - 25.f);
 			enemy_explosion.size = D3DXVECTOR2(300.0f, 300.0f);
 		}
 
@@ -69,48 +69,54 @@ void UpdateEnemyExplosion(void)
 		if (enemy_explosion.animetime >= 0.f && enemy_explosion.animetime < 8.f)
 			enemy_explosion.u = 0.f;
 		//
-		if (enemy_explosion.animetime >= 0.f && enemy_explosion.animetime < 16.f)
-			enemy_explosion.u = 0.05f;
-		if (enemy_explosion.animetime >= 0.f && enemy_explosion.animetime < 24.f)
-			enemy_explosion.u = 0.10f;
-		if (enemy_explosion.animetime >= 0.f && enemy_explosion.animetime < 32.f)
-			enemy_explosion.u = 0.15f;
-		if (enemy_explosion.animetime >= 0.f && enemy_explosion.animetime < 40.f)
-			enemy_explosion.u = 0.20f;
-		if (enemy_explosion.animetime >= 0.f && enemy_explosion.animetime < 48.f)
-			enemy_explosion.u = 0.25f;
-		if (enemy_explosion.animetime >= 0.f && enemy_explosion.animetime < 56.f)
-			enemy_explosion.u = 0.30f;
-		if (enemy_explosion.animetime >= 0.f && enemy_explosion.animetime < 64.f)
-			enemy_explosion.u = 0.35f;
-		if (enemy_explosion.animetime >= 0.f && enemy_explosion.animetime < 72.f)
-			enemy_explosion.u = 0.40f;
-		if (enemy_explosion.animetime >= 0.f && enemy_explosion.animetime < 80.f)
-			enemy_explosion.u = 0.45f;
-		if (enemy_explosion.animetime >= 0.f && enemy_explosion.animetime < 88.f)
-			enemy_explosion.u = 0.50f;
-		if (enemy_explosion.animetime >= 0.f && enemy_explosion.animetime < 96.f)
-			enemy_explosion.u = 0.55f;
-		if (enemy_explosion.animetime >= 0.f && enemy_explosion.animetime < 104.f)
-			enemy_explosion.u = 0.60f;
-		if (enemy_explosion.animetime >= 0.f && enemy_explosion.animetime < 112.f)
-			enemy_explosion.u = 0.65f;
-		if (enemy_explosion.animetime >= 0.f && enemy_explosion.animetime < 120.f)
-			enemy_explosion.u = 0.70f;
-		if (enemy_explosion.animetime >= 0.f && enemy_explosion.animetime < 128.f)
-			enemy_explosion.u = 0.75f;
-		if (enemy_explosion.animetime >= 0.f && enemy_explosion.animetime < 136.f)
-			enemy_explosion.u = 0.80f;
-		if (enemy_explosion.animetime >= 0.f && enemy_explosion.animetime < 144.f)
-			enemy_explosion.u = 0.85f;
-		if (enemy_explosion.animetime >= 0.f && enemy_explosion.animetime < 152.f)
-			enemy_explosion.u = 0.90f;
-		if (enemy_explosion.animetime >= 0.f && enemy_explosion.animetime < 160.f)
-			enemy_explosion.u = 0.95f;
-		if (enemy_explosion.animetime >= 0.f && enemy_explosion.animetime < 168.f)
-			enemy_explosion.u = 0.99f;
+		if (enemy_explosion.animetime >= 8.f && enemy_explosion.animetime < 16.f)
+			enemy_explosion.u = 0.0417f;
+		if (enemy_explosion.animetime >= 16.f && enemy_explosion.animetime < 24.f)
+			enemy_explosion.u = 0.0417f * 2;
+		if (enemy_explosion.animetime >= 24.f && enemy_explosion.animetime < 32.f)
+			enemy_explosion.u = 0.0417f * 3;
+		if (enemy_explosion.animetime >= 32.f && enemy_explosion.animetime < 40.f)
+			enemy_explosion.u = 0.0417f * 4;
+		if (enemy_explosion.animetime >= 40.f && enemy_explosion.animetime < 48.f)
+			enemy_explosion.u = 0.0417f * 5;
+		if (enemy_explosion.animetime >= 48.f && enemy_explosion.animetime < 56.f)
+			enemy_explosion.u = 0.0417f * 6;
+		if (enemy_explosion.animetime >= 56.f && enemy_explosion.animetime < 64.f)
+			enemy_explosion.u = 0.0417f * 7;
+		if (enemy_explosion.animetime >= 64.f && enemy_explosion.animetime < 72.f)
+			enemy_explosion.u = 0.0417f * 8;
+		if (enemy_explosion.animetime >= 72.f && enemy_explosion.animetime < 80.f)
+			enemy_explosion.u = 0.0417f * 9;
+		if (enemy_explosion.animetime >= 80.f && enemy_explosion.animetime < 88.f)
+			enemy_explosion.u = 0.0417f * 10;
+		if (enemy_explosion.animetime >= 88.f && enemy_explosion.animetime < 96.f)
+			enemy_explosion.u = 0.0417f * 11;
+		if (enemy_explosion.animetime >= 96.f && enemy_explosion.animetime < 104.f)
+			enemy_explosion.u = 0.0417f * 12;
+		if (enemy_explosion.animetime >= 104.f && enemy_explosion.animetime < 112.f)
+			enemy_explosion.u = 0.0417f * 13;
+		if (enemy_explosion.animetime >= 112.f && enemy_explosion.animetime < 120.f)
+			enemy_explosion.u = 0.0417f * 14;
+		if (enemy_explosion.animetime >= 120.f && enemy_explosion.animetime < 128.f)
+			enemy_explosion.u = 0.0417f * 15;
+		if (enemy_explosion.animetime >= 128.f && enemy_explosion.animetime < 136.f)
+			enemy_explosion.u = 0.0417f * 16;
+		if (enemy_explosion.animetime >= 136.f && enemy_explosion.animetime < 144.f)
+			enemy_explosion.u = 0.0417f * 17;
+		if (enemy_explosion.animetime >= 144.f && enemy_explosion.animetime < 152.f)
+			enemy_explosion.u = 0.0417f * 18;
+		if (enemy_explosion.animetime >= 152.f && enemy_explosion.animetime < 160.f)
+			enemy_explosion.u = 0.0417f * 19;
+		if (enemy_explosion.animetime >= 160.f && enemy_explosion.animetime < 168.f)
+			enemy_explosion.u = 0.0417f * 20;
+		if (enemy_explosion.animetime >= 168.f && enemy_explosion.animetime < 176.f)
+			enemy_explosion.u = 0.0417f * 21;
+		if (enemy_explosion.animetime >= 176.f && enemy_explosion.animetime < 184.f)
+			enemy_explosion.u = 0.0417f * 22;
+		if (enemy_explosion.animetime >= 184.f && enemy_explosion.animetime < 192.f)
+			enemy_explosion.u = 0.0417f * 23;
 		//
-		if (enemy_explosion.animetime >= 168.f)
+		if (enemy_explosion.animetime >= 192.f)
 		{
 			enemy_explosion.u = 0.f;
 			enemy_explosion.animeflag = true;
@@ -123,7 +129,7 @@ void DrawEnemyExplosion(void)
 {
 	if (enemy_explosion.drawflag == true)
 	{
-		DrawSpriteLeftTop(enemy_explosion.texture, enemy_explosion.pos.x, enemy_explosion.pos.y, enemy_explosion.size.x, enemy_explosion.size.y, enemy_explosion.u, 0.f, 0.05f, 1.f);
+		DrawSpriteLeftTop(enemy_explosion.texture, enemy_explosion.pos.x, enemy_explosion.pos.y, enemy_explosion.size.x, enemy_explosion.size.y, enemy_explosion.u, 0.f, 0.0417f, 1.f);
 	}
 }
 

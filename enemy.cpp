@@ -94,7 +94,9 @@ void DrawEnemy(void)
 		DrawFireWallHp();
 	}
 
+	DrawEnemyExplosion();
+
 	if(map_player->enemypowerup == true)
 		DrawEnemyAura();
-	    DrawEnemyExplosion();
+	
 }

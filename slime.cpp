@@ -119,14 +119,21 @@ void UpdateSlime(void)
 		}
 	}
 
-	if (GetKeyboardPress(DIK_Z))
+	/*if (GetKeyboardPress(DIK_Z))
 	{
 		slime_hp->gaugesize.x = 0.0f;
-	}
+	}*/
 
 	//HP‚ª0‚É‚È‚Á‚½‚çmap‚ÖˆÚ“®‚·‚é
 	if (slime_hp->gaugesize.x <= 0)
 	{
+		enemy_explosion->drawflag = true;
+
+		if (enemy_explosion->animeflag == true)
+		{
+			enemybreak->drawflag = true;
+		}
+
 		slime.drawflag = false;
 		if (slime.getskill == false)
 		{
@@ -135,12 +142,7 @@ void UpdateSlime(void)
 		}
 		map_player->nextflag = true;
 
-		enemy_explosion->drawflag = true;
-
-		if (enemy_explosion->animeflag == true)
-		{
-			enemybreak->drawflag = true;
-		}
+		
 	}
 
 

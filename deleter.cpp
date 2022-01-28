@@ -131,14 +131,21 @@ void UpdateDeleter(void)
 		}
 	}
 
-	if (GetKeyboardPress(DIK_Z))
-	{
-		deleter_hp->gaugesize.x = 0.0f;
-	}
+	//if (GetKeyboardPress(DIK_Z))
+	//{
+	//	deleter_hp->gaugesize.x = 0.0f;
+	//}
 
 	//HPが0になったらmapへ移動する
 	if (deleter_hp->gaugesize.x <= 0)
 	{
+		enemy_explosion->drawflag = true;
+
+		if (enemy_explosion->animeflag == true)
+		{
+			enemybreak->drawflag = true;
+		}
+
 		deleter.drawflag = false;
 		if (deleter.getskill == false)
 		{
@@ -147,12 +154,7 @@ void UpdateDeleter(void)
 		}
 		map_player->nextflag = true;
 
-		enemy_explosion->drawflag = true;
-
-		if (enemy_explosion->animeflag == true)
-		{
-			enemybreak->drawflag = true;
-		}
+		
 	}
 
 	//-----アニメーション処理
