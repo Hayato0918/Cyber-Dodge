@@ -24,17 +24,17 @@ void UninitMapSaveBG(void)
 
 void UpdateMapSaveBG(void)
 {
-	if (PADUSE == 0)
-	{
-		if (IsButtonTriggered(0, BUTTON_R))
-			map_save_bg.drawflag = true;
-	}
+	//if (PADUSE == 0)
+	//{
+	//	if (IsButtonTriggered(0, BUTTON_R))
+	//		map_save_bg.drawflag = true;
+	//}
 
-	if (PADUSE == 1)
-	{
-		if (GetKeyboardTrigger(DIK_1))
-			map_save_bg.drawflag = true;
-	}
+	//if (PADUSE == 1)
+	//{
+	//	if (GetKeyboardTrigger(DIK_1))
+	//		map_save_bg.drawflag = true;
+	//}
 }
 
 void DrawMapSaveBG(void)

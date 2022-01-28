@@ -66,17 +66,17 @@ void UpdateMap(void)
 	UpdateMapFloor();
 	UpdateMapSave();
 
-	if (PADUSE == 0)
-	{
-		if (IsButtonTriggered(0, BUTTON_L2))
-			SceneTransition(SCENE_DECKMENU);
-	}
+	//if (PADUSE == 0)
+	//{
+	//	if (IsButtonTriggered(0, BUTTON_L2))
+	//		SceneTransition(SCENE_DECKMENU);
+	//}
 
-	if (PADUSE == 1)
-	{
-		if (GetKeyboardTrigger(DIK_3))
-			SceneTransition(SCENE_DECKMENU);
-	}
+	//if (PADUSE == 1)
+	//{
+	//	if (GetKeyboardTrigger(DIK_3))
+	//		SceneTransition(SCENE_DECKMENU);
+	//}
 }
 
 //-----ï`âÊèàóùä÷êî

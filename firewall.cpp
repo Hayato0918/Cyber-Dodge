@@ -25,9 +25,12 @@
 //-----グローバル変数
 FIREWALL firewall;
 
+int enemytexture;
+
 //-----初期化処理
 HRESULT InitFireWall(void)
 {
+	enemytexture = LoadTexture("data/TEXTURE/enemy/firewall/firewall.png");
 	MAP_PLAYER* map_player = GetMapPlayer();
 
 	firewall.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.3555f);
@@ -206,40 +209,42 @@ void UpdateFireWall(void)
 //-----描画処理
 void DrawFireWall(void)
 {
-	if (firewall.drawflag == true)
-	{
-		if (firewall.catchtextureflag == false)
-		{
-			//止まってるとき && (右向いてるとき || 左向いてるとき)
-			if (firewall.walktextureflag == false && firewall.standLRflag == false)
-				DrawSpriteLeftTop(firewall.stand_Ltexture, firewall.pos.x, firewall.pos.y,
-					firewall.size.x, firewall.size.y, firewall.u, firewall.v, firewall.uw, firewall.vh);
-			if (firewall.walktextureflag == false && firewall.standLRflag == true)
-				DrawSpriteLeftTop(firewall.stand_Rtexture, firewall.pos.x, firewall.pos.y,
-					firewall.size.x, firewall.size.y, firewall.u, firewall.v, firewall.uw, firewall.vh);
+	
+	DrawSpriteLeftTop(enemytexture, firewall.pos.x, firewall.pos.y,firewall.size.x, firewall.size.y, 0.f, 0.f, 1.f, 1.f);
 
-			//動いてるとき && (右向いてるとき || 左向いてるとき)
-			if (firewall.walktextureflag == true && firewall.walkLRflag == false)
-				DrawSpriteLeftTop(firewall.walk_Ltexture, firewall.pos.x, firewall.pos.y,
-					firewall.size.x, firewall.size.y, firewall.u, firewall.v, firewall.uw, firewall.vh);
-			if (firewall.walktextureflag == true && firewall.walkLRflag == true)
-				DrawSpriteLeftTop(firewall.walk_Rtexture, firewall.pos.x, firewall.pos.y,
-					firewall.size.x, firewall.size.y, firewall.u, firewall.v, firewall.uw, firewall.vh);
-		}
+	//if (firewall.drawflag == true)
+	//{
+	//	if (firewall.catchtextureflag == false)
+	//	{
+	//		//止まってるとき && (右向いてるとき || 左向いてるとき)
+	//		if (firewall.walktextureflag == false && firewall.standLRflag == false)
+	//			DrawSpriteLeftTop(firewall.stand_Ltexture, firewall.pos.x, firewall.pos.y,
+	//				firewall.size.x, firewall.size.y, firewall.u, firewall.v, firewall.uw, firewall.vh);
+	//		if (firewall.walktextureflag == false && firewall.standLRflag == true)
+	//
 
-		//キャッチしたとき && (右向いてるとき || 左向いてるとき)
-		if (firewall.catchtextureflag == true && firewall.catchLRflag == false)
-			DrawSpriteLeftTop(firewall.catch_Ltexture, firewall.pos.x, firewall.pos.y,
-				firewall.size.x, firewall.size.y, firewall.u, firewall.v, firewall.uw, firewall.vh);
-		if (firewall.catchtextureflag == true && firewall.catchLRflag == true)
-			DrawSpriteLeftTop(firewall.catch_Rtexture, firewall.pos.x, firewall.pos.y,
-				firewall.size.x, firewall.size.y, firewall.u, firewall.v, firewall.uw, firewall.vh);
-	}
+	//		//動いてるとき && (右向いてるとき || 左向いてるとき)
+	//		if (firewall.walktextureflag == true && firewall.walkLRflag == false)
+	//			DrawSpriteLeftTop(firewall.walk_Ltexture, firewall.pos.x, firewall.pos.y,
+	//				firewall.size.x, firewall.size.y, firewall.u, firewall.v, firewall.uw, firewall.vh);
+	//		if (firewall.walktextureflag == true && firewall.walkLRflag == true)
+	//			DrawSpriteLeftTop(firewall.walk_Rtexture, firewall.pos.x, firewall.pos.y,
+	//				firewall.size.x, firewall.size.y, firewall.u, firewall.v, firewall.uw, firewall.vh);
+	//	}
+
+	//	//キャッチしたとき && (右向いてるとき || 左向いてるとき)
+	//	if (firewall.catchtextureflag == true && firewall.catchLRflag == false)
+	//		DrawSpriteLeftTop(firewall.catch_Ltexture, firewall.pos.x, firewall.pos.y,
+	//			firewall.size.x, firewall.size.y, firewall.u, firewall.v, firewall.uw, firewall.vh);
+	//	if (firewall.catchtextureflag == true && firewall.catchLRflag == true)
+	//		DrawSpriteLeftTop(firewall.catch_Rtexture, firewall.pos.x, firewall.pos.y,
+	//			firewall.size.x, firewall.size.y, firewall.u, firewall.v, firewall.uw, firewall.vh);
+	//}
 
 	//死んだとき
-	if (firewall.drawflag == false)
-		DrawSpriteLeftTop(firewall.deathtexture, firewall.pos.x, firewall.pos.y, 
-								firewall.size.x, firewall.size.y, firewall.u, firewall.v, firewall.uw, firewall.vh);
+	//if (firewall.drawflag == false)
+	//	DrawSpriteLeftTop(firewall.deathtexture, firewall.pos.x, firewall.pos.y, 
+	//							firewall.size.x, firewall.size.y, firewall.u, firewall.v, firewall.uw, firewall.vh);
 }
 
 //-----構造体ポインタ取得処理
