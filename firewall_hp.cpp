@@ -17,12 +17,11 @@ HRESULT InitFireWallHp(void)
 
 	firewallhp.framepos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f + SCREEN_WIDTH * 0.0375f, SCREEN_HEIGHT - SCREEN_HEIGHT * 0.11111f);
 	firewallhp.framesize = D3DXVECTOR2(SCREEN_WIDTH * 0.05f * firewallhp.gaugeonce, SCREEN_HEIGHT * 0.066666f); //slimehpバーフレームサイズ
-	firewallhp.frametexture = LoadTexture("data/TEXTURE/enemy/hp/enemy_hpframe.png");
+
 
 	firewallhp.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f + SCREEN_WIDTH * 0.0375f, SCREEN_HEIGHT - SCREEN_HEIGHT * 0.11111f);
 	firewallhp.gaugesize = D3DXVECTOR2(firewallhp.framesize.x, firewallhp.framesize.y); //残っているfirewallhpの量
-	firewallhp.gaugegreentexture = LoadTexture("data/TEXTURE/enemy/hp/enemy_hpgreen.png");
-	firewallhp.gaugeredtexture = LoadTexture("data/TEXTURE/enemy/hp/enemy_hpred.png");
+
 
 	firewallhp.hpsize = firewallhp.gaugesize.x;
 	firewallhp.colorcangeflag = false;

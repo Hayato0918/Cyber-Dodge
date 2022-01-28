@@ -22,7 +22,6 @@ HRESULT InitBG(void)
 
 	bg.pos = D3DXVECTOR2(0.0f, 0.0f);
 	bg.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
-	bg.texture = LoadTexture("data/TEXTURE/gym.jpg");
 
 	bg.clPos = D3DXVECTOR2(bg.size.x / 2, bg.pos.y + bg.size.y / 2);
 	bg.clSize = D3DXVECTOR2(SCREEN_WIDTH * 0.00625f, bg.size.y);

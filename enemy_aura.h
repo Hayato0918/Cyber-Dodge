@@ -17,3 +17,4 @@ HRESULT InitEnemyAura(void);
 void UninitEnemyAura(void);
 void UpdateEnemyAura(void);
 void DrawEnemyAura(void);
+ENEMY_AURA* GetEnemyAura();

@@ -61,3 +61,9 @@ void UninitTutorial(void);
 void UpdateTutorial(void);
 void DrawTutorial(void);
 TUTORIAL* GetTutorial(void);
+
+TUTORIAL_GAME* GetTutorialGame();
+TUTORIAL_SKILL* GetTutorialSkill();
+TUTORIAL_IDOU* GetTutorialIdou();
+TUTORIAL_NAGE* GetTutorialNage();
+TUTORIAL_SUKILL* GetTutorialSukill();

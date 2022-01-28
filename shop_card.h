@@ -14,9 +14,15 @@ typedef struct
 	float u;
 }SHOP_CARD;
 
+typedef struct
+{
+	int texture;
+}SHOP_CARDTEXTURE;
+
 HRESULT InitShopCard(void);
 void UninitShopCard(void);
 void UpdateShopCard(void);
 void DrawShopCard(void);
 
 SHOP_CARD* GetShopCard(void);
+SHOP_CARDTEXTURE* GetShopCardTexture();

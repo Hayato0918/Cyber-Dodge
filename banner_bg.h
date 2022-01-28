@@ -17,3 +17,5 @@ HRESULT InitBannerBG(void);
 void UninitBannerBG(void);
 void UpdateBannerBG(void);
 void DrawBannerBG(void);
+
+BANNER_BG* GetBannerBG();

@@ -47,7 +47,6 @@ HRESULT InitBall(void)
 	ball.startmove = D3DXVECTOR2(ball.move.x, ball.move.y);
 	ball.throwway = 1;
 	ball.gravity = 0.05f;
-	ball.texture = LoadTexture("data/TEXTURE/ball.png");
 	ball.throwflag = false;
 	ball.fallpos = 0.0f;
 	ball.playerhavetime = 0.0f;

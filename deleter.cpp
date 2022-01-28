@@ -55,38 +55,31 @@ HRESULT InitDeleter(void)
 	deleter.vh = 1.0f;
 	deleter.drawflag = true;
 
-	deleter.stand_Ltexture = LoadTexture("data/TEXTURE/enemy/Deleter/stand/stand_R.png");
-	deleter.stand_Rtexture = LoadTexture("data/TEXTURE/enemy/Deleter/stand/stand_L.png");
+
 	deleter.standtextureflag = true;
 	deleter.standLRflag = false;
 	deleter.standtexturetime = 0.0f;
 
-	deleter.walk_Ltexture = LoadTexture("data/TEXTURE/enemy/Deleter/walk/walk_R.png");
-	deleter.walk_Rtexture = LoadTexture("data/TEXTURE/enemy/Deleter/walk/walk_L.png");
+
 	deleter.walktextureflag = false;
 	deleter.walkLRflag = false;
 	deleter.walktexturetime = 0.0f;
 
-	deleter.throw_Ltexture = LoadTexture("data/TEXTURE/enemy/Deleter/throw/throw_R.png");
-	deleter.throw_Rtexture = LoadTexture("data/TEXTURE/enemy/Deleter/throw/throw_L.png");
+
 	deleter.throwtextureflag = false;
 	deleter.throwLRflag = false;
 	deleter.throwtexturetime = 0.0f;
 
-	deleter.catch_Ltexture = LoadTexture("data/TEXTURE/enemy/Deleter/catch/catch_R.png");
-	deleter.catch_Rtexture = LoadTexture("data/TEXTURE/enemy/Deleter/catch/catch_L.png");
+
 	deleter.catchtextureflag = false;
 	deleter.catchtextureflag_2 = false;
 	deleter.catchLRflag = false;
 	deleter.catchtexturetime = 0.0f;
 
-	deleter.damage_Ltexture = LoadTexture("data/TEXTURE/enemy/Deleter/damage/damage_R.png");
-	deleter.damage_Rtexture = LoadTexture("data/TEXTURE/enemy/Deleter/damage/damage_L.png");
+
 	deleter.damagetextureflag = false;
 	deleter.damageLRflag = false;
 	deleter.damagetexturetime = 0.0f;
-
-	deleter.deathtexture = LoadTexture("data/TEXTURE/enemy/firewall/death/death.png");
 
 	return S_OK;
 }

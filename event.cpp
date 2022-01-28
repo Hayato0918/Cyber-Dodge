@@ -26,7 +26,6 @@ HRESULT InitEvent(void)
 {
 	InitAvatar();
 	InitDougyousya();
-	Inite_FloatingFeeling();
 	InitHujyou();
 	InitKasou();
 	InitMined();
@@ -60,18 +59,16 @@ void UpdateEvent(void)
 	if (map_player->eventcode == 2)
 	UpdateDougyousya();
 	if (map_player->eventcode == 3)
-	_FloatingFeeling();
-	if (map_player->eventcode == 4)
 	UpdateHujyou();
-	if (map_player->eventcode == 5)
+	if (map_player->eventcode == 4)
 	UpdateKasou();
-	if (map_player->eventcode == 6)
+	if (map_player->eventcode == 5)
 	UpdateMined();
-	if (map_player->eventcode == 7)
+	if (map_player->eventcode == 6)
 	UpdateServerRecovery();
-	if (map_player->eventcode == 8)
+	if (map_player->eventcode == 7)
 	UpdateTosyokann();
-	if (map_player->eventcode == 9)
+	if (map_player->eventcode == 8)
 	UpdateYomigaeru();
 }
 
@@ -85,17 +82,15 @@ void DrawEvent(void)
 	if (map_player->eventcode == 2)
 	DrawDougyousya();
 	if (map_player->eventcode == 3)
-	Drawe_FloatingFeeling();
-	if (map_player->eventcode == 4)
 	DrawHujyou();
-	if (map_player->eventcode == 5)
+	if (map_player->eventcode == 4)
 	DrawKasou();
-	if (map_player->eventcode == 6)
+	if (map_player->eventcode == 5)
 	DrawMined();
-	if (map_player->eventcode == 7)
+	if (map_player->eventcode == 6)
 	DrawServerRecovery();
-	if (map_player->eventcode == 8)
+	if (map_player->eventcode == 7)
 	DrawTosyokann();
-	if (map_player->eventcode == 9)
+	if (map_player->eventcode == 8)
 	DrawYomigaeru();
 }

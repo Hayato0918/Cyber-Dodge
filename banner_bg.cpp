@@ -15,8 +15,7 @@ BANNER_BG banner_bg;
 HRESULT InitBannerBG(void)
 {
 	banner_bg.pos = D3DXVECTOR2(0.0f, 0.0f);
-	banner_bg.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT * 0.066666f);
-	banner_bg.texture = LoadTexture("data/TEXTURE/banner.png");
+	banner_bg.size = D3DXVECTOR2(1600.f, 60.f);
 	return S_OK;
 }
 
@@ -37,4 +36,9 @@ void DrawBannerBG(void)
 {
 	//ÉoÉiÅ[îwåi
 	DrawSpriteLeftTop(banner_bg.texture, banner_bg.pos.x, banner_bg.pos.y, banner_bg.size.x, banner_bg.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+}
+
+BANNER_BG* GetBannerBG()
+{
+	return &banner_bg;
 }

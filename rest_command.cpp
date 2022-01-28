@@ -31,14 +31,12 @@ HRESULT InitRestCommand(void)
 	//---------- HP回復 ----------//
 	rest_hpup.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.30625f, SCREEN_HEIGHT * 0.211111f);
 	rest_hpup.size = D3DXVECTOR2(SCREEN_WIDTH * 0.15625f, SCREEN_HEIGHT * 0.277777f);
-	rest_hpup.texture = LoadTexture("data/TEXTURE/map/rest/hpup.png");
 	rest_hpup.sound = LoadSound("data/SE/heal.wav");
 	SetVolume(rest_hpup.sound, soundvolume_select[1].count * 0.1f + 0.5f);
 
 	//---------- ステータス強化 ----------//
 	rest_statusup.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5125f, SCREEN_HEIGHT * 0.211111f);
 	rest_statusup.size = D3DXVECTOR2(SCREEN_WIDTH * 0.15625f, SCREEN_HEIGHT * 0.277777f);
-	rest_statusup.texture = LoadTexture("data/TEXTURE/map/rest/statusup.png");
 	rest_statusup.sound = LoadSound("data/SE/powerup.wav");
 	SetVolume(rest_statusup.sound, soundvolume_select[1].count * 0.1f + 0.5f);
 

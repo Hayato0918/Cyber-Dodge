@@ -25,7 +25,6 @@ HRESULT InitBarrier(void)
 	barrier.size = D3DXVECTOR2(player->size.y + 100.f, player->size.y + 100.f);
 	barrier.u = 0.f;
 	barrier.drawflag = false;
-	barrier.texture = LoadTexture("data/TEXTURE/barrier.png");
 
 	barrier.use = false;
 	barrier.timeflag = false;

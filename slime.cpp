@@ -59,26 +59,18 @@ HRESULT InitSlime(void)
 	slime.getskill = false;
 	slime.walktime = 0.0f;
 
-	slime.stand_Ltexture = LoadTexture("data/TEXTURE/enemy/slime/stand/stand_R.png");
-	slime.stand_Rtexture = LoadTexture("data/TEXTURE/enemy/slime/stand/stand_L.png");
 	slime.standtextureflag = true;
 	slime.standLRflag = false;
 	slime.standtexturetime = 0.0f;
 
-	slime.walk_Rtexture = LoadTexture("data/TEXTURE/enemy/slime/walk/walk_R.png");
-	slime.walk_Ltexture = LoadTexture("data/TEXTURE/enemy/slime/walk/walk_L.png");
 	slime.walktextureflag = false;
 	slime.walkLRflag = false;
 	slime.walktexturetime = 0.0f;
 
-	slime.throw_Ltexture = LoadTexture("data/TEXTURE/enemy/slime/throw/throw_R.png");
-	slime.throw_Rtexture = LoadTexture("data/TEXTURE/enemy/slime/throw/throw_L.png");
 	slime.throwtextureflag = false;
 	slime.throwLRflag = false;
 	slime.throwtexturetime = 0.0f;
 
-	slime.damage_Ltexture = LoadTexture("data/TEXTURE/enemy/slime/damage/damage_R.png");
-	slime.damage_Rtexture = LoadTexture("data/TEXTURE/enemy/slime/damage/damage_L.png");
 	slime.damagetextureflag = false;
 	slime.damageLRflag = false;
 	slime.damagetexturetime = 0.0f;

@@ -8,6 +8,7 @@
 #include "sprite.h"
 
 SHOP_GOLD shop_gold[shop_skill];	//スキルカード
+SHOP_GOLDTEXTURE shop_goldtexture;
 
 HRESULT InitShopGold()
 {
@@ -17,7 +18,6 @@ HRESULT InitShopGold()
 	{
 		shop_gold[i].pos = D3DXVECTOR2(shop_card[i].pos.x, shop_card[i].pos.y + shop_card[i].size.y + SCREEN_HEIGHT * 0.033333f);
 		shop_gold[i].size = D3DXVECTOR2(shop_card[i].size.x, SCREEN_HEIGHT * 0.055555f);	//200,50
-		shop_gold[i].texture = LoadTexture("data/TEXTURE/map/shop/gold.png");
 		shop_gold[i].v = 0.f;
 		shop_gold[i].gold = 0;
 	}
@@ -180,4 +180,9 @@ void DrawShopGold()
 SHOP_GOLD* GetShopGold()
 {
 	return &shop_gold[0];
+}
+
+SHOP_GOLDTEXTURE* GetShopGoldTexture()
+{
+	return &shop_goldtexture;
 }

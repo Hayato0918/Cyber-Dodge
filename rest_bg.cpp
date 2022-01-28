@@ -18,7 +18,6 @@ HRESULT InitRestBG(void)
 
 	rest_bg.pos = D3DXVECTOR2(0.0f, 0.0f);
 	rest_bg.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
-	rest_bg.texture = LoadTexture("data/TEXTURE/test/black.png");
 
 	return S_OK;
 }
@@ -36,4 +35,9 @@ void UpdateRestBG(void)
 void DrawRestBG(void)
 {
 	DrawSpriteLeftTop(rest_bg.texture, rest_bg.pos.x, rest_bg.pos.y, rest_bg.size.x, rest_bg.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+}
+
+REST_BG* GetRestBG()
+{
+	return &rest_bg;
 }

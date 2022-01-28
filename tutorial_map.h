@@ -18,3 +18,5 @@ HRESULT InitTutorialMap(void);
 void UninitTutorialMap(void);
 void UpdateTutorialMap(void);
 void DrawTutorialMap(void);
+
+TUTORIAL_MAP* GetTutorialMap();

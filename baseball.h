@@ -22,3 +22,4 @@ typedef struct
 HRESULT InitBaseball(void);
 void DrawBaseball(void);
 void _Baseball(void);
+BASEBALL* GetBaseball();

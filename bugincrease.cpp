@@ -40,8 +40,6 @@ HRESULT InitBugIncrease(void)
 		bug.gaugeonce = 8;
 		bug.framepos = D3DXVECTOR2(SCREEN_WIDTH * 0.09375f, SCREEN_HEIGHT * 0.0222f);	//1600:900Å®150:20
 		bug.framesize = D3DXVECTOR2(SCREEN_WIDTH * 0.09375f * bug.gaugeonce, SCREEN_HEIGHT * 0.2444f);
-		bug.frametexture = LoadTexture("data/TEXTURE/buggauge/gaugeframe.png");
-		bug.breaktexture = LoadTexture("data/TEXTURE/buggauge/gaugebreak.png");
 		bug.breakflag = false;
 		bug.breaktime = 0.f;
 		bug.drawnum = 0;
@@ -58,7 +56,6 @@ HRESULT InitBugIncrease(void)
 			buggauge[i].size = D3DXVECTOR2(SCREEN_WIDTH * 0.0593f, SCREEN_HEIGHT * 0.07777f);
 			buggauge[i].drawflag = false;
 		}
-		bug.gaugetexture = LoadTexture("data/TEXTURE/buggauge/gaugebar.png");
 
 		//êîéöÇÃê›íË
 		for (int i = 0; i < 3; i++)
@@ -75,7 +72,6 @@ HRESULT InitBugIncrease(void)
 		bugnumber[0].v = 0.f;
 		bugnumber[0].uw = 0.2f;
 		bugnumber[0].vh = 0.5f;
-		bug.numbertexture = LoadTexture("data/TEXTURE/buggauge/Number.png");
 	}
 
 	bug.sound = LoadSound("data/BGM/bugBGM.wav");

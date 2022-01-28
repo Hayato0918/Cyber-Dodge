@@ -16,14 +16,12 @@
 #include "soundvolume_select.h"
 
 SHOP_CARD shop_card[SKILL_NUM];
+SHOP_CARDTEXTURE shop_cardtexture;
 int notexture;
 int shopsound;
-int shopcardtexture;
 
 HRESULT InitShopCard()
 {	
-	shopcardtexture = LoadTexture("data/TEXTURE/skill/skill.png");
-
 	SOUNDVOLUME_SELECT* soundvolume_select = GetSoundVolumeSelect();
 	shopsound = LoadSound("data/SE/buy.wav");
 	SetVolume(shopsound, soundvolume_select[1].count * 0.1f + 0.5f);
@@ -118,7 +116,7 @@ void DrawShopCard()
 	for (int i = 0; i < shop_skill; i++)
 	{
 		if(shop_card[i].drawflag == true)
-			DrawSpriteLeftTop(shopcardtexture, shop_card[i].pos.x, shop_card[i].pos.y, shop_card[i].size.x, shop_card[i].size.y, shop_card[i].u, 0.0f, 0.0384615385f, 1.0f);
+			DrawSpriteLeftTop(shop_cardtexture.texture, shop_card[i].pos.x, shop_card[i].pos.y, shop_card[i].size.x, shop_card[i].size.y, shop_card[i].u, 0.0f, 0.0384615385f, 1.0f);
 		if (shop_card[i].drawflag == false)
 			DrawSpriteLeftTop(notexture, shop_card[i].pos.x, shop_card[i].pos.y, shop_card[i].size.x, shop_card[i].size.y, 0.0f, 0.0f, 1.0f, 1.0f);
 	}
@@ -128,4 +126,9 @@ void DrawShopCard()
 SHOP_CARD* GetShopCard(void)
 {
 	return &shop_card[0];
+}
+
+SHOP_CARDTEXTURE* GetShopCardTexture()
+{
+	return &shop_cardtexture;
 }

@@ -24,7 +24,6 @@ HRESULT InitShopReload()
 	shop_reload.size = D3DXVECTOR2(SCREEN_WIDTH * 0.25f, SCREEN_HEIGHT * 0.1388888f);
 	shop_reload.reloadflag = false;
 	shop_reload.gold = 10;
-	shop_reload.texture = LoadTexture("data/TEXTURE/map/shop/reload.png");
 	shop_reload.sound = LoadSound("data/SE/reload.wav");
 	SetVolume(shop_reload.sound, soundvolume_select[1].count * 0.1f + 0.5f);
 

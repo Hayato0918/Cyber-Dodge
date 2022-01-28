@@ -251,6 +251,7 @@
     <ClCompile Include="soundvolume_bg.cpp" />
     <ClCompile Include="sprite.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="textureload.cpp" />
     <ClCompile Include="timestop.cpp" />
     <ClCompile Include="title.cpp" />
     <ClCompile Include="shop_card.cpp" />
@@ -404,6 +405,7 @@
     <ClInclude Include="soundvolume_select.h" />
     <ClInclude Include="sprite.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="textureload.h" />
     <ClInclude Include="timestop.h" />
     <ClInclude Include="title.h" />
     <ClInclude Include="title_bg.h" />

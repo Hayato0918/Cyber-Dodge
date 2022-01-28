@@ -14,6 +14,8 @@
 
 #include "map_player.h"
 
+#include "textureload.h"
+
 //-----マクロ定義
 
 //-----プロトタイプ宣言
@@ -29,6 +31,7 @@ HRESULT InitTitle(void)
 	map_player->gamecount = 0;
 	map_player->floor = 0;
 
+	TextureLoad();
 	InitTitleBG();
 	InitTitleTeamName();
 	InitTitleStart();
@@ -78,5 +81,4 @@ void DrawTitle(void)
 	DrawTitleRanking();
 	DrawTitleOption();
 	DrawTitleExit();
-
 }

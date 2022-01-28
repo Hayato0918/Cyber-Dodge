@@ -29,8 +29,6 @@ HRESULT InitBaseball(void)
 	baseball.bugincrease = false;
 	baseball.bugdrawnum = 0;
 
-	baseball.texture = LoadTexture("data/TEXTURE/bat.png");
-
 	return S_OK;
 }
 
@@ -150,4 +148,9 @@ void DrawBaseball(void)
 	if (baseball.timeflag == true)
 		//•`‰æˆ—
 		DrawSpriteLeftTop(baseball.texture, baseball.pos.x, baseball.pos.y, baseball.size.x, baseball.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+}
+
+BASEBALL* GetBaseball()
+{
+	return &baseball;
 }

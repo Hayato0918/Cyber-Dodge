@@ -13,6 +13,7 @@ typedef struct
 	float u, v;
 
 	int floornum;
+	int numtexture;
 }MAP_FLOORBG;
 
 typedef struct

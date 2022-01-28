@@ -17,12 +17,10 @@ HRESULT InitSlimeHp(void)
 
 	slimehp.framepos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f + SCREEN_WIDTH * 0.0375f, SCREEN_HEIGHT - SCREEN_HEIGHT * 0.11111f);
 	slimehp.framesize = D3DXVECTOR2(SCREEN_WIDTH * 0.05f * slimehp.gaugeonce, SCREEN_HEIGHT * 0.066666f); //slimehpバーフレームサイズ
-	slimehp.frametexture = LoadTexture("data/TEXTURE/enemy/hp/enemy_hpframe.png");
 
 	slimehp.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f + SCREEN_WIDTH * 0.0375f, SCREEN_HEIGHT - SCREEN_HEIGHT * 0.11111f);
 	slimehp.gaugesize = D3DXVECTOR2(slimehp.framesize.x, slimehp.framesize.y); //残っているslimehpの量
-	slimehp.gaugegreentexture = LoadTexture("data/TEXTURE/enemy/hp/enemy_hpgreen.png");
-	slimehp.gaugeredtexture = LoadTexture("data/TEXTURE/enemy/hp/enemy_hpred.png");
+
 
 	slimehp.hpsize = slimehp.gaugesize.x;
 	slimehp.colorcangeflag = false;

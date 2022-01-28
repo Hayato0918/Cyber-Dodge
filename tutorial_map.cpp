@@ -23,7 +23,6 @@ HRESULT InitTutorialMap(void)
 	tutorial_map.pos = D3DXVECTOR2(350.f, 220.0f);
 	tutorial_map.size = D3DXVECTOR2(300.f, 100.0f);
 	tutorial_map.drawflag = false;
-	tutorial_map.texture = LoadTexture("data/TEXTURE/tutorial/map.png");
 
 	return S_OK;
 }
@@ -48,4 +47,9 @@ void DrawTutorialMap(void)
 {
 	if (tutorial_map.drawflag == true)
 		DrawSpriteLeftTop(tutorial_map.texture, tutorial_map.pos.x, tutorial_map.pos.y, tutorial_map.size.x, tutorial_map.size.y, 0.f, 0.f, 1.f, 1.f);
+}
+
+TUTORIAL_MAP* GetTutorialMap()
+{
+	return &tutorial_map;
 }

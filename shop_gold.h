@@ -13,8 +13,15 @@ typedef struct
 	int gold;
 }SHOP_GOLD;
 
+typedef struct
+{
+	int texture;
+}SHOP_GOLDTEXTURE;
+
 HRESULT InitShopGold(void);
 void UninitShopGold(void);
 void UpdateShopGold(void);
 void DrawShopGold(void);
 SHOP_GOLD* GetShopGold();
+
+SHOP_GOLDTEXTURE* GetShopGoldTexture();

@@ -24,7 +24,6 @@ HRESULT InitShopSelect()
 
 	shop_select.pos = D3DXVECTOR2(shop_card[0].pos.x, shop_card[0].pos.y);
 	shop_select.size = D3DXVECTOR2(shop_card[0].size.x, shop_card[0].size.y);
-	shop_select.texture = LoadTexture("data/TEXTURE/test/select.png");
 
 	shop_select.xcount = 0;
 	shop_select.ycount = 0;

@@ -24,7 +24,6 @@ HRESULT InitEnemyAura(void)
 	enemy_aura.size = D3DXVECTOR2(0.f, 0.f);
 	enemy_aura.u = 0.f;
 	enemy_aura.animetime = 0.f;
-	enemy_aura.texture = LoadTexture("data/TEXTURE/enemy/Aura.png");
 
 	return S_OK;
 }
@@ -99,4 +98,9 @@ void UpdateEnemyAura(void)
 void DrawEnemyAura(void)
 {
 	DrawSpriteLeftTop(enemy_aura.texture, enemy_aura.pos.x, enemy_aura.pos.y, enemy_aura.size.x, enemy_aura.size.y, enemy_aura.u, 0.f, 0.0666666f, 1.f);
+}
+
+ENEMY_AURA* GetEnemyAura()
+{
+	return &enemy_aura;
 }

@@ -16,3 +16,5 @@ HRESULT InitShopBg(void);
 void UninitShopBg(void);
 void UpdateShopBg(void);
 void DrawShopBg(void);
+
+SHOP_BG* GetShopBG();

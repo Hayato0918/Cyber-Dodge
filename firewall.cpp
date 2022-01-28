@@ -48,37 +48,28 @@ HRESULT InitFireWall(void)
 	firewall.vh = 1.0f;
 	firewall.drawflag = true;
 
-	firewall.stand_Ltexture = LoadTexture("data/TEXTURE/enemy/firewall/stand/stand_R.png");
-	firewall.stand_Rtexture = LoadTexture("data/TEXTURE/enemy/firewall/stand/stand_L.png");
+
 	firewall.standtextureflag = true;
 	firewall.standLRflag = false;
 	firewall.standtexturetime = 0.0f;
 
-	firewall.walk_Ltexture = LoadTexture("data/TEXTURE/enemy/firewall/walk/walk_R.png");
-	firewall.walk_Rtexture = LoadTexture("data/TEXTURE/enemy/firewall/walk/walk_L.png");
 	firewall.walktextureflag = false;
 	firewall.walkLRflag = false;
 	firewall.walktexturetime = 0.0f;
 
-	firewall.catch_Ltexture = LoadTexture("data/TEXTURE/enemy/firewall/catch/catch_R.png");
-	firewall.catch_Rtexture = LoadTexture("data/TEXTURE/enemy/firewall/catch/catch_L.png");
 	firewall.catchtextureflag = false;
 	firewall.catchLRflag = false;
 	firewall.catchtexturetime = 0.0f;
 
-	firewall.throw_Ltexture = LoadTexture("data/TEXTURE/enemy/firewall/throw/throw_R.png");
-	firewall.throw_Rtexture = LoadTexture("data/TEXTURE/enemy/firewall/throw/throw_L.png");
 	firewall.throwtextureflag = false;
 	firewall.throwLRflag = false;
 	firewall.throwtexturetime = 0.0f;
 
-	firewall.damage_Ltexture = LoadTexture("data/TEXTURE/enemy/firewall/damage/damage_R.png");
-	firewall.damage_Rtexture = LoadTexture("data/TEXTURE/enemy/firewall/damage/damage_L.png");
+
 	firewall.damagetextureflag = false;
 	firewall.damageLRflag = false;
 	firewall.damagetexturetime = 0.0f;
 
-	firewall.deathtexture = LoadTexture("data/TEXTURE/enemy/firewall/death/death.png");
 
 	return S_OK;
 }

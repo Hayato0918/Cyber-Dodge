@@ -18,3 +18,5 @@ HRESULT InitRestBG(void);
 void UninitRestBG(void);
 void UpdateRestBG(void);
 void DrawRestBG(void);
+
+REST_BG* GetRestBG();

@@ -58,49 +58,41 @@ HRESULT InitPlayer(void)
 		player.score = 0;
 
 		//立ち状態のテクスチャ設定
-		player.stand_Ltexture = LoadTexture("data/TEXTURE/player/stand/stand_R.png");
-		player.stand_Rtexture = LoadTexture("data/TEXTURE/player/stand/stand_L.png");
+
 		player.standtextureflag = true;
 		player.standLRflag = false;
 		player.standtexturetime = 0.0f;
 		//歩き状態のテクスチャ設定
-		player.walk_Ltexture = LoadTexture("data/TEXTURE/player/walk/walk_R.png");
-		player.walk_Rtexture = LoadTexture("data/TEXTURE/player/walk/walk_L.png");
 		player.walktextureflag = false;
 		player.walkLRflag = false;
 		//キャッチ状態のテクスチャ設定
-		player.catch_Ltexture = LoadTexture("data/TEXTURE/player/catch/catch_R.png");
-		player.catch_Rtexture = LoadTexture("data/TEXTURE/player/catch/catch_L.png");
+
 		player.catchtextureflag = false;
 		player.catchLRflag = false;
 		player.catchtexturetime = 0.0f;
 		//拾い状態のテクスチャ設定
-		player.pick_Ltexture = LoadTexture("data/TEXTURE/player/pick/pick_R.png");
-		player.pick_Rtexture = LoadTexture("data/TEXTURE/player/pick/pick_L.png");
+
 		player.picktextureflag = false;
 		player.pickLRflag = false;
 		player.picktexturetime = 0.0f;
 		//投げ状態のテクスチャ設定
-		player.throw_Ltexture = LoadTexture("data/TEXTURE/player/throw/throw_R.png");
-		player.throw_Rtexture = LoadTexture("data/TEXTURE/player/throw/throw_L.png");
+
 		player.throwtextureflag = false;
 		player.throwLRflag = false;
 		player.throwtexturetime = 0.0f;
 		//スキル使用時のテクスチャ設定
-		player.skill_Ltexture = LoadTexture("data/TEXTURE/player/skill/skill_R.png");
-		player.skill_Rtexture = LoadTexture("data/TEXTURE/player/skill/skill_L.png");
+
 		player.skilltextureflag = false;
 		player.skillLRflag = false;
 		player.skilltexturetime = 0.0f;
 		player.skilluseflag = false;
 		//ダメージ状態のテクスチャ設定
-		player.damage_Ltexture = LoadTexture("data/TEXTURE/player/damage/damage_R.png");
-		player.damage_Rtexture = LoadTexture("data/TEXTURE/player/damage/damage_L.png");
+
 		player.damagetextureflag = false;
 		player.damageLRflag = false;
 		player.damagetexturetime = 0.0f;
 		//死亡時のテクスチャ設定
-		player.deathtexture = LoadTexture("data/TEXTURE/player/death/death.png");
+
 
 		player.drawdepth = false;
 	}

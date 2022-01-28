@@ -22,7 +22,6 @@ HRESULT InitRestSelect(void)
 	rest_select.pos = D3DXVECTOR2(rest_hpup->pos.x, rest_hpup->pos.y);
 	rest_select.size = D3DXVECTOR2(rest_hpup->size.x, rest_hpup->size.y);
 	rest_select.count = 0;
-	rest_select.texture = LoadTexture("data/TEXTURE/rest_frame.png");
 
 	return S_OK;
 }

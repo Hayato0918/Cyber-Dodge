@@ -28,7 +28,6 @@ HRESULT InitHackEffect(void)
 	hackeffect.v = 0.f;
 	hackeffect.drawflag = false;
 	hackeffect.animetime = 0.f;
-	hackeffect.texture = LoadTexture("data/TEXTURE/hackingmenu/effect.png");
 
 	return S_OK;
 }

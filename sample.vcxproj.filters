@@ -615,6 +615,9 @@
     <ClCompile Include="venom.cpp">
       <Filter>ソース ファイル\bug</Filter>
     </ClCompile>
+    <ClCompile Include="textureload.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -1062,6 +1065,9 @@
       <Filter>ヘッダー ファイル\bug</Filter>
     </ClInclude>
     <ClInclude Include="fullscreen.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="textureload.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

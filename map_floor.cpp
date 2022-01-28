@@ -23,7 +23,6 @@ HRESULT InitMapFloor(void)
 
 	map_floorbg.pos = D3DXVECTOR2(1370.0f, 100.0f);
 	map_floorbg.size = D3DXVECTOR2(160.f, 80.f);
-	map_floorbg.texture = LoadTexture("data/TEXTURE/map/floor.png");
 	map_floorbg.u = 0.f;
 	map_floorbg.v = 0.f;
 
@@ -31,7 +30,6 @@ HRESULT InitMapFloor(void)
 	{
 		map_floor[i].pos = D3DXVECTOR2(1375.f + i * 50.f, 107.f);
 		map_floor[i].size = D3DXVECTOR2(65.f, 65.f);
-		map_floor[i].texture = LoadTexture("data/TEXTURE/number.png");
 		map_floor[i].u = 0.f;
 		map_floor[i].v = 0.f;
 		map_floor[i].drawflag = false;
@@ -138,7 +136,7 @@ void DrawMapFloor(void)
 	for (int i = 0; i < 2; i++)
 	{
 		if(map_floor[i].drawflag == true)
-		DrawSpriteLeftTop(map_floor[i].texture, map_floor[i].pos.x, map_floor[i].pos.y, map_floor[i].size.x, map_floor[i].size.y,
+		DrawSpriteLeftTop(map_floorbg.numtexture, map_floor[i].pos.x, map_floor[i].pos.y, map_floor[i].size.x, map_floor[i].size.y,
 			map_floor[i].u, map_floor[i].v, 0.2f, 0.5f);
 	}
 }

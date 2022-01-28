@@ -35,32 +35,27 @@ HRESULT InitTutorial(void)
 		tutorial_game.pos = D3DXVECTOR2(1350.f, 50.0f);
 		tutorial_game.size = D3DXVECTOR2(200.f, 200.0f);
 		tutorial_game.drawflag = true;
-		tutorial_game.texture = LoadTexture("data/TEXTURE/tutorial/game.png");
 
 		tutorial_skill.pos = D3DXVECTOR2(1350.f, 50.0f);
 		tutorial_skill.size = D3DXVECTOR2(200.f, 200.0f);
 		tutorial_skill.drawflag = false;
-		tutorial_skill.texture = LoadTexture("data/TEXTURE/tutorial/skill.png");
 
 		tutorial_idou.pos = D3DXVECTOR2(350.f, 220.0f);
 		tutorial_idou.size = D3DXVECTOR2(300.f, 100.0f);
 		tutorial_idou.time = 0.f;
 		tutorial_idou.drawflag = true;
-		tutorial_idou.texture = LoadTexture("data/TEXTURE/tutorial/game_idou.png");
 
 		tutorial_nage.pos = D3DXVECTOR2(350.f, 220.0f);
 		tutorial_nage.size = D3DXVECTOR2(300.f, 100.0f);
 		tutorial_nage.drawflag = false;
 		tutorial_nage.throwflag = false;
 		tutorial_nage.catchflag = false;
-		tutorial_nage.texture = LoadTexture("data/TEXTURE/tutorial/game_nage.png");
 
 		tutorial_sukill.pos = D3DXVECTOR2(350.f, 220.0f);
 		tutorial_sukill.size = D3DXVECTOR2(300.f, 100.0f);
 		tutorial_sukill.drawflag = false;
 		tutorial_sukill.skillusenum = 0;
 		tutorial_sukill.reloadflag = false;
-		tutorial_sukill.texture = LoadTexture("data/TEXTURE/tutorial/game_skill.png");
 	}
 
 	return S_OK;
@@ -147,4 +142,29 @@ void DrawTutorial(void)
 TUTORIAL* GetTutorial(void)
 {
 	return &tutorial;
+}
+
+TUTORIAL_GAME* GetTutorialGame()
+{
+	return &tutorial_game;
+}
+
+TUTORIAL_SKILL* GetTutorialSkill()
+{
+	return &tutorial_skill;
+}
+
+TUTORIAL_IDOU* GetTutorialIdou()
+{
+	return &tutorial_idou;
+}
+
+TUTORIAL_NAGE* GetTutorialNage()
+{
+	return &tutorial_nage;
+}
+
+TUTORIAL_SUKILL* GetTutorialSukill()
+{
+	return &tutorial_sukill;
 }

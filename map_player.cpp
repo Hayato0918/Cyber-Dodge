@@ -3550,7 +3550,7 @@ void UpdateMapPlayer(void)
 						SceneTransition(SCENE_REST);
 					if (map[map_player.nowpos - 1].randomcode == 4)	//イベントマス
 					{
-						map_player.eventcode = (rand() % 9) + 1;	//ここでイベントをランダムに決める
+						map_player.eventcode = (rand() % 8) + 1;	//ここでイベントをランダムに決める
 						SceneTransition(SCENE_EVENT);
 					}
 					if (map[map_player.nowpos - 1].randomcode == 5)	//商人マス

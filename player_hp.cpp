@@ -24,13 +24,12 @@ HRESULT InitPlayerHp(void)
 
 		hp.framepos = D3DXVECTOR2(100.0f, SCREEN_HEIGHT - 100.0f);
 		hp.framesize = D3DXVECTOR2(80.f * hp.gaugeonce, 60.0f); //HPバーフレームサイズ
-		hp.frametexture = LoadTexture("data/TEXTURE/player/hp/player_hpframe.png");
+
 
 		hp.pos = D3DXVECTOR2(100.0f, SCREEN_HEIGHT - 100.0f);
 		hp.saidai_pos = D3DXVECTOR2(100.0f, SCREEN_HEIGHT - 100.0f);
 		hp.gaugesize = D3DXVECTOR2(hp.framesize.x, hp.framesize.y); //残っているHPの量
-		hp.gaugeredtexture = LoadTexture("data/TEXTURE/player/hp/player_hpred.png");
-		hp.gaugegreentexture = LoadTexture("data/TEXTURE/player/hp/player_hpgreen.png");
+
 
 		hp.hpsize = hp.gaugesize.x;
 		hp.colorcangeflag = false;
