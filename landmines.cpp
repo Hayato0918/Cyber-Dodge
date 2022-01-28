@@ -6,7 +6,6 @@
 #include "time.h"
 
 #include "firewall.h"
-#include "deleter.h"
 #include "slime.h"
 #include "bugincrease.h"
 #include "map_player.h"
@@ -32,7 +31,6 @@ HRESULT InitLandMines(void)
 	landmines.yrand = rand() % 10 + 1;
 	landmines.pos = D3DXVECTOR2(landmines.xrand * SCREEN_WIDTH * 0.05f + 555.0f + landmines.size.x, 320.0f + landmines.yrand * 22 - landmines.size.y);
 
-	landmines.texture = LoadTexture("data/TEXTURE/landmines.png");
 	landmines.use = false;
 	landmines.timeflag = false;
 	landmines.possesion = 4;
@@ -51,7 +49,6 @@ void _LandMines(void)
 	srand((unsigned int)time(NULL));
 
 	SLIME* slime = GetSlime();
-	DELETER* deleter = GetDeleter();
 	FIREWALL* firewall = GetFireWall();
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
@@ -91,17 +88,6 @@ void _LandMines(void)
 			{
 				landmines.timeflag = true;
 				if (slime->pos.y + slime->size.y > (landmines.pos.y + 160.0f) && (slime->pos.y + 160.0f) < landmines.pos.y + landmines.size.y)
-				{
-					landmines.timeflag = true;
-				}
-			}
-		}
-		if (map_player->encount == 2)
-		{
-			if (deleter->pos.x + deleter->size.x > (landmines.pos.x + 70.0f) && (deleter->pos.x + 70.0f) < landmines.pos.x + landmines.size.x)
-			{
-				landmines.timeflag = true;
-				if (deleter->pos.y + deleter->size.y > (landmines.pos.y + 160.0f) && (deleter->pos.y + 160.0f) < landmines.pos.y + landmines.size.y)
 				{
 					landmines.timeflag = true;
 				}
@@ -163,8 +149,7 @@ void _LandMines(void)
 
 void DrawLandMines(void)
 {
-	if (landmines.timeflag == true)
-		DrawSpriteLeftTop(landmines.texture, landmines.pos.x, landmines.pos.y, landmines.size.x, landmines.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+
 }
 
 LANDMINES* GetLandMines()

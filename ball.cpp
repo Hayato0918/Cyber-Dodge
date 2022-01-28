@@ -10,7 +10,6 @@
 //エネミー.h
 #include "firewall.h"
 #include "slime.h"
-#include "deleter.h"
 //スキル.h
 #include "autocatch.h"
 #include "invincible.h"
@@ -83,7 +82,6 @@ void UpdateBall(void)
 	MAP_PLAYER* map_player = GetMapPlayer();
 	FIREWALL* firewall = GetFireWall();
 	SLIME* slime = GetSlime();
-	DELETER* deleter = GetDeleter();
 	BALLTURNAROUND* ballTA = GetBallTurnAround();
 	KANTSUU* kantsuu = GetKantsuu();
 
@@ -132,22 +130,6 @@ void UpdateBall(void)
 		}
 	}
 	//-----ボールの座標を決める(deleter)
-	if (map_player->encount == 2)
-	{
-		if (ball.throwflag == false && ball.enemyhaveflag == true)		//ボールが飛んでいないとき&&エネミーが持ってるとき
-		{
-			if (deleter->rotate == 2)
-			{
-				ball.pos = D3DXVECTOR2(deleter->pos.x - ball.size.x * 0.5f, deleter->pos.y + deleter->size.y * 0.5f - ball.size.y * 0.5f);
-				ball.throwway = -1;
-			}
-			if (deleter->rotate == 3 || deleter->rotate == 0 || deleter->rotate == 1)
-			{
-				ball.pos = D3DXVECTOR2(deleter->pos.x + ball.size.x * 0.5f, deleter->pos.y + deleter->size.y * 0.5f - ball.size.y * 0.5f);
-				ball.throwway = 1;
-			}
-		}
-	}
 	//-----ボールの座標を決める(FireWall)
 	if (map_player->encount == 3)
 	{

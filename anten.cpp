@@ -21,7 +21,6 @@ HRESULT InitAnten(void)
 
 	anten.use = false;
 	anten.drawflag = false;
-	anten.texture = LoadTexture("data/TEXTURE/anten.png");
 
 	return S_OK;
 }
@@ -54,5 +53,9 @@ void DrawAnten(void)
 {
 	if (anten.drawflag == true)
 		DrawSpriteLeftTop(anten.texture, anten.pos.x, anten.pos.y, anten.size.x, anten.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+}
 
+ANTEN* GetAnten()
+{
+	return &anten;
 }

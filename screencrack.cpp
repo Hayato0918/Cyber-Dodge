@@ -29,7 +29,6 @@ HRESULT InitCrack(void)
 
 	crack.use = false;
 	crack.drawflag = false;
-	crack.texture = LoadTexture("data/TEXTURE/buggauge/screencrack.png");
 	crack.timeflag = false;
 	crack.time = 0.0f;
 	crack.time_yure = 0.0f;

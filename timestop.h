@@ -26,3 +26,4 @@ typedef struct
 HRESULT InitTimestop(void);
 void _Timestop(void);
 void DrawTimestop(void);
+TIMESTOP* GetTimestop();

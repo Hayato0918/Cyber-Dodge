@@ -28,7 +28,6 @@ HRESULT InitTitleRanking(void)
 
 	title_ranking.pos = D3DXVECTOR2(1270.f, 670.f);	//1600:900Å®1240,740
 	title_ranking.size = D3DXVECTOR2(290.f, 70.f);	//1600:900Å®380,70
-	title_ranking.texture = LoadTexture("data/TEXTURE/title/ranking.png");
 
 	return S_OK;
 }

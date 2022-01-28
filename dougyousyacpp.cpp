@@ -16,11 +16,9 @@ void InitDougyousya(void)
 {
 	dougyousya.pos = D3DXVECTOR2(0.0f, 0.0f);
 	dougyousya.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
-	dougyousya.texture = LoadTexture("data/TEXTURE/event_bg/dougyousya_bg.png");
 
 	dougyousyapoint.pos = D3DXVECTOR2(825.0f, 766.0f);
 	dougyousyapoint.size = D3DXVECTOR2(690.0f, 90.0f);
-	dougyousyapoint.texture = LoadTexture("data/TEXTURE/rest_frame.png");
 }
 
 void UninitDougyousya(void)
@@ -58,4 +56,14 @@ void DrawDougyousya(void)
 	DrawSpriteLeftTop(dougyousya.texture, dougyousya.pos.x, dougyousya.pos.y, dougyousya.size.x, dougyousya.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
 
 	DrawSpriteLeftTop(dougyousyapoint.texture, dougyousyapoint.pos.x, dougyousyapoint.pos.y, dougyousyapoint.size.x, dougyousyapoint.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+}
+
+
+DOUGYOUSYA* GetDougyousya()
+{
+	return &dougyousya;
+}
+DOUGYOUSYAPOINT* GetDougyousyaPoint()
+{
+	return &dougyousyapoint;
 }

@@ -29,3 +29,6 @@ void InitAvatar(void);
 void UninitAvatar(void);
 void UpdateAvatar(void);
 void DrawAvatar(void);
+
+AVATAR* GetAvaret();
+AVATARPOINT* GetAvatarPoint();

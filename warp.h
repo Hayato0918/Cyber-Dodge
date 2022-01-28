@@ -1,3 +1,4 @@
+
 //スキル_ワープ処理 [warp.h]
 #pragma once
 #include "main.h"
@@ -26,3 +27,4 @@ typedef struct
 HRESULT InitWarp(void);
 void _Warp(void);
 void DrawWarp(void);
+WARP* GetWarp();

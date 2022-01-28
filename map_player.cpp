@@ -47,7 +47,6 @@ HRESULT InitMapPlayer(void)
 
 			map_player.size = D3DXVECTOR2(SCREEN_WIDTH * 0.0625f, SCREEN_HEIGHT * 0.11111f);
 			map_player.pos = D3DXVECTOR2(map_sb->startpos.x, map_sb->startpos.y);
-			map_player.texture = LoadTexture("data/TEXTURE/map_player.png");
 			map_player.UDcount = 0;
 			map_player.LRcount = 0;
 			map_player.nowpos = 0;
@@ -55,7 +54,6 @@ HRESULT InitMapPlayer(void)
 			//選択の枠の初期化
 			map_player.circlepos = D3DXVECTOR2(map[0].pos.x, map[0].pos.y);
 			map_player.circlesize = D3DXVECTOR2(map[0].size.x, map[0].size.y);
-			map_player.circletexture = LoadTexture("data/TEXTURE/map/circle.png");
 			map_player.circlenowpos = 0;
 
 			map_player.gamecount = 0;
@@ -3502,16 +3500,14 @@ void UpdateMapPlayer(void)
 					if (map[map_player.nowpos - 1].randomcode == 1)	//通常敵マス
 					{
 						map_player.gamecount = map_player.gamecount + 1;	//ゲームシーンに入った回数を記録する
-						map_player.encount = (rand() % 2) + 1;	//ここで出現する敵をランダムに決める
-						if (tutorial->tutorialflag == false)
-							map_player.encount = 1;	//ここで出現する敵をランダムに決める
+						map_player.encount = 1;	//ここで出現する敵をランダムに決める
 						map_player.enemypowerup = false;
 						SceneTransition(SCENE_GAME);
 					}
 					if (map[map_player.nowpos - 1].randomcode == 2)	//強敵マス
 					{
 						map_player.gamecount = map_player.gamecount + 1;	//ゲームシーンに入った回数を記録する
-						map_player.encount = (rand() % 2) + 1;	//ここで出現する敵をランダムに決める
+						map_player.encount = 1;	//ここで出現する敵をランダムに決める
 						map_player.enemypowerup = true;
 						SceneTransition(SCENE_GAME);
 					}
@@ -3533,16 +3529,15 @@ void UpdateMapPlayer(void)
 					if (map[map_player.nowpos - 1].randomcode == 1)	//通常敵マス
 					{
 						map_player.gamecount = map_player.gamecount + 1;	//ゲームシーンに入った回数を記録する
-						map_player.encount = (rand() % 2) + 1;	//ここで出現する敵をランダムに決める
+						map_player.encount = 1;	//ここで出現する敵をランダムに決める
 						if(tutorial->tutorialflag == false)
-							map_player.encount = 2;	//ここで出現する敵をランダムに決める
-						map_player.encount = 2;	//ここで出現する敵をランダムに決める
+							map_player.encount = 1;	//ここで出現する敵をランダムに決める
 						map_player.enemypowerup = false;
 						SceneTransition(SCENE_GAME);
 					}
 					if (map[map_player.nowpos - 1].randomcode == 2)	//強敵マス
 					{
-						map_player.encount = (rand() % 2) + 1;	//ここで出現する敵をランダムに決める
+						map_player.encount = 1;	//ここで出現する敵をランダムに決める
 						map_player.enemypowerup = true;
 						SceneTransition(SCENE_GAME);
 					}

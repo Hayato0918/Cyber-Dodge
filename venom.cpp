@@ -7,7 +7,6 @@
 #include "player_hp.h"
 //エネミー.h
 #include "slime_hp.h"
-#include "deleter_hp.h"
 #include "firewall_hp.h"
 
 #include "bugincrease.h"
@@ -35,7 +34,6 @@ HRESULT InitVenom(void)
 
 	venom.pos = D3DXVECTOR2(30.f, 310.f);
 	venom.size = D3DXVECTOR2(1500.f, 450.f);
-	venom.texture = LoadTexture("data/TEXTURE/Venom.png");
 	venom.drawflag = false;
 
 	return S_OK;
@@ -45,7 +43,6 @@ void _Venom(void)
 {
 	PLAYERHP* hp = GetPlayerHp();
 	SLIMEHP* slimehp = GetSlimeHp();
-	DELETERHP* deleterhp = GetDeleterHp();
 	FIREWALLHP* firewallhp = GetFireWallHp();
 	BUG* bug = GetBugIncrease();
 	BUGRANDOM* bugrandom = GetBugRandom();
@@ -69,9 +66,6 @@ void _Venom(void)
 		//slimeのダメージ
 		if (map_player->encount == 1)
 			slimehp->gaugesize.x = slimehp->gaugesize.x - venom.heal;
-		//deleterのダメージ
-		if (map_player->encount == 2)
-			deleterhp->gaugesize.x = deleterhp->gaugesize.x - venom.heal;
 		//firewallのダメージ
 		if (map_player->encount == 3)
 			firewallhp->gaugesize.x = firewallhp->gaugesize.x - venom.heal;
@@ -93,4 +87,9 @@ void DrawVenom()
 {
 	if(venom.drawflag == true)
 	DrawSpriteLeftTop(venom.texture, venom.pos.x, venom.pos.y, venom.size.x, venom.size.y, 0.f, 0.f, 1.f, 1.f);
+}
+
+VENOM* GetVenom()
+{
+	return &venom;
 }

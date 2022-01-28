@@ -173,7 +173,7 @@ void UpdateShopGold()
 void DrawShopGold()
 {
 	for (int i = 0; i < shop_skill; i++)
-		DrawSpriteLeftTop(shop_gold[i].texture, shop_gold[i].pos.x, shop_gold[i].pos.y, shop_gold[i].size.x, shop_gold[i].size.y, 
+		DrawSpriteLeftTop(shop_goldtexture.texture, shop_gold[i].pos.x, shop_gold[i].pos.y, shop_gold[i].size.x, shop_gold[i].size.y,
 			0.0f, shop_gold[i].v, 1.0f, 0.142857f);
 }
 

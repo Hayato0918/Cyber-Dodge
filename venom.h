@@ -23,3 +23,4 @@ HRESULT InitVenom(void);
 void _Venom(void);
 
 void DrawVenom();
+VENOM* GetVenom();

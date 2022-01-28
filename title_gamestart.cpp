@@ -26,7 +26,6 @@ HRESULT InitTitleStart(void)
 
 	title_start.pos = D3DXVECTOR2(1180.f, 530.f);	//1600:900Å®1180,600
 	title_start.size = D3DXVECTOR2(380.f, 70.f);	//1600:900Å®380,70
-	title_start.texture = LoadTexture("data/TEXTURE/title/gamestart.png");
 
 	return S_OK;
 }

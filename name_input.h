@@ -31,3 +31,4 @@ void UpdateNameInput(void);
 void DrawNameInput(void);
 
 NAME_INPUTWARD* GetNameInputWard();
+NAME_INPUTFRAME* GetNameInput();

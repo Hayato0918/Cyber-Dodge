@@ -37,6 +37,10 @@
 
 //-----マップ
 #include "map_floor.h"
+#include "map_bg.h"
+#include "map_line.h"
+#include "map_player.h"
+#include "map_point.h"
 
 //-----ゲーム背景
 #include "bg.h"
@@ -44,8 +48,6 @@
 //-----エネミー
 #include "slime.h"
 #include "slime_hp.h"
-#include "deleter.h"
-#include "deleter_hp.h"
 #include "firewall.h"
 #include "firewall_hp.h"
 #include "enemy_aura.h"
@@ -57,7 +59,50 @@
 //-----スキル
 #include "barrier.h"
 #include "baseball.h"
+#include "Billiards.h"
+#include "otoshiana.h"
 
+#include "player_powerup.h"
+#include "player_regen.h"
+#include "player_speedup.h"
+#include "rockcreate.h"
+#include "slowarea.h"
+#include "timestop.h"
+#include "warp.h"
+
+//-----名前
+#include "name_input.h"
+#include "name_keyboard.h"
+#include "name_bg.h"
+
+//-----タイトル
+#include "title_bg.h"
+#include "title_select.h"
+#include "title_continue.h"
+#include "title_exit.h"
+#include "title_gamestart.h"
+#include "title_option.h"
+#include "title_ranking.h"
+#include "title_teamname.h"
+
+
+#include "screencrack.h"
+#include "enemybreak.h"
+
+#include "anten.h"
+#include "create.h"
+#include "venom.h"
+
+#include "map_hack.h"
+
+#include "avatar.h"
+#include "dougyousya.h"
+#include "hujyou.h"
+#include "kasoukenkyuukuukan.h"
+#include "mined.h"
+#include "server_recovery.h"
+#include "tosyokann.h"
+#include "yomigaeru.h"
 
 //-----マクロ定義
 
@@ -68,16 +113,136 @@
 
 void TextureLoad()
 {
+	YOMIGAERU* yomigaeru = GetYomi();
+	yomigaeru->texture = LoadTexture("data/TEXTURE/event_bg/yomigaeru_bg.png");
+	YOMIGAERUPOINT* yomigaerupoint = GetPomiPoint();
+	yomigaerupoint->texture = LoadTexture("data/TEXTURE/rest_frame.png");
+
+	TOSYOKANN* tosyokann = GetTosyo();
+	tosyokann->texture = LoadTexture("data/TEXTURE/event_bg/tosyokann_bg.png");
+	TOSYOKANNPOINT* tosyokannpoint = GetTosyPoint();
+	tosyokannpoint->texture = LoadTexture("data/TEXTURE/rest_frame.png");
+
+	SERVER_RECOVERY* server_recovery = GetServer();
+	SERVER_POINT* server_point = GetSuverPoint();
+	server_recovery->texture = LoadTexture("data/TEXTURE/server_recovery_bg.png");
+	server_point->texture = LoadTexture("data/TEXTURE/rest_frame.png");
+
+	MINED* mined = GetMined();
+	mined->texture = LoadTexture("data/TEXTURE/event_bg/mined_bg.png");
+	MINEDPOINT* minedpoint = GetMinesPoint();
+	minedpoint->texture = LoadTexture("data/TEXTURE/rest_frame.png");
+
+	KASOU* kasou = GetKasou();
+	kasou->texture = LoadTexture("data/TEXTURE/kasou.png");
+	KASOUPOINT* kasoupoint = GetKasouPoint();
+	kasoupoint->texture = LoadTexture("data/TEXTURE/rest_frame.png");
+
+	HUJYOU* hujyou = GetHujyou();
+	hujyou->texture = LoadTexture("data/TEXTURE/event_bg/hujyou_bg.png");
+	HUJYOUPOINT* hujyoupoint = GetHujyouPoint();
+	hujyoupoint->texture = LoadTexture("data/TEXTURE/rest_frame.png");
+
+	DOUGYOUSYA* dougyousya = GetDougyousya();
+	dougyousya->texture = LoadTexture("data/TEXTURE/event_bg/dougyousya_bg.png");
+	DOUGYOUSYAPOINT* dougyousyapoint = GetDougyousyaPoint();
+	dougyousyapoint->texture = LoadTexture("data/TEXTURE/rest_frame.png");
+
+	AVATAR* avatar = GetAvaret();
+	AVATARPOINT* avatarpoint = GetAvatarPoint();
+	avatarpoint->texture = LoadTexture("data/TEXTURE/rest_frame.png");
+	avatar->texture = LoadTexture("data/TEXTURE/event_bg/avatar_bg.png");
+
+
+	MAP_HACK* map_hack = GetMapHack();
+	map_hack->texture = LoadTexture("data/TEXTURE/hackingmenu/hackingmenu.png");
+	map_hack->frametexture = LoadTexture("data/TEXTURE/bugframe.png");
+
+	ANTEN* anten = GetAnten();
+	anten->texture = LoadTexture("data/TEXTURE/anten.png");
+	CREATETEXTURE* createtexture = GetCreateTexture();
+	createtexture->texture = LoadTexture("data/TEXTURE/Rock.png");
+	VENOM* venom = GetVenom();
+	venom->texture = LoadTexture("data/TEXTURE/Venom.png");
+
+	CRACK* crack = GetCrack();
+	crack->texture = LoadTexture("data/TEXTURE/buggauge/screencrack.png");
+
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
+	enemybreak->texture = LoadTexture("data/TEXTURE/result.png");
+	enemybreak->skilltexture = LoadTexture("data/TEXTURE/skill/skill.png");
+	GETGOLDNUM* getgoldnum = GetGoldNum();
+	getgoldnum->texture = LoadTexture("data/TEXTURE/number.png");
+
+	//-----マップ
+	MAP_LINE* map_line = GetMapLine();
+	map_line->texture1 = LoadTexture("data/TEXTURE/map/mapline_1.png");
+	map_line->texture2 = LoadTexture("data/TEXTURE/map/mapline_2.png");
+	map_line->texture3 = LoadTexture("data/TEXTURE/map/mapline_3.png");
+	map_line->texture4 = LoadTexture("data/TEXTURE/map/mapline_4.png");
+	MAP_PLAYER* map_player = GetMapPlayer();
+	map_player->texture = LoadTexture("data/TEXTURE/map_player.png");
+	map_player->circletexture = LoadTexture("data/TEXTURE/map/circle.png");
+	MAP_SB* map_sb = GetMapSB();
+	map_sb->texture = LoadTexture("data/TEXTURE/map/map_point.png");
+
+
+
+	//-----タイトル
+	TITLE_BG* title_bg_white = GetTitleBG();
+	TITLE_BG* title_bg_black = GetTitleBG();
+	TITLE_BG* title_bg_game = GetTitleBG();
+	title_bg_white->texture = LoadTexture("data/TEXTURE/fade_white.png");
+	title_bg_black->texture = LoadTexture("data/TEXTURE/test/black.png");
+	title_bg_game->texture = LoadTexture("data/TEXTURE/title/title.png");
+	TITLE_SELECT* title_select = GetTitleSelect();
+	title_select->texture = LoadTexture("data/TEXTURE/title/select.png");
+	TITLE_CONTINUE* title_continue = GetTitleContinue();
+	title_continue->texture = LoadTexture("data/TEXTURE/title/continue.png");
+	TITLE_EXIT* title_exit = GetTitleExit();
+	title_exit->texture = LoadTexture("data/TEXTURE/title/exit.png");
+	TITLE_START* title_start = GetTitleStart();
+	title_start->texture = LoadTexture("data/TEXTURE/title/gamestart.png");
+	TITLE_OPTION* title_option = GetTitleOption();
+	title_option->texture = LoadTexture("data/TEXTURE/title/option.png");
+	TITLE_RANKING* title_ranking = GetTitleRanking();
+	title_ranking->texture = LoadTexture("data/TEXTURE/title/ranking.png");
+	TITLE_TEAMNAME* title_teamname = GetTitleTeamName();
+	title_teamname->texture = LoadTexture("data/TEXTURE/title/team.png");
+
+
+	//-----名前
+	NAME_INPUTFRAME* name_inputframe = GetNameInput();
+	name_inputframe->texture = LoadTexture("data/TEXTURE/rest_frame.png");
+	name_inputframe->wardtexture = LoadTexture("data/TEXTURE/name/ward.png");
+	NAME_KEYBOARD* name_keyboard = GetNameKeyboard();
+	name_keyboard->texture = LoadTexture("data/TEXTURE/name/keyboard.png");
+	NAME_BG* name_bg = GetNameBG();
+	name_bg->texture = LoadTexture("data/TEXTURE/name/bg.png");
+
 	//-----スキル
 	BARRIER* barrier = GetBarrier();
 	barrier->texture = LoadTexture("data/TEXTURE/barrier.png");
 	BASEBALL* baseball = GetBaseball();
 	baseball->texture = LoadTexture("data/TEXTURE/bat.png");
-
-
-
-
-
+	BILLIARDS* billiards = Getilliards();
+	billiards->texture = LoadTexture("data/TEXTURE/cuestick.png");
+	OTOSIANA* otoshiana = GetOtosiana();
+	otoshiana->texture = LoadTexture("data/TEXTURE/otosiana.png");
+	POWERUP_ANIME* powerup_anime = GetPowerupAnime();
+	powerup_anime->texture = LoadTexture("data/TEXTURE/skill/effect/Powerup.png");
+	REGEN_ANIME* regen_anime = GetRegen();
+	regen_anime->texture = LoadTexture("data/TEXTURE/skill/effect/Regen.png");
+	SPEEDUP_ANIME* sppedup_anime = GetSpeedup();
+	sppedup_anime->texture = LoadTexture("data/TEXTURE/skill/effect/Speedup.png");
+	GANSEKI* ganseki = GetGanseki();
+	ganseki->texture = LoadTexture("data/TEXTURE/Rock.png");
+	SLOWAREA* slowarea = GetSlowarea();
+	slowarea->texture = LoadTexture("data/TEXTURE/slow.png");
+	TIMESTOP* timestop = GetTimestop();
+	timestop->texture = LoadTexture("data/TEXTURE/Timestop.png");
+	WARP* warp = GetWarp();
+	warp->texture = LoadTexture("data/TEXTURE/circle.png");
 
 
 	HACKEFFECT* hackeffect = GetHackEffect();
@@ -95,6 +260,8 @@ void TextureLoad()
 	MAP_FLOORBG* map_floor = GetMapFloorNum();
 	map_floor->texture = LoadTexture("data/TEXTURE/map/floor.png");
 	map_floor->numtexture = LoadTexture("data/TEXTURE/number.png");
+	MAP_BG* map_bg = GetMapBG();
+	map_bg->texture = LoadTexture("data/TEXTURE/map/bg.jpg");
 
 	//-----休憩
 	REST_BG* rest_bg = GetRestBG();
@@ -185,22 +352,7 @@ void TextureLoad()
 	slimehp->gaugeredtexture = LoadTexture("data/TEXTURE/enemy/hp/enemy_hpred.png");
 
 	//-----デリーター
-	DELETER* deleter = GetDeleter();
-	deleter->stand_Ltexture = LoadTexture("data/TEXTURE/enemy/Deleter/stand/stand_R.png");
-	deleter->stand_Rtexture = LoadTexture("data/TEXTURE/enemy/Deleter/stand/stand_L.png");
-	deleter->walk_Ltexture = LoadTexture("data/TEXTURE/enemy/Deleter/walk/walk_R.png");
-	deleter->walk_Rtexture = LoadTexture("data/TEXTURE/enemy/Deleter/walk/walk_L.png");
-	deleter->throw_Ltexture = LoadTexture("data/TEXTURE/enemy/Deleter/throw/throw_R.png");
-	deleter->throw_Rtexture = LoadTexture("data/TEXTURE/enemy/Deleter/throw/throw_L.png");
-	deleter->catch_Ltexture = LoadTexture("data/TEXTURE/enemy/Deleter/catch/catch_R.png");
-	deleter->catch_Rtexture = LoadTexture("data/TEXTURE/enemy/Deleter/catch/catch_L.png");
-	deleter->damage_Ltexture = LoadTexture("data/TEXTURE/enemy/Deleter/damage/damage_R.png");
-	deleter->damage_Rtexture = LoadTexture("data/TEXTURE/enemy/Deleter/damage/damage_L.png");
-	deleter->deathtexture = LoadTexture("data/TEXTURE/enemy/firewall/death/death.png");
-	DELETERHP* deleterhp = GetDeleterHp();
-	deleterhp->frametexture = LoadTexture("data/TEXTURE/enemy/hp/enemy_hpframe.png");
-	deleterhp->gaugegreentexture = LoadTexture("data/TEXTURE/enemy/hp/enemy_hpgreen.png");
-	deleterhp->gaugeredtexture = LoadTexture("data/TEXTURE/enemy/hp/enemy_hpred.png");
+
 
 	//-----ファイアーウォール
 	FIREWALL* firewall = GetFireWall();

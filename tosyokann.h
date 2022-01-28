@@ -28,3 +28,6 @@ void InitTosyokann(void);
 void UninitTosyokann(void);
 void UpdateTosyokann(void);
 void DrawTosyokann(void);
+
+TOSYOKANN* GetTosyo();
+TOSYOKANNPOINT* GetTosyPoint();

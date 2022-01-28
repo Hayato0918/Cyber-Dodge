@@ -37,8 +37,6 @@ HRESULT InitSlowArea(void)
 	slowarea.bugincrease = false;
 	slowarea.bugdrawnum = 0;
 
-	slowarea.texture = LoadTexture("data/TEXTURE/slow.png");
-
 	return S_OK;
 }
 
@@ -141,4 +139,9 @@ void DrawSlowArea(void)
 {
 	if (slowarea.timeflag == true)
 		DrawSpriteLeftTop(slowarea.texture, slowarea.pos.x, slowarea.pos.y, slowarea.size.x, slowarea.size.y, slowarea.u, 0.f, 0.05f, 1.0f);
+}
+
+SLOWAREA* GetSlowarea()
+{
+	return &slowarea;
 }

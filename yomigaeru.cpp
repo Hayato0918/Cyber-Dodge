@@ -18,11 +18,9 @@ void InitYomigaeru(void)
 {
 	yomigaeru.pos = D3DXVECTOR2(0.0f, 0.0f);
 	yomigaeru.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
-	yomigaeru.texture = LoadTexture("data/TEXTURE/event_bg/yomigaeru_bg.png");
 
 	yomigaerupoint.pos = D3DXVECTOR2(825.0f, 663.0f);
 	yomigaerupoint.size = D3DXVECTOR2(690.0f, 90.0f);
-	yomigaerupoint.texture = LoadTexture("data/TEXTURE/rest_frame.png");
 	yomigaerupoint.count = 0;
 	yomigaerupoint.minus = 103;
 }
@@ -97,4 +95,13 @@ void DrawYomigaeru(void)
 	DrawSpriteLeftTop(yomigaeru.texture, yomigaeru.pos.x, yomigaeru.pos.y, yomigaeru.size.x, yomigaeru.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
 
 	DrawSpriteLeftTop(yomigaerupoint.texture, yomigaerupoint.pos.x, yomigaerupoint.pos.y, yomigaerupoint.size.x, yomigaerupoint.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+}
+
+YOMIGAERU* GetYomi()
+{
+	return &yomigaeru;
+}
+YOMIGAERUPOINT* GetPomiPoint()
+{
+	return &yomigaerupoint;
 }

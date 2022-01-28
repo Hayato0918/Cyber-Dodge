@@ -28,7 +28,6 @@ HRESULT InitNameInput(void)
 
 	name_inputframe.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.188f, SCREEN_HEIGHT * 0.122f);	//1600:900Å®300,100
 	name_inputframe.size = D3DXVECTOR2(SCREEN_WIDTH * 0.625f, SCREEN_HEIGHT * 0.222f);		//1600:900Å®1000,200
-	name_inputframe.texture = LoadTexture("data/TEXTURE/rest_frame.png");
 
 	for (int i = 0; i < NAME_INPUTWARD_NUM; i++)
 	{
@@ -41,7 +40,6 @@ HRESULT InitNameInput(void)
 		name_inputward[i].drawflag = false;
 		wardx = wardx + SCREEN_WIDTH * 0.0625f;
 	}
-	name_inputframe.wardtexture = LoadTexture("data/TEXTURE/name/ward.png");
 
 	return S_OK;
 }
@@ -77,4 +75,9 @@ void DrawNameInput(void)
 NAME_INPUTWARD* GetNameInputWard()
 {
 	return &name_inputward[0];
+}
+
+NAME_INPUTFRAME* GetNameInput()
+{
+	return &name_inputframe;
 }

@@ -8,7 +8,6 @@
 //エネミー.h
 #include "firewall.h"
 #include "slime.h"
-#include "deleter.h"
 //プレイヤー
 #include "player.h"
 //
@@ -74,7 +73,6 @@ void UpdateCatch(void)
 	PLAYER* player = GetPlayer();
 	FIREWALL* firewall = GetFireWall();
 	SLIME* slime = GetSlime();
-	DELETER* deleter = GetDeleter();
 	BALL* ball = GetBall();
 	MAP_PLAYER* map_player = GetMapPlayer();
 
@@ -96,13 +94,6 @@ void UpdateCatch(void)
 				Catch.enemypos = D3DXVECTOR2(slime->pos.x, slime->pos.y + slime->size.y * 0.5f);
 			if (slime->rotate == 3)		//右
 				Catch.enemypos = D3DXVECTOR2(slime->pos.x + slime->size.x, slime->pos.y + slime->size.y * 0.5f);
-		}
-		if (map_player->encount == 2)
-		{
-			if (deleter->rotate == 2)	//左
-				Catch.enemypos = D3DXVECTOR2(deleter->pos.x, deleter->pos.y + deleter->size.y * 0.5f);
-			if (deleter->rotate == 3)		//右
-				Catch.enemypos = D3DXVECTOR2(deleter->pos.x + deleter->size.x, deleter->pos.y + deleter->size.y * 0.5f);
 		}
 		if (map_player->encount == 3)
 		{

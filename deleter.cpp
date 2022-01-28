@@ -257,18 +257,17 @@ void DrawDeleter(void)
 
 	if (deleter.damagetextureflag == true)
 	{
-		if(deleter.damageLRflag == false)
-			DrawSpriteLeftTop(deleter.damage_Ltexture, deleter.pos.x, deleter.pos.y,
-				deleter.size.x, deleter.size.y, deleter.u, deleter.v, deleter.uw, deleter.vh);
-		if (deleter.damageLRflag == true)
-			DrawSpriteLeftTop(deleter.damage_Rtexture, deleter.pos.x, deleter.pos.y,
-				deleter.size.x, deleter.size.y, deleter.u, deleter.v, deleter.uw, deleter.vh);
+		//if(deleter.damageLRflag == false)
+		//	DrawSpriteLeftTop(deleter.damage_Ltexture, deleter.pos.x, deleter.pos.y,
+		//		deleter.size.x, deleter.size.y, deleter.u, deleter.v, deleter.uw, deleter.vh);
+		//if (deleter.damageLRflag == true)
+		//	DrawSpriteLeftTop(deleter.damage_Rtexture, deleter.pos.x, deleter.pos.y,
+		//		deleter.size.x, deleter.size.y, deleter.u, deleter.v, deleter.uw, deleter.vh);
 	}
 
 	//死んだとき
-	if (deleter.drawflag == false)
-		DrawSpriteLeftTop(deleter.deathtexture, deleter.pos.x, deleter.pos.y,
-			deleter.size.x, deleter.size.y, deleter.u, deleter.v, deleter.uw, deleter.vh);
+		//DrawSpriteLeftTop(deleter.deathtexture, deleter.pos.x, deleter.pos.y,
+		//	deleter.size.x, deleter.size.y, deleter.u, deleter.v, deleter.uw, deleter.vh);
 }
 
 //-----構造体ポインタ取得処理

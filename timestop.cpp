@@ -5,7 +5,6 @@
 #include "sprite.h"
 //-----エネミー.h
 #include "firewall.h"
-#include "deleter.h"
 #include "slime.h"
 
 #include "bugincrease.h"
@@ -33,18 +32,14 @@ HRESULT InitTimestop(void)
 
 	MAP_PLAYER* map_player = GetMapPlayer();
 	SLIME* slime = GetSlime();
-	DELETER* deleter = GetDeleter();
 	FIREWALL* firewall = GetFireWall();
 
 	if (map_player->encount == 1)
 		timestop.pos = D3DXVECTOR2(slime->pos.x - 60, slime->pos.y - 30);
-	if (map_player->encount == 2)
-		timestop.pos = D3DXVECTOR2(deleter->pos.x - 60, deleter->pos.y - 30);
 	if (map_player->encount == 3)
 		timestop.pos = D3DXVECTOR2(firewall->pos.x - 60, firewall->pos.y - 30);
 	timestop.u = 0.f;
 	timestop.size = D3DXVECTOR2(250.f, 250.f);
-	timestop.texture = LoadTexture("data/TEXTURE/Timestop.png");
 
 	timestop.bugincrease = false;
 	timestop.bugdrawnum = 0;
@@ -64,12 +59,9 @@ void _Timestop(void)
 
 	MAP_PLAYER* map_player = GetMapPlayer();
 	SLIME* slime = GetSlime();
-	DELETER* deleter = GetDeleter();
 
 	if (map_player->encount == 1)
 		timestop.pos = D3DXVECTOR2(slime->pos.x - 30, slime->pos.y - 30);
-	if (map_player->encount == 2)
-		timestop.pos = D3DXVECTOR2(deleter->pos.x - 30, deleter->pos.y - 30);
 	if (map_player->encount == 3)
 		timestop.pos = D3DXVECTOR2(firewall->pos.x - 30, firewall->pos.y - 30);
 
@@ -80,8 +72,6 @@ void _Timestop(void)
 		{
 			if (map_player->encount == 1)
 				timestop.posnow = slime->pos;
-			if (map_player->encount == 2)
-				timestop.posnow = deleter->pos;
 			if(map_player->encount == 3)
 				timestop.posnow = firewall->pos;
 
@@ -110,8 +100,6 @@ void _Timestop(void)
 
 		if (map_player->encount == 1)
 			slime->pos = timestop.posnow;
-		if (map_player->encount == 2)
-			deleter->pos = timestop.posnow;
 		if(map_player->encount == 3)
 			firewall->pos = timestop.posnow;
 		cattch->enemyflag = 2;
@@ -170,4 +158,9 @@ void DrawTimestop()
 {
 	if(timestop.timeflag == true)
 	DrawSpriteLeftTop(timestop.texture, timestop.pos.x, timestop.pos.y, timestop.size.x, timestop.size.y, timestop.u, 0.f, 0.1f, 1.f);
+}
+
+TIMESTOP* GetTimestop()
+{
+	return &timestop;
 }

@@ -26,3 +26,6 @@ void InitDougyousya(void);
 void UninitDougyousya(void);
 void UpdateDougyousya(void);
 void DrawDougyousya(void);
+
+DOUGYOUSYA* GetDougyousya();
+DOUGYOUSYAPOINT* GetDougyousyaPoint();

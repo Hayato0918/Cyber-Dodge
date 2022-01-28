@@ -18,11 +18,9 @@ void InitTosyokann(void)
 {
 	tosyokann.pos = D3DXVECTOR2(0.0f, 0.0f);
 	tosyokann.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
-	tosyokann.texture = LoadTexture("data/TEXTURE/event_bg/tosyokann_bg.png");
 
 	tosyokannpoint.pos = D3DXVECTOR2(825.0f, 663.0f);
 	tosyokannpoint.size = D3DXVECTOR2(690.0f, 90.0f);
-	tosyokannpoint.texture = LoadTexture("data/TEXTURE/rest_frame.png");
 	tosyokannpoint.count = 0;
 	tosyokannpoint.minus = 103;
 }
@@ -105,4 +103,13 @@ void DrawTosyokann(void)
 	DrawSpriteLeftTop(tosyokann.texture, tosyokann.pos.x, tosyokann.pos.y, tosyokann.size.x, tosyokann.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
 
 	DrawSpriteLeftTop(tosyokannpoint.texture, tosyokannpoint.pos.x, tosyokannpoint.pos.y, tosyokannpoint.size.x, tosyokannpoint.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+}
+
+TOSYOKANN* GetTosyo()
+{
+	return &tosyokann;
+}
+TOSYOKANNPOINT* GetTosyPoint()
+{
+	return &tosyokannpoint;
 }

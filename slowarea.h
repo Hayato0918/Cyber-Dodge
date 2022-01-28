@@ -27,3 +27,5 @@ typedef struct
 HRESULT InitSlowArea(void);
 void _SlowArea(void);
 void DrawSlowArea(void);
+
+SLOWAREA* GetSlowarea();

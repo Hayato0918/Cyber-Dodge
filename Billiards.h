@@ -22,3 +22,4 @@ typedef struct
 HRESULT InitBilliards(void);
 void DrawBilliards(void);
 void _Billiards(void);
+BILLIARDS* Getilliards();

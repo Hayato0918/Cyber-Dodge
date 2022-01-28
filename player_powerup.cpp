@@ -30,7 +30,6 @@ HRESULT InitPowerUp(void)
 	powerup.bugdrawnum = 0;
 
 	powerup_anime.time = 0.f;
-	powerup_anime.texture = LoadTexture("data/TEXTURE/skill/effect/Powerup.png");
 
 	return S_OK;
 }
@@ -127,4 +126,9 @@ void DrawPowerup()
 {
 	if (powerup.timeflag == true)
 		DrawSpriteLeftTop(powerup_anime.texture, powerup_anime.pos.x, powerup_anime.pos.y, powerup_anime.size.x, powerup_anime.size.y, powerup_anime.u, 0.f, 0.045454545f, 1.f);
+}
+
+POWERUP_ANIME* GetPowerupAnime()
+{
+	return &powerup_anime;
 }

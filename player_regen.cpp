@@ -33,7 +33,6 @@ HRESULT InitPlayerRegen(void)
 	regen.bugdrawnum = 0;
 
 	regen_anime.time = 0.f;
-	regen_anime.texture = LoadTexture("data/TEXTURE/skill/effect/Regen.png");
 
 	return S_OK;
 }
@@ -152,4 +151,9 @@ void DrawRegen()
 {
 	if(regen.timeflag == true)
 	DrawSpriteLeftTop(regen_anime.texture, regen_anime.pos.x, regen_anime.pos.y, regen_anime.size.x, regen_anime.size.y, regen_anime.u, 0.f, 0.045454545f, 1.f);
+}
+
+REGEN_ANIME* GetRegen()
+{
+	return &regen_anime;
 }

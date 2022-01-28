@@ -20,7 +20,6 @@ HRESULT InitTitleExit(void)
 {
 	title_exit.pos = D3DXVECTOR2(1370.f, 810.f);	//1600:900Å®1270,810
 	title_exit.size = D3DXVECTOR2(190.f, 70.f);	//1600:900Å®380,70
-	title_exit.texture = LoadTexture("data/TEXTURE/title/exit.png");
 
 	return S_OK;
 }

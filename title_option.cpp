@@ -28,7 +28,6 @@ HRESULT InitTitleOption(void)
 
 	title_option.pos = D3DXVECTOR2(1300.f, 740.f);	//1600:900Å®1240,740
 	title_option.size = D3DXVECTOR2(260.f, 70.f);	//1600:900Å®380,70
-	title_option.texture = LoadTexture("data/TEXTURE/title/option.png");
 
 	return S_OK;
 }

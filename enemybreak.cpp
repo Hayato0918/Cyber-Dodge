@@ -26,11 +26,8 @@ GETGOLD getgold[4];
 GETGOLDNUM getgoldnum;
 GETSCORE getscore;
 
-int enemybreaktexture;
-
 HRESULT InitEnemyBreak(void)
 {
-	enemybreaktexture = LoadTexture("data/TEXTURE/skill/skill.png");
 	enemybreak.sound = LoadSound("data/SE/win.wav");
 	enemybreak.soundonce = false;
 
@@ -39,7 +36,6 @@ HRESULT InitEnemyBreak(void)
 	//-----”wŒi
 	enemybreak.pos = D3DXVECTOR2(300.f, 100.f);
 	enemybreak.size = D3DXVECTOR2(1000.f, 700.f);
-	enemybreak.texture = LoadTexture("data/TEXTURE/result.png");
 	enemybreak.drawflag = false;
 
 	//-----ƒXƒLƒ‹
@@ -56,7 +52,6 @@ HRESULT InitEnemyBreak(void)
 		getgold[i].v = 0.f;
 		getgold[i].drawflag = true;
 	}
-	getgoldnum.texture = LoadTexture("data/TEXTURE/number.png");
 
 	if (map_player->encount == 1)
 	{
@@ -200,7 +195,7 @@ void DrawEnemyBreak(void)
 	{
 		DrawSpriteLeftTop(enemybreak.texture, enemybreak.pos.x, enemybreak.pos.y, enemybreak.size.x, enemybreak.size.y, 0.f, 0.f, 1.f, 1.f);
 
-		DrawSpriteLeftTop(enemybreaktexture, getskill.pos.x, getskill.pos.y, getskill.size.x, getskill.size.y, getskill.u, 0.f, 0.0384615385f, 1.f);
+		DrawSpriteLeftTop(enemybreak.skilltexture, getskill.pos.x, getskill.pos.y, getskill.size.x, getskill.size.y, getskill.u, 0.f, 0.0384615385f, 1.f);
 
 		for (int i = 0; i < 4; i++)
 		{
@@ -213,4 +208,9 @@ void DrawEnemyBreak(void)
 ENEMYBREAK* GetEnemyBreak(void)
 {
 	return &enemybreak;
+}
+
+GETGOLDNUM* GetGoldNum()
+{
+	return &getgoldnum;
 }

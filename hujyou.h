@@ -26,3 +26,6 @@ void InitHujyou(void);
 void UninitHujyou(void);
 void UpdateHujyou(void);
 void DrawHujyou(void);
+
+HUJYOU* GetHujyou();
+HUJYOUPOINT* GetHujyouPoint();

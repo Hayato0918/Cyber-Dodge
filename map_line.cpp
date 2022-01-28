@@ -37,15 +37,6 @@ HRESULT InitMapLine(void)
 
 		if(map_player->floor == 0)
 			map_line.randomcode = 1;
-
-		if(map_line.randomcode == 1)
-			map_line.texture = LoadTexture("data/TEXTURE/map/mapline_1.png");
-		if (map_line.randomcode == 2)
-			map_line.texture = LoadTexture("data/TEXTURE/map/mapline_2.png");
-		if (map_line.randomcode == 3)
-			map_line.texture = LoadTexture("data/TEXTURE/map/mapline_3.png");
-		if (map_line.randomcode == 4)
-			map_line.texture = LoadTexture("data/TEXTURE/map/mapline_4.png");
 	}
 
 	return S_OK;
@@ -87,8 +78,18 @@ void UpdateMapLine(void)
 //-----ï`âÊèàóù
 void DrawMapLine(void)
 {
-	DrawSpriteLeftTop(map_line.texture, map_line.pos.x, map_line.pos.y, map_line.size.x, map_line.size.y,
+	if (map_line.randomcode == 1)
+	DrawSpriteLeftTop(map_line.texture1, map_line.pos.x, map_line.pos.y, map_line.size.x, map_line.size.y,
 		0.0f, 0.0f, 1.0f, 1.0f);
+	if (map_line.randomcode == 2)
+		DrawSpriteLeftTop(map_line.texture2, map_line.pos.x, map_line.pos.y, map_line.size.x, map_line.size.y,
+			0.0f, 0.0f, 1.0f, 1.0f);
+	if (map_line.randomcode == 3)
+		DrawSpriteLeftTop(map_line.texture3, map_line.pos.x, map_line.pos.y, map_line.size.x, map_line.size.y,
+			0.0f, 0.0f, 1.0f, 1.0f);
+	if (map_line.randomcode == 4)
+		DrawSpriteLeftTop(map_line.texture4, map_line.pos.x, map_line.pos.y, map_line.size.x, map_line.size.y,
+			0.0f, 0.0f, 1.0f, 1.0f);
 }
 
 MAP_LINE* GetMapLine()

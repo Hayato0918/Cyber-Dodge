@@ -6,7 +6,6 @@
 #include "input.h"
 //エネミー.h
 #include "firewall.h"
-#include "deleter.h"
 #include "slime.h"
 #include "map_player.h"
 
@@ -33,7 +32,6 @@ HRESULT InitGanseki(void)
 	ganseki.usegauge = 10;
 	ganseki.pos = D3DXVECTOR2(0.0f, 0.0f);
 	ganseki.size = D3DXVECTOR2(200.0f, 300.0f);
-	ganseki.texture = LoadTexture("data/TEXTURE/Rock.png");
 
 	ganseki.bugincrease = false;
 	ganseki.bugdrawnum = 0;
@@ -50,7 +48,6 @@ void _Ganseki(void)
 	BUGGAUGE* buggauge = GetBugGauge();
 	BALL* ball = GetBall();
 	FIREWALL* firewall = GetFireWall();
-	DELETER* deleter = GetDeleter();
 	SLIME* slime = GetSlime();
 	MAP_PLAYER* map_player = GetMapPlayer();
 	KANTSUU* kantsuu = GetKantsuu();
@@ -130,19 +127,6 @@ void _Ganseki(void)
 				}
 			}
 		}
-		if (map_player->encount == 2)
-		{
-			if (ganseki.pos.x < deleter->pos.x + deleter->size.x && ganseki.pos.x + ganseki.size.x * 0.8f > deleter->pos.x)
-			{
-				if (ganseki.pos.y + ganseki.size.y * 0.2f < deleter->pos.y + deleter->size.y && ganseki.pos.y + ganseki.size.y * 0.8f > deleter->pos.y)
-				{
-					if (deleter->move.x < 0)
-						deleter->pos.x -= 2.0f;
-					if (deleter->move.x > 0)
-						deleter->pos.x += 2.0f;
-				}
-			}
-		}
 		if (map_player->encount == 3)
 		{
 			if (ganseki.pos.x < firewall->pos.x + firewall->size.x && ganseki.pos.x + ganseki.size.x * 0.8f > firewall->pos.x)
@@ -200,7 +184,7 @@ void DrawGanseki(void)
 }
 
 //-----構造体ポインタ取得処理
-GANSEKI* GetGanseki(void)
+GANSEKI* GetGanseki()
 {
 	return &ganseki;
 }

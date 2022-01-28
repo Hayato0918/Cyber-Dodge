@@ -16,3 +16,5 @@ HRESULT InitNameBG(void);
 void UninitNameBG(void);
 void UpdateNameBG(void);
 void DrawNameBG(void);
+
+NAME_BG* GetNameBG();

@@ -29,3 +29,4 @@ typedef struct
 HRESULT InitPowerUp(void);
 void _PowerUp(void);
 void DrawPowerup();
+POWERUP_ANIME* GetPowerupAnime();

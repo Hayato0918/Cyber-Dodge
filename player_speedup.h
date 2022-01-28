@@ -29,3 +29,5 @@ typedef struct
 HRESULT InitSpeedUp(void);
 void _SpeedUp(void);
 void DrawSpeedup();
+
+SPEEDUP_ANIME* GetSpeedup();

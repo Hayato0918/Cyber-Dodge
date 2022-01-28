@@ -9,7 +9,10 @@ typedef struct
 {
 	D3DXVECTOR2 pos;
 	D3DXVECTOR2 size;
-	int texture;
+	int texture1;
+	int texture2;
+	int texture3;
+	int texture4;
 
 	int randomcode;
 }MAP_LINE;

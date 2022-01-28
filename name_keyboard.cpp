@@ -25,7 +25,6 @@ HRESULT InitNameKeyboard(void)
 {
 	name_keyboard.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.219f, 400.f);	//1600:900Å®350,500
 	name_keyboard.size = D3DXVECTOR2(SCREEN_WIDTH * 0.562f, SCREEN_HEIGHT * 0.333f);	//1600:900Å®900,300
-	name_keyboard.texture = LoadTexture("data/TEXTURE/name/keyboard.png");
 	name_keyboard.wardnum = 0;
 
 	return S_OK;

@@ -18,11 +18,9 @@ void InitKasou(void)
 {
 	kasou.pos = D3DXVECTOR2(0.0f, 0.0f);
 	kasou.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
-	kasou.texture = LoadTexture("data/TEXTURE/kasou.png");
 
 	kasoupoint.pos = D3DXVECTOR2(810.0f, 750.0f);
 	kasoupoint.size = D3DXVECTOR2(350.0f, 83.0f);
-	kasoupoint.texture = LoadTexture("data/TEXTURE/rest_frame.png");
 	kasoupoint.count = 0;
 }
 
@@ -97,4 +95,13 @@ void DrawKasou(void)
 {
 	DrawSpriteLeftTop(kasou.texture, kasou.pos.x, kasou.pos.y, kasou.size.x, kasou.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
 	DrawSpriteLeftTop(kasoupoint.texture, kasoupoint.pos.x, kasoupoint.pos.y, kasoupoint.size.x, kasoupoint.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+}
+
+KASOU* GetKasou()
+{
+	return &kasou;
+}
+KASOUPOINT* GetKasouPoint()
+{
+	return &kasoupoint;
 }

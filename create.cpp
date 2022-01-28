@@ -15,6 +15,7 @@
 
 //-----プロトタイプ宣言
 CREATE create[createnumber];
+CREATETEXTURE createtexture;
 
 //-----グローバル変数
 
@@ -24,7 +25,7 @@ HRESULT InitCreate(void)
 	{
 		create[i].pos = D3DXVECTOR2(0.0f, 0.0f);
 		create[i].size = D3DXVECTOR2(120.0f, 160.0f);
-		create[i].texture = LoadTexture("data/TEXTURE/Rock.png");
+		
 		create[i].use = false;
 		create[i].time = 0.0f;
 		create[i].timeflag = false;
@@ -78,7 +79,7 @@ void DrawCreate(void)
 	{
 		if (create[i].use == true)
 		{
-			DrawSpriteColor(create[i].texture, create[i].pos.x, create[i].pos.y, create[i].size.x, create[i].size.y, 0.0f, 0.0f, 1.0f, 1.0f,
+			DrawSpriteColor(createtexture.texture, create[i].pos.x, create[i].pos.y, create[i].size.x, create[i].size.y, 0.0f, 0.0f, 1.0f, 1.0f,
 				D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 		}
 	}
@@ -94,4 +95,7 @@ CREATE* GetCreate(int number)
 	return &create[number];
 }
 
-
+CREATETEXTURE* GetCreateTexture()
+{
+	return &createtexture;
+}

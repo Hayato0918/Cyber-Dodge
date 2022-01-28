@@ -26,3 +26,6 @@ void InitMined(void);
 void UninitMined(void);
 void UpdateMined(void);
 void DrawMined(void);
+
+MINED* GetMined();
+MINEDPOINT* GetMinesPoint();

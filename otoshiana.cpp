@@ -33,7 +33,6 @@ HRESULT InitOtosiana(void)
 
 	otosiana.use = false;
 	otosiana.timeflag = false;
-	otosiana.texture = LoadTexture("data/TEXTURE/otosiana.png");
 	otosiana.time = 0.0f;
 	otosiana.usegauge = 10;
 

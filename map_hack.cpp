@@ -27,11 +27,9 @@ HRESULT InitMapHack(void)
 
 	map_hack.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.203f, SCREEN_HEIGHT * 0.535f);		//1600:900Å®325:450
 	map_hack.size = D3DXVECTOR2(SCREEN_WIDTH * 0.375f, SCREEN_HEIGHT * 0.9f);		//1600:900Å®600:850
-	map_hack.texture = LoadTexture("data/TEXTURE/hackingmenu/hackingmenu.png");
 
 	map_hack.frame_pos = D3DXVECTOR2(SCREEN_WIDTH * 0.219f, SCREEN_HEIGHT * 0.33f);	//1600:900Å®350,250
 	map_hack.frame_size = D3DXVECTOR2(SCREEN_WIDTH * 0.28125f, SCREEN_HEIGHT * 0.111f);		//1600:900Å®450,100
-	map_hack.frametexture = LoadTexture("data/TEXTURE/bugframe.png");
 
 	map_hack.UDcount = 0;
 	map_hack.isUse = false;

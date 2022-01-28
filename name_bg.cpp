@@ -22,7 +22,6 @@ HRESULT InitNameBG(void)
 {
 	name_bg.pos = D3DXVECTOR2(0.f, 0.f);
 	name_bg.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
-	name_bg.texture = LoadTexture("data/TEXTURE/name/bg.png");
 
 	return S_OK;
 }
@@ -43,4 +42,9 @@ void UpdateNameBG(void)
 void DrawNameBG(void)
 {
 	DrawSpriteLeftTop(name_bg.texture, name_bg.pos.x, name_bg.pos.y, name_bg.size.x, name_bg.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+}
+
+NAME_BG* GetNameBG()
+{
+	return &name_bg;
 }

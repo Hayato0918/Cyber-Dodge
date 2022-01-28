@@ -7,7 +7,6 @@
 #include "player_hp.h"
 //エネミー.h
 #include "slime_hp.h"
-#include "deleter_hp.h"
 #include "firewall_hp.h"
 
 #include "bugincrease.h"
@@ -40,7 +39,6 @@ void _Regen(void)
 	PLAYERHP* hp = GetPlayerHp();
 	SLIMEHP* slimehp = GetSlimeHp();
 	FIREWALLHP* firewallhp = GetFireWallHp();
-	DELETERHP* deleterhp = GetDeleterHp();
 	BUG* bug = GetBugIncrease();
 	BUGRANDOM* bugrandom = GetBugRandom();
 	MAP_PLAYER* map_player = GetMapPlayer();
@@ -53,9 +51,6 @@ void _Regen(void)
 		//slimeの回復
 		if (map_player->encount == 1)
 			slimehp->gaugesize.x = slimehp->gaugesize.x + regen.heal;
-		//firewallの回復
-		if (map_player->encount == 2)
-			deleterhp->gaugesize.x = deleterhp->gaugesize.x + regen.heal;
 		//firewallの回復
 		if (map_player->encount == 3)
 			firewallhp->gaugesize.x = firewallhp->gaugesize.x + regen.heal;

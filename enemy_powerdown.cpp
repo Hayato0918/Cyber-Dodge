@@ -2,7 +2,6 @@
 #include "enemy_powerdown.h"
 //エネミー.h
 #include "firewall.h"
-#include "deleter.h"
 #include "slime.h"
 #include "input.h"
 
@@ -39,7 +38,6 @@ HRESULT InitPowerDown(void)
 void _PowerDown(void)
 {
 	FIREWALL* firewall = GetFireWall();
-	DELETER* deleter = GetDeleter();
 	SLIME* slime = GetSlime();
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
@@ -54,8 +52,6 @@ void _PowerDown(void)
 		{
 			if (map_player->encount == 1)
 				slime->atk = slime->atk - 30;
-			if (map_player->encount == 2)
-				deleter->atk = deleter->atk - 30;
 			if(map_player->encount == 3)
 				firewall->atk = firewall->atk - 30;
 			powerdown.timeflag = true;
@@ -84,8 +80,6 @@ void _PowerDown(void)
 		powerdown.timeflag = false;
 		if (map_player->encount == 1)
 			slime->atk = slime->atk + 30;
-		if (map_player->encount == 2)
-			deleter->atk = deleter->atk + 30;
 		if (map_player->encount == 3)
 			firewall->atk = firewall->atk + 30;
 		powerdown.timeflag = true;
@@ -100,8 +94,6 @@ void _PowerDown(void)
 			{
 				if (map_player->encount == 1)
 					slime->atk = slime->atk + 30;
-				if (map_player->encount == 2)
-					deleter->atk = deleter->atk + 30;
 				if (map_player->encount == 3)
 					firewall->atk = firewall->atk + 30;
 			}
@@ -123,8 +115,6 @@ void _PowerDown(void)
 			{
 				if (map_player->encount == 1)
 					slime->atk = slime->atk + 30;
-				if (map_player->encount == 2)
-					deleter->atk = deleter->atk + 30;
 				if (map_player->encount == 3)
 					firewall->atk = firewall->atk + 30;
 			}

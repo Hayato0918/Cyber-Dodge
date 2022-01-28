@@ -30,7 +30,6 @@ HRESULT InitSpeedUp(void)
 	speedup.bugdrawnum = 0;
 
 	sppedup_anime.time = 0.f;
-	sppedup_anime.texture = LoadTexture("data/TEXTURE/skill/effect/Speedup.png");
 
 	return S_OK;
 }
@@ -128,4 +127,9 @@ void DrawSpeedup()
 {
 	if (speedup.timeflag == true)
 		DrawSpriteLeftTop(sppedup_anime.texture, sppedup_anime.pos.x, sppedup_anime.pos.y, sppedup_anime.size.x, sppedup_anime.size.y, sppedup_anime.u, 0.f, 0.045454545f, 1.f);
+}
+
+SPEEDUP_ANIME* GetSpeedup()
+{
+	return &sppedup_anime;
 }

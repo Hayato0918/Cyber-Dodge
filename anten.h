@@ -20,3 +20,4 @@ typedef struct
 HRESULT InitAnten(void);
 void _Anten(void);
 void DrawAnten(void);
+ANTEN* GetAnten();

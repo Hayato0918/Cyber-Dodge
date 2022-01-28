@@ -9,8 +9,6 @@
 #include "sprite.h"
 //slime.h
 #include "slime.h"
-//deleter.h
-#include "deleter.h"
 //firewall.h
 #include "firewall.h"
 //
@@ -37,18 +35,12 @@ void UpdateEnemyAura(void)
 {
 	MAP_PLAYER* map_player = GetMapPlayer();
 	SLIME* slime = GetSlime();
-	DELETER* deleter = GetDeleter();
 	FIREWALL* firewall = GetFireWall();
 
 	if (map_player->encount == 1)
 	{
 		enemy_aura.pos = D3DXVECTOR2(slime->pos.x - 25.f, slime->pos.y - 25.f);
 		enemy_aura.size = D3DXVECTOR2(slime->size.x + 50.f, slime->size.y + 50.f);
-	}
-	if (map_player->encount == 2)
-	{
-		enemy_aura.pos = D3DXVECTOR2(deleter->pos.x - 25.f, deleter->pos.y - 25.f);
-		enemy_aura.size = D3DXVECTOR2(deleter->size.x + 50.f, deleter->size.y + 50.f);
 	}
 	if (map_player->encount == 3)
 	{

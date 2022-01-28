@@ -5,7 +5,6 @@
 #include "sprite.h"
 //エネミー.h
 #include "slime.h"
-#include "deleter.h"
 #include "firewall.h"
 
 #include "ball.h"
@@ -22,7 +21,6 @@
 //-----グローバル変数
 static ENEMYCLONE g_EnemyClone[ENEMYCLONE_MAX];
 SLIME* slime = GetSlime();
-DELETER* deleter = GetDeleter();
 FIREWALL* firewall = GetFireWall();
 
 //-----初期化処理
@@ -38,13 +36,6 @@ HRESULT InitEnemyClone(void)
 			g_EnemyClone[i].size = D3DXVECTOR2(slime->size.x, slime->size.y);
 			g_EnemyClone[i].move = D3DXVECTOR2(slime->move.x, slime->move.y);
 			g_EnemyClone[i].rotate = slime->rotate;
-		}
-		if (map_player->encount == 2)
-		{
-			g_EnemyClone[i].pos = D3DXVECTOR2(deleter->pos.x + SCREEN_WIDTH * 0.06875f, deleter->pos.y + SCREEN_HEIGHT * 0.26666f);
-			g_EnemyClone[i].size = D3DXVECTOR2(deleter->size.x, deleter->size.y);
-			g_EnemyClone[i].move = D3DXVECTOR2(deleter->move.x, deleter->move.y);
-			g_EnemyClone[i].rotate = deleter->rotate;
 		}
 		if (map_player->encount == 3)
 		{
@@ -73,8 +64,6 @@ void _EnemyClone(void)
 		{
 			if (map_player->encount == 1)
 				g_EnemyClone[i].drawflag = slime->drawflag;
-			if (map_player->encount == 2)
-				g_EnemyClone[i].drawflag = deleter->drawflag;
 			if(map_player->encount == 3)
 			g_EnemyClone[i].drawflag = firewall->drawflag;
 

@@ -33,8 +33,6 @@ HRESULT InitWarp(void)
 
 	warp.enemy_pos = D3DXVECTOR2(SCREEN_WIDTH, 320.0f);
 	warp.enemy_size = D3DXVECTOR2(100.0f, 100.0f);
-
-	warp.texture = LoadTexture("data/TEXTURE/circle.png");
 	warp.warp_flag = false;
 	warp.use = false;
 	warp.timeflag = false;
@@ -161,4 +159,9 @@ void DrawWarp(void)
 		DrawSpriteLeftTop(warp.texture, warp.player_pos.x, warp.player_pos.y, warp.player_size.x, warp.player_size.y, 0.0f, 0.0f, 1.0f, 1.0f);
 		DrawSpriteLeftTop(warp.texture, warp.enemy_pos.x, warp.enemy_pos.y, warp.enemy_size.x, warp.enemy_size.y, 0.0f, 0.0f, 1.0f, 1.0f);
 	}
+}
+
+WARP* GetWarp()
+{
+	return &warp;
 }

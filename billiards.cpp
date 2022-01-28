@@ -29,8 +29,6 @@ HRESULT InitBilliards(void)
 	billiards.bugincrease = false;
 	billiards.bugdrawnum = 0;
 
-	billiards.texture = LoadTexture("data/TEXTURE/cuestick.png");
-
 	return S_OK;
 }
 
@@ -146,4 +144,9 @@ void DrawBilliards(void)
 {
 	if (billiards.timeflag == true)
 		DrawSpriteLeftTop(billiards.texture, billiards.pos.x, billiards.pos.y, billiards.size.x, billiards.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+}
+
+BILLIARDS* Getilliards()
+{
+	return &billiards;
 }

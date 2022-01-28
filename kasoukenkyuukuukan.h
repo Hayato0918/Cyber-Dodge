@@ -28,3 +28,6 @@ void InitKasou(void);
 void UninitKasou(void);
 void UpdateKasou(void);
 void DrawKasou(void);
+
+KASOU* GetKasou();
+KASOUPOINT* GetKasouPoint();

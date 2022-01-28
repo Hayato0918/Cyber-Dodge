@@ -25,11 +25,9 @@ void InitAvatar(void)
 
 	avatar.pos = D3DXVECTOR2(0.0f, 0.0f);
 	avatar.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
-	avatar.texture = LoadTexture("data/TEXTURE/event_bg/avatar_bg.png");
 
 	avatarpoint.pos = D3DXVECTOR2(825.0f, 560.0f);
 	avatarpoint.size = D3DXVECTOR2(690.0f, 90.0f);
-	avatarpoint.texture = LoadTexture("data/TEXTURE/rest_frame.png");
 	avatarpoint.count = 0;
 	avatarpoint.minus = 103;
 }
@@ -130,4 +128,14 @@ void DrawAvatar(void)
 	DrawSpriteLeftTop(avatar.texture, avatar.pos.x, avatar.pos.y, avatar.size.x, avatar.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
 
 	DrawSpriteLeftTop(avatarpoint.texture, avatarpoint.pos.x, avatarpoint.pos.y, avatarpoint.size.x, avatarpoint.size.y, 0.0f, 0.0f, 1.0f, 1.0f);
+}
+
+AVATAR* GetAvaret()
+{
+	return &avatar;
+}
+
+AVATARPOINT* GetAvatarPoint()
+{
+	return &avatarpoint;
 }

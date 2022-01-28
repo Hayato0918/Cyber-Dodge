@@ -12,6 +12,7 @@ typedef struct
 	bool drawflag;
 	int sound;
 	bool soundonce;
+	int skilltexture;
 }ENEMYBREAK;
 
 typedef struct
@@ -49,3 +50,4 @@ void UninitEnemyBreak(void);
 void UpdateEnemyBreak(void);
 void DrawEnemyBreak(void);
 ENEMYBREAK* GetEnemyBreak();
+GETGOLDNUM* GetGoldNum();

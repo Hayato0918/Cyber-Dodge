@@ -23,7 +23,6 @@ MAP map[map_num];
 MAP_SB map_sb;
 
 //-----グローバル変数
-int map_texture;	//マスのテクスチャを設定する変数
 
 //-----初期化処理
 HRESULT InitMapPoint(void)
@@ -36,7 +35,6 @@ HRESULT InitMapPoint(void)
 
 	if (map_player->UDcount == 0 && deckmenu->openflag == false)
 	{
-		map_texture = LoadTexture("data/TEXTURE/map/map_point.png");
 
 		//-----シート1の場合
 		if (map_line->randomcode == 1)
@@ -384,14 +382,14 @@ void UpdateMapPoint(void)
 void DrawMapPoint(void)
 {
 	//スタートマスの描画
-	DrawSpriteLeftTop(map_texture, map_sb.startpos.x, map_sb.startpos.y, map_sb.startsize.x, map_sb.startsize.y, 0.664f, 0.0f, 0.166f, 1.0f);
+	DrawSpriteLeftTop(map_sb.texture, map_sb.startpos.x, map_sb.startpos.y, map_sb.startsize.x, map_sb.startsize.y, 0.664f, 0.0f, 0.166f, 1.0f);
 	//ボスマスの描画
-	DrawSpriteLeftTop(map_texture, map_sb.bosspos.x, map_sb.bosspos.y, map_sb.bosssize.x, map_sb.bosssize.y, 0.332f, 0.0f, 0.166f, 1.0f);
+	DrawSpriteLeftTop(map_sb.texture, map_sb.bosspos.x, map_sb.bosspos.y, map_sb.bosssize.x, map_sb.bosssize.y, 0.332f, 0.0f, 0.166f, 1.0f);
 	//マスの描画
 	for (int i = 0; i < map_num; i++)
 	{
 		if(map[i].drawflag == true)
-		DrawSpriteLeftTop(map_texture, map[i].pos.x, map[i].pos.y, map[i].size.x, map[i].size.y, map[i].u, 0.f, 0.166f, 1.f);
+		DrawSpriteLeftTop(map_sb.texture, map[i].pos.x, map[i].pos.y, map[i].size.x, map[i].size.y, map[i].u, 0.f, 0.166f, 1.f);
 	}
 }
 

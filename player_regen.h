@@ -33,3 +33,4 @@ typedef struct
 HRESULT InitPlayerRegen(void);
 void _PlayerRegen(void);
 void DrawRegen();
+REGEN_ANIME* GetRegen();

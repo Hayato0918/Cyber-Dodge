@@ -5,7 +5,6 @@
 
 #include "avatar.h"
 #include "dougyousya.h"
-#include "floatingfeeling.h"
 #include "hujyou.h"
 #include "kasoukenkyuukuukan.h"
 #include "mined.h"

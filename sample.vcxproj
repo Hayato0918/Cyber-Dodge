@@ -152,10 +152,6 @@
     <ClCompile Include="clear.cpp" />
     <ClCompile Include="create.cpp" />
     <ClCompile Include="deckmenu.cpp" />
-    <ClCompile Include="deleter.cpp" />
-    <ClCompile Include="deleterAI.cpp" />
-    <ClCompile Include="deleter_animation.cpp" />
-    <ClCompile Include="deleter_hp.cpp" />
     <ClCompile Include="disappear.cpp" />
     <ClCompile Include="doubleattack.cpp" />
     <ClCompile Include="dougyousyacpp.cpp" />
@@ -168,7 +164,6 @@
     <ClCompile Include="firewall_hp.cpp" />
     <ClCompile Include="enemy_powerdown.cpp" />
     <ClCompile Include="fade.cpp" />
-    <ClCompile Include="floatingfeeling.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameover.cpp" />
     <ClCompile Include="gameover_F.cpp" />
@@ -279,14 +274,9 @@
     <ClInclude Include="areaChange.h" />
     <ClInclude Include="avatar.h" />
     <ClInclude Include="banner_score.h" />
-    <ClInclude Include="deleter.h" />
-    <ClInclude Include="deleterAI.h" />
-    <ClInclude Include="deleter_animation.h" />
-    <ClInclude Include="deleter_hp.h" />
     <ClInclude Include="dougyousya.h" />
     <ClInclude Include="enemybreak.h" />
     <ClInclude Include="enemy_aura.h" />
-    <ClInclude Include="floatingfeeling.h" />
     <ClInclude Include="fullscreen.h" />
     <ClInclude Include="gameover_F.h" />
     <ClInclude Include="gameover_score.h" />

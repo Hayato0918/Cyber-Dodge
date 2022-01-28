@@ -27,7 +27,6 @@ HRESULT InitTitleSelect(void)
 	title_select.pos = D3DXVECTOR2(title_start->pos.x - 15.f, title_start->pos.y - 15.f);
 	title_select.size = D3DXVECTOR2(title_start->size.x + 30.f, title_start->size.y + 30.f);
 	title_select.count = 0;
-	title_select.texture = LoadTexture("data/TEXTURE/title/select.png");
 
 	return S_OK;
 }

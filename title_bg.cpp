@@ -25,17 +25,14 @@ HRESULT InitTitleBG(void)
 
 	title_bg_white.pos = D3DXVECTOR2(0.0f, 0.0f);
 	title_bg_white.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
-	title_bg_white.texture = LoadTexture("data/TEXTURE/fade_white.png");
 
 	title_bg_black.pos = D3DXVECTOR2(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.5f);
 	title_bg_black.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
-	title_bg_black.texture = LoadTexture("data/TEXTURE/test/black.png");
 	title_bg_black.a = 0.0f;
 	title_bg_black.color = D3DXCOLOR(1.0f, 1.0f, 1.0f, title_bg_black.a);
 
 	title_bg_game.pos = D3DXVECTOR2(0.0f, 0.0f);
 	title_bg_game.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
-	title_bg_game.texture = LoadTexture("data/TEXTURE/title/title.png");
 	title_bg_game.drawflag = false;
 
 	title_bg_game.sound = LoadSound("data/BGM/titleBGM.wav");
@@ -86,4 +83,6 @@ void DrawTitleBG(void)
 TITLE_BG* GetTitleBG()
 {
 	return &title_bg_game;
+	return &title_bg_white;
+	return &title_bg_black;
 }

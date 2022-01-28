@@ -28,3 +28,6 @@ void InitServerRecovery(void);
 void UninitServerRecovery(void);
 void UpdateServerRecovery(void);
 void DrawServerRecovery(void);
+
+SERVER_RECOVERY* GetServer();
+SERVER_POINT* GetSuverPoint();

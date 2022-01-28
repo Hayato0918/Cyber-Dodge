@@ -28,3 +28,6 @@ void InitYomigaeru(void);
 void UninitYomigaeru(void);
 void UpdateYomigaeru(void);
 void DrawYomigaeru(void);
+
+YOMIGAERU* GetYomi();
+YOMIGAERUPOINT* GetPomiPoint();

@@ -121,12 +121,6 @@
     <Filter Include="ヘッダー ファイル\map\event\system">
       <UniqueIdentifier>{2cde58e5-016d-45dd-8bb6-7ebeece25881}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\enemy\deleter">
-      <UniqueIdentifier>{7e30f3a7-2f17-4b26-9886-583d0c86490d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\enemy\deleter">
-      <UniqueIdentifier>{b03c73c8-fa6e-434d-9cd4-0f42e09a2195}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\option\windowsize">
       <UniqueIdentifier>{89d0722f-e189-420b-9c6f-0be4f30babf2}</UniqueIdentifier>
     </Filter>
@@ -492,18 +486,6 @@
     <ClCompile Include="kasoukenkyuukuukan.cpp">
       <Filter>ソース ファイル\map\event</Filter>
     </ClCompile>
-    <ClCompile Include="deleter.cpp">
-      <Filter>ソース ファイル\enemy\deleter</Filter>
-    </ClCompile>
-    <ClCompile Include="deleter_animation.cpp">
-      <Filter>ソース ファイル\enemy\deleter</Filter>
-    </ClCompile>
-    <ClCompile Include="deleter_hp.cpp">
-      <Filter>ソース ファイル\enemy\deleter</Filter>
-    </ClCompile>
-    <ClCompile Include="deleterAI.cpp">
-      <Filter>ソース ファイル\enemy\deleter</Filter>
-    </ClCompile>
     <ClCompile Include="windowsize_select.cpp">
       <Filter>ソース ファイル\option\windowsize</Filter>
     </ClCompile>
@@ -536,9 +518,6 @@
     </ClCompile>
     <ClCompile Include="enemybreak.cpp">
       <Filter>ソース ファイル\enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="floatingfeeling.cpp">
-      <Filter>ソース ファイル\map\event</Filter>
     </ClCompile>
     <ClCompile Include="hackeffect.cpp">
       <Filter>ソース ファイル\map</Filter>
@@ -941,18 +920,6 @@
     <ClInclude Include="kasoukenkyuukuukan.h">
       <Filter>ヘッダー ファイル\map\event</Filter>
     </ClInclude>
-    <ClInclude Include="deleter.h">
-      <Filter>ヘッダー ファイル\enemy\deleter</Filter>
-    </ClInclude>
-    <ClInclude Include="deleter_animation.h">
-      <Filter>ヘッダー ファイル\enemy\deleter</Filter>
-    </ClInclude>
-    <ClInclude Include="deleter_hp.h">
-      <Filter>ヘッダー ファイル\enemy\deleter</Filter>
-    </ClInclude>
-    <ClInclude Include="deleterAI.h">
-      <Filter>ヘッダー ファイル\enemy\deleter</Filter>
-    </ClInclude>
     <ClInclude Include="windowsize_select.h">
       <Filter>ヘッダー ファイル\option\windowsize</Filter>
     </ClInclude>
@@ -985,9 +952,6 @@
     </ClInclude>
     <ClInclude Include="enemybreak.h">
       <Filter>ヘッダー ファイル\enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="floatingfeeling.h">
-      <Filter>ヘッダー ファイル\map\event</Filter>
     </ClInclude>
     <ClInclude Include="hackeffect.h">
       <Filter>ヘッダー ファイル\map</Filter>

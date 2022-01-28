@@ -20,7 +20,7 @@ typedef struct
 	D3DXVECTOR2 startsize;
 	D3DXVECTOR2 bosspos;
 	D3DXVECTOR2 bosssize;
-
+	int texture;
 	bool hackflag;
 }MAP_SB;
 
