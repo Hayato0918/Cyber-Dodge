@@ -75,6 +75,7 @@ HRESULT InitDeckMenu(void)
 	deckmenu.pos = D3DXVECTOR2(0.0f, 0.0f);
 	deckmenu.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
 	deckmenu.texture = LoadTexture("data/TEXTURE/deckmenu/bg.png");
+	deckmenu.openflag = false;
 	deckmenu.use = false;
 
 	g_Selection.pos = D3DXVECTOR2(deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.x, deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.y);
@@ -202,6 +203,7 @@ void UpdateDeckMenu(void)
 		//「立ち去る」コマンドの場所でEnterキーを押したらMAPに戻る
 		if (IsButtonTriggered(0, BUTTON_Y) && g_Selection.pos == D3DXVECTOR2(1100.f, 690.f))
 		{
+			deckmenu.openflag = true;
 			SceneTransition(SCENE_MAP);
 			deckmenu.use = false;
 		}
@@ -257,13 +259,21 @@ void UpdateDeckMenu(void)
 				deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.y);
 		}
 
+
 		//「立ち去る」コマンドの場所でEnterキーを押したらMAPに戻る
-		if (GetKeyboardTrigger(DIK_RETURN) && deckmenu.use == true)
+		if (GetKeyboardTrigger(DIK_RETURN) && g_Selection.pos == D3DXVECTOR2(deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.x,
+			deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.y))
 		{
+			deckmenu.openflag = true;
 			SceneTransition(SCENE_MAP);
 			deckmenu.use = false;
 		}
 	}
+}
+
+DECKMENU* GetDeckmenu(void)
+{
+	return &deckmenu;
 }
 
 //-----描画処理

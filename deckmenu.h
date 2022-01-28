@@ -9,6 +9,7 @@ typedef struct
 	D3DXVECTOR2 pos;
 	D3DXVECTOR2 size;
 	int texture;
+	bool openflag;
 	bool use;
 }DECKMENU;
 
@@ -53,3 +54,4 @@ void UpdateDeckMenu(void);
 void DrawDeckMenu(void);
 
 SELECTION* GetSelection(void);
+DECKMENU* GetDeckmenu(void);

@@ -13,6 +13,7 @@
 #include "map_line.h"
 #include "map_save_bg.h"
 #include "map_bg.h"
+#include "deckmenu.h"
 
 //-----ƒ}ƒNƒ’è‹`
 #define map_num 24
@@ -29,10 +30,11 @@ HRESULT InitMapPoint(void)
 {
 	MAP_PLAYER* map_player = GetMapPlayer();
 	MAP_LINE* map_line = GetMapLine();
+	DECKMENU* deckmenu = GetDeckmenu();
 
 	map_sb.hackflag = false;
 
-	if (map_player->UDcount == 0)
+	if (map_player->UDcount == 0 && deckmenu->openflag == false)
 	{
 		map_texture = LoadTexture("data/TEXTURE/map/map_point.png");
 

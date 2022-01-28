@@ -10,6 +10,7 @@
 #include "map_player.h"
 #include "map_hack.h"
 #include "map_save_bg.h"
+#include "deckmenu.h"
 #include "map_bg.h"
 
 //-----ƒ}ƒNƒ’è‹`
@@ -23,8 +24,9 @@ MAP_LINE map_line;
 HRESULT InitMapLine(void)
 {
 	MAP_PLAYER* map_player = GetMapPlayer();
+	DECKMENU* deckmenu = GetDeckmenu();
 
-	if (map_player->UDcount == 0)
+	if (map_player->UDcount == 0 && deckmenu->openflag == false)
 	{
 		map_line.pos = D3DXVECTOR2(0.0f, SCREEN_HEIGHT * 0.055555f);
 		map_line.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT * 2.f);

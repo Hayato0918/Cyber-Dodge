@@ -175,7 +175,7 @@ void player_animation()
 				}
 				if (player->standtexturetime > 100)
 				{
-					player->standtexturetime = 0.f;
+					//player->standtexturetime = 0.f;
 				}
 				player->standLRflag = false;
 			}
