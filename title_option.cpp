@@ -44,23 +44,23 @@ void UpdateTitleOption(void)
 	TITLE_SELECT* title_select = GetTitleSelect();
 	TITLE_BG* title_bg = GetTitleBG();
 
-	if (PADUSE == 0)
-	{
-		if (title_select->count == 3 && IsButtonTriggered(0, BUTTON_Y) && title_bg->drawflag == true)
-		{
-			PlaySound(title_option.sound, 0.5f);
-			SceneTransition(SCENE_OPTION);
-		}
-	}
+	//if (PADUSE == 0)
+	//{
+	//	if (title_select->count == 3 && IsButtonTriggered(0, BUTTON_Y) && title_bg->drawflag == true)
+	//	{
+	//		PlaySound(title_option.sound, 0.5f);
+	//		SceneTransition(SCENE_OPTION);
+	//	}
+	//}
 
-	if (PADUSE == 1)
-	{
-		if (title_select->count == 3 && GetKeyboardTrigger(DIK_RETURN) && title_bg->drawflag == true)
-		{
-			PlaySound(title_option.sound, 0.5f);
-			SceneTransition(SCENE_OPTION);
-		}
-	}
+	//if (PADUSE == 1)
+	//{
+	//	if (title_select->count == 3 && GetKeyboardTrigger(DIK_RETURN) && title_bg->drawflag == true)
+	//	{
+	//		PlaySound(title_option.sound, 0.5f);
+	//		SceneTransition(SCENE_OPTION);
+	//	}
+	//}
 }
 
 //-----•`‰æˆ—
