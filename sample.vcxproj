@@ -160,6 +160,7 @@
     <ClCompile Include="dougyousyacpp.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="enemybreak.cpp" />
+    <ClCompile Include="enemy_explosion_animation.cpp" />
     <ClCompile Include="event.cpp" />
     <ClCompile Include="firewall.cpp" />
     <ClCompile Include="firewallAI.cpp" />
@@ -271,6 +272,7 @@
     <ClInclude Include="dougyousya.h" />
     <ClInclude Include="enemybreak.h" />
     <ClInclude Include="enemy_aura.h" />
+    <ClInclude Include="enemy_explosion_animation.h" />
     <ClInclude Include="floatingfeeling.h" />
     <ClInclude Include="gameover_F.h" />
     <ClInclude Include="hackeffect.h" />

@@ -24,7 +24,7 @@ HRESULT InitBarrier(void)
 	barrier.pos = D3DXVECTOR2(player->pos.x, player->pos.y);
 	barrier.size = D3DXVECTOR2(player->size.y, player->size.y);
 	barrier.drawflag = false;
-	barrier.texture = LoadTexture("data/TEXTURE/barrier.png");
+	barrier.texture = LoadTexture("data/TEXTURE/Eff_Barria.png");
 
 	barrier.use = false;
 	barrier.timeflag = false;
@@ -45,8 +45,9 @@ void _Barrier(void)
 	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();	
 
-	barrier.pos = D3DXVECTOR2(player->pos.x, player->pos.y);
-	barrier.size = D3DXVECTOR2(player->size.y, player->size.y);
+	barrier.pos = D3DXVECTOR2(player->pos.x - 45.0f, player->pos.y - 150.0f);
+	//barrier.size = D3DXVECTOR2(player->size.y, player->size.y);
+	barrier.size = D3DXVECTOR2(300.0f, 500.0f);
 
 	//-----3sŠÔƒoƒŠƒA‚ğ’£‚é
 	for (int i = 0; i < SKILL_NUM; i++)

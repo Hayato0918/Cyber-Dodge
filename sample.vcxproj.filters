@@ -564,6 +564,9 @@
     <ClCompile Include="gameover_F.cpp">
       <Filter>ソース ファイル\gameover</Filter>
     </ClCompile>
+    <ClCompile Include="enemy_explosion_animation.cpp">
+      <Filter>ソース ファイル\enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -970,6 +973,9 @@
     </ClInclude>
     <ClInclude Include="gameover_F.h">
       <Filter>ヘッダー ファイル\gameover</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy_explosion_animation.h">
+      <Filter>ヘッダー ファイル\enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

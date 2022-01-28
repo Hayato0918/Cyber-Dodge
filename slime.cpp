@@ -18,6 +18,7 @@
 #include "map_player.h"
 
 #include "enemybreak.h"
+#include "enemy_explosion_animation.h"
 
 //-----ƒ}ƒNƒ’è‹`
 
@@ -79,6 +80,7 @@ void UpdateSlime(void)
 	MAP_PLAYER* map_player = GetMapPlayer();
 	RANDOM* random = GetRandom();
 	ENEMYBREAK* enemybreak = GetEnemyBreak();
+	ENEMY_EXPLOSION* enemy_explosion = GetEnemyExplosion();
 
 	if (slime.walktime > 2)
 		slime.u = 0.335f;
@@ -117,6 +119,11 @@ void UpdateSlime(void)
 		}
 	}
 
+	if (GetKeyboardPress(DIK_Z))
+	{
+		slime_hp->gaugesize.x = 0.0f;
+	}
+
 	//HP‚ª0‚É‚È‚Á‚½‚çmap‚ÖˆÚ“®‚·‚é
 	if (slime_hp->gaugesize.x <= 0)
 	{
@@ -127,7 +134,13 @@ void UpdateSlime(void)
 			slime.getskill = true;
 		}
 		map_player->nextflag = true;
-		enemybreak->drawflag = true;
+
+		enemy_explosion->drawflag = true;
+
+		if (enemy_explosion->animeflag == true)
+		{
+			enemybreak->drawflag = true;
+		}
 	}
 
 

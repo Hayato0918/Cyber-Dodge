@@ -20,6 +20,7 @@
 #include "skillrandom.h"
 
 #include "enemybreak.h"
+#include "enemy_explosion_animation.h"
 
 //-----定数定義
 
@@ -45,7 +46,7 @@ void InitGame(void)
 	InitSkill();
 	InitRandom();
 	InitEnemyBreak();
-
+	//InitEnemyExplosion();
 }
 
 //-----終了処理関数
@@ -61,6 +62,7 @@ void UninitGame()
 	UninitPlayerHp();
 	UninitBugIncrease();
 	UninitBG();
+	//UninitEnemyExplosion();
 }
 
 //-----更新処理をする関数
@@ -77,6 +79,7 @@ void UpdateGame(void)
 	UpdateRandom();
 	_Bug();
 	UpdateEnemyBreak();
+	//UpdateEnemyExplosion();
 
 	if (GetKeyboardTrigger(DIK_M))
 		SceneTransition(SCENE_MAP);
@@ -115,6 +118,6 @@ void DrawGame(void)
 	}
 
 	DrawEnemyBreak();
-
+	//DrawEnemyExplosion();
 }
 

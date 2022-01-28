@@ -17,6 +17,7 @@
 #include "create.h"
 #include "map_player.h"
 #include "enemybreak.h"
+#include "enemy_explosion_animation.h"
 
 //-----マクロ定義
 
@@ -91,6 +92,7 @@ void UpdateFireWall(void)
 	BG* bg = GetBG();
 	MAP_PLAYER* map_player = GetMapPlayer();
 	ENEMYBREAK* enemybreak = GetEnemyBreak();
+	ENEMY_EXPLOSION* enemy_explosion = GetEnemyExplosion();
 
 	if (firewall.drawflag == true)
 		FireWallAI();
@@ -121,6 +123,11 @@ void UpdateFireWall(void)
 		}
 	}
 
+	if (GetKeyboardPress(DIK_Z))
+	{
+		firewall_hp->gaugesize.x = 0.0f;
+	}
+
 	//HPが0になったらmapへ移動する
 	if (firewall_hp->gaugesize.x <= 0)
 	{
@@ -137,7 +144,13 @@ void UpdateFireWall(void)
 			map_player->floor = map_player->floor + 1;
 			firewall.floorflag = true;
 		}
-		enemybreak->drawflag = true;
+
+		enemy_explosion->drawflag = true;
+
+		if (enemy_explosion->animeflag == true)
+		{
+			enemybreak->drawflag = true;
+		}
 	}
 
 	//-----アニメーション処理

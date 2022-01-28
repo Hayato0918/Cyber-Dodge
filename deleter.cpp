@@ -17,6 +17,7 @@
 #include "create.h"
 #include "map_player.h"
 #include "enemybreak.h"
+#include "enemy_explosion_animation.h"
 
 //-----マクロ定義
 
@@ -100,6 +101,7 @@ void UpdateDeleter(void)
 	BG* bg = GetBG();
 	MAP_PLAYER* map_player = GetMapPlayer();
 	ENEMYBREAK* enemybreak = GetEnemyBreak();
+	ENEMY_EXPLOSION* enemy_explosion = GetEnemyExplosion();
 
 	if (deleter.drawflag == true)
 		DeleterAI();
@@ -129,6 +131,11 @@ void UpdateDeleter(void)
 		}
 	}
 
+	if (GetKeyboardPress(DIK_Z))
+	{
+		deleter_hp->gaugesize.x = 0.0f;
+	}
+
 	//HPが0になったらmapへ移動する
 	if (deleter_hp->gaugesize.x <= 0)
 	{
@@ -139,7 +146,13 @@ void UpdateDeleter(void)
 			deleter.getskill = true;
 		}
 		map_player->nextflag = true;
-		enemybreak->drawflag = true;
+
+		enemy_explosion->drawflag = true;
+
+		if (enemy_explosion->animeflag == true)
+		{
+			enemybreak->drawflag = true;
+		}
 	}
 
 	//-----アニメーション処理

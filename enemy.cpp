@@ -17,7 +17,7 @@
 //
 #include "map_player.h"
 #include "enemy_aura.h"
-
+#include "enemy_explosion_animation.h"
 
 HRESULT InitEnemy(void)
 {
@@ -40,7 +40,7 @@ HRESULT InitEnemy(void)
 	}
 
 	InitEnemyAura();
-
+	InitEnemyExplosion();
 	return S_OK;
 }
 
@@ -70,6 +70,8 @@ void UpdateEnemy(void)
 	}
 
 	UpdateEnemyAura();
+	UpdateEnemyExplosion();
+	
 }
 
 void DrawEnemy(void)
@@ -94,4 +96,5 @@ void DrawEnemy(void)
 
 	if(map_player->enemypowerup == true)
 		DrawEnemyAura();
+	    DrawEnemyExplosion();
 }
