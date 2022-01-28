@@ -76,6 +76,7 @@ HRESULT InitDeckMenu(void)
 	deckmenu.size = D3DXVECTOR2(SCREEN_WIDTH, SCREEN_HEIGHT);
 	deckmenu.texture = LoadTexture("data/TEXTURE/deckmenu/bg.png");
 	deckmenu.use = false;
+	deckmenu.openflag = false;
 
 	g_Selection.pos = D3DXVECTOR2(deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.x, deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.y);
 	g_Selection.size = D3DXVECTOR2(200.0f, 300.0f);
@@ -202,6 +203,7 @@ void UpdateDeckMenu(void)
 		//「立ち去る」コマンドの場所でEnterキーを押したらMAPに戻る
 		if (IsButtonTriggered(0, BUTTON_Y) && g_Selection.pos == D3DXVECTOR2(1100.f, 690.f))
 		{
+			deckmenu.openflag = true;
 			SceneTransition(SCENE_MAP);
 			deckmenu.use = false;
 		}
@@ -258,8 +260,10 @@ void UpdateDeckMenu(void)
 		}
 
 		//「立ち去る」コマンドの場所でEnterキーを押したらMAPに戻る
-		if (GetKeyboardTrigger(DIK_RETURN) && deckmenu.use == true)
+		if (GetKeyboardTrigger(DIK_RETURN) && g_Selection.pos == D3DXVECTOR2(deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.x,
+			deckmenu_card[g_Selection.UDcount][g_Selection.LRcount].pos.y))
 		{
+			deckmenu.openflag = true;
 			SceneTransition(SCENE_MAP);
 			deckmenu.use = false;
 		}
@@ -295,4 +299,9 @@ void DrawDeckMenu(void)
 SELECTION* GetSelection(void)
 {
 	return &g_Selection;
+}
+
+DECKMENU* GetDeckmenu(void)
+{
+	return &deckmenu;
 }
