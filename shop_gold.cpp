@@ -107,11 +107,11 @@ void UpdateShopGold()
 			shop_gold[i].gold = 200;
 			shop_gold[i].v = 0.f;
 		}
-		//if (shop_card[i].code == 15)
-		//{
-		//	shop_gold[i].gold = 280;
-		//	shop_gold[i].v = 0.571428f;
-		//}
+		if (shop_card[i].code == 15)
+		{
+			shop_gold[i].gold = 280;
+			shop_gold[i].v = 0.571428f;
+		}
 		if (shop_card[i].code == 16)
 		{
 			shop_gold[i].gold = 200;

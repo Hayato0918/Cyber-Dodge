@@ -54,7 +54,7 @@ HRESULT InitPlayer(void)
 	{
 		player.atk = 50;
 		player.def = 0;
-		player.gold = 9999;
+		player.gold = 0;
 		player.score = 0;
 
 		//立ち状態のテクスチャ設定

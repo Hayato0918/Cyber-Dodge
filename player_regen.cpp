@@ -9,6 +9,7 @@
 #include "player_hp.h"
 
 #include "skillrandom.h"
+#include "enemybreak.h"
 
 
 //-----マクロ定義
@@ -47,6 +48,7 @@ void _PlayerRegen(void)
 	RANDOM* random = GetRandom();
 	SKILL* skill = GetSkill();
 	PLAYER* player = GetPlayer();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 
 	//ランダムで4が出たら、10s間キャラの体力が1sずつに10回復する
@@ -145,6 +147,16 @@ void _PlayerRegen(void)
 			regen.time = 0.0f;
 			regen.use = false;
 		}
+	}
+
+	if (enemybreak->drawflag == true && regen.use == true)
+	{
+		regen.number = 0;
+		regen.timeflag = false;
+		regen.bugdrawnum = 0;
+		regen.bugincrease = false;
+		regen.time = 0.0f;
+		regen.use = false;
 	}
 }
 

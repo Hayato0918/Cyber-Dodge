@@ -8,6 +8,7 @@
 #include "bugincrease.h"
 
 #include "skillrandom.h"
+#include "enemybreak.h"
 
 //-----ƒ}ƒNƒ’è‹`
 #define barriertime 180		//3sŠÔ
@@ -46,6 +47,7 @@ void _Barrier(void)
 	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();	
 	SKILL* skill = GetSkill();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	barrier.pos = D3DXVECTOR2(player->pos.x - 25.f, player->pos.y - 100.f);
 	barrier.size = D3DXVECTOR2(player->size.y + 100.f, player->size.y + 200.f);
@@ -99,6 +101,18 @@ void _Barrier(void)
 			barrier.bugdrawnum = 0;
 			barrier.drawflag = false;
 		}
+	}
+
+	if (enemybreak->drawflag == true && barrier.use == true)
+	{
+		barrier.use = false;
+		barrier.timeflag = false;
+		barrier.time = 0.0f;
+		barrier.usegauge = 20;
+
+		barrier.bugincrease = false;
+		barrier.bugdrawnum = 0;
+		barrier.drawflag = false;
 	}
 
 

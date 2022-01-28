@@ -4,6 +4,7 @@
 #include "bugincrease.h"
 #include "skillrandom.h"
 #include "rockcreate.h"
+#include "enemybreak.h"
 
 //-----マクロ定義
 #define kantsuutime 180	//3s間
@@ -34,6 +35,7 @@ void _Kantsuu(void)
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
 	SKILL* skill = GetSkill();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	//-----発動から3秒間、ボールが障害物の判定を貫通するようになる。
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -95,6 +97,17 @@ void _Kantsuu(void)
 			kantsuu.bugincrease = false;
 			kantsuu.bugdrawnum = 0;
 		}
+	}
+
+	if (enemybreak->drawflag == true && kantsuu.use == true)
+	{
+		kantsuu.use = false;
+		kantsuu.timeflag = false;
+		kantsuu.time = 0.0f;
+		kantsuu.usegauge = 10;
+
+		kantsuu.bugincrease = false;
+		kantsuu.bugdrawnum = 0;
 	}
 }
 

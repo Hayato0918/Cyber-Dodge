@@ -9,6 +9,7 @@
 #include "bugincrease.h"
 
 #include "skillrandom.h"
+#include "enemybreak.h"
 
 //-----マクロ定義
 
@@ -40,6 +41,7 @@ void _BallSpeedUp(void)
 	BUG* bug = GetBugIncrease();
 	RANDOM* random = GetRandom();
 	BUGGAUGE* buggauge = GetBugGauge();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	//------ボールの速さを1.5倍する
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -87,5 +89,11 @@ void _BallSpeedUp(void)
 			ball->move.x = ballspeedup.beforemove;
 			ballspeedup.timeflag = false;
 		}
+	}
+
+	if (enemybreak->drawflag == true && ballspeedup.use == true)
+	{
+		ball->move.x = ballspeedup.beforemove;
+		ballspeedup.timeflag = false;
 	}
 }

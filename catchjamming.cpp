@@ -7,6 +7,7 @@
 #include "bugincrease.h"
 
 #include "skillrandom.h"
+#include "enemybreak.h"
 
 //-----マクロ定義
 #define catchjammingtime 240
@@ -33,6 +34,7 @@ void _CatchJamming(void)
 	RANDOM* random = GetRandom();
 	BUGGAUGE* buggauge = GetBugGauge();
 	SKILL* skill = GetSkill();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	//Iキーを押したら、4秒間キャッチが出来なくなる。
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -92,6 +94,17 @@ void _CatchJamming(void)
 			catchjamming.bugincrease = false;
 			catchjamming.bugdrawnum = 0;
 		}
+	}
+
+	if (enemybreak->drawflag == true && catchjamming.use == true)
+	{
+		catchjamming.use = false;
+		catchjamming.timeflag = false;
+		catchjamming.time = 0.0f;
+		catchjamming.usegauge = 60;
+
+		catchjamming.bugincrease = false;
+		catchjamming.bugdrawnum = 0;
 	}
 
 

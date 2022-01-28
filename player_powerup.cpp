@@ -8,6 +8,7 @@
 #include "bugincrease.h"
 
 #include "skillrandom.h"
+#include "enemybreak.h"
 
 //-----マクロ定義
 #define poweruptime 600		//10s間
@@ -43,6 +44,7 @@ void _PowerUp(void)
 	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();
 	SKILL* skill = GetSkill();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	//ランダムで4が出たら、10s間キャラのパワーが+50になる
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -98,7 +100,7 @@ void _PowerUp(void)
 	{
 		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && powerup.use == true)
 		{
-			if (powerup.time < poweruptime)
+			if (powerup.time < poweruptime && powerup.timeflag == true)
 				player->atk -= 50;
 			powerup.timeflag = false;
 			powerup.bugdrawnum = 0;
@@ -112,7 +114,7 @@ void _PowerUp(void)
 	{
 		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && powerup.use == true)
 		{
-			if (powerup.time < poweruptime)
+			if (powerup.time < poweruptime && powerup.timeflag == true)
 				player->atk -= 50;
 			powerup.timeflag = false;
 			powerup.bugdrawnum = 0;
@@ -120,6 +122,17 @@ void _PowerUp(void)
 			powerup.time = 0.0f;
 			powerup.use = false;
 		}
+	}
+
+	if (enemybreak->drawflag == true && powerup.use == true)
+	{
+		if (powerup.time < poweruptime && powerup.timeflag == true)
+			player->atk -= 50;
+		powerup.timeflag = false;
+		powerup.bugdrawnum = 0;
+		powerup.bugincrease = false;
+		powerup.time = 0.0f;
+		powerup.use = false;
 	}
 }
 

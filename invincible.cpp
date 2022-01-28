@@ -11,6 +11,7 @@
 #include "bugincrease.h"
 
 #include "skillrandom.h"
+#include "enemybreak.h"
 
 //-----ƒ}ƒNƒ’è‹`
 #define invincibletime 300		//5sŠÔ
@@ -47,6 +48,7 @@ void _Invincible(void)
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	invincible.pos = D3DXVECTOR2(player->pos.x, player->pos.y);
 
@@ -111,6 +113,17 @@ void _Invincible(void)
 			invincible.bugincrease = false;
 			invincible.bugdrawnum = 0;
 		}
+	}
+
+	if (enemybreak->drawflag == true && invincible.use == true)
+	{
+		ball->playerhitflag = true;
+		invincible.use = false;
+		invincible.timeflag = false;
+		invincible.time = 0.0f;
+
+		invincible.bugincrease = false;
+		invincible.bugdrawnum = 0;
 	}
 }
 

@@ -9,6 +9,7 @@
 #include "bugincrease.h"
 
 #include "skillrandom.h"
+#include "enemybreak.h"
 
 //-----マクロ定義
 #define smallplayertime 420		//3s間
@@ -41,6 +42,7 @@ void _SmallPlayer(void)
 	BUGGAUGE* buggauge = GetBugGauge();
 	CATCH* Catch = GetCatch();
 	SKILL* skill = GetSkill();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	//ランダムで7が選ばれたら、3s間キャラのサイズが0.5倍小さくなるになる
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -116,6 +118,23 @@ void _SmallPlayer(void)
 			smallplayer.bugincrease = false;
 			smallplayer.bugdrawnum = 0;
 		}
+	}
+
+	if (enemybreak->drawflag == true && smallplayer.use == true)
+	{
+		if (smallplayer.time < smallplayertime && smallplayer.timeflag == true)
+		{
+			player->size = D3DXVECTOR2(player->size.x * 2, player->size.y * 2);
+			Catch->playersize = D3DXVECTOR2(Catch->playersize.x * 2, Catch->playersize.y * 2);
+		}
+
+		smallplayer.use = false;
+		smallplayer.timeflag = false;
+		smallplayer.time = 0.0f;
+		smallplayer.usegauge = 10;
+
+		smallplayer.bugincrease = false;
+		smallplayer.bugdrawnum = 0;
 	}
 
 }

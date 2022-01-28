@@ -16,6 +16,7 @@
 #include "ball.h"
 //スキル.h
 #include "skillrandom.h"
+#include "enemybreak.h"
 
 //-----マクロ定義
 #define warptime 600		//10s間
@@ -58,6 +59,7 @@ void _Warp(void)
 	FIREWALL* firewall = GetFireWall();
 	MAP_PLAYER* map_player = GetMapPlayer();
 	BALL* ball = GetBall();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	//ランダムで4が出たら、10s間ワープホールが出現
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -151,6 +153,17 @@ void _Warp(void)
 			warp.bugincrease = false;
 			warp.bugdrawnum = 0;
 		}
+	}
+
+	if (enemybreak->drawflag == true && warp.use == true)
+	{
+		warp.warp_flag = false;
+		warp.use = false;
+		warp.timeflag = false;
+		warp.time = 0.0f;
+
+		warp.bugincrease = false;
+		warp.bugdrawnum = 0;
 	}
 }
 

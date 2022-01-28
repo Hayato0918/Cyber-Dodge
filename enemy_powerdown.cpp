@@ -12,6 +12,7 @@
 
 #include "map_point.h"
 #include "map_player.h"
+#include "enemybreak.h"
 
 //-----マクロ定義
 #define powerdowntime 600		//10s間
@@ -46,6 +47,7 @@ void _PowerDown(void)
 	RANDOM* random = GetRandom();
 	MAP_PLAYER* map_player = GetMapPlayer();
 	SKILL* skill = GetSkill();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	//ランダムで4が出たら、10s間敵のパワーが-50になる
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -136,5 +138,25 @@ void _PowerDown(void)
 			powerdown.bugincrease = false;
 			powerdown.bugdrawnum = 0;
 		}
+	}
+
+	if (enemybreak->drawflag == true && powerdown.use == true)
+	{
+		if (powerdown.timeflag == true)
+		{
+			if (map_player->encount == 1)
+				slime->atk = slime->atk + 30;
+			if (map_player->encount == 2)
+				deleter->atk = deleter->atk + 30;
+			if (map_player->encount == 3)
+				firewall->atk = firewall->atk + 30;
+		}
+		powerdown.use = false;
+		powerdown.timeflag = false;
+		powerdown.time = 0.0f;
+		powerdown.usegauge = 30;
+
+		powerdown.bugincrease = false;
+		powerdown.bugdrawnum = 0;
 	}
 }

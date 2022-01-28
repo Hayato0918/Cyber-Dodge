@@ -15,6 +15,7 @@
 #include "ball.h"
 #include "skillrandom.h"
 #include "penetration.h"
+#include "enemybreak.h"
 
 //-----マクロ定義
 #define gansekitime 1800		//30s間
@@ -55,6 +56,7 @@ void _Ganseki(void)
 	MAP_PLAYER* map_player = GetMapPlayer();
 	KANTSUU* kantsuu = GetKantsuu();
 	SKILL* skill = GetSkill();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	//-----発動から30秒間、フィールドに残る障害物として岩石を生成する
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -188,6 +190,16 @@ void _Ganseki(void)
 			ganseki.bugincrease = false;
 			ganseki.bugdrawnum = 0;
 		}
+	}
+
+	if (enemybreak->drawflag == true && ganseki.use == true)
+	{
+		ganseki.use = false;
+		ganseki.timeflag = false;
+		ganseki.time = 0.0f;
+		ganseki.usegauge = 10;
+		ganseki.bugincrease = false;
+		ganseki.bugdrawnum = 0;
 	}
 }
 

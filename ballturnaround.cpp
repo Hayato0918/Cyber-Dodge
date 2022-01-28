@@ -11,6 +11,7 @@
 #include "bugincrease.h"
 
 #include "skillrandom.h"
+#include "enemybreak.h"
 
 //-----マクロ定義
 
@@ -50,6 +51,7 @@ void _BallTurnAround(void)
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	//-----ボールが敵へ向かっていく
 	for (int i = 0; i < SKILL_NUM; i++)

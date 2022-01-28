@@ -8,6 +8,7 @@
 #include "bugincrease.h"
 
 #include "skillrandom.h"
+#include "enemybreak.h"
 
 //-----マクロ定義
 #define speeduptime 600		//10s間
@@ -43,6 +44,7 @@ void _SpeedUp(void)
 	BUGGAUGE* buggauge = GetBugGauge();
 	RANDOM* random = GetRandom();
 	SKILL* skill = GetSkill();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	//ランダムで4が出たら、10s間キャラのスピードが2倍になる
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -99,7 +101,7 @@ void _SpeedUp(void)
 	{
 		if (IsButtonTriggered(0, BUTTON_L2) && skill->usecount == skill->slot && speedup.use == true)
 		{
-			if (speedup.time < speeduptime)
+			if (speedup.time < speeduptime && speedup.timeflag == true)
 				player->move /= 2;
 			speedup.timeflag = false;
 			speedup.bugdrawnum = 0;
@@ -113,7 +115,7 @@ void _SpeedUp(void)
 	{
 		if (GetKeyboardTrigger(DIK_2) && skill->usecount == skill->slot && speedup.use == true)
 		{
-			if (speedup.time < speeduptime)
+			if (speedup.time < speeduptime && speedup.timeflag == true)
 				player->move /= 2;
 			speedup.timeflag = false;
 			speedup.bugdrawnum = 0;
@@ -121,6 +123,17 @@ void _SpeedUp(void)
 			speedup.time = 0.0f;
 			speedup.use = false;
 		}
+	}
+
+	if (enemybreak->drawflag == true && speedup.use == true)
+	{
+		if (speedup.time < speeduptime && speedup.timeflag == true)
+			player->move /= 2;
+		speedup.timeflag = false;
+		speedup.bugdrawnum = 0;
+		speedup.bugincrease = false;
+		speedup.time = 0.0f;
+		speedup.use = false;
 	}
 }
 

@@ -7,6 +7,7 @@
 
 #include "skillrandom.h"
 #include "otoshiana.h"
+#include "enemybreak.h"
 
 //-----マクロ定義
 
@@ -37,6 +38,7 @@ void _Disappear(void)
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
 	SKILL* skill = GetSkill();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	//Tキーを押したら障害物を消滅
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -84,5 +86,12 @@ void _Disappear(void)
 			disappear.bugdrawnum = 0;
 			disappear.use = false;
 		}
+	}
+
+	if (enemybreak->drawflag == true && disappear.use == true)
+	{
+		disappear.bugincrease = false;
+		disappear.bugdrawnum = 0;
+		disappear.use = false;
 	}
 }

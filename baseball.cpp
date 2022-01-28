@@ -8,6 +8,7 @@
 #include "bugincrease.h"
 
 #include "skillrandom.h"
+#include "enemybreak.h"
 
 //-----マクロ定義
 #define swingtime	1200					//バットの判定時間
@@ -44,6 +45,7 @@ void _Baseball(void)
 	RANDOM* random = GetRandom();
 	BUGGAUGE* buggauge = GetBugGauge();
 	SKILL* skill = GetSkill();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	//スキルが使えるかの判断
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -141,6 +143,19 @@ void _Baseball(void)
 			baseball.bugincrease = false;
 			baseball.bugdrawnum = 0;
 		}
+	}
+
+	if (enemybreak->drawflag == true && baseball.use == true)
+	{
+		baseball.pos = D3DXVECTOR2(0.0f, 0.0f);
+		baseball.size = D3DXVECTOR2(20.0f, 120.0f);
+		baseball.use = false;
+		baseball.timeflag = false;
+		baseball.time = 0.0f;
+		baseball.usegauge = 20;
+
+		baseball.bugincrease = false;
+		baseball.bugdrawnum = 0;
 	}
 
 }

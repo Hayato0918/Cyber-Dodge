@@ -9,6 +9,7 @@
 #include "catch.h"
 
 #include "skillrandom.h"
+#include "enemybreak.h"
 
 //-----マクロ定義
 #define builduptime 1000		//20s間
@@ -41,6 +42,7 @@ void _BuildUp(void)
 	BUGGAUGE* buggauge = GetBugGauge();
 	CATCH* Catch = GetCatch();
 	SKILL* skill = GetSkill();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	//ランダムで4が出たら、20s間キャラのサイズが2倍になる
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -103,6 +105,21 @@ void _BuildUp(void)
 			buildup.time = builduptime;
 			buildup.use = false;
 		}
+	}
+
+	if (enemybreak->drawflag == true && buildup.use == true)
+	{
+		if (buildup.timeflag == true)
+		{
+			player->size = D3DXVECTOR2(player->size.x * 0.5f, player->size.y * 0.5f);
+			Catch->playersize = D3DXVECTOR2(Catch->playersize.x * 0.5f, Catch->playersize.y * 0.5f);
+		}
+
+		buildup.timeflag = false;
+		buildup.bugincrease = false;
+		buildup.bugdrawnum = 0;
+		buildup.time = builduptime;
+		buildup.use = false;
 	}
 
 	//スキル使用20s後にもとの大きさに戻る

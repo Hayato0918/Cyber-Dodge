@@ -98,6 +98,7 @@ void UpdateEnemyBreak(void)
 		{
 			player->gold = player->gold + getgoldnum.gold;
 			player->score = player->score + getscore.score;
+
 			SceneTransition(SCENE_MAP);
 		}
 	}

@@ -13,6 +13,7 @@
 
 #include "skillrandom.h"
 #include "map_player.h"
+#include "enemybreak.h"
 
 //-----ƒ}ƒNƒ’è‹`
 #define timestoptime 360		//6sŠÔ
@@ -65,6 +66,7 @@ void _Timestop(void)
 	MAP_PLAYER* map_player = GetMapPlayer();
 	SLIME* slime = GetSlime();
 	DELETER* deleter = GetDeleter();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	if (map_player->encount == 1)
 		timestop.pos = D3DXVECTOR2(slime->pos.x - 30, slime->pos.y - 30);
@@ -163,6 +165,19 @@ void _Timestop(void)
 			timestop.bugincrease = false;
 			timestop.bugdrawnum = 0;
 		}
+	}
+
+	if (enemybreak->drawflag == true && timestop.use == true)
+	{
+		timestop.use = false;
+		timestop.timeflag = false;
+		timestop.time = 0.0f;
+		timestop.posnow = D3DXVECTOR2(0.0f, 0.0f);
+		cattch->enemyflag = 0;
+		cattch->enemyintervalflag = 0;
+
+		timestop.bugincrease = false;
+		timestop.bugdrawnum = 0;
 	}
 }
 

@@ -8,6 +8,7 @@
 #include "bugincrease.h"
 
 #include "skillrandom.h"
+#include "enemybreak.h"
 
 //-----マクロ定義
 #define bigballtime 180		//3s間
@@ -37,6 +38,7 @@ void _BigBall(void)
 	SKILL* skill = GetSkill();
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	//ランダムで選ばれたら、3s間ボールのサイズが大きくなる
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -91,6 +93,18 @@ void _BigBall(void)
 			bigball.time = 0.0f;
 			bigball.use = false;
 		}
+	}
+
+	if (enemybreak->drawflag == true && bigball.use == true)
+	{
+		if (bigball.timeflag == true)
+			ball->size = D3DXVECTOR2(ball->size.x * 0.5f, ball->size.y * 0.5f);
+
+		bigball.timeflag = false;
+		bigball.bugincrease = false;
+		bigball.bugdrawnum = 0;
+		bigball.time = 0.0f;
+		bigball.use = false;
 	}
 
 	//スキル使用3s後にもとの大きさに戻る

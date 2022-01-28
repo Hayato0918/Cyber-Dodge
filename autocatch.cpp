@@ -9,6 +9,7 @@
 #include "catch.h"
 
 #include "skillrandom.h"
+#include "enemybreak.h"
 
 //-----マクロ定義
 #define auto_ctime 600		//10s間
@@ -43,6 +44,7 @@ void _Auto_c(void)
 	SKILL* skill = GetSkill();
 	CATCH* Catch = GetCatch();
 	BUGGAUGE* buggauge = GetBugGauge();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	//ランダムで15が出たら、10s間キャラの攻撃力が2倍になる
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -124,6 +126,22 @@ void _Auto_c(void)
 			auto_c.time = 0.0f;
 			auto_c.use = false;
 		}
+	}
+
+	if (enemybreak->drawflag == true && auto_c.use == true)
+	{
+		if (auto_c.timeflag == true)
+		{
+			Catch->playerpos.y += Catch->playersize.y;
+			Catch->playersize.y /= 4;
+		}
+		auto_c.timeflag = false;
+		auto_c.auto_catch = false;
+		auto_c.auto_catchflag = false;
+		auto_c.bugdrawnum = 0;
+		auto_c.bugincrease = false;
+		auto_c.time = 0.0f;
+		auto_c.use = false;
 	}
 }
 

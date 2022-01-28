@@ -12,6 +12,7 @@
 #include "map_player.h"
 
 #include "skillrandom.h"
+#include "enemybreak.h"
 
 //-----マクロ定義
 #define landminestime 180
@@ -58,6 +59,7 @@ void _LandMines(void)
 	RANDOM* random = GetRandom();
 	MAP_PLAYER* map_player = GetMapPlayer();
 	SKILL* skill = GetSkill();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	//Uキーを押したら地雷を設置
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -158,6 +160,18 @@ void _LandMines(void)
 			landmines.bugincrease = false;
 			landmines.bugdrawnum = 0;
 		}
+	}
+
+	if (enemybreak->drawflag == true && landmines.use == true)
+	{
+		landmines.use = false;
+		landmines.timeflag = false;
+		landmines.possesion = 4;
+		landmines.time = 0.0f;
+		landmines.usegauge = 10;
+
+		landmines.bugincrease = false;
+		landmines.bugdrawnum = 0;
 	}
 }
 

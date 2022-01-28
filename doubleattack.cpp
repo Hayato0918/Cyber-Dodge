@@ -8,6 +8,7 @@
 #include "bugincrease.h"
 
 #include "skillrandom.h"
+#include "enemybreak.h"
 
 //-----マクロ定義
 #define doubletime 600		//10s間
@@ -39,6 +40,7 @@ void _Double(void)
 	RANDOM* random = GetRandom();
 	BUGGAUGE* buggauge = GetBugGauge();
 	SKILL* skill = GetSkill();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	//ランダムで4が出たら、10s間キャラの攻撃力が2倍になる
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -106,5 +108,19 @@ void _Double(void)
 			dable.bugincrease = false;
 			dable.bugdrawnum = 0;
 		}
+	}
+
+	if (enemybreak->drawflag == true && dable.use == true)
+	{
+		if (dable.timeflag == true)
+			player->atk = player->atk / 2;
+
+		dable.use = false;
+		dable.timeflag = false;
+		dable.time = 0.0f;
+		dable.usegauge = 30;
+
+		dable.bugincrease = false;
+		dable.bugdrawnum = 0;
 	}
 }

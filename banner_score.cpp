@@ -48,7 +48,7 @@ void UpdateBannerScore(void)
 	MAP_PLAYER* map_player = GetMapPlayer();
 
 	if (map_player->UDcount > 0)
-		banner_scorenum.gold = player->gold;
+		banner_scorenum.gold = player->score;
 
 	banner_scorenum.a = banner_scorenum.gold * 0.001f;
 	banner_scorenum.b = (banner_scorenum.gold - banner_scorenum.a * 1000) * 0.01f;

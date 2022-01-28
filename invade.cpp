@@ -8,6 +8,7 @@
 #include "bugincrease.h"
 
 #include "skillrandom.h"
+#include "enemybreak.h"
 
 //-----マクロ定義
 #define invadetime 420		//3s間
@@ -39,6 +40,7 @@ void _Invade(void)
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
 	SKILL* skill = GetSkill();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	//ランダムで5が選ばれたら、3秒間敵の陣地に入れる
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -103,6 +105,17 @@ void _Invade(void)
 			invade.bugincrease = false;
 			invade.bugdrawnum = 0;
 		}
+	}
+
+	if (enemybreak->drawflag == true && invade.use == true)
+	{
+		invade.use = false;
+		invade.timeflag = false;
+		invade.time = 0.0f;
+		invade.usegauge = 10;
+
+		invade.bugincrease = false;
+		invade.bugdrawnum = 0;
 	}
 }
 

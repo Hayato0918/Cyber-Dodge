@@ -13,6 +13,7 @@
 
 #include "skillrandom.h"
 #include "map_player.h"
+#include "enemybreak.h"
 
 //-----マクロ定義
 #define mindhacktime 360		//6s間
@@ -47,6 +48,7 @@ void _Mindhack(void)
 	RANDOM* random = GetRandom();
 	REVERSE* reverse = GetReverse();
 	MAP_PLAYER* map_player = GetMapPlayer();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	//ランダムで4が出たら、6s間敵が行動不能になる
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -271,5 +273,15 @@ void _Mindhack(void)
 			mindhack.bugincrease = false;
 			mindhack.bugdrawnum = 0;
 		}
+	}
+
+	if (enemybreak->drawflag == true && mindhack.use == true)
+	{
+		mindhack.use = false;
+		mindhack.timeflag = false;
+		mindhack.time = 0.0f;
+
+		mindhack.bugincrease = false;
+		mindhack.bugdrawnum = 0;
 	}
 }

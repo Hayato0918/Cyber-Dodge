@@ -9,6 +9,7 @@
 #include "bugincrease.h"
 
 #include "skillrandom.h"
+#include "enemybreak.h"
 
 //-----マクロ定義
 #define slowareatime 180		//3s間
@@ -52,6 +53,7 @@ void _SlowArea(void)
 	BUG* bug = GetBugIncrease();
 	BUGGAUGE* buggauge = GetBugGauge();
 	SKILL* skill = GetSkill();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	//-----ランダムで6が選ばれたら、3s間足がおそくなるエリアができる
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -124,6 +126,23 @@ void _SlowArea(void)
 			slowarea.bugincrease = false;
 			slowarea.bugdrawnum = 0;
 		}
+	}
+
+	if (enemybreak->drawflag == true && slowarea.use == true)
+	{
+		if (slowarea.timeflag == true)
+			player->move = D3DXVECTOR2(4, 4);
+		slowarea.use = false;
+		slowarea.timeflag = false;
+		slowarea.time = 0.0f;
+		srand((unsigned int)time(NULL));
+		slowarea.xrand = rand() % 10 + 1;
+		srand((unsigned int)time(NULL) + 1);
+		slowarea.yrand = rand() % 10 + 1;
+		slowarea.pos = D3DXVECTOR2(slowarea.xrand * SCREEN_WIDTH * 0.05f - slowarea.size.x, 320.0f + slowarea.yrand * 22 - slowarea.size.y);
+
+		slowarea.bugincrease = false;
+		slowarea.bugdrawnum = 0;
 	}
 
 

@@ -9,6 +9,7 @@
 #include "bugincrease.h"
 
 #include "skillrandom.h"
+#include "enemybreak.h"
 
 //-----マクロ定義
 #define swingtime	1200					//キュースティックの判定時間
@@ -44,6 +45,7 @@ void _Billiards(void)
 	RANDOM* random = GetRandom();
 	BUGGAUGE* buggauge = GetBugGauge();
 	SKILL* skill = GetSkill();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	//スキルが使えるかの判断
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -139,6 +141,19 @@ void _Billiards(void)
 			billiards.bugincrease = false;
 			billiards.bugdrawnum = 0;
 		}
+	}
+
+	if (enemybreak->drawflag == true && billiards.use == true)
+	{
+		billiards.pos = D3DXVECTOR2(0.0f, 0.0f);
+		billiards.size = D3DXVECTOR2(120.0f, 5.0f);
+		billiards.use = false;
+		billiards.timeflag = false;
+		billiards.time = 0.0f;
+		billiards.usegauge = 20;
+
+		billiards.bugincrease = false;
+		billiards.bugdrawnum = 0;
 	}
 }
 

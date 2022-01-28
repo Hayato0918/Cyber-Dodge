@@ -12,6 +12,7 @@
 
 #include "skillrandom.h"
 #include "map_player.h"
+#include "enemybreak.h"
 
 //-----マクロ定義
 #define otosianatime 600
@@ -55,6 +56,7 @@ void _Otosiana(void)
 	PLAYER* player = GetPlayer();
 	RANDOM* random = GetRandom();
 	MAP_PLAYER* map_player = GetMapPlayer();
+	ENEMYBREAK* enemybreak = GetEnemyBreak();
 
 	//Yキーを押したら落とし穴を設置
 	for (int i = 0; i < SKILL_NUM; i++)
@@ -128,6 +130,12 @@ void _Otosiana(void)
 	if (otosiana.timeflag == true)
 		otosiana.time = otosiana.time + 1.0f;
 	if (otosiana.time > otosianatime)
+	{
+		otosiana.timeflag = false;
+		otosiana.time = 0.0f;
+	}
+
+	if (enemybreak->drawflag == true && otosiana.use == true)
 	{
 		otosiana.timeflag = false;
 		otosiana.time = 0.0f;
