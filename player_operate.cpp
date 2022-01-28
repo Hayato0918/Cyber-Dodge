@@ -100,10 +100,10 @@ void player_operate()
 			player->walktextureflag = true;		//テクスチャの切り替え
 		}
 
-		if (GetKeyboardRelease(DIK_A))	//左移動をやめたら
-			player->walktextureflag = false;
-		if (GetKeyboardRelease(DIK_D))	//右移動をやめたら
-			player->walktextureflag = false;
+		//if (GetKeyboardRelease(DIK_A))	//左移動をやめたら
+		//	player->walktextureflag = false;
+		//if (GetKeyboardRelease(DIK_D))	//右移動をやめたら
+		//	player->walktextureflag = false;
 	}
 
 

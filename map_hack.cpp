@@ -10,6 +10,7 @@
 
 #include "map.h"
 #include "soundvolume_select.h"
+#include "hackeffect.h"
 
 
 //-----ƒ}ƒNƒ’è‹`
@@ -53,6 +54,7 @@ void UninitMapHack(void)
 void UpdateMapHack(void)
 {
 	MAPSAVE_BG* map_save = GetMapSaveBG();
+
 
 	if (map_save->drawflag == false)
 	{
